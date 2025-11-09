@@ -14,8 +14,3 @@ AAuraBaseCharacter::AAuraBaseCharacter()
 	Weapon->SetupAttachment(GetMesh(), WeaponSocketName);
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
-
-void AAuraBaseCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-}
