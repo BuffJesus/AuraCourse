@@ -3,30 +3,21 @@
 
 #include "Characters/AuraEnemyCharacter.h"
 
-
-AAuraEnemyCharacter::AAuraEnemyCharacter()
-{
-	PrimaryActorTick.bCanEverTick = true;
-}
+#include "Aura/Aura.h"
 
 void AAuraEnemyCharacter::HighlightActor()
 {
-	bIsHighlighted = true;
+	GetMesh()->SetRenderCustomDepth(true);
+	Weapon->SetRenderCustomDepth(true);
+	
+	GetMesh()->SetCustomDepthStencilValue(CustomDepthRed);
+	Weapon->SetCustomDepthStencilValue(CustomDepthRed);
 }
 
 void AAuraEnemyCharacter::UnHighlightActor()
 {
-	bIsHighlighted = false;
-}
-
-void AAuraEnemyCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-	if (bIsHighlighted && bDrawDebug)
-	{
-		DrawDebugSphere(GetWorld(), GetActorLocation(), 100.0f, 16, FColor::Red, false, 0.0f, 0, 1.0f);
-	}
+	GetMesh()->SetRenderCustomDepth(false);
+	Weapon->SetRenderCustomDepth(false);
 }
 
 void AAuraEnemyCharacter::BeginPlay()
