@@ -3,8 +3,6 @@
 
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 
-
-// Sets default values for this component's properties
 UAuraAbilitySystemComponent::UAuraAbilitySystemComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
