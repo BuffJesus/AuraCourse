@@ -14,3 +14,8 @@ AAuraBaseCharacter::AAuraBaseCharacter()
 	Weapon->SetupAttachment(GetMesh(), WeaponSocketName);
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
+
+UAbilitySystemComponent* AAuraBaseCharacter::GetAbilitySystemComponent() const
+{
+	return AbilityRefs.AbilitySystemComponent;
+}
