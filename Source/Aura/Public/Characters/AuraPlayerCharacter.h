@@ -19,9 +19,10 @@ public:
 	
 	// Client only - called when PlayerState is replicated
 	virtual void OnRep_PlayerState() override;
+	
 
 private:
-	void InitializeAbilityActorInfo();
+	void InitAbilityActorInfo();
 
 	UPROPERTY(EditAnywhere, Category = "Aura|Movement")
 	float RotationRate{400.f};

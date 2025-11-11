@@ -7,6 +7,9 @@
 #include "Interaction/EnemyInterface.h"
 #include "AuraEnemyCharacter.generated.h"
 
+class UAuraAbilitySystemComponent;
+class UAuraAttributeSet;
+
 UCLASS()
 class AURA_API AAuraEnemyCharacter : public AAuraBaseCharacter, public IEnemyInterface
 {
@@ -17,6 +20,10 @@ public:
 	
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
-	virtual void BeginPlay() override;
 
+	// Typed accessor
+	UAuraAbilitySystemComponent* GetAuraASC() const;
+
+protected:
+	virtual void BeginPlay() override;
 };

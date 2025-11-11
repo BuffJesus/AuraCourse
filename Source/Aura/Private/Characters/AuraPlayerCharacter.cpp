@@ -3,8 +3,10 @@
 #include "Characters/AuraPlayerCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/AuraPlayerState.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "AbilitySystem/AuraAttributeSet.h"
 
-DEFINE_LOG_CATEGORY_STATIC(LogAura, Log, All);
+DEFINE_LOG_CATEGORY_STATIC(LogAuraPlayer, Log, All);
 
 AAuraPlayerCharacter::AAuraPlayerCharacter()
 {
@@ -24,7 +26,7 @@ void AAuraPlayerCharacter::PossessedBy(AController* NewController)
 	Super::PossessedBy(NewController);
 
 	// Init ability actor info for the Server
-	InitializeAbilityActorInfo();
+	InitAbilityActorInfo();
 }
 
 void AAuraPlayerCharacter::OnRep_PlayerState()
@@ -32,24 +34,29 @@ void AAuraPlayerCharacter::OnRep_PlayerState()
 	Super::OnRep_PlayerState();
 
 	// Init ability actor info for the Client
-	InitializeAbilityActorInfo();
+	InitAbilityActorInfo();
 }
 
-void AAuraPlayerCharacter::InitializeAbilityActorInfo()
+void AAuraPlayerCharacter::InitAbilityActorInfo()
 {
 	AAuraPlayerState* AuraPS = GetPlayerState<AAuraPlayerState>();
-	check(AuraPS);
+	if (!AuraPS)
+	{
+		UE_LOG(LogAuraPlayer, Error, TEXT("Failed to get AuraPlayerState for %s"), *GetName());
+		return;
+	}
 
-	// Set the ASC from PlayerState (PlayerState owns it for players)
-	AbilityRefs.AbilitySystemComponent = AuraPS->GetAbilitySystemComponent();
-	AbilityRefs.AttributeSet = AuraPS->GetAttributeSet();
+	UAuraAbilitySystemComponent* AuraASC = AuraPS->GetAuraASC();
+	if (!AuraASC)
+	{
+		UE_LOG(LogAuraPlayer, Error, TEXT("PlayerState missing AbilitySystemComponent"));
+		return;
+	}
 
 	// Init ASC Actor Info - OwnerActor = PlayerState, AvatarActor = this
-	AbilityRefs.InitializeActorInfo(AuraPS, this);
+	AuraASC->InitAbilityActorInfo(AuraPS, this);
 
-	UE_LOG(LogAura, Log, TEXT("Player [%s] (%s) - ASC Initialized: %s | AttributeSet: %s"), 
+	UE_LOG(LogAuraPlayer, Log, TEXT("Player [%s] (%s) - ASC Initialized"), 
 		*GetName(),
-		HasAuthority() ? TEXT("SERVER") : TEXT("CLIENT"),
-		AbilityRefs.AbilitySystemComponent ? TEXT("Valid") : TEXT("NULL"),
-		AbilityRefs.AttributeSet ? TEXT("Valid") : TEXT("NULL"));
+		HasAuthority() ? TEXT("SERVER") : TEXT("CLIENT"));
 }

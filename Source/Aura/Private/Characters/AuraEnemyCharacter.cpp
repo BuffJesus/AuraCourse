@@ -2,28 +2,38 @@
 
 #include "Characters/AuraEnemyCharacter.h"
 #include "Aura/Aura.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "AbilitySystem/AuraAttributeSet.h"
 
-DEFINE_LOG_CATEGORY_STATIC(LogAura, Log, All);
+DEFINE_LOG_CATEGORY_STATIC(LogAuraEnemy, Log, All);
 
 AAuraEnemyCharacter::AAuraEnemyCharacter()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 
-	AbilityRefs.InitializeComponents(this);
-	AbilityRefs.SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+	// Enemy owns its own ASC
+	AbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+	
+	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 }
 
 void AAuraEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	check(AbilityRefs.AbilitySystemComponent);
-	AbilityRefs.InitializeActorInfo(this, this);
+	check(AbilitySystemComponent);
+	
+	// For enemies, they are both owner and avatar
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 
-	UE_LOG(LogAura, Log, TEXT("Enemy [%s] - ASC Initialized: %s | AttributeSet: %s"), 
-		*GetName(),
-		AbilityRefs.AbilitySystemComponent ? TEXT("Valid") : TEXT("NULL"),
-		AbilityRefs.AttributeSet ? TEXT("Valid") : TEXT("NULL"));
+	UE_LOG(LogAuraEnemy, Log, TEXT("Enemy [%s] - ASC Initialized"), *GetName());
+}
+
+UAuraAbilitySystemComponent* AAuraEnemyCharacter::GetAuraASC() const
+{
+	return Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent);
 }
 
 void AAuraEnemyCharacter::HighlightActor()

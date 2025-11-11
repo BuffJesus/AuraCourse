@@ -4,13 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemInterface.h"
-#include "Aura/Aura.h"
 #include "GameFramework/PlayerState.h"
 #include "AuraPlayerState.generated.h"
 
-/**
- * 
- */
+class UAuraAbilitySystemComponent;
+class UAuraAttributeSet;
+
 UCLASS()
 class AURA_API AAuraPlayerState : public APlayerState, public IAbilitySystemInterface
 {
@@ -19,10 +18,17 @@ class AURA_API AAuraPlayerState : public APlayerState, public IAbilitySystemInte
 public:
 	AAuraPlayerState();
 
+	// IAbilitySystemInterface
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-	UAttributeSet* GetAttributeSet() const {return AbilityRefs.AttributeSet;}
+	
+	// Typed accessors
+	UAuraAbilitySystemComponent* GetAuraASC() const { return AbilitySystemComponent; }
+	UAuraAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|AbilitySystem")
-	FAuraAbilityReferences AbilityRefs;
+	UPROPERTY(VisibleAnywhere, Category = "Aura|GAS")
+	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY()
+	TObjectPtr<UAuraAttributeSet> AttributeSet;
 };
