@@ -29,7 +29,7 @@ protected:
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 
 	// These will be set by derived classes
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Aura|GAS")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY()

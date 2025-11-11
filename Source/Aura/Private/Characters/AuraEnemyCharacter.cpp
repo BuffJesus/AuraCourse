@@ -31,11 +31,6 @@ void AAuraEnemyCharacter::BeginPlay()
 	UE_LOG(LogAuraEnemy, Log, TEXT("Enemy [%s] - ASC Initialized"), *GetName());
 }
 
-UAuraAbilitySystemComponent* AAuraEnemyCharacter::GetAuraASC() const
-{
-	return Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent);
-}
-
 void AAuraEnemyCharacter::HighlightActor()
 {
 	GetMesh()->SetRenderCustomDepth(true);

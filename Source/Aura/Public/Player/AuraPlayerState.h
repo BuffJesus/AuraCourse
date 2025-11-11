@@ -7,7 +7,7 @@
 #include "GameFramework/PlayerState.h"
 #include "AuraPlayerState.generated.h"
 
-class UAuraAbilitySystemComponent;
+class UAbilitySystemComponent;
 class UAuraAttributeSet;
 
 UCLASS()
@@ -22,12 +22,12 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	
 	// Typed accessors
-	UAuraAbilitySystemComponent* GetAuraASC() const { return AbilitySystemComponent; }
+	UAbilitySystemComponent* GetAuraASC() const { return AbilitySystemComponent; }
 	UAuraAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 protected:
 	UPROPERTY(VisibleAnywhere, Category = "Aura|GAS")
-	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY()
 	TObjectPtr<UAuraAttributeSet> AttributeSet;

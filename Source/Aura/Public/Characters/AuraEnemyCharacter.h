@@ -21,9 +21,6 @@ public:
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
 
-	// Typed accessor
-	UAuraAbilitySystemComponent* GetAuraASC() const;
-
 protected:
 	virtual void BeginPlay() override;
 };
