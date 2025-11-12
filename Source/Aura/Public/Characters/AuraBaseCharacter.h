@@ -18,11 +18,11 @@ class AURA_API AAuraBaseCharacter : public ACharacter, public IAbilitySystemInte
 public:
 	AAuraBaseCharacter();
 
-	// IAbilitySystemInterface
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-	
-	// Accessor for AttributeSet (not part of interface but useful)
-	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
+	UAttributeSet* GetAttributeSet() const{ return AttributeSet; }
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Combat")
+	FName WeaponSocketName { "WeaponHandSocket" };
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")

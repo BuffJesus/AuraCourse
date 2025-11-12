@@ -5,8 +5,8 @@
 #include "Player/AuraPlayerState.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
-
-DEFINE_LOG_CATEGORY_STATIC(LogAuraPlayer, Log, All);
+#include "Player/AuraPlayerController.h"
+#include "UI/HUD/AuraHUD.h"
 
 AAuraPlayerCharacter::AAuraPlayerCharacter()
 {
@@ -25,38 +25,29 @@ void AAuraPlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 
-	// Init ability actor info for the Server
-	InitAbilityActorInfo();
+	InitializeAbilityActorInfo();
 }
 
 void AAuraPlayerCharacter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
 
-	// Init ability actor info for the Client
-	InitAbilityActorInfo();
+	InitializeAbilityActorInfo();
 }
 
-void AAuraPlayerCharacter::InitAbilityActorInfo()
+void AAuraPlayerCharacter::InitializeAbilityActorInfo()
 {
-	AAuraPlayerState* AuraPS = GetPlayerState<AAuraPlayerState>();
-	if (!AuraPS)
+	AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+	check(AuraPlayerState);
+	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState, this);
+	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
+	AttributeSet = AuraPlayerState->GetAttributeSet();
+
+	if (AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(GetController()))
 	{
-		UE_LOG(LogAuraPlayer, Error, TEXT("Failed to get AuraPlayerState for %s"), *GetName());
-		return;
+		if (AAuraHUD* AuraHUD = Cast<AAuraHUD>(AuraPlayerController->GetHUD()))
+		{
+			AuraHUD->InitOverlay(AuraPlayerController, AuraPlayerState, AbilitySystemComponent, AttributeSet);
+		}
 	}
-
-	UAuraAbilitySystemComponent* AuraASC = AuraPS->GetAuraASC();
-	if (!AuraASC)
-	{
-		UE_LOG(LogAuraPlayer, Error, TEXT("PlayerState missing AbilitySystemComponent"));
-		return;
-	}
-
-	// Init ASC Actor Info - OwnerActor = PlayerState, AvatarActor = this
-	AuraASC->InitAbilityActorInfo(AuraPS, this);
-
-	UE_LOG(LogAuraPlayer, Log, TEXT("Player [%s] (%s) - ASC Initialized"), 
-		*GetName(),
-		HasAuthority() ? TEXT("SERVER") : TEXT("CLIENT"));
 }

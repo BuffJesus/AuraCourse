@@ -5,8 +5,6 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 
-DEFINE_LOG_CATEGORY_STATIC(LogAuraEnemy, Log, All);
-
 AAuraEnemyCharacter::AAuraEnemyCharacter()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
@@ -22,13 +20,7 @@ AAuraEnemyCharacter::AAuraEnemyCharacter()
 void AAuraEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-
-	check(AbilitySystemComponent);
-	
-	// For enemies, they are both owner and avatar
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
-
-	UE_LOG(LogAuraEnemy, Log, TEXT("Enemy [%s] - ASC Initialized"), *GetName());
 }
 
 void AAuraEnemyCharacter::HighlightActor()
