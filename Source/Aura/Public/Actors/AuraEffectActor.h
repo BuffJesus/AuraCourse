@@ -20,9 +20,9 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable)
-	void ApplyEffectToTarget(AActor* Target, TSubclassOf<UGameplayEffect> EffectClass) const;
+	void ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> EffectClass) const;
 
-	UPROPERTY(EditAnywhere, Category = "Aura|Effects")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
 	TSubclassOf<UGameplayEffect> InstantGameplayEffectClass;
 
 };
