@@ -2,6 +2,8 @@
 
 
 #include "AbilitySystem/AuraAttributeSet.h"
+
+#include "GameplayEffectExtension.h"
 #include "Net/UnrealNetwork.h"
 
 
@@ -24,6 +26,80 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION_NOTIFY(ThisClass, MaxMana, COND_None, REPNOTIFY_Always);
 #pragma endregion
 	
+}
+
+void UAuraAttributeSet::PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const
+{
+	Super::PreAttributeBaseChange(Attribute, NewValue);
+
+	// Clamp Health to [0, MaxHealth] if MaxHealth is initialized
+	if (Attribute == GetHealthAttribute())
+	{
+		if (GetMaxHealth() > 0.f)
+		{
+			NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth());
+		}
+	}
+
+	// Clamp Mana to [0, MaxMana] if MaxMana is initialized
+	if (Attribute == GetManaAttribute())
+	{
+		if (GetMaxMana() > 0.f)
+		{
+			NewValue = FMath::Clamp(NewValue, 0.f, GetMaxMana());
+		}
+	}
+
+	// Clamp max values to be non-negative
+	if (Attribute == GetMaxHealthAttribute())
+	{
+		NewValue = FMath::Max(NewValue, 0.f);
+	}
+
+	if (Attribute == GetMaxManaAttribute())
+	{
+		NewValue = FMath::Max(NewValue, 0.f);
+	}
+}
+
+void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
+{
+	Super::PostGameplayEffectExecute(Data);
+
+	// Clamp Health to [0, MaxHealth] if MaxHealth is initialized
+	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	{
+		if (GetMaxHealth() > 0.f)
+		{
+			SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
+		}
+	}
+
+	// Clamp Mana to [0, MaxMana] if MaxMana is initialized
+	if (Data.EvaluatedData.Attribute == GetManaAttribute())
+	{
+		if (GetMaxMana() > 0.f)
+		{
+			SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
+		}
+	}
+
+	// Also clamp current values when max values change
+	if (Data.EvaluatedData.Attribute == GetMaxHealthAttribute())
+	{
+		if (GetMaxHealth() > 0.f)
+		{
+			SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
+		}
+	}
+
+	if (Data.EvaluatedData.Attribute == GetMaxManaAttribute())
+	{
+		if (GetMaxMana() > 0.f)
+		{
+			SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
+		}
+	}
 }
 
 void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
