@@ -35,10 +35,10 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-	// Return the handle so we can later remove infinite effects safely
 	UFUNCTION(BlueprintCallable)
-	FActiveGameplayEffectHandle ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> EffectClass) const;
+	FActiveGameplayEffectHandle ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> EffectClass);
 
 	UFUNCTION(BlueprintCallable)
 	void OnOverlap(AActor* TargetActor);
@@ -76,7 +76,16 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectRemovalPolicy InfiniteEffectRemovalPolicy = EEffectRemovalPolicy::RemoveOnEndOverlap;
 
+	// Level to apply effects at (for scaling)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Effects", meta = (ClampMin = "1.0"))
+	float ActorLevel = 1.0f;
+
 	// Track infinite effect handles per overlapping actor
 	TMap<TWeakObjectPtr<AActor>, TArray<FActiveGameplayEffectHandle>> ActiveInfiniteEffectHandles;
 
+private:
+	FTimerHandle CleanupTimerHandle;
+
+	// Remove invalid actor entries from the map
+	void CleanupInvalidHandles();
 };

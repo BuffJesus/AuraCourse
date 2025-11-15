@@ -1,6 +1,5 @@
 ﻿// Not Sure Yet
 
-
 #include "Actors/AuraEffectActor.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
@@ -8,6 +7,7 @@
 AAuraEffectActor::AAuraEffectActor()
 {
 	PrimaryActorTick.bCanEverTick = false;
+	bReplicates = true;
 
 	SetRootComponent(CreateDefaultSubobject<USceneComponent>("RootComponent"));
 }
@@ -15,12 +15,53 @@ AAuraEffectActor::AAuraEffectActor()
 void AAuraEffectActor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// Start periodic cleanup of invalid actor references (server only)
+	if (HasAuthority())
+	{
+		GetWorld()->GetTimerManager().SetTimer(CleanupTimerHandle, this, 
+			&AAuraEffectActor::CleanupInvalidHandles, 10.0f, true);
+	}
+}
+
+void AAuraEffectActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	// Remove all tracked effects when this actor is destroyed
+	if (HasAuthority())
+	{
+		GetWorld()->GetTimerManager().ClearTimer(CleanupTimerHandle);
+
+		for (const TPair<TWeakObjectPtr<AActor>, TArray<FActiveGameplayEffectHandle>>& Pair : ActiveInfiniteEffectHandles)
+		{
+			AActor* Actor = Pair.Key.Get();
+			if (!IsValid(Actor))
+			{
+				continue;
+			}
+
+			UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Actor);
+			if (!IsValid(TargetASC))
+			{
+				continue;
+			}
+
+			for (const FActiveGameplayEffectHandle& Handle : Pair.Value)
+			{
+				if (Handle.IsValid())
+				{
+					TargetASC->RemoveActiveGameplayEffect(Handle, 1);
+				}
+			}
+		}
+		ActiveInfiniteEffectHandles.Empty();
+	}
+
+	Super::EndPlay(EndPlayReason);
 }
 
 FActiveGameplayEffectHandle AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor,
-	const TSubclassOf<UGameplayEffect> EffectClass) const
+	const TSubclassOf<UGameplayEffect> EffectClass)
 {
-	// Authority check - only apply effects on server
 	if (!HasAuthority() || !IsValid(TargetActor) || !EffectClass)
 	{
 		return FActiveGameplayEffectHandle();
@@ -37,7 +78,7 @@ FActiveGameplayEffectHandle AAuraEffectActor::ApplyEffectToTarget(AActor* Target
 	EffectContextHandle.AddSourceObject(this);
 
 	const FGameplayEffectSpecHandle EffectSpecHandle =
-		TargetASC->MakeOutgoingSpec(EffectClass, 1.f, EffectContextHandle);
+		TargetASC->MakeOutgoingSpec(EffectClass, ActorLevel, EffectContextHandle);
 	if (!EffectSpecHandle.IsValid())
 	{
 		return FActiveGameplayEffectHandle();
@@ -48,7 +89,6 @@ FActiveGameplayEffectHandle AAuraEffectActor::ApplyEffectToTarget(AActor* Target
 
 void AAuraEffectActor::OnOverlap(AActor* TargetActor)
 {
-	// Authority check - only run on server
 	if (!HasAuthority() || !IsValid(TargetActor) || TargetActor == this)
 	{
 		return;
@@ -112,7 +152,6 @@ void AAuraEffectActor::OnOverlap(AActor* TargetActor)
 
 void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 {
-	// Authority check - only run on server
 	if (!HasAuthority() || !IsValid(TargetActor) || TargetActor == this)
 	{
 		return;
@@ -164,14 +203,12 @@ void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 			return;
 		}
 
-		TArray<FActiveGameplayEffectHandle>* HandlesPtr = ActiveInfiniteEffectHandles.Find(TargetActor);
-		if (HandlesPtr)
+		if (TArray<FActiveGameplayEffectHandle>* HandlesPtr = ActiveInfiniteEffectHandles.Find(TargetActor))
 		{
 			for (const FActiveGameplayEffectHandle& Handle : *HandlesPtr)
 			{
 				if (Handle.IsValid())
 				{
-					// Remove entire effect (or adjust stack count as needed)
 					TargetASC->RemoveActiveGameplayEffect(Handle, 1);
 				}
 			}
@@ -182,6 +219,22 @@ void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 		if (bDestroyOnEffectRemoval)
 		{
 			Destroy();
+		}
+	}
+}
+
+void AAuraEffectActor::CleanupInvalidHandles()
+{
+	if (!HasAuthority())
+	{
+		return;
+	}
+
+	for (auto It = ActiveInfiniteEffectHandles.CreateIterator(); It; ++It)
+	{
+		if (!It->Key.IsValid())
+		{
+			It.RemoveCurrent();
 		}
 	}
 }
