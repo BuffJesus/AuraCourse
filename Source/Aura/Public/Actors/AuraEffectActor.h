@@ -36,8 +36,9 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	// Return the handle so we can later remove infinite effects safely
 	UFUNCTION(BlueprintCallable)
-	void ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> EffectClass) const;
+	FActiveGameplayEffectHandle ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> EffectClass) const;
 
 	UFUNCTION(BlueprintCallable)
 	void OnOverlap(AActor* TargetActor);
@@ -49,30 +50,33 @@ protected:
 	bool bDestroyOnEffectRemoval = false;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
-	TSubclassOf<UGameplayEffect> InstantGameplayEffectClass;
+	TArray<TSubclassOf<UGameplayEffect>> InstantGameplayEffects;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectApplicationPolicy InstantEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
-	TSubclassOf<UGameplayEffect> DurationGameplayEffectClass;
+	TArray<TSubclassOf<UGameplayEffect>> DurationGameplayEffects;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectApplicationPolicy DurationEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
-	TSubclassOf<UGameplayEffect> PeriodicGameplayEffectClass;
+	TArray<TSubclassOf<UGameplayEffect>> PeriodicGameplayEffects;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectApplicationPolicy PeriodicEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
-	TSubclassOf<UGameplayEffect> InfiniteGameplayEffectClass;
+	TArray<TSubclassOf<UGameplayEffect>> InfiniteGameplayEffects;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectApplicationPolicy InfiniteEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectRemovalPolicy InfiniteEffectRemovalPolicy = EEffectRemovalPolicy::RemoveOnEndOverlap;
+
+	// Track infinite effect handles per overlapping actor
+	TMap<TWeakObjectPtr<AActor>, TArray<FActiveGameplayEffectHandle>> ActiveInfiniteEffectHandles;
 
 };
