@@ -4,4 +4,4 @@
 
 #include "CoreMinimal.h"
 
-constexpr int CustomDepthRed{250};
+constexpr int CustomDepthRed { 250 };
