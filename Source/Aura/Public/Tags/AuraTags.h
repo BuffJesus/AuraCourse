@@ -23,5 +23,14 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Vigor);
 		}
 	}
+	namespace Message
+	{
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Message);
+		
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HealthPotion);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaPotion);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HealthCrystal);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaCrystal);
+	}
 }
 

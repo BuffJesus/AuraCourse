@@ -16,3 +16,8 @@ UAbilitySystemComponent* AAuraBaseCharacter::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
 }
+
+void AAuraBaseCharacter::InitializeAbilityActorInfo()
+{
+	
+}

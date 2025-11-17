@@ -22,4 +22,13 @@ namespace Aura
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Vigor, "Aura.Attributes.Primary.Vigor", "Increases max health");
 		}
 	}
+	namespace Message
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Message, "Aura.Message", "Message");
+		
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HealthPotion, "Aura.Message.HealthPotion", "Health potion");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaPotion, "Aura.Message.ManaPotion", "Mana potion");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HealthCrystal, "Aura.Message.HealthCrystal", "Health crystal");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaCrystal, "Aura.Message.ManaCrystal", "Mana crystal");
+	}
 }

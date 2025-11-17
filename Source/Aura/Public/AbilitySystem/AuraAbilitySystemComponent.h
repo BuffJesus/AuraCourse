@@ -6,19 +6,20 @@
 #include "AbilitySystemComponent.h"
 #include "AuraAbilitySystemComponent.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer&);
 
-UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+
+UCLASS()
 class AURA_API UAuraAbilitySystemComponent : public UAbilitySystemComponent
 {
 	GENERATED_BODY()
 
 public:
-	UAuraAbilitySystemComponent();
+	void AbilityActorInfoSet();
+	
+	FEffectAssetTags EffectAssetTags;
 
 protected:
-	virtual void BeginPlay() override;
-
-public:
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
-	                           FActorComponentTickFunction* ThisTickFunction) override;
+	void EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
+	
 };
