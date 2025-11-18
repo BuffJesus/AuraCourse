@@ -82,9 +82,15 @@ T* UAuraOverlayWidgetController::GetDataTableRowByTag(UDataTable* DataTable, con
 template <typename TDelegate>
 void UAuraOverlayWidgetController::BindAttributeChangeDelegate(const FGameplayAttribute& Attribute, TDelegate& Delegate)
 {
-	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Attribute)
-		.AddLambda([&Delegate](const FOnAttributeChangeData& Data)
-		{
-			Delegate.Broadcast(Data.NewValue);
-		});
+    TWeakObjectPtr<UAuraOverlayWidgetController> WeakThis(this);
+    TDelegate* DelegatePtr = &Delegate;
+    
+    AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Attribute)
+        .AddLambda([WeakThis, DelegatePtr](const FOnAttributeChangeData& Data)
+        {
+            if (WeakThis.IsValid())
+            {
+                DelegatePtr->Broadcast(Data.NewValue);
+            }
+        });
 }

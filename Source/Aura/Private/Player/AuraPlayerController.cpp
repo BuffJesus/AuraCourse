@@ -67,14 +67,16 @@ void AAuraPlayerController::CursorTrace()
 	LastActor = ThisActor;
 	ThisActor = CursorHit.GetActor();
 
-	if (ThisActor != LastActor)
+	// Check if actors changed AND are different
+	if (LastActor != ThisActor)
 	{
-		if (LastActor != nullptr)
+		// Only call if the interface is actually valid
+		if (LastActor.GetInterface() != nullptr)
 		{
 			LastActor->UnHighlightActor();
 		}
  
-		if (ThisActor != nullptr)
+		if (ThisActor.GetInterface() != nullptr)
 		{
 			ThisActor->HighlightActor();
 		}
