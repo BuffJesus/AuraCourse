@@ -8,28 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Data/DT_Aura_MessageWidget.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Message/WBP_Aura_Message_Effect.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap_BuiltData.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/Effects/Duration/GE_Aura_Crystal_Heal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/Effects/Duration/GE_Aura_Crystal_Heal.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/Effects/Infinite/GE_Aura_Hazards_Fire.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/Effects/Infinite/GE_Aura_Hazards_Fire.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/Effects/Periodic/GE_Aura_Crystal_Mana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/Effects/Periodic/GE_Aura_Crystal_Mana.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Heal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Heal.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Mana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Mana.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Controller/BP_OverlayWidgetController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Controller/BP_OverlayWidgetController.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Data/DT_Aura_MessageWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Data/DT_Aura_MessageWidget.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Overlay/WBP_Overlay.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Overlay/WBP_Overlay.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraOverlayWidgetController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraOverlayWidgetController.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraOverlayWidgetController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraOverlayWidgetController.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +42,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Actors/AuraEffectActor.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -211,6 +199,8 @@
       <workItem from="1763343750990" duration="3842000" />
       <workItem from="1763353076831" duration="605000" />
       <workItem from="1763354022886" duration="4495000" />
+      <workItem from="1763358556885" duration="246000" />
+      <workItem from="1763423138273" duration="1370000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit, Rider">
       <option name="closed" value="true" />
@@ -548,7 +538,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763345999862</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Some widget stuff. Broadcasting message tag to screen. Seems to only work server side right now.">
+      <option name="closed" value="true" />
+      <created>1763358784495</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1763358784495</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +556,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added TODO" />
     <MESSAGE value="Made some widget stuff, as per the course." />
     <MESSAGE value="Got rid of struct. Figured I should follow industry standards instead." />
     <MESSAGE value="Not even sure." />
@@ -583,7 +580,8 @@
     <MESSAGE value="Exported textures, optimized size etc, reimported. Reduced size of textures by an approximate 95 percent total." />
     <MESSAGE value="Disable a long list of plugins. After texture size reduction and disabling these plugins, size of project went from roughly 6 gb down to 2.67 gb (this was after deleting folders and regenerating/building the project)." />
     <MESSAGE value="Probably don't need to source control, yolo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Probably don't need to source control, yolo." />
+    <MESSAGE value="Some widget stuff. Broadcasting message tag to screen. Seems to only work server side right now." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some widget stuff. Broadcasting message tag to screen. Seems to only work server side right now." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
