@@ -36,7 +36,7 @@ void AAuraBaseCharacter::InitializePrimaryAttributes() const
 void AAuraBaseCharacter::InitializeVitalAttributes() const
 {
 	check (IsValid(GetAbilitySystemComponent()));
-	check (DefaultPrimaryAttributes);
+	check (DefaultVitalAttributes);
 	const FGameplayEffectContextHandle EffectContext { GetAbilitySystemComponent()->MakeEffectContext() };
 	const FGameplayEffectSpecHandle SpecHandle { GetAbilitySystemComponent()->MakeOutgoingSpec(DefaultVitalAttributes, 1.f, EffectContext) };
 	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
