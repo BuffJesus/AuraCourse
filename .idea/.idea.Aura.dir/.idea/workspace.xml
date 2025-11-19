@@ -10,10 +10,8 @@
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Overlay/WBP_Overlay.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Overlay/WBP_Overlay.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_GlobeProgressBar.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_GlobeProgressBar.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_HealthGlobe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_HealthGlobe.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_ManaGlobe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_ManaGlobe.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +197,7 @@
       <workItem from="1763358556885" duration="246000" />
       <workItem from="1763423138273" duration="3625000" />
       <workItem from="1763469817231" duration="9975000" />
-      <workItem from="1763505195955" duration="2407000" />
+      <workItem from="1763505195955" duration="5186000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit, Rider">
       <option name="closed" value="true" />
@@ -569,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763505370249</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Updated UI blueprints and TestMap assets.">
+      <option name="closed" value="true" />
+      <created>1763513913224</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1763513913224</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -579,8 +585,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="I gotta stop listening to AI." />
-    <MESSAGE value="Changed too many things and forgot to commit. Reverted changes made by AI to better adhere to course structure, implemented some widget stuff that I don't overly understand yet." />
     <MESSAGE value="Just some gangster stuff." />
     <MESSAGE value="Some bindings and stuff." />
     <MESSAGE value="Added mana delegates etc to overlay widget controller." />
@@ -604,7 +608,9 @@
     <MESSAGE value="Adjusted post processing" />
     <MESSAGE value="Moved Message Tag check to if statement" />
     <MESSAGE value="Refined actor interaction checks and binding logic for improved validation and stability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refined actor interaction checks and binding logic for improved validation and stability." />
+    <MESSAGE value="Tried adding ghost globes. Can't seem to figure out what I did wrong rewatching the course video, come back later when it bothers me enough." />
+    <MESSAGE value="Updated UI blueprints and TestMap assets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated UI blueprints and TestMap assets." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

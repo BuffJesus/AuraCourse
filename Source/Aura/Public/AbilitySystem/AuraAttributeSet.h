@@ -41,6 +41,33 @@ struct FEffectProperties
 	ACharacter* TargetCharacter { nullptr };
 };
 
+// ATTRIBUTE MACROS
+// These macros reduce boilerplate for declaring replicated attributes.
+// Usage: DECLARE_ATTRIBUTE(AttributeName, Category);  // Semicolon required
+
+// Declares a replicated attribute with accessors
+#define DECLARE_ATTRIBUTE(AttributeName, Category) \
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_##AttributeName, Category = Category) \
+	FGameplayAttributeData AttributeName; \
+	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, AttributeName); 
+
+// Declares the OnRep function signature
+#define DECLARE_ATTRIBUTE_ONREP(AttributeName) \
+	UFUNCTION() \
+	void OnRep_##AttributeName(const FGameplayAttributeData& Old##AttributeName) const
+
+// Implements the OnRep function
+#define IMPLEMENT_ATTRIBUTE_ONREP(ClassName, AttributeName) \
+void ClassName::OnRep_##AttributeName(const FGameplayAttributeData& Old##AttributeName) const \
+{ \
+	GAMEPLAYATTRIBUTE_REPNOTIFY(ClassName, AttributeName, Old##AttributeName); \
+}
+
+// Registers attribute for replication
+#define REPLICATE_ATTRIBUTE(ClassName, AttributeName) \
+	DOREPLIFETIME_CONDITION_NOTIFY(ClassName, AttributeName, COND_None, REPNOTIFY_Always)
+// ============================================================================
+
 UCLASS()
 class AURA_API UAuraAttributeSet : public UAttributeSet
 {
@@ -51,34 +78,26 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	virtual void PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const override;
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
-
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attributes")
-	FGameplayAttributeData Health;
-	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, Health);
-
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxHealth, Category = "Vital Attributes")
-	FGameplayAttributeData MaxHealth;
-	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, MaxHealth);
-
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Mana, Category = "Vital Attributes")
-	FGameplayAttributeData Mana;
-	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, Mana);
-
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxMana, Category = "Vital Attributes")
-	FGameplayAttributeData MaxMana;
-	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, MaxMana);
-
-	UFUNCTION()
-	void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
-
-	UFUNCTION()
-	void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const;
-
-	UFUNCTION()
-	void OnRep_Mana(const FGameplayAttributeData& OldMana) const;
-
-	UFUNCTION()
-	void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
+	
+	DECLARE_ATTRIBUTE(Strength, "Aura|Attributes|Primary")
+	DECLARE_ATTRIBUTE(Intelligence, "Aura|Attributes|Primary")
+	DECLARE_ATTRIBUTE(Resilience, "Aura|Attributes|Primary")
+	DECLARE_ATTRIBUTE(Vigor, "Aura|Attributes|Primary")
+	
+	DECLARE_ATTRIBUTE(Health, "Aura|Attributes|Vital")
+	DECLARE_ATTRIBUTE(MaxHealth, "Aura|Attributes|Vital")
+	DECLARE_ATTRIBUTE(Mana, "Aura|Attributes|Vital")
+	DECLARE_ATTRIBUTE(MaxMana, "Aura|Attributes|Vital")
+	
+	DECLARE_ATTRIBUTE_ONREP(Strength);
+	DECLARE_ATTRIBUTE_ONREP(Intelligence);
+	DECLARE_ATTRIBUTE_ONREP(Resilience);
+	DECLARE_ATTRIBUTE_ONREP(Vigor);
+	
+	DECLARE_ATTRIBUTE_ONREP(Health);
+	DECLARE_ATTRIBUTE_ONREP(MaxHealth);
+	DECLARE_ATTRIBUTE_ONREP(Mana);
+	DECLARE_ATTRIBUTE_ONREP(MaxMana);
 
 private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
