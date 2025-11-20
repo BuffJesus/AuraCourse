@@ -8,10 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Test/BP_Aura_EffectActor_Test.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Test/Effects/GE_Aura_Test_AttributeBases.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +36,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Actors/AuraEffectActor.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -199,15 +198,7 @@
       <workItem from="1763469817231" duration="9975000" />
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
-      <workItem from="1763556413540" duration="1274000" />
-    </task>
-    <task id="LOCAL-00002" summary="Maybe initial commit?">
-      <option name="closed" value="true" />
-      <created>1762709259171</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1762709259171</updated>
+      <workItem from="1763556413540" duration="5533000" />
     </task>
     <task id="LOCAL-00003" summary="Somehow made way too many branches, not sure how. Do better next time. Rider">
       <option name="closed" value="true" />
@@ -593,7 +584,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763528812418</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Added test assets for Blueprint actors and gameplay effects, and updated TestMap with relevant changes.">
+      <option name="closed" value="true" />
+      <created>1763594043992</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1763594043992</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,7 +602,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added basic gameplay effect application to AuraEffectActor" />
     <MESSAGE value="Implemented base potion class, as well as health and man children." />
     <MESSAGE value="Updated to 5.7 official, didn't seem to break anything yet." />
     <MESSAGE value="Created Duration effect actor, created base classes for instant and duration effect actors in Blueprint." />
@@ -628,7 +626,8 @@
     <MESSAGE value="Refactored `AuraAttributeSet` to minimize boilerplate by introducing macros for attribute replication and `OnRep` functionality." />
     <MESSAGE value="Added initialization for primary and vital attributes in `AuraBaseCharacter`, replaced attribute replication macros in `AuraAttributeSet`, and introduced gameplay effects for default attributes." />
     <MESSAGE value="Fixed incorrect attribute validation in `InitializeVitalAttributes` by replacing `DefaultPrimaryAttributes` with `DefaultVitalAttributes`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed incorrect attribute validation in `InitializeVitalAttributes` by replacing `DefaultPrimaryAttributes` with `DefaultVitalAttributes`." />
+    <MESSAGE value="Added test assets for Blueprint actors and gameplay effects, and updated TestMap with relevant changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added test assets for Blueprint actors and gameplay effects, and updated TestMap with relevant changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

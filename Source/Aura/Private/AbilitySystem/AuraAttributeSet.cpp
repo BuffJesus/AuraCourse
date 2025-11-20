@@ -1,4 +1,4 @@
-﻿// Copyright Druid Mechanics
+﻿// Not Sure Yet
 
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystemBlueprintLibrary.h"
@@ -6,26 +6,46 @@
 #include "GameplayEffectExtension.h"
 #include "Net/UnrealNetwork.h"
 
-UAuraAttributeSet::UAuraAttributeSet()
-{
-	
+#pragma region Macros
+// Implements the OnRep function for an attribute
+#define IMPLEMENT_ATTRIBUTE_ONREP(ClassName, AttributeName) \
+void ClassName::OnRep_##AttributeName(const FGameplayAttributeData& Old##AttributeName) const \
+{ \
+GAMEPLAYATTRIBUTE_REPNOTIFY(ClassName, AttributeName, Old##AttributeName); \
 }
+
+// Registers an attribute for replication
+#define REPLICATE_ATTRIBUTE(ClassName, AttributeName) \
+DOREPLIFETIME_CONDITION_NOTIFY(ClassName, AttributeName, COND_None, REPNOTIFY_Always)
+// ============================================================================
+#pragma endregion
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	// Primary Attributes
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Strength, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Intelligence, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Resilience, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Vigor, COND_None, REPNOTIFY_Always);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Strength);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Intelligence);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Resilience);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Vigor);
+
+	// Secondary Attributes
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Armor);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, ArmorPenetration);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, BlockChance);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, CriticalHitChance);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, CriticalHitDamage);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, CriticalHitResistance);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, HealthRegeneration);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, ManaRegeneration);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, MaxHealth);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, MaxMana);
 
 	// Vital Attributes
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Health, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Mana, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxMana, COND_None, REPNOTIFY_Always);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Health);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Mana);
+	
 }
 
 void UAuraAttributeSet::PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const
@@ -51,15 +71,8 @@ void UAuraAttributeSet::PreAttributeBaseChange(const FGameplayAttribute& Attribu
 	}
 
 	// Clamp max values to be non-negative
-	if (Attribute == GetMaxHealthAttribute())
-	{
-		NewValue = FMath::Max(NewValue, 0.f);
-	}
-
-	if (Attribute == GetMaxManaAttribute())
-	{
-		NewValue = FMath::Max(NewValue, 0.f);
-	}
+	if (Attribute == GetMaxHealthAttribute()) { NewValue = FMath::Max(NewValue, 0.f); }
+	if (Attribute == GetMaxManaAttribute()) { NewValue = FMath::Max(NewValue, 0.f); }
 }
 
 void UAuraAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const
@@ -137,42 +150,27 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	}
 }
 
-void UAuraAttributeSet::OnRep_Strength(const FGameplayAttributeData& OldStrength) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Strength, OldStrength);
-}
+// Primary Attribute replication
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Strength)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Intelligence)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Resilience)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Vigor)
+// ==============================================================================================
 
-void UAuraAttributeSet::OnRep_Intelligence(const FGameplayAttributeData& OldIntelligence) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Intelligence, OldIntelligence);
-}
+// Secondary Attribute Replication
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Armor)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, ArmorPenetration)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, BlockChance)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, CriticalHitChance)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, CriticalHitDamage)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, CriticalHitResistance)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, HealthRegeneration)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, ManaRegeneration)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, MaxHealth)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, MaxMana)
+// ==============================================================================================
 
-void UAuraAttributeSet::OnRep_Resilience(const FGameplayAttributeData& OldResilience) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Resilience, OldResilience);
-}
-
-void UAuraAttributeSet::OnRep_Vigor(const FGameplayAttributeData& OldVigor) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Vigor, OldVigor);
-}
-
-void UAuraAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Health, OldHealth);
-}
-
-void UAuraAttributeSet::OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxHealth, OldMaxHealth);
-}
-
-void UAuraAttributeSet::OnRep_Mana(const FGameplayAttributeData& OldMana) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, Mana, OldMana);
-}
-
-void UAuraAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, MaxMana, OldMaxMana);
-}
+// Vital Attribute Replication
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Health)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Mana)
+// ==============================================================================================
