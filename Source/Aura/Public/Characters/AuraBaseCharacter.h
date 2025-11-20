@@ -38,12 +38,11 @@ protected:
 
 	virtual void InitializeAbilityActorInfo();
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|GAS")
-	TSubclassOf<UGameplayEffect> DefaultPrimaryAttributes;
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Attributes")
+	TMap<FName, TSubclassOf<UGameplayEffect>> DefaultAttributeEffectsMap;
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|GAS")
-	TSubclassOf<UGameplayEffect> DefaultVitalAttributes;
+	void InitializeDefaultAttributes() const;
 
-	void InitializePrimaryAttributes() const;
-	void InitializeVitalAttributes() const;
+private:
+	void ApplyDefaultGameplayEffect(TSubclassOf<UGameplayEffect> EffectClass, float Level = 1.f) const;
 };
