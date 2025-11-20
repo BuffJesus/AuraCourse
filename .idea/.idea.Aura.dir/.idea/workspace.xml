@@ -9,7 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/UI/HUD/AuraHUD.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/HUD/AuraHUD.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/GE_Aura_Default_Attributes_Vital.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/GE_Aura_Default_Attributes_Vital.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +36,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://3" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -202,15 +203,7 @@
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
       <workItem from="1763556413540" duration="17171000" />
-      <workItem from="1763642888812" duration="6175000" />
-    </task>
-    <task id="LOCAL-00018" summary="Added TODO">
-      <option name="closed" value="true" />
-      <created>1762834019684</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1762834019684</updated>
+      <workItem from="1763642888812" duration="7436000" />
     </task>
     <task id="LOCAL-00019" summary="Made some widget stuff, as per the course.">
       <option name="closed" value="true" />
@@ -596,7 +589,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763657065921</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Added server-only execution for initial widget controller value broadcast in `AuraHUD` to improve replication consistency.">
+      <option name="closed" value="true" />
+      <created>1763658719352</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1763658719352</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +607,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Some widget stuff. Broadcasting message tag to screen. Seems to only work server side right now." />
     <MESSAGE value="Adjusted post processing" />
     <MESSAGE value="Moved Message Tag check to if statement" />
     <MESSAGE value="Refined actor interaction checks and binding logic for improved validation and stability." />
@@ -631,7 +631,8 @@
     <MESSAGE value="Refactored attribute initialization in `AuraBaseCharacter` to prioritize attribute application order: Primary, Secondary, and Vital. Updated related gameplay effect logic and replaced `DefaultAttributeEffectsMap` with distinct attribute arrays." />
     <MESSAGE value="Refactored `AuraBaseCharacter` to use uniform initialization for gameplay effect context and outgoing spec handles." />
     <MESSAGE value="Refactored `InitializeDefaultAttributes` to ensure server-only execution for Player and Enemy characters, improving replication consistency." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `InitializeDefaultAttributes` to ensure server-only execution for Player and Enemy characters, improving replication consistency." />
+    <MESSAGE value="Added server-only execution for initial widget controller value broadcast in `AuraHUD` to improve replication consistency." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added server-only execution for initial widget controller value broadcast in `AuraHUD` to improve replication consistency." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
