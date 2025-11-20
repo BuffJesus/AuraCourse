@@ -8,10 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_FramedValue.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/UI/HUD/AuraHUD.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/HUD/AuraHUD.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +35,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -204,31 +202,7 @@
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
       <workItem from="1763556413540" duration="17171000" />
-      <workItem from="1763642888812" duration="2894000" />
-    </task>
-    <task id="LOCAL-00015" summary="Added pragma region to GetLifetimeReplicatedProps">
-      <option name="closed" value="true" />
-      <created>1762831266593</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1762831266593</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Implemented ATTRIBUTE_ACCESORS_BASIC for the Vital Attributes.">
-      <option name="closed" value="true" />
-      <created>1762831957985</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1762831957985</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Cast the const away to test something. Need to implement applying gameplay effect instead.">
-      <option name="closed" value="true" />
-      <created>1762833678388</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1762833678388</updated>
+      <workItem from="1763642888812" duration="6175000" />
     </task>
     <task id="LOCAL-00018" summary="Added TODO">
       <option name="closed" value="true" />
@@ -598,7 +572,31 @@
       <option name="project" value="LOCAL" />
       <updated>1763617723944</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Refactored attribute initialization in `AuraBaseCharacter` to prioritize attribute application order: Primary, Secondary, and Vital. Updated related gameplay effect logic and replaced `DefaultAttributeEffectsMap` with distinct attribute arrays.">
+      <option name="closed" value="true" />
+      <created>1763652286963</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1763652286963</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Refactored `AuraBaseCharacter` to use uniform initialization for gameplay effect context and outgoing spec handles.">
+      <option name="closed" value="true" />
+      <created>1763652342817</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1763652342817</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Refactored `InitializeDefaultAttributes` to ensure server-only execution for Player and Enemy characters, improving replication consistency.">
+      <option name="closed" value="true" />
+      <created>1763657065921</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1763657065921</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,9 +606,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Exported textures, optimized size etc, reimported. Reduced size of textures by an approximate 95 percent total." />
-    <MESSAGE value="Disable a long list of plugins. After texture size reduction and disabling these plugins, size of project went from roughly 6 gb down to 2.67 gb (this was after deleting folders and regenerating/building the project)." />
-    <MESSAGE value="Probably don't need to source control, yolo." />
     <MESSAGE value="Some widget stuff. Broadcasting message tag to screen. Seems to only work server side right now." />
     <MESSAGE value="Adjusted post processing" />
     <MESSAGE value="Moved Message Tag check to if statement" />
@@ -633,7 +628,10 @@
     <MESSAGE value="Cleaned up workspace file and removed outdated task entries to improve project configuration." />
     <MESSAGE value="Added `.idea` project configuration files for version control and IDE-specific settings." />
     <MESSAGE value="Updated `.idea/workspace.xml` to reflect changes in version control tracking and project configuration, including updated highlighting settings and cleaned up task entries." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` to reflect changes in version control tracking and project configuration, including updated highlighting settings and cleaned up task entries." />
+    <MESSAGE value="Refactored attribute initialization in `AuraBaseCharacter` to prioritize attribute application order: Primary, Secondary, and Vital. Updated related gameplay effect logic and replaced `DefaultAttributeEffectsMap` with distinct attribute arrays." />
+    <MESSAGE value="Refactored `AuraBaseCharacter` to use uniform initialization for gameplay effect context and outgoing spec handles." />
+    <MESSAGE value="Refactored `InitializeDefaultAttributes` to ensure server-only execution for Player and Enemy characters, improving replication consistency." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored `InitializeDefaultAttributes` to ensure server-only execution for Player and Enemy characters, improving replication consistency." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

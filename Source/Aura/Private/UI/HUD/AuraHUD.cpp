@@ -25,13 +25,20 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyst
 	checkf(OverlayWidgetClass, TEXT("OverlayWidgetClass is not set, please fill out BP_AuraHUD"));
 	checkf(OverlayWidgetControllerClass, TEXT("OverlayWidgetControllerClass is not set, please fill out BP_AuraHUD"));
 	
-	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), OverlayWidgetClass);
+	UUserWidget* Widget { CreateWidget<UUserWidget>(GetWorld(), OverlayWidgetClass) };
 	OverlayWidget = Cast<UAuraUserWidget>(Widget);
 
 	const FWidgetControllerParams WidgetControllerParams(PC, PS, ASC, AS);
-	UAuraOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
+	UAuraOverlayWidgetController* WidgetController { GetOverlayWidgetController(WidgetControllerParams) };
 
 	OverlayWidget->SetWidgetController(WidgetController);
-	WidgetController->BroadcastInitialValues();
+	
+	// Only broadcast initial values on the server
+	// On clients, attribute replication will trigger the bound delegates
+	if (GetOwningPlayerController()->HasAuthority())
+	{
+		WidgetController->BroadcastInitialValues();
+	}
+	
 	Widget->AddToViewport();
 }
