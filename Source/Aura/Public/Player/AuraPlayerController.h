@@ -9,7 +9,7 @@
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
-class IEnemyInterface;
+class IAuraEnemyInterface;
 
 /**
  * 
@@ -38,7 +38,7 @@ private:
 
 	void CursorTrace();
 	
-	TScriptInterface<IEnemyInterface> LastActor;
-	TScriptInterface<IEnemyInterface> ThisActor;
+	TScriptInterface<IAuraEnemyInterface> LastActor;
+	TScriptInterface<IAuraEnemyInterface> ThisActor;
 	
 };

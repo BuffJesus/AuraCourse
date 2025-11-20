@@ -20,6 +20,8 @@ public:
 	// Client only - called when PlayerState is replicated
 	virtual void OnRep_PlayerState() override;
 
+	virtual int32 GetPlayerLevel() override;
+
 private:
 
 	virtual void InitializeAbilityActorInfo() override;
