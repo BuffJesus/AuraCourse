@@ -8,8 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_TextValueButtonRow.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_TextValueRow.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_GlobeProgressBar.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_GlobeProgressBar.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_FramedValue.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_FramedValue.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Overlay/WBP_Overlay.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Overlay/WBP_Overlay.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_HealthGlobe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_HealthGlobe.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_ManaGlobe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_ManaGlobe.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://4" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -202,15 +207,7 @@
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
       <workItem from="1763556413540" duration="17171000" />
-      <workItem from="1763642888812" duration="9229000" />
-    </task>
-    <task id="LOCAL-00020" summary="Got rid of struct. Figured I should follow industry standards instead.">
-      <option name="closed" value="true" />
-      <created>1762836839549</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1762836839549</updated>
+      <workItem from="1763642888812" duration="13266000" />
     </task>
     <task id="LOCAL-00021" summary="Not even sure.">
       <option name="closed" value="true" />
@@ -596,7 +593,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763662666953</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Updated `.idea/workspace.xml` to reflect changes in tracked blueprint files and task configurations.">
+      <option name="closed" value="true" />
+      <created>1763668409827</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1763668409827</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +611,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Moved Message Tag check to if statement" />
     <MESSAGE value="Refined actor interaction checks and binding logic for improved validation and stability." />
     <MESSAGE value="Tried adding ghost globes. Can't seem to figure out what I did wrong rewatching the course video, come back later when it bothers me enough." />
     <MESSAGE value="Updated UI blueprints and TestMap assets." />
@@ -631,7 +635,8 @@
     <MESSAGE value="Refactored `InitializeDefaultAttributes` to ensure server-only execution for Player and Enemy characters, improving replication consistency." />
     <MESSAGE value="Added server-only execution for initial widget controller value broadcast in `AuraHUD` to improve replication consistency." />
     <MESSAGE value="Updated `.idea/workspace.xml` to track new blueprint files (`BP_AuraCharacter`, `GE_Aura_Default_Attributes_Vital`) and reflect changes in highlighting settings and task entries." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` to track new blueprint files (`BP_AuraCharacter`, `GE_Aura_Default_Attributes_Vital`) and reflect changes in highlighting settings and task entries." />
+    <MESSAGE value="Updated `.idea/workspace.xml` to reflect changes in tracked blueprint files and task configurations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` to reflect changes in tracked blueprint files and task configurations." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
