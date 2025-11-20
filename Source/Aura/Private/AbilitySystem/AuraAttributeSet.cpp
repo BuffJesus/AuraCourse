@@ -17,7 +17,6 @@ GAMEPLAYATTRIBUTE_REPNOTIFY(ClassName, AttributeName, Old##AttributeName); \
 // Registers an attribute for replication
 #define REPLICATE_ATTRIBUTE(ClassName, AttributeName) \
 DOREPLIFETIME_CONDITION_NOTIFY(ClassName, AttributeName, COND_None, REPNOTIFY_Always)
-// ============================================================================
 #pragma endregion
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

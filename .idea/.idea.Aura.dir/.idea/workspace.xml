@@ -8,9 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +34,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://3" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Actors/AuraEffectActor.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -198,15 +196,7 @@
       <workItem from="1763469817231" duration="9975000" />
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
-      <workItem from="1763556413540" duration="5533000" />
-    </task>
-    <task id="LOCAL-00003" summary="Somehow made way too many branches, not sure how. Do better next time. Rider">
-      <option name="closed" value="true" />
-      <created>1762711257623</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1762711257624</updated>
+      <workItem from="1763556413540" duration="5903000" />
     </task>
     <task id="LOCAL-00004" summary="Created and implemented animation blueprints. I also copied the blueprint thread safe update animation on the animation blueprints.">
       <option name="closed" value="true" />
@@ -592,7 +582,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763594043992</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Refactored `AuraAttributeSet` to introduce secondary attributes, expand macro usage for attribute replication, and streamline replication-related methods.">
+      <option name="closed" value="true" />
+      <created>1763598675393</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1763598675393</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -602,7 +600,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Implemented base potion class, as well as health and man children." />
     <MESSAGE value="Updated to 5.7 official, didn't seem to break anything yet." />
     <MESSAGE value="Created Duration effect actor, created base classes for instant and duration effect actors in Blueprint." />
     <MESSAGE value="Utilized AI to create a blue material for the mana crystal. Worked pretty good actually. Created Periodic effect actor, need to find a way to increase modularity of effect actors somehow." />
@@ -627,7 +624,8 @@
     <MESSAGE value="Added initialization for primary and vital attributes in `AuraBaseCharacter`, replaced attribute replication macros in `AuraAttributeSet`, and introduced gameplay effects for default attributes." />
     <MESSAGE value="Fixed incorrect attribute validation in `InitializeVitalAttributes` by replacing `DefaultPrimaryAttributes` with `DefaultVitalAttributes`." />
     <MESSAGE value="Added test assets for Blueprint actors and gameplay effects, and updated TestMap with relevant changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added test assets for Blueprint actors and gameplay effects, and updated TestMap with relevant changes." />
+    <MESSAGE value="Refactored `AuraAttributeSet` to introduce secondary attributes, expand macro usage for attribute replication, and streamline replication-related methods." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraAttributeSet` to introduce secondary attributes, expand macro usage for attribute replication, and streamline replication-related methods." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
