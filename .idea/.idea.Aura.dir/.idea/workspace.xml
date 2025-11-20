@@ -7,7 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +34,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://11" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://13" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -198,23 +200,7 @@
       <workItem from="1763469817231" duration="9975000" />
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
-      <workItem from="1763556413540" duration="16570000" />
-    </task>
-    <task id="LOCAL-00012" summary="Removed unneeded comment.">
-      <option name="closed" value="true" />
-      <created>1762724143358</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1762724143358</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Kinda veered from the course, probably don't understand the code to well, but my character/state classes look nice and clean now.">
-      <option name="closed" value="true" />
-      <created>1762829488441</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1762829488441</updated>
+      <workItem from="1763556413540" duration="17139000" />
     </task>
     <task id="LOCAL-00014" summary="Implemented some attributes. Still need to utilize ATTRIBUTE_ACCESSORS_BASIC">
       <option name="closed" value="true" />
@@ -592,7 +578,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763616772614</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Cleaned up workspace file and removed outdated task entries to improve project configuration.">
+      <option name="closed" value="true" />
+      <created>1763617321626</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1763617321626</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Added `.idea` project configuration files for version control and IDE-specific settings.">
+      <option name="closed" value="true" />
+      <created>1763617339976</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1763617339976</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -602,8 +604,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Changed back to attribute_accessors_basic and AI removed const from PreAttributeBaseChange" />
-    <MESSAGE value="Added first tag, used AI to change to Forward Rendering (I don't really need Lumen and don't mind building the lighting)." />
     <MESSAGE value="Did some more stuff, fixed flickering enemy highlight after changing rendering settings." />
     <MESSAGE value="Exported textures, optimized size etc, reimported. Reduced size of textures by an approximate 95 percent total." />
     <MESSAGE value="Disable a long list of plugins. After texture size reduction and disabling these plugins, size of project went from roughly 6 gb down to 2.67 gb (this was after deleting folders and regenerating/building the project)." />
@@ -627,7 +627,9 @@
     <MESSAGE value="Added `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` classes to calculate maximum health and mana based on attributes and player level. Updated `AuraBaseCharacter` to include the source object in gameplay effect context." />
     <MESSAGE value="Refactored `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` into a unified `AuraMMC_Base` class to streamline maximum attribute calculations. Simplified calculation logic with extensible coefficient and operation support." />
     <MESSAGE value="Added new gameplay calculation assets for various attributes (e.g., Armor, Critical Hit Chance) and removed outdated files related to `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` calculations. Updated project configuration to reflect changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new gameplay calculation assets for various attributes (e.g., Armor, Critical Hit Chance) and removed outdated files related to `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` calculations. Updated project configuration to reflect changes." />
+    <MESSAGE value="Cleaned up workspace file and removed outdated task entries to improve project configuration." />
+    <MESSAGE value="Added `.idea` project configuration files for version control and IDE-specific settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `.idea` project configuration files for version control and IDE-specific settings." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
