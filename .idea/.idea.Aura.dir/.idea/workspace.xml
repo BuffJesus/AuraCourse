@@ -8,7 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,23 +196,7 @@
       <workItem from="1763469817231" duration="9975000" />
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
-      <workItem from="1763556413540" duration="5903000" />
-    </task>
-    <task id="LOCAL-00004" summary="Created and implemented animation blueprints. I also copied the blueprint thread safe update animation on the animation blueprints.">
-      <option name="closed" value="true" />
-      <created>1762712728957</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1762712728957</updated>
-    </task>
-    <task id="LOCAL-00005" summary="?">
-      <option name="closed" value="true" />
-      <created>1762713268260</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1762713268260</updated>
+      <workItem from="1763556413540" duration="6248000" />
     </task>
     <task id="LOCAL-00006" summary="Implemented move action and mapping context">
       <option name="closed" value="true" />
@@ -590,7 +574,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763598675393</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Cleaned up `AuraAttributeSet` by removing redundant comments and unnecessary separators, improving readability and maintainability.">
+      <option name="closed" value="true" />
+      <created>1763598803243</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1763598803243</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Removed redundant comments and adjusted project files to improve code clarity and configuration consistency.">
+      <option name="closed" value="true" />
+      <created>1763598999323</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1763598999323</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,8 +600,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated to 5.7 official, didn't seem to break anything yet." />
-    <MESSAGE value="Created Duration effect actor, created base classes for instant and duration effect actors in Blueprint." />
     <MESSAGE value="Utilized AI to create a blue material for the mana crystal. Worked pretty good actually. Created Periodic effect actor, need to find a way to increase modularity of effect actors somehow." />
     <MESSAGE value="Changed effect actor, tested and seems to be working. Added Authority checks in C++ and check for valid ASC in blueprint overlap event. Maybe add option for player check in future if course doesn't." />
     <MESSAGE value="Added TArrays for the effect types, used AI to help add some more checks and comments to my functions/methods whatever they are called." />
@@ -625,7 +623,9 @@
     <MESSAGE value="Fixed incorrect attribute validation in `InitializeVitalAttributes` by replacing `DefaultPrimaryAttributes` with `DefaultVitalAttributes`." />
     <MESSAGE value="Added test assets for Blueprint actors and gameplay effects, and updated TestMap with relevant changes." />
     <MESSAGE value="Refactored `AuraAttributeSet` to introduce secondary attributes, expand macro usage for attribute replication, and streamline replication-related methods." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraAttributeSet` to introduce secondary attributes, expand macro usage for attribute replication, and streamline replication-related methods." />
+    <MESSAGE value="Cleaned up `AuraAttributeSet` by removing redundant comments and unnecessary separators, improving readability and maintainability." />
+    <MESSAGE value="Removed redundant comments and adjusted project files to improve code clarity and configuration consistency." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed redundant comments and adjusted project files to improve code clarity and configuration consistency." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

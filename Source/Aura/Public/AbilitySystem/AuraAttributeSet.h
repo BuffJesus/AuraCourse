@@ -7,8 +7,6 @@
 #include "AbilitySystemComponent.h"
 #include "AuraAttributeSet.generated.h"
 
-class UAuraAttributeSet;
-
 USTRUCT()
 struct FEffectProperties
 {
