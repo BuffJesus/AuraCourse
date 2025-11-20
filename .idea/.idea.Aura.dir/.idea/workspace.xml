@@ -8,13 +8,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_Base.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_Armor.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_ArmorPenetration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_BlockChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_CriticalHitChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_CriticalHitDamage.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_CriticalHitResistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_HealthRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_ManaRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_MaxHealth.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_MaxMana.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_MaxHealth.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_MaxMana.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_MaxHealth.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_MaxMana.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/GE_Aura_Default_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/GE_Aura_Default_Attributes_Secondary.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +45,10 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://9" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://11" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_MaxHealth.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_MaxMana.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Actors/AuraEffectActor.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -63,8 +66,6 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_Base.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_MaxHealth.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_MaxMana.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Actors/AuraEffectActor.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" root0="FORCE_HIGHLIGHTING" />
@@ -210,15 +211,7 @@
       <workItem from="1763469817231" duration="9975000" />
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
-      <workItem from="1763556413540" duration="14833000" />
-    </task>
-    <task id="LOCAL-00010" summary="Removed unused begin play from base character. Didn't seem to break anything.">
-      <option name="closed" value="true" />
-      <created>1762723208217</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1762723208217</updated>
+      <workItem from="1763556413540" duration="16126000" />
     </task>
     <task id="LOCAL-00011" summary="Added AttributeSet and AbilitySystemComponent">
       <option name="closed" value="true" />
@@ -604,7 +597,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763613908954</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Refactored `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` into a unified `AuraMMC_Base` class to streamline maximum attribute calculations. Simplified calculation logic with extensible coefficient and operation support.">
+      <option name="closed" value="true" />
+      <created>1763615186876</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1763615186876</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +615,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added clamping as well as a check to ensure MaxHealth and Mana have initialized to a value greater than 0 to avoid clamping at a 0 value." />
     <MESSAGE value="Integrated SetEffectProperties from course with my clamping method." />
     <MESSAGE value="Changed back to attribute_accessors_basic and AI removed const from PreAttributeBaseChange" />
     <MESSAGE value="Added first tag, used AI to change to Forward Rendering (I don't really need Lumen and don't mind building the lighting)." />
@@ -639,7 +639,8 @@
     <MESSAGE value="Refactored attribute initialization in `AuraBaseCharacter` by replacing separate primary and vital attribute methods with a unified `InitializeDefaultAttributes` method, updated related gameplay effect application logic." />
     <MESSAGE value="Introduced `AuraCombatInterface` and refactored `EnemyInterface` to `AuraEnemyInterface` for consistency. Added player level functionality across Player and Enemy characters, along with replication setup in `AuraPlayerState`." />
     <MESSAGE value="Added `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` classes to calculate maximum health and mana based on attributes and player level. Updated `AuraBaseCharacter` to include the source object in gameplay effect context." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` classes to calculate maximum health and mana based on attributes and player level. Updated `AuraBaseCharacter` to include the source object in gameplay effect context." />
+    <MESSAGE value="Refactored `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` into a unified `AuraMMC_Base` class to streamline maximum attribute calculations. Simplified calculation logic with extensible coefficient and operation support." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` into a unified `AuraMMC_Base` class to streamline maximum attribute calculations. Simplified calculation logic with extensible coefficient and operation support." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
