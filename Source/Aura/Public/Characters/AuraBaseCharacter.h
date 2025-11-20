@@ -40,7 +40,13 @@ protected:
 	virtual void InitializeAbilityActorInfo();
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Attributes")
-	TMap<FName, TSubclassOf<UGameplayEffect>> DefaultAttributeEffectsMap;
+	TArray<TSubclassOf<UGameplayEffect>> DefaultPrimaryAttributes;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Attributes")
+	TArray<TSubclassOf<UGameplayEffect>> DefaultSecondaryAttributes;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Attributes")
+	TArray<TSubclassOf<UGameplayEffect>> DefaultVitalAttributes;
 
 	void InitializeDefaultAttributes() const;
 

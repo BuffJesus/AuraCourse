@@ -26,11 +26,30 @@ void AAuraBaseCharacter::InitializeAbilityActorInfo()
 
 void AAuraBaseCharacter::InitializeDefaultAttributes() const
 {
-	for (const auto& Pair : DefaultAttributeEffectsMap)
+	// Apply Primary Attributes first
+	for (const TSubclassOf<UGameplayEffect>& Effect : DefaultPrimaryAttributes)
 	{
-		if (Pair.Value)
+		if (Effect)
 		{
-			ApplyDefaultGameplayEffect(Pair.Value, 1.f);
+			ApplyDefaultGameplayEffect(Effect, 1.f);
+		}
+	}
+
+	// Apply Secondary Attributes second (these depend on Primary)
+	for (const TSubclassOf<UGameplayEffect>& Effect : DefaultSecondaryAttributes)
+	{
+		if (Effect)
+		{
+			ApplyDefaultGameplayEffect(Effect, 1.f);
+		}
+	}
+
+	// Apply Vital Attributes last (these depend on Secondary like MaxHealth/MaxMana)
+	for (const TSubclassOf<UGameplayEffect>& Effect : DefaultVitalAttributes)
+	{
+		if (Effect)
+		{
+			ApplyDefaultGameplayEffect(Effect, 1.f);
 		}
 	}
 }
@@ -41,6 +60,6 @@ void AAuraBaseCharacter::ApplyDefaultGameplayEffect(const TSubclassOf<UGameplayE
 	check(EffectClass);
 	FGameplayEffectContextHandle EffectContext = GetAbilitySystemComponent()->MakeEffectContext();
 	EffectContext.AddSourceObject(this);
-	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(EffectClass, Level, EffectContext);
+	const FGameplayEffectSpecHandle SpecHandle {GetAbilitySystemComponent()->MakeOutgoingSpec(EffectClass, Level, EffectContext)};
 	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
 }
