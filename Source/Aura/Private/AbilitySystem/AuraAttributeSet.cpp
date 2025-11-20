@@ -23,14 +23,12 @@ DOREPLIFETIME_CONDITION_NOTIFY(ClassName, AttributeName, COND_None, REPNOTIFY_Al
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
-	// Primary Attributes
+	
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Strength);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Intelligence);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Resilience);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Vigor);
-
-	// Secondary Attributes
+	
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Armor);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, ArmorPenetration);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, BlockChance);
@@ -41,11 +39,9 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, ManaRegeneration);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, MaxHealth);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, MaxMana);
-
-	// Vital Attributes
+	
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Health);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Mana);
-	
 }
 
 void UAuraAttributeSet::PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const
@@ -150,14 +146,11 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	}
 }
 
-// Primary Attribute replication
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Strength)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Intelligence)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Resilience)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Vigor)
-// ==============================================================================================
 
-// Secondary Attribute Replication
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Armor)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, ArmorPenetration)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, BlockChance)
@@ -168,9 +161,6 @@ IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, HealthRegeneration)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, ManaRegeneration)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, MaxHealth)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, MaxMana)
-// ==============================================================================================
 
-// Vital Attribute Replication
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Health)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Mana)
-// ==============================================================================================
