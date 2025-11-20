@@ -21,6 +21,12 @@ void AAuraEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	InitializeAbilityActorInfo();
+	
+	// Server only: Initialize default attributes (these will replicate to clients)
+	if (HasAuthority())
+	{
+		InitializeDefaultAttributes();
+	}
 }
 
 void AAuraEnemyCharacter::InitializeAbilityActorInfo()
