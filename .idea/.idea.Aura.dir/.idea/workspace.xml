@@ -7,20 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_Armor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_ArmorPenetration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_BlockChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_CriticalHitChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_CriticalHitDamage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_CriticalHitResistance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_HealthRegeneration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_ManaRegeneration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_MaxHealth.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/Calculations/MMC_Aura_MaxMana.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/GE_Aura_Default_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Characters/Aura/GE_Aura_Default_Attributes_Secondary.uasset" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -211,15 +198,7 @@
       <workItem from="1763469817231" duration="9975000" />
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
-      <workItem from="1763556413540" duration="16126000" />
-    </task>
-    <task id="LOCAL-00011" summary="Added AttributeSet and AbilitySystemComponent">
-      <option name="closed" value="true" />
-      <created>1762724019709</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1762724019709</updated>
+      <workItem from="1763556413540" duration="16570000" />
     </task>
     <task id="LOCAL-00012" summary="Removed unneeded comment.">
       <option name="closed" value="true" />
@@ -605,7 +584,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763615186876</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Added new gameplay calculation assets for various attributes (e.g., Armor, Critical Hit Chance) and removed outdated files related to `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` calculations. Updated project configuration to reflect changes.">
+      <option name="closed" value="true" />
+      <created>1763616772614</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1763616772614</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,7 +602,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Integrated SetEffectProperties from course with my clamping method." />
     <MESSAGE value="Changed back to attribute_accessors_basic and AI removed const from PreAttributeBaseChange" />
     <MESSAGE value="Added first tag, used AI to change to Forward Rendering (I don't really need Lumen and don't mind building the lighting)." />
     <MESSAGE value="Did some more stuff, fixed flickering enemy highlight after changing rendering settings." />
@@ -640,7 +626,8 @@
     <MESSAGE value="Introduced `AuraCombatInterface` and refactored `EnemyInterface` to `AuraEnemyInterface` for consistency. Added player level functionality across Player and Enemy characters, along with replication setup in `AuraPlayerState`." />
     <MESSAGE value="Added `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` classes to calculate maximum health and mana based on attributes and player level. Updated `AuraBaseCharacter` to include the source object in gameplay effect context." />
     <MESSAGE value="Refactored `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` into a unified `AuraMMC_Base` class to streamline maximum attribute calculations. Simplified calculation logic with extensible coefficient and operation support." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` into a unified `AuraMMC_Base` class to streamline maximum attribute calculations. Simplified calculation logic with extensible coefficient and operation support." />
+    <MESSAGE value="Added new gameplay calculation assets for various attributes (e.g., Armor, Critical Hit Chance) and removed outdated files related to `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` calculations. Updated project configuration to reflect changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new gameplay calculation assets for various attributes (e.g., Armor, Critical Hit Chance) and removed outdated files related to `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` calculations. Updated project configuration to reflect changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
