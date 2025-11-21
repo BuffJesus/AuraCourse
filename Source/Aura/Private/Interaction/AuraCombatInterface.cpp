@@ -5,7 +5,7 @@
 
 
 // Add default functionality here for any IAuraCombatInterface functions that are not pure virtual.
-int32 IAuraCombatInterface::GetPlayerLevel()
+int32 IAuraCombatInterface::GetPlayerLevel() const
 {
 	return 0;
 }

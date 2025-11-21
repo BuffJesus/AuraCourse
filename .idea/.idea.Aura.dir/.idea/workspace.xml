@@ -8,13 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_TextValueButtonRow.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_TextValueRow.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_FramedValue.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_FramedValue.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Overlay/WBP_Overlay.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Overlay/WBP_Overlay.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_HealthGlobe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_HealthGlobe.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_ManaGlobe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_ManaGlobe.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Interaction/AuraCombatInterface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Interaction/AuraCombatInterface.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,23 +207,7 @@
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
       <workItem from="1763556413540" duration="17171000" />
-      <workItem from="1763642888812" duration="13266000" />
-    </task>
-    <task id="LOCAL-00021" summary="Not even sure.">
-      <option name="closed" value="true" />
-      <created>1762839316317</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1762839316317</updated>
-    </task>
-    <task id="LOCAL-00022" summary="I gotta stop listening to AI.">
-      <option name="closed" value="true" />
-      <created>1762839567330</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1762839567330</updated>
+      <workItem from="1763642888812" duration="14232000" />
     </task>
     <task id="LOCAL-00023" summary="Changed too many things and forgot to commit. Reverted changes made by AI to better adhere to course structure, implemented some widget stuff that I don't overly understand yet.">
       <option name="closed" value="true" />
@@ -601,7 +585,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763668409827</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Updated `.idea/workspace.xml` to track changes in blueprint files and highlight settings. Added new blueprint entries (`WBP_Aura_TextValueButtonRow`, `WBP_Aura_TextValueRow`) and updated task configurations.">
+      <option name="closed" value="true" />
+      <created>1763682234746</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1763682234746</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Added `WBP_Aura_AttributeMenu` blueprint asset.">
+      <option name="closed" value="true" />
+      <created>1763683893376</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1763683893376</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,8 +611,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refined actor interaction checks and binding logic for improved validation and stability." />
-    <MESSAGE value="Tried adding ghost globes. Can't seem to figure out what I did wrong rewatching the course video, come back later when it bothers me enough." />
     <MESSAGE value="Updated UI blueprints and TestMap assets." />
     <MESSAGE value="Refactored `AuraAttributeSet` to minimize boilerplate by introducing macros for attribute replication and `OnRep` functionality." />
     <MESSAGE value="Added initialization for primary and vital attributes in `AuraBaseCharacter`, replaced attribute replication macros in `AuraAttributeSet`, and introduced gameplay effects for default attributes." />
@@ -636,7 +634,9 @@
     <MESSAGE value="Added server-only execution for initial widget controller value broadcast in `AuraHUD` to improve replication consistency." />
     <MESSAGE value="Updated `.idea/workspace.xml` to track new blueprint files (`BP_AuraCharacter`, `GE_Aura_Default_Attributes_Vital`) and reflect changes in highlighting settings and task entries." />
     <MESSAGE value="Updated `.idea/workspace.xml` to reflect changes in tracked blueprint files and task configurations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` to reflect changes in tracked blueprint files and task configurations." />
+    <MESSAGE value="Updated `.idea/workspace.xml` to track changes in blueprint files and highlight settings. Added new blueprint entries (`WBP_Aura_TextValueButtonRow`, `WBP_Aura_TextValueRow`) and updated task configurations." />
+    <MESSAGE value="Added `WBP_Aura_AttributeMenu` blueprint asset." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `WBP_Aura_AttributeMenu` blueprint asset." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -21,7 +21,7 @@ public:
 	AAuraBaseCharacter();
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-	UAttributeSet* GetAttributeSet() const{ return AttributeSet; }
+	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Combat")
 	FName WeaponSocketName { "WeaponHandSocket" };
