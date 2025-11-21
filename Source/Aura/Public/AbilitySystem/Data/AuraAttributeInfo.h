@@ -25,17 +25,22 @@ struct FAttributeInfo
 	float AttributeValue { 0.f };
 };
 
-/**
- * 
- */
 UCLASS()
 class AURA_API UAuraAttributeInfo : public UDataAsset
 {
 	GENERATED_BODY()
 
 public:
+	UAuraAttributeInfo();
+
 	FAttributeInfo FindAttributeInfoForTag(const FGameplayTag& AttributeTag, bool bLogNotFound= false) const;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "{AttributeName}"))
 	TArray<FAttributeInfo> AttributeInfo;
+
+protected:
+	virtual void PostInitProperties() override;
+
+private:
+	void InitializeDefaultAttributeInfo();
 };
