@@ -31,7 +31,7 @@ void AAuraBaseCharacter::InitializeDefaultAttributes() const
 	{
 		if (Effect)
 		{
-			ApplyDefaultGameplayEffect(Effect, 1.f);
+			ApplyDefaultGameplayEffect(Effect);
 		}
 	}
 
@@ -40,7 +40,7 @@ void AAuraBaseCharacter::InitializeDefaultAttributes() const
 	{
 		if (Effect)
 		{
-			ApplyDefaultGameplayEffect(Effect, 1.f);
+			ApplyDefaultGameplayEffect(Effect);
 		}
 	}
 
@@ -49,7 +49,7 @@ void AAuraBaseCharacter::InitializeDefaultAttributes() const
 	{
 		if (Effect)
 		{
-			ApplyDefaultGameplayEffect(Effect, 1.f);
+			ApplyDefaultGameplayEffect(Effect);
 		}
 	}
 }
