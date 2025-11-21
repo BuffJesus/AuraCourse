@@ -8,11 +8,6 @@ namespace Aura
 {
 	namespace Attributes
 	{
-		namespace Vital
-		{
-			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Health);
-			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Mana);
-		}
 		namespace Primary
 		{
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Strength);
@@ -32,6 +27,11 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaRegeneration);
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(MaxHealth);
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(MaxMana);
+		}
+		namespace Vital
+		{
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Health);
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Mana);
 		}
 	}
 	namespace Message

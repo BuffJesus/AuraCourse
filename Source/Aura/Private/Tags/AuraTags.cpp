@@ -7,11 +7,6 @@ namespace Aura
 {
 	namespace Attributes
 	{
-		namespace Vital
-		{
-			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Health, "Aura.Attributes.Vital.Health", "Amount of damage an Actor can take");
-			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Mana, "Aura.Attributes.Vital.Mana", "Amount of mana an Actor can use");
-		}
 		namespace Primary
 		{
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Strength, "Aura.Attributes.Primary.Strength", "Increases physical damage");
@@ -31,6 +26,11 @@ namespace Aura
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaRegeneration, "Aura.Attributes.Secondary.ManaRegeneration", "Amount of mana regenerated per second");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(MaxHealth, "Aura.Attributes.Secondary.MaxHealth", "Maximum amount of health obtainable");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(MaxMana, "Aura.Attributes.Secondary.MaxMana", "Maximum amount of mana obtainable");
+		}
+		namespace Vital
+		{
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Health, "Aura.Attributes.Vital.Health", "Amount of damage an Actor can take");
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Mana, "Aura.Attributes.Vital.Mana", "Amount of mana an Actor can use");
 		}
 	}
 	namespace Message
