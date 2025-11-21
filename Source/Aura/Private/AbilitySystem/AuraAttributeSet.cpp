@@ -50,19 +50,13 @@ void UAuraAttributeSet::PreAttributeBaseChange(const FGameplayAttribute& Attribu
 	// Clamp Health to [0, MaxHealth] if MaxHealth is initialized
 	if (Attribute == GetHealthAttribute())
 	{
-		if (GetMaxHealth() > 0.f)
-		{
-			NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth());
-		}
+		if (GetMaxHealth() > 0.f) { NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth()); }
 	}
 
 	// Clamp Mana to [0, MaxMana] if MaxMana is initialized
 	if (Attribute == GetManaAttribute())
 	{
-		if (GetMaxMana() > 0.f)
-		{
-			NewValue = FMath::Clamp(NewValue, 0.f, GetMaxMana());
-		}
+		if (GetMaxMana() > 0.f) { NewValue = FMath::Clamp(NewValue, 0.f, GetMaxMana()); }
 	}
 
 	// Clamp max values to be non-negative
@@ -112,36 +106,24 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	// Clamp Health to [0, MaxHealth] if MaxHealth is initialized
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
-		if (GetMaxHealth() > 0.f)
-		{
-			SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
-		}
+		if (GetMaxHealth() > 0.f) { SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth())); }
 	}
 
 	// Clamp Mana to [0, MaxMana] if MaxMana is initialized
 	if (Data.EvaluatedData.Attribute == GetManaAttribute())
 	{
-		if (GetMaxMana() > 0.f)
-		{
-			SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
-		}
+		if (GetMaxMana() > 0.f) { SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana())); }
 	}
 
 	// Also clamp current values when max values change
 	if (Data.EvaluatedData.Attribute == GetMaxHealthAttribute())
 	{
-		if (GetMaxHealth() > 0.f)
-		{
-			SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
-		}
+		if (GetMaxHealth() > 0.f) { SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth())); }
 	}
 
 	if (Data.EvaluatedData.Attribute == GetMaxManaAttribute())
 	{
-		if (GetMaxMana() > 0.f)
-		{
-			SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
-		}
+		if (GetMaxMana() > 0.f) { SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana())); }
 	}
 }
 

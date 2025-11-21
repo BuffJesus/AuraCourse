@@ -9,12 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Interaction/AuraCombatInterface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Interaction/AuraCombatInterface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +35,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://7" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -207,31 +202,7 @@
       <workItem from="1763505195955" duration="5546000" />
       <workItem from="1763524491225" duration="4325000" />
       <workItem from="1763556413540" duration="17171000" />
-      <workItem from="1763642888812" duration="14232000" />
-    </task>
-    <task id="LOCAL-00023" summary="Changed too many things and forgot to commit. Reverted changes made by AI to better adhere to course structure, implemented some widget stuff that I don't overly understand yet.">
-      <option name="closed" value="true" />
-      <created>1762910431861</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1762910431861</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Just some gangster stuff.">
-      <option name="closed" value="true" />
-      <created>1762913403077</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1762913403077</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Some bindings and stuff.">
-      <option name="closed" value="true" />
-      <created>1762916966275</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1762916966275</updated>
+      <workItem from="1763642888812" duration="15244000" />
     </task>
     <task id="LOCAL-00026" summary="Added mana delegates etc to overlay widget controller.">
       <option name="closed" value="true" />
@@ -601,7 +572,31 @@
       <option name="project" value="LOCAL" />
       <updated>1763683893376</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Marked `GetPlayerLevel` as `const` across relevant classes and interfaces to enforce immutability and improve code safety.">
+      <option name="closed" value="true" />
+      <created>1763684296240</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1763684296240</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Removed unused magnitude parameter from `ApplyDefaultGameplayEffect` calls in `AuraBaseCharacter` to simplify method usage.">
+      <option name="closed" value="true" />
+      <created>1763684354047</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1763684354047</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Simplified conditional blocks in `InitializeDefaultAttributes` to improve readability and maintain consistency.">
+      <option name="closed" value="true" />
+      <created>1763684428042</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1763684428042</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,9 +606,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated UI blueprints and TestMap assets." />
-    <MESSAGE value="Refactored `AuraAttributeSet` to minimize boilerplate by introducing macros for attribute replication and `OnRep` functionality." />
-    <MESSAGE value="Added initialization for primary and vital attributes in `AuraBaseCharacter`, replaced attribute replication macros in `AuraAttributeSet`, and introduced gameplay effects for default attributes." />
     <MESSAGE value="Fixed incorrect attribute validation in `InitializeVitalAttributes` by replacing `DefaultPrimaryAttributes` with `DefaultVitalAttributes`." />
     <MESSAGE value="Added test assets for Blueprint actors and gameplay effects, and updated TestMap with relevant changes." />
     <MESSAGE value="Refactored `AuraAttributeSet` to introduce secondary attributes, expand macro usage for attribute replication, and streamline replication-related methods." />
@@ -636,7 +628,10 @@
     <MESSAGE value="Updated `.idea/workspace.xml` to reflect changes in tracked blueprint files and task configurations." />
     <MESSAGE value="Updated `.idea/workspace.xml` to track changes in blueprint files and highlight settings. Added new blueprint entries (`WBP_Aura_TextValueButtonRow`, `WBP_Aura_TextValueRow`) and updated task configurations." />
     <MESSAGE value="Added `WBP_Aura_AttributeMenu` blueprint asset." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `WBP_Aura_AttributeMenu` blueprint asset." />
+    <MESSAGE value="Marked `GetPlayerLevel` as `const` across relevant classes and interfaces to enforce immutability and improve code safety." />
+    <MESSAGE value="Removed unused magnitude parameter from `ApplyDefaultGameplayEffect` calls in `AuraBaseCharacter` to simplify method usage." />
+    <MESSAGE value="Simplified conditional blocks in `InitializeDefaultAttributes` to improve readability and maintain consistency." />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplified conditional blocks in `InitializeDefaultAttributes` to improve readability and maintain consistency." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
