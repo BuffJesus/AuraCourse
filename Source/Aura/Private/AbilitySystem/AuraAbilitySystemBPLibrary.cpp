@@ -3,10 +3,14 @@
 
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "Player/AuraPlayerState.h"
+#include "UI/Controllers/AuraAttributeMenuWidgetController.h"
+#include "UI/Controllers/AuraOverlayWidgetController.h"
 #include "UI/Controllers/AuraWidgetController.h"
 #include "UI/HUD/AuraHUD.h"
 
-UAuraOverlayWidgetController* UAuraAbilitySystemBPLibrary::GetOverlayWidgetController(const UObject* WorldContextObject)
+template <typename T>
+T* UAuraAbilitySystemBPLibrary::GetWidgetController(const UObject* WorldContextObject,
+													 T* (AAuraHUD::*GetControllerFunc)(const FWidgetControllerParams&))
 {
 	if (APlayerController* PC { WorldContextObject->GetWorld()->GetFirstPlayerController() })
 	{
@@ -16,25 +20,21 @@ UAuraOverlayWidgetController* UAuraAbilitySystemBPLibrary::GetOverlayWidgetContr
 			UAbilitySystemComponent* ASC { PS->GetAbilitySystemComponent() };
 			UAttributeSet* AS { PS->GetAttributeSet() };
 			const FWidgetControllerParams Params(PC, PS, ASC, AS);
-			return AuraHUD->GetOverlayWidgetController(Params);
+			
+			// Call the member function pointer on the HUD
+			return (AuraHUD->*GetControllerFunc)(Params);
 		}
 	}
 	return nullptr;
 }
 
+UAuraOverlayWidgetController* UAuraAbilitySystemBPLibrary::GetOverlayWidgetController(const UObject* WorldContextObject)
+{
+	return GetWidgetController<UAuraOverlayWidgetController>(WorldContextObject, &AAuraHUD::GetOverlayWidgetController);
+}
+
 UAuraAttributeMenuWidgetController* UAuraAbilitySystemBPLibrary::GetAttributeMenuWidgetController(
 	const UObject* WorldContextObject)
 {
-	if (APlayerController* PC { WorldContextObject->GetWorld()->GetFirstPlayerController() })
-	{
-		if (AAuraHUD* AuraHUD { Cast<AAuraHUD>(PC->GetHUD()) })
-		{
-			AAuraPlayerState* PS { PC->GetPlayerState<AAuraPlayerState>() };
-			UAbilitySystemComponent* ASC { PS->GetAbilitySystemComponent() };
-			UAttributeSet* AS { PS->GetAttributeSet() };
-			const FWidgetControllerParams Params(PC, PS, ASC, AS);
-			return AuraHUD->GetAttributeMenuWidgetController(Params);
-		}
-	}
-	return nullptr;
+	return GetWidgetController<UAuraAttributeMenuWidgetController>(WorldContextObject, &AAuraHUD::GetAttributeMenuWidgetController);
 }
