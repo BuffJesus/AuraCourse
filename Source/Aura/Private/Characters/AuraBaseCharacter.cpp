@@ -29,28 +29,19 @@ void AAuraBaseCharacter::InitializeDefaultAttributes() const
 	// Apply Primary Attributes first
 	for (const TSubclassOf<UGameplayEffect>& Effect : DefaultPrimaryAttributes)
 	{
-		if (Effect)
-		{
-			ApplyDefaultGameplayEffect(Effect);
-		}
+		if (Effect) { ApplyDefaultGameplayEffect(Effect); }
 	}
 
 	// Apply Secondary Attributes second (these depend on Primary)
 	for (const TSubclassOf<UGameplayEffect>& Effect : DefaultSecondaryAttributes)
 	{
-		if (Effect)
-		{
-			ApplyDefaultGameplayEffect(Effect);
-		}
+		if (Effect) { ApplyDefaultGameplayEffect(Effect); }
 	}
 
 	// Apply Vital Attributes last (these depend on Secondary like MaxHealth/MaxMana)
 	for (const TSubclassOf<UGameplayEffect>& Effect : DefaultVitalAttributes)
 	{
-		if (Effect)
-		{
-			ApplyDefaultGameplayEffect(Effect);
-		}
+		if (Effect) { ApplyDefaultGameplayEffect(Effect); }
 	}
 }
 
