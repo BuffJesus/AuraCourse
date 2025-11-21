@@ -148,4 +148,9 @@ public:
 
 private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
+
+	// Helper functions for attribute clamping
+	void ClampVitalAttribute(const FGameplayAttribute& VitalAttribute, float& NewValue) const;
+	void ClampMaxAttribute(const FGameplayAttribute& MaxAttribute, float& NewValue) const;
+	void ClampCurrentVitalAttributes();
 };
