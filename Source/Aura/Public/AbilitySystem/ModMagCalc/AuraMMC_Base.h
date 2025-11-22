@@ -47,31 +47,31 @@ protected:
 
 	/** Whether to snapshot the attribute value or use the current value */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attribute Capture", AdvancedDisplay)
-	bool bSnapshot{ false };
+	bool bSnapshot { false };
 
 	/** Base value for the calculation (e.g., 80 for MaxHealth, 100 for MaxMana) */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Formula")
-	float BaseValue{ 0.f };
+	float BaseValue { 0.f };
 
 	/** How to combine all the terms together */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Formula")
-	EMMCCombineOperation CombineOperation{ EMMCCombineOperation::Add };
+	EMMCCombineOperation CombineOperation { EMMCCombineOperation::Add };
 
 	/** How to apply the attribute coefficient (Multiply, Add, Power, or None) */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attribute Term")
-	EMMCOperationType AttributeOperation{ EMMCOperationType::Multiply };
+	EMMCOperationType AttributeOperation { EMMCOperationType::Multiply };
 
 	/** Coefficient for the captured attribute (e.g., 2.5 for Vigor, 8 for Intelligence) */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attribute Term")
-	float AttributeCoefficient{ 1.f };
+	float AttributeCoefficient { 1.f };
 
 	/** How to apply the level coefficient (Multiply, Add, Power, or None) */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Level Term")
-	EMMCOperationType LevelOperation{ EMMCOperationType::Multiply };
+	EMMCOperationType LevelOperation { EMMCOperationType::Multiply };
 
 	/** Coefficient for the player level (e.g., 10 for MaxHealth, 15 for MaxMana) */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Level Term")
-	float LevelCoefficient{ 1.f };
+	float LevelCoefficient { 1.f };
 
 private:
 	void SetupCaptureDefinition();
