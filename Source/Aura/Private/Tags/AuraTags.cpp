@@ -48,4 +48,15 @@ namespace Aura
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HealthCrystal, "Aura.Message.HealthCrystal", "Health crystal");
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaCrystal, "Aura.Message.ManaCrystal", "Mana crystal");
 	}
+	namespace Input
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Input, "Aura.Input", "Input");
+		
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(LMB, "Aura.Input.LMB", "Left mouse button");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(RMB, "Aura.Input.RMB", "Right mouse button");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(One, "Aura.Input.1", "Button 1");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Two, "Aura.Input.2", "Button 2");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Three, "Aura.Input.3", "Button 3");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Four, "Aura.Input.4", "Button 4");
+	}
 }
