@@ -36,33 +36,32 @@ void UAuraAttributeInfo::PopulateDataAsset()
 	
 	UGameplayTagsManager& TagManager { UGameplayTagsManager::Get() };
 	
-	// Get all tags under Aura.Attributes
-	const FGameplayTag AttributesRootTag { FGameplayTag::RequestGameplayTag(FName("Aura.Attributes")) };
+	// Get parent tags using native gameplay tags
+	const FGameplayTag PrimaryTag { Aura::Attributes::Primary::Primary };
+	const FGameplayTag SecondaryTag { Aura::Attributes::Secondary::Secondary };
+	const FGameplayTag VitalTag { Aura::Attributes::Vital::Vital };
 	
-	// Get all child tags of Aura.Attributes
-	FGameplayTagContainer AllAttributeTags;
-	TagManager.RequestAllGameplayTags(AllAttributeTags, true);
+	// Get all gameplay tags
+	FGameplayTagContainer AllTags;
+	TagManager.RequestAllGameplayTags(AllTags, true);
 	
-	// Filter to only attribute tags
+	// Filter to only attribute tags (children of Primary, Secondary, or Vital)
 	TArray<FGameplayTag> AttributeTags;
-	for (const FGameplayTag& Tag : AllAttributeTags)
+	for (const FGameplayTag& Tag : AllTags)
 	{
-		if (Tag.MatchesTag(AttributesRootTag) && Tag != AttributesRootTag)
+		// Check if tag is a child of Primary, Secondary, or Vital (but not the parent tags themselves)
+		if ((Tag.MatchesTag(PrimaryTag) && Tag != PrimaryTag) ||
+		    (Tag.MatchesTag(SecondaryTag) && Tag != SecondaryTag) ||
+		    (Tag.MatchesTag(VitalTag) && Tag != VitalTag))
 		{
-			// Make sure it's a leaf tag (not Primary/Secondary themselves)
-			if (Tag.GetTagName().ToString().Contains(TEXT("Primary.")) || 
-			    Tag.GetTagName().ToString().Contains(TEXT("Secondary.")))
-			{
-				AttributeTags.Add(Tag);
-			}
+			AttributeTags.Add(Tag);
 		}
 	}
 	
-	// Get the CDO of AuraAttributeSet to access properties
-	const UAuraAttributeSet* AttributeSetCDO { GetDefault<UAuraAttributeSet>() };
+	// Get the AttributeSet class for property lookup
 	UClass* AttributeSetClass { UAuraAttributeSet::StaticClass() };
 	
-	// Process each tag
+	// Process each discovered tag
 	for (const FGameplayTag& Tag : AttributeTags)
 	{
 		// Extract attribute name from tag (last part)
@@ -79,7 +78,7 @@ void UAuraAttributeInfo::PopulateDataAsset()
 			AttributeName = TagName;
 		}
 		
-		// Try to find the property in the AttributeSet
+		// Try to find the property in the AttributeSet using reflection
 		FProperty* Property { AttributeSetClass->FindPropertyByName(FName(*AttributeName)) };
 		if (!Property)
 		{
@@ -95,7 +94,7 @@ void UAuraAttributeInfo::PopulateDataAsset()
 			continue;
 		}
 		
-		// Create the FGameplayAttribute
+		// Create the FGameplayAttribute from the property
 		FGameplayAttribute GameplayAttribute { Property };
 		
 		// Format display name (insert spaces before capitals)
@@ -131,7 +130,7 @@ void UAuraAttributeInfo::PopulateDataAsset()
 		UE_LOG(LogTemp, Log, TEXT("Added attribute: %s"), *FormattedName);
 	}
 	
-	// Sort by tag name for consistency (Primary first, then Secondary)
+	// Sort by tag name for consistency (Primary, Secondary, Vital order)
 	AttributeInfo.Sort([](const FAttributeInfo& A, const FAttributeInfo& B)
 	{
 		return A.AttributeTag.GetTagName().ToString() < B.AttributeTag.GetTagName().ToString();
