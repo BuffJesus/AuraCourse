@@ -9,6 +9,8 @@ namespace Aura
 	{
 		namespace Primary
 		{
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Primary, "Aura.Attributes.Primary", "Primary attribute");
+			
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Strength, "Aura.Attributes.Primary.Strength", "Increases physical damage");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Intelligence, "Aura.Attributes.Primary.Intelligence", "Increases magical damage");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Resilience, "Aura.Attributes.Primary.Resilience", "Increase armor and armor penetration");
@@ -16,6 +18,8 @@ namespace Aura
 		}
 		namespace Secondary
 		{
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Secondary, "Aura.Attributes.Secondary", "Secondary attribute");
+			
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Armor, "Aura.Attributes.Secondary.Armor", "Reduces damage taken, improves block chance");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(ArmorPenetration, "Aura.Attributes.Secondary.ArmorPenetration", "Ignores a percentage of enemy armor, increases critical hit chance");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(BlockChance, "Aura.Attributes.Secondary.BlockChance", "Chance to reduce incoming damage by half");
@@ -29,6 +33,8 @@ namespace Aura
 		}
 		namespace Vital
 		{
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Vital, "Aura.Attributes.Vital", "Vital attribute");
+			
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Health, "Aura.Attributes.Vital.Health", "Amount of damage an Actor can take");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Mana, "Aura.Attributes.Vital.Mana", "Amount of mana an Actor can use");
 		}

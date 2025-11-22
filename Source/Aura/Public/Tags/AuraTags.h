@@ -10,6 +10,8 @@ namespace Aura
 	{
 		namespace Primary
 		{
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Primary);
+			
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Strength);
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Intelligence);
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Resilience);
@@ -17,6 +19,8 @@ namespace Aura
 		}
 		namespace Secondary
 		{
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Secondary);
+			
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Armor);
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(ArmorPenetration);
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(BlockChance);
@@ -30,6 +34,8 @@ namespace Aura
 		}
 		namespace Vital
 		{
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Vital);
+			
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Health);
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Mana);
 		}

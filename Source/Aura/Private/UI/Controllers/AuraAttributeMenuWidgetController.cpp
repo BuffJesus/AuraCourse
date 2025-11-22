@@ -6,31 +6,44 @@
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AuraAttributeInfo.h"
 
-void UAuraAttributeMenuWidgetController::BindCallbacksToDependencies()
+void UAuraAttributeMenuWidgetController::BroadcastInitialValues()
 {
-	UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
-	check (AttributeInfo);
-	for (auto& Tag : AttributeInfo.Get()->AttributeInfo)
+	const UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
+	check(AttributeInfo);
+	
+	// Loop through all attributes in the DataAsset and broadcast initial values
+	for (const FAttributeInfo& Info : AttributeInfo->AttributeInfo)
 	{
-		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Tag.AttributeGetter).AddLambda(
-			[this, Tag](const FOnAttributeChangeData& Data) { BroadcastAttributeInfo(Tag.AttributeTag);});
+		BroadcastAttributeInfo(Info);
 	}
 }
 
-void UAuraAttributeMenuWidgetController::BroadcastAttributeInfo(const FGameplayTag& Tag) const
+void UAuraAttributeMenuWidgetController::BindCallbacksToDependencies()
 {
-	// Getting info from DataAsset based on the gameplay tag match
-	FAttributeInfo Info = AttributeInfo->FindAttributeInfoForTag(Tag);
-	// Set hidden attribute in the dataset
-	Info.AttributeValue = Info.AttributeGetter.GetNumericValue(AttributeSet);
-	// Broadcast for subscribers. IE attribute menu widget
-	AttributeInfoDelegate.Broadcast(Info);
+	const UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
+	check(AttributeInfo);
+	
+	// Loop through all attributes and bind to their value change delegates
+	for (const FAttributeInfo& Info : AttributeInfo->AttributeInfo)
+	{
+		// Bind using AttributeGetter directly - capture Info by reference
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Info.AttributeGetter)
+			.AddLambda([this, &Info](const FOnAttributeChangeData& Data)
+			{
+				BroadcastAttributeInfo(Info);
+			});
+	}
 }
 
-void UAuraAttributeMenuWidgetController::BroadcastInitialValues()
+void UAuraAttributeMenuWidgetController::BroadcastAttributeInfo(const FAttributeInfo& Info) const
 {
-	UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
-	check (AttributeInfo)
-	for (auto& Tag : AttributeInfo.Get()->AttributeInfo) { BroadcastAttributeInfo(Tag.AttributeTag); }
+	// Get the current value from AttributeSet using the AttributeGetter
+	const UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
+	
+	// Create a copy of Info and update the AttributeValue
+	FAttributeInfo NewInfo { Info };
+	NewInfo.AttributeValue = Info.AttributeGetter.GetNumericValue(AS);
+	
+	// Broadcast the updated info to subscribers (attribute menu widget)
+	AttributeInfoDelegate.Broadcast(NewInfo);
 }
-

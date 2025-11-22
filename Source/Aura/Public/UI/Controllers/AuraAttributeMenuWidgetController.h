@@ -30,5 +30,6 @@ protected:
 	TObjectPtr<UAuraAttributeInfo> AttributeInfo;
 
 private:
-	void BroadcastAttributeInfo(const FGameplayTag& Tag) const;
+	// Helper function to broadcast attributes - takes Info directly (Mehmet's optimization)
+	void BroadcastAttributeInfo(const FAttributeInfo& Info) const;
 };

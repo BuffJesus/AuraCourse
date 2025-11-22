@@ -37,16 +37,14 @@ class AURA_API UAuraAttributeInfo : public UDataAsset
 	GENERATED_BODY()
 
 public:
-	UAuraAttributeInfo();
+	FAttributeInfo FindAttributeInfoForTag(const FGameplayTag& AttributeTag, bool bLogNotFound = false) const;
 
-	FAttributeInfo FindAttributeInfoForTag(const FGameplayTag& AttributeTag, bool bLogNotFound= false) const;
+#if WITH_EDITOR
+	// Button to automatically populate DataAsset from native tags
+	UFUNCTION(CallInEditor, Category = "Populate Attribute Info")
+	void PopulateDataAsset();
+#endif
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "{AttributeName}"))
 	TArray<FAttributeInfo> AttributeInfo;
-
-protected:
-	virtual void PostInitProperties() override;
-
-private:
-	void InitializeDefaultAttributeInfo();
 };
