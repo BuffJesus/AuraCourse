@@ -9,10 +9,18 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_AttributeMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_AttributeMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_TextValueButtonRow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_TextValueButtonRow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_TextValueRow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_TextValueRow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Button/WBP_Aura_Button.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/Button/WBP_Aura_Button.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraAttributeInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraAttributeInfo.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraAttributeMenuWidgetController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraAttributeMenuWidgetController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraAttributeInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraAttributeInfo.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraAttributeMenuWidgetController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraAttributeMenuWidgetController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraWidgetController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraWidgetController.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +46,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://9" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -91,24 +99,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Uproject.Aura.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;UnrealLinkOptionsId&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Uproject.Aura.executor": "Debug",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "UnrealLinkOptionsId",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Aura" type="Uproject" factoryName="rider.uproject">
       <configuration_1 setup="1">
@@ -212,15 +220,10 @@
       <workItem from="1763524491225" duration="4325000" />
       <workItem from="1763556413540" duration="17171000" />
       <workItem from="1763642888812" duration="16652000" />
-      <workItem from="1763695325946" duration="7273000" />
-    </task>
-    <task id="LOCAL-00034" summary="Added some cleanup etc with the help of AI again.">
-      <option name="closed" value="true" />
-      <created>1763177484959</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1763177484959</updated>
+      <workItem from="1763695325946" duration="7650000" />
+      <workItem from="1763729085690" duration="2442000" />
+      <workItem from="1763836407762" duration="228000" />
+      <workItem from="1763836656352" duration="2470000" />
     </task>
     <task id="LOCAL-00035" summary="Added clamping as well as a check to ensure MaxHealth and Mana have initialized to a value greater than 0 to avoid clamping at a 0 value.">
       <option name="closed" value="true" />
@@ -606,7 +609,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763701649339</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Refactored `AuraAbilitySystemBPLibrary` to use a generic widget controller retrieval utility. Updated `AuraOverlayWidgetController` and `AuraAttributeMenuWidgetController` methods to leverage this abstraction. Enhanced `AuraAttributeMenuWidgetController` with `OnAttributeInfoChanged` delegate and related functionality.">
+      <option name="closed" value="true" />
+      <created>1763702890770</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1763702890770</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,7 +627,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactored `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` into a unified `AuraMMC_Base` class to streamline maximum attribute calculations. Simplified calculation logic with extensible coefficient and operation support." />
     <MESSAGE value="Added new gameplay calculation assets for various attributes (e.g., Armor, Critical Hit Chance) and removed outdated files related to `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` calculations. Updated project configuration to reflect changes." />
     <MESSAGE value="Cleaned up workspace file and removed outdated task entries to improve project configuration." />
     <MESSAGE value="Added `.idea` project configuration files for version control and IDE-specific settings." />
@@ -641,7 +651,8 @@
     <MESSAGE value="Added `AuraAbilitySystemBPLibrary` blueprint function library and `AuraAttributeMenuWidgetController` to enhance UI functionality. Updated `AuraAttributeInfo` with default attribute initialization logic." />
     <MESSAGE value="Introduced `AuraAbilitySystemBPLibrary` with utility function to retrieve `AuraOverlayWidgetController`, added `AuraAttributeMenuWidgetController` class, and extended `AuraAttributeInfo` with default initialization logic." />
     <MESSAGE value="Added `GetAttributeMenuWidgetController` blueprint function in `AuraAbilitySystemBPLibrary`, extended `AAuraHUD` with generic widget controller creation, and introduced `AuraAttributeMenuWidgetController` for attribute menu handling. Updated related blueprints." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `GetAttributeMenuWidgetController` blueprint function in `AuraAbilitySystemBPLibrary`, extended `AAuraHUD` with generic widget controller creation, and introduced `AuraAttributeMenuWidgetController` for attribute menu handling. Updated related blueprints." />
+    <MESSAGE value="Refactored `AuraAbilitySystemBPLibrary` to use a generic widget controller retrieval utility. Updated `AuraOverlayWidgetController` and `AuraAttributeMenuWidgetController` methods to leverage this abstraction. Enhanced `AuraAttributeMenuWidgetController` with `OnAttributeInfoChanged` delegate and related functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraAbilitySystemBPLibrary` to use a generic widget controller retrieval utility. Updated `AuraOverlayWidgetController` and `AuraAttributeMenuWidgetController` methods to leverage this abstraction. Enhanced `AuraAttributeMenuWidgetController` with `OnAttributeInfoChanged` delegate and related functionality." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

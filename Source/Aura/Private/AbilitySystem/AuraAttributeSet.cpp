@@ -5,6 +5,7 @@
 #include "GameFramework/Character.h"
 #include "GameplayEffectExtension.h"
 #include "Net/UnrealNetwork.h"
+#include "Tags/AuraTags.h"
 
 #pragma region Macros
 // Implements the OnRep function for an attribute

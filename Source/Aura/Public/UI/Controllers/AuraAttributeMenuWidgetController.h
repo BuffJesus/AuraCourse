@@ -23,9 +23,12 @@ public:
 	virtual void BindCallbacksToDependencies() override;
 
 	UPROPERTY(BlueprintAssignable, Category = "Aura|GAS|Attributes")
-	FAttributeInfoSignature OnAttributeInfoChanged;
+	FAttributeInfoSignature AttributeInfoDelegate;
 
 protected:
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<UAuraAttributeInfo> AttributeInfo;
+
+private:
+	void BroadcastAttributeInfo(const FGameplayTag& Tag) const;
 };

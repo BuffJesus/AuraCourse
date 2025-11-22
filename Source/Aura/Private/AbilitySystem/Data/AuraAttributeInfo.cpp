@@ -2,6 +2,7 @@
 
 
 #include "AbilitySystem/Data/AuraAttributeInfo.h"
+#include "AbilitySystem/AuraAttributeSet.h"
 #include "Tags/AuraTags.h"
 
 UAuraAttributeInfo::UAuraAttributeInfo()
@@ -29,7 +30,9 @@ void UAuraAttributeInfo::InitializeDefaultAttributeInfo()
 		{ \
 			Aura::Attributes::Namespace::AttributeName, \
 			FText::FromString(DisplayName), \
-			FText::FromString(Description) \
+			FText::FromString(Description), \
+			0.f, \
+			UAuraAttributeSet::Get##AttributeName##Attribute() \
 		})
 
 	// Primary Attributes
