@@ -4,6 +4,7 @@
 #include "Characters/AuraBaseCharacter.h"
 
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 AAuraBaseCharacter::AAuraBaseCharacter()
 {
@@ -21,7 +22,7 @@ UAbilitySystemComponent* AAuraBaseCharacter::GetAbilitySystemComponent() const
 
 void AAuraBaseCharacter::InitializeAbilityActorInfo()
 {
-	
+	// override in children
 }
 
 void AAuraBaseCharacter::InitializeDefaultAttributes() const
@@ -43,6 +44,14 @@ void AAuraBaseCharacter::InitializeDefaultAttributes() const
 	{
 		if (Effect) { ApplyDefaultGameplayEffect(Effect); }
 	}
+}
+
+void AAuraBaseCharacter::AddCharacterAbilities()
+{
+	UAuraAbilitySystemComponent* AuraASC = CastChecked<UAuraAbilitySystemComponent>(GetAbilitySystemComponent());
+	if (!HasAuthority()) { return; }
+
+	AuraASC->AddCharacterAbilities(StartupAbilities);
 }
 
 void AAuraBaseCharacter::ApplyDefaultGameplayEffect(const TSubclassOf<UGameplayEffect> EffectClass, const float Level) const

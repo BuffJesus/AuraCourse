@@ -30,6 +30,9 @@ void AAuraPlayerCharacter::PossessedBy(AController* NewController)
 	
 	// Server only: Initialize default attributes (these will replicate to clients)
 	InitializeDefaultAttributes();
+
+	// Init abilities on server
+	AddCharacterAbilities();
 }
 
 void AAuraPlayerCharacter::OnRep_PlayerState()
