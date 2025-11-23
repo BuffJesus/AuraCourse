@@ -8,13 +8,12 @@
 
 class UAuraAttributeInfo;
 struct FAttributeInfo;
-class UWidget;
-class UPanelWidget;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAttributeInfoSignature, const FAttributeInfo&, Info);
 
 /**
- * 
+ * Widget controller for attribute menu - handles broadcasting attribute changes
+ * and setting tags on pre-existing row widgets
  */
 UCLASS(BlueprintType, Blueprintable)
 class AURA_API UAuraAttributeMenuWidgetController : public UAuraOverlayWidgetController
@@ -28,31 +27,19 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Aura|GAS|Attributes")
 	FAttributeInfoSignature AttributeInfoDelegate;
 
-	// For pre-existing row widgets: Automatically sets tags on named Row_ widgets (e.g., Row_Strength, Row_Vigor)
+	/**
+	 * Automatically sets attribute tags on existing row widgets by matching widget names to attribute names
+	 * Expected naming convention: Row_<AttributeName> (e.g., Row_Strength, Row_Vigor)
+	 * The widget must implement SetAttributeTag(FGameplayTag) function
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Aura|GAS|Attributes")
 	void SetAttributeTagsOnExistingRows(UAuraUserWidget* ParentWidget);
-
-	// Populate Primary attributes (with buttons) - uses WBP_Aura_TextValueButtonRow
-	UFUNCTION(BlueprintCallable, Category = "Aura|GAS|Attributes")
-	void PopulatePrimaryAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass);
-
-	// Populate Secondary attributes (no buttons) - uses WBP_Aura_TextValueRow
-	UFUNCTION(BlueprintCallable, Category = "Aura|GAS|Attributes")
-	void PopulateSecondaryAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass);
-
-	// Generic function (for advanced use cases)
-	UFUNCTION(BlueprintCallable, Category = "Aura|GAS|Attributes")
-	void PopulateVitalAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass);
 
 protected:
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<UAuraAttributeInfo> AttributeInfo;
 
 private:
-	// Helper function to broadcast attributes - takes Info directly (Mehmet's optimization)
+	// Helper function to broadcast attribute info with current values
 	void BroadcastAttributeInfo(const FAttributeInfo& Info) const;
-	
-	// Helper to populate with filter
-	void PopulateAttributeRowsInternal(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass, 
-		const FGameplayTag& FilterTag);
 };

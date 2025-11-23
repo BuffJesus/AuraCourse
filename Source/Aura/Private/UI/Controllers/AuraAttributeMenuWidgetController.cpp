@@ -1,11 +1,8 @@
 // Not Sure Yet
 
-
 #include "UI/Controllers/AuraAttributeMenuWidgetController.h"
-#include "Tags/AuraTags.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AuraAttributeInfo.h"
-#include "Components/PanelWidget.h"
 #include "UI/Widgets/AuraUserWidget.h"
 
 void UAuraAttributeMenuWidgetController::BroadcastInitialValues()
@@ -25,6 +22,7 @@ void UAuraAttributeMenuWidgetController::BindCallbacksToDependencies()
 	const UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
 	check(AttributeInfo);
 	
+	// Bind to attribute change delegates for all attributes
 	for (const FAttributeInfo& Info : AttributeInfo->AttributeInfo)
 	{
 		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Info.AttributeGetter)
@@ -65,7 +63,7 @@ void UAuraAttributeMenuWidgetController::SetAttributeTagsOnExistingRows(UAuraUse
 		}
 		
 		// Construct the expected widget name (e.g., "Row_Strength")
-		FString WidgetName { FString::Printf(TEXT("Row_%s"), *AttributeName) };
+		const FString WidgetName { FString::Printf(TEXT("Row_%s"), *AttributeName) };
 		
 		// Search for widget by name in the parent widget's tree
 		UWidget* RowWidget { ParentWidget->GetWidgetFromName(FName(*WidgetName)) };
@@ -107,91 +105,6 @@ void UAuraAttributeMenuWidgetController::SetAttributeTagsOnExistingRows(UAuraUse
 	}
 	
 	UE_LOG(LogTemp, Log, TEXT("Set attribute tags on %d existing row widgets"), TagsSet);
-}
-
-void UAuraAttributeMenuWidgetController::PopulatePrimaryAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass)
-{
-	// Use Primary tag to filter
-	const FGameplayTag PrimaryTag { Aura::Attributes::Primary::Primary };
-	PopulateAttributeRowsInternal(Container, RowWidgetClass, PrimaryTag);
-}
-
-void UAuraAttributeMenuWidgetController::PopulateSecondaryAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass)
-{
-	// Use Secondary tag to filter
-	const FGameplayTag SecondaryTag { Aura::Attributes::Secondary::Secondary };
-	PopulateAttributeRowsInternal(Container, RowWidgetClass, SecondaryTag);
-}
-
-void UAuraAttributeMenuWidgetController::PopulateVitalAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass)
-{
-	// Use Vital tag to filter
-	const FGameplayTag VitalTag { Aura::Attributes::Vital::Vital };
-	PopulateAttributeRowsInternal(Container, RowWidgetClass, VitalTag);
-}
-
-void UAuraAttributeMenuWidgetController::PopulateAttributeRowsInternal(UPanelWidget* Container, 
-	TSubclassOf<UAuraUserWidget> RowWidgetClass, const FGameplayTag& FilterTag)
-{
-	if (!Container || !RowWidgetClass)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("PopulateAttributeRows: Container or RowWidgetClass is null"));
-		return;
-	}
-	
-	check(AttributeInfo);
-	
-	// Clear existing children
-	Container->ClearChildren();
-	
-	int32 RowsAdded { 0 };
-	
-	// Create a row widget for each attribute in the DataAsset
-	for (const FAttributeInfo& Info : AttributeInfo->AttributeInfo)
-	{
-		// If we have a filter tag, check if this attribute matches
-		if (FilterTag.IsValid() && !Info.AttributeTag.MatchesTag(FilterTag))
-		{
-			continue; // Skip attributes that don't match the filter
-		}
-		
-		// Create widget instance
-		UAuraUserWidget* RowWidget { CreateWidget<UAuraUserWidget>(Container->GetWorld(), RowWidgetClass) };
-		if (!RowWidget)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Failed to create row widget for attribute: %s"), 
-				*Info.AttributeTag.ToString());
-			continue;
-		}
-		
-		// Set the attribute tag on the widget
-		// The widget Blueprint should have a function called "SetAttributeTag"
-		UFunction* SetAttributeTagFunc { RowWidget->FindFunction(FName("SetAttributeTag")) };
-		if (SetAttributeTagFunc)
-		{
-			struct FSetAttributeTagParams
-			{
-				FGameplayTag AttributeTag;
-			};
-			
-			FSetAttributeTagParams Params;
-			Params.AttributeTag = Info.AttributeTag;
-			RowWidget->ProcessEvent(SetAttributeTagFunc, &Params);
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Row widget does not have SetAttributeTag function"));
-		}
-		
-		// Add to container
-		Container->AddChild(RowWidget);
-		RowsAdded++;
-		
-		UE_LOG(LogTemp, Log, TEXT("Added row for attribute: %s"), *Info.AttributeName.ToString());
-	}
-	
-	const FString FilterName { FilterTag.IsValid() ? FilterTag.ToString() : TEXT("All") };
-	UE_LOG(LogTemp, Log, TEXT("Populated %d attribute rows (Filter: %s)"), RowsAdded, *FilterName);
 }
 
 void UAuraAttributeMenuWidgetController::BroadcastAttributeInfo(const FAttributeInfo& Info) const
