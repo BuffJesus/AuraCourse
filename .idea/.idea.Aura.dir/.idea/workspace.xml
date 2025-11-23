@@ -8,16 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/GA_Aura_Ability_Test.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/GA_Aura_Ability_Test.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGameplayAbility.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGameplayAbility.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Input/AuraInputConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Input/AuraInputConfig.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraAttributeMenuWidgetController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraAttributeMenuWidgetController.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +41,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://10" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://13" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -237,15 +231,7 @@
       <workItem from="1763836407762" duration="228000" />
       <workItem from="1763836656352" duration="7309000" />
       <workItem from="1763846732608" duration="3610000" />
-      <workItem from="1763851681901" duration="7543000" />
-    </task>
-    <task id="LOCAL-00046" summary="Refined actor interaction checks and binding logic for improved validation and stability.">
-      <option name="closed" value="true" />
-      <created>1763505370249</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1763505370249</updated>
+      <workItem from="1763851681901" duration="8098000" />
     </task>
     <task id="LOCAL-00047" summary="Updated UI blueprints and TestMap assets.">
       <option name="closed" value="true" />
@@ -631,7 +617,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763857064636</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Added support for input action handling based on gameplay tags&#10;&#10;- **Gameplay Tags**: Introduced `Input` gameplay tag for categorizing input actions.&#10;- **AuraAbilitySystemComponent**: Added functions to handle input tags (`Held`, `Released`) and integrated startup input tags for abilities.&#10;- **Player Controller**: Implemented `GetASC` to retrieve the Ability System Component and route input actions.&#10;- **Code Enhancements**: Updated `AuraGameplayAbility`, `AuraInputConfig`, and relevant classes to improve input handling and ability mapping logic.">
+      <option name="closed" value="true" />
+      <created>1763859243611</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1763859243611</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +635,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `WBP_Aura_AttributeMenu` blueprint asset." />
     <MESSAGE value="Marked `GetPlayerLevel` as `const` across relevant classes and interfaces to enforce immutability and improve code safety." />
     <MESSAGE value="Removed unused magnitude parameter from `ApplyDefaultGameplayEffect` calls in `AuraBaseCharacter` to simplify method usage." />
     <MESSAGE value="Simplified conditional blocks in `InitializeDefaultAttributes` to improve readability and maintain consistency." />
@@ -666,7 +659,8 @@
     <MESSAGE value="Added `AuraInputComponent` with ability action binding functionality&#10;&#10;* **AuraInputComponent**: Introduced `UAuraInputComponent` extending `UEnhancedInputComponent`. Added `BindAbilityActions` template for mapping input actions from `AuraInputConfig` to ability functions.&#10;* **Input Handling**: Enabled binding of pressed, released, and held input events to associated gameplay actions." />
     <MESSAGE value="Updated input action handling to support ability tags and introduced improved logging&#10;&#10;* **Input Config**: Renamed `FindInputActionForTag` to `FindAbilityInputActionForTag` in `UAuraInputConfig` for clarity.&#10;* **Logging**: Improved error logging for unmatched ability input actions.&#10;* **Player Controller**: Updated `AAuraPlayerController` to use `UAuraInputComponent` for binding ability actions (`Pressed`, `Released`, `Held`).&#10;* **Core Enhancements**: Refactored `UAuraInputComponent` to simplify action binding logic." />
     <MESSAGE value="Renamed `PopulateAttributeRows` to `PopulateVitalAttributeRows` in `AuraAttributeMenuWidgetController` for clarity. Updated function logic to filter by Vital attributes. Streamlined input action binding in `AuraInputComponent` and improved debug messages in `AuraPlayerController`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed `PopulateAttributeRows` to `PopulateVitalAttributeRows` in `AuraAttributeMenuWidgetController` for clarity. Updated function logic to filter by Vital attributes. Streamlined input action binding in `AuraInputComponent` and improved debug messages in `AuraPlayerController`." />
+    <MESSAGE value="Added support for input action handling based on gameplay tags&#10;&#10;- **Gameplay Tags**: Introduced `Input` gameplay tag for categorizing input actions.&#10;- **AuraAbilitySystemComponent**: Added functions to handle input tags (`Held`, `Released`) and integrated startup input tags for abilities.&#10;- **Player Controller**: Implemented `GetASC` to retrieve the Ability System Component and route input actions.&#10;- **Code Enhancements**: Updated `AuraGameplayAbility`, `AuraInputConfig`, and relevant classes to improve input handling and ability mapping logic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for input action handling based on gameplay tags&#10;&#10;- **Gameplay Tags**: Introduced `Input` gameplay tag for categorizing input actions.&#10;- **AuraAbilitySystemComponent**: Added functions to handle input tags (`Held`, `Released`) and integrated startup input tags for abilities.&#10;- **Player Controller**: Implemented `GetASC` to retrieve the Ability System Component and route input actions.&#10;- **Code Enhancements**: Updated `AuraGameplayAbility`, `AuraInputConfig`, and relevant classes to improve input handling and ability mapping logic." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
