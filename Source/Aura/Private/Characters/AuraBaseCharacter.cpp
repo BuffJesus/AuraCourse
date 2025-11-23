@@ -20,6 +20,12 @@ UAbilitySystemComponent* AAuraBaseCharacter::GetAbilitySystemComponent() const
 	return AbilitySystemComponent;
 }
 
+FVector AAuraBaseCharacter::GetCombatSocketLocation() const
+{
+	check(Weapon);
+	return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
+
 void AAuraBaseCharacter::InitializeAbilityActorInfo()
 {
 	// override in children

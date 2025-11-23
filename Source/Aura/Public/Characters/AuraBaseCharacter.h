@@ -24,8 +24,13 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Combat")
+	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	FName WeaponSocketName { "WeaponHandSocket" };
+	
+	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
+	FName WeaponTipSocketName { "WeaponTipSocket" };
+	
+	virtual FVector GetCombatSocketLocation() const override;
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")

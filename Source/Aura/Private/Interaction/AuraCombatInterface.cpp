@@ -9,3 +9,8 @@ int32 IAuraCombatInterface::GetPlayerLevel() const
 {
 	return 0;
 }
+
+FVector IAuraCombatInterface::GetCombatSocketLocation() const
+{
+	return FVector();
+}
