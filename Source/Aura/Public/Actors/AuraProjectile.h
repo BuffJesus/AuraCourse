@@ -1,5 +1,3 @@
-// Not Sure Yet
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,6 +6,7 @@
 
 class USphereComponent;
 class UProjectileMovementComponent;
+class UNiagaraComponent;  // ← ADD
 
 UCLASS()
 class AURA_API AAuraProjectile : public AActor
@@ -17,8 +16,11 @@ class AURA_API AAuraProjectile : public AActor
 public:
 	AAuraProjectile();
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)  // ← ADD
+	TObjectPtr<UNiagaraComponent> ProjectileEffect;  // ← ADD
 
 protected:
 	virtual void BeginPlay() override;
@@ -30,5 +32,4 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> Sphere;
-
 };

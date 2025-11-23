@@ -62,8 +62,11 @@ void UAuraGA_ProjectileSpell::OnMontageInterrupted()
 
 void UAuraGA_ProjectileSpell::OnEventReceived(FGameplayEventData Payload)
 {
+	const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
+	UE_LOG(LogTemp, Warning, TEXT("OnEventReceived - Authority: %s"), bIsServer ? TEXT("SERVER") : TEXT("CLIENT"));
+	
 	// Only spawn projectile on server
-	if (GetAvatarActorFromActorInfo()->HasAuthority())
+	if (bIsServer)
 	{
 		SpawnProjectile();
 	}
@@ -71,14 +74,27 @@ void UAuraGA_ProjectileSpell::OnEventReceived(FGameplayEventData Payload)
 
 void UAuraGA_ProjectileSpell::SpawnProjectile()
 {
+	UE_LOG(LogTemp, Warning, TEXT("SpawnProjectile called on SERVER"));
+	
 	IAuraCombatInterface* CombatInterface { GetCombatInterfaceFromAvatar() };
-	if (!CombatInterface) { return; }
+	if (!CombatInterface) 
+	{ 
+		UE_LOG(LogTemp, Error, TEXT("CombatInterface is null!"));
+		return; 
+	}
 
 	const FTransform SpawnTransform { GetProjectileSpawnTransform(CombatInterface) };
+	
+	UE_LOG(LogTemp, Warning, TEXT("Spawning projectile at location: %s"), *SpawnTransform.GetLocation().ToString());
 
 	if (AAuraProjectile* Projectile { CreateProjectile(SpawnTransform) })
 	{
 		Projectile->FinishSpawning(SpawnTransform);
+		UE_LOG(LogTemp, Warning, TEXT("Projectile spawned successfully: %s"), *Projectile->GetName());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to create projectile!"));
 	}
 }
 
@@ -91,7 +107,13 @@ IAuraCombatInterface* UAuraGA_ProjectileSpell::GetCombatInterfaceFromAvatar() co
 FTransform UAuraGA_ProjectileSpell::GetProjectileSpawnTransform(IAuraCombatInterface* CombatInterface) const
 {
 	const FVector SocketLocation { CombatInterface->GetCombatSocketLocation() };
-	return FTransform(SocketLocation);
+	
+	// Get the avatar's rotation so projectile travels in the right direction
+	const AActor* AvatarActor { GetAvatarActorFromActorInfo() };
+	const FRotator AvatarRotation { AvatarActor->GetActorRotation() };
+	
+	// Return transform with both location AND rotation
+	return FTransform(AvatarRotation, SocketLocation);
 }
 
 AAuraProjectile* UAuraGA_ProjectileSpell::CreateProjectile(const FTransform& SpawnTransform)
