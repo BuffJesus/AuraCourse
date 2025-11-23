@@ -1,7 +1,6 @@
-// Not Sure Yet
-
-
+// AuraGA_ProjectileSpell.cpp
 #include "AbilitySystem/Abilities/AuraGA_ProjectileSpell.h"
+#include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Abilities/Tasks/AbilityTask_WaitGameplayEvent.h"
 #include "Actors/AuraProjectile.h"
 #include "Interaction/AuraCombatInterface.h"
@@ -12,17 +11,33 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
                                               const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
-	
-	const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
-	if (!bIsServer) { return; }
-	
-	UAbilityTask_WaitGameplayEvent* WaitGameplayEventTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(
-		this, EventTag, nullptr, false, true);
-	
-	if (WaitGameplayEventTask)
+
+	// Create and bind montage task
+	UAbilityTask_PlayMontageAndWait* MontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
+		this,
+		TEXT("PlayAttackMontage"),
+		AttackMontage
+	);
+
+	// Create and bind event task
+	UAbilityTask_WaitGameplayEvent* EventTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(
+		this,
+		EventTag
+	);
+
+	if (MontageTask && EventTask)
 	{
-		WaitGameplayEventTask->EventReceived.AddDynamic(this, &UAuraGA_ProjectileSpell::SpawnProjectile);
-		WaitGameplayEventTask->ReadyForActivation();
+		// Bind montage delegates
+		MontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+		MontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageInterrupted);
+		MontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+
+		// Bind event delegate
+		EventTask->EventReceived.AddDynamic(this, &UAuraGA_ProjectileSpell::OnEventReceived);
+
+		// Activate both tasks
+		MontageTask->ReadyForActivation();
+		EventTask->ReadyForActivation();
 	}
 	else
 	{
@@ -30,14 +45,34 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 	}
 }
 
-void UAuraGA_ProjectileSpell::SpawnProjectile(FGameplayEventData Payload)
+void UAuraGA_ProjectileSpell::OnMontageCompleted()
+{
+	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
+}
+
+void UAuraGA_ProjectileSpell::OnMontageCancelled()
+{
+	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
+}
+
+void UAuraGA_ProjectileSpell::OnMontageInterrupted()
+{
+	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
+}
+
+void UAuraGA_ProjectileSpell::OnEventReceived(FGameplayEventData Payload)
+{
+	// Only spawn projectile on server
+	if (GetAvatarActorFromActorInfo()->HasAuthority())
+	{
+		SpawnProjectile();
+	}
+}
+
+void UAuraGA_ProjectileSpell::SpawnProjectile()
 {
 	IAuraCombatInterface* CombatInterface { GetCombatInterfaceFromAvatar() };
-	if (!CombatInterface) 
-	{
-		EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
-		return; 
-	}
+	if (!CombatInterface) { return; }
 
 	const FTransform SpawnTransform { GetProjectileSpawnTransform(CombatInterface) };
 
@@ -45,8 +80,6 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(FGameplayEventData Payload)
 	{
 		Projectile->FinishSpawning(SpawnTransform);
 	}
-	
-	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
 }
 
 IAuraCombatInterface* UAuraGA_ProjectileSpell::GetCombatInterfaceFromAvatar() const

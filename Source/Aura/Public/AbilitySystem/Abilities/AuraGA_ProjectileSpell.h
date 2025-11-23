@@ -1,5 +1,4 @@
-// Not Sure Yet
-
+// AuraGA_ProjectileSpell.h
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,9 +7,7 @@
 #include "AuraGA_ProjectileSpell.generated.h"
 
 class AAuraProjectile;
-/**
- * 
- */
+
 UCLASS()
 class AURA_API UAuraGA_ProjectileSpell : public UAuraGameplayAbility
 {
@@ -21,12 +18,26 @@ protected:
 		const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 	
 	UFUNCTION()
-	void SpawnProjectile(FGameplayEventData Payload);
+	void OnMontageCompleted();
+
+	UFUNCTION()
+	void OnMontageCancelled();
+
+	UFUNCTION()
+	void OnMontageInterrupted();
+
+	UFUNCTION()
+	void OnEventReceived(FGameplayEventData Payload);
+	
+	void SpawnProjectile();
 	
 	IAuraCombatInterface* GetCombatInterfaceFromAvatar() const;
 	FTransform GetProjectileSpawnTransform(IAuraCombatInterface* CombatInterface) const;
 	AAuraProjectile* CreateProjectile(const FTransform& SpawnTransform);
 	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Montage")
+	UAnimMontage* AttackMontage;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Projectile", meta = (Categories = "Aura.Event"))
 	FGameplayTag EventTag;
 
