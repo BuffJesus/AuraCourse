@@ -41,6 +41,17 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Mana);
 		}
 	}
+	namespace Event
+	{
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Event);
+		
+		namespace Montage
+		{
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage);
+			
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(FireBolt);
+		}
+	}
 	namespace Message
 	{
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Message);

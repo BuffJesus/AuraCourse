@@ -19,6 +19,7 @@ class AURA_API UAuraGA_ProjectileSpell : public UAuraGameplayAbility
 protected:
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, 
 		const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
+	
 	void SpawnProjectile();
 	IAuraCombatInterface* GetCombatInterfaceFromAvatar() const;
 	FTransform GetProjectileSpawnTransform(IAuraCombatInterface* CombatInterface) const;
