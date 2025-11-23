@@ -30,6 +30,7 @@ namespace Aura
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaRegeneration, "Aura.Attributes.Secondary.ManaRegeneration", "Amount of mana regenerated per second");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(MaxHealth, "Aura.Attributes.Secondary.MaxHealth", "Maximum amount of health obtainable");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(MaxMana, "Aura.Attributes.Secondary.MaxMana", "Maximum amount of mana obtainable");
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(MagicResistance, "Aura.Attributes.Secondary.MagicResistance", "Reduces damage taken from magical attacks");
 		}
 		namespace Vital
 		{

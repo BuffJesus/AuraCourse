@@ -111,6 +111,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxMana, Category = "Aura|Attributes|Secondary")
 	FGameplayAttributeData MaxMana;
 	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, MaxMana);
+	
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MagicResistance, Category = "Aura|Attributes|Secondary")
+	FGameplayAttributeData MagicResistance;
+	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, MagicResistance);
 #pragma endregion
 
 #pragma region Vital Attribute Declaration
@@ -141,6 +145,7 @@ public:
 	UFUNCTION() void OnRep_ManaRegeneration(const FGameplayAttributeData& Old) const;
 	UFUNCTION() void OnRep_MaxHealth(const FGameplayAttributeData& Old) const;
 	UFUNCTION() void OnRep_MaxMana(const FGameplayAttributeData& Old) const;
+	UFUNCTION() void OnRep_MagicResistance(const FGameplayAttributeData& Old) const;
 #pragma endregion
 
 #pragma region Vital Attribute Replication
