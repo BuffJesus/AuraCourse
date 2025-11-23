@@ -29,8 +29,5 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 		Cast<APawn>(AvatarActor), 
 		ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
 
-	if (Projectile)
-	{
-		Projectile->FinishSpawning(SpawnTransform);
-	}
+	if (Projectile) { Projectile->FinishSpawning(SpawnTransform); }
 }
