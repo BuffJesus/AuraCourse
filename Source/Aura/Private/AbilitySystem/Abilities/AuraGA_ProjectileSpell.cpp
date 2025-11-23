@@ -24,12 +24,20 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 		WaitGameplayEventTask->EventReceived.AddDynamic(this, &UAuraGA_ProjectileSpell::SpawnProjectile);
 		WaitGameplayEventTask->ReadyForActivation();
 	}
+	else
+	{
+		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+	}
 }
 
 void UAuraGA_ProjectileSpell::SpawnProjectile(FGameplayEventData Payload)
 {
 	IAuraCombatInterface* CombatInterface { GetCombatInterfaceFromAvatar() };
-	if (!CombatInterface) { return; }
+	if (!CombatInterface) 
+	{
+		EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
+		return; 
+	}
 
 	const FTransform SpawnTransform { GetProjectileSpawnTransform(CombatInterface) };
 

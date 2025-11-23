@@ -8,7 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://10" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://14" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -238,23 +240,7 @@
       <workItem from="1763846732608" duration="3610000" />
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
-      <workItem from="1763871917907" duration="7129000" />
-    </task>
-    <task id="LOCAL-00071" summary="Added `WBP_Aura_AttributeMenu` blueprint asset.">
-      <option name="closed" value="true" />
-      <created>1763683893376</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1763683893376</updated>
-    </task>
-    <task id="LOCAL-00072" summary="Marked `GetPlayerLevel` as `const` across relevant classes and interfaces to enforce immutability and improve code safety.">
-      <option name="closed" value="true" />
-      <created>1763684296240</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1763684296240</updated>
+      <workItem from="1763871917907" duration="7956000" />
     </task>
     <task id="LOCAL-00073" summary="Removed unused magnitude parameter from `ApplyDefaultGameplayEffect` calls in `AuraBaseCharacter` to simplify method usage.">
       <option name="closed" value="true" />
@@ -632,7 +618,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763878695087</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Refactored `AuraGA_ProjectileSpell` to improve authority check by introducing `bIsServer` for clearer logic.">
+      <option name="closed" value="true" />
+      <created>1763879136339</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1763879136339</updated>
+    </task>
+    <task id="LOCAL-00121" summary="Simplified `AuraGA_ProjectileSpell` by removing unused include, updating `WaitGameplayEvent` parameters, and ensuring ability ends after projectile spawn.">
+      <option name="closed" value="true" />
+      <created>1763879493790</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1763879493790</updated>
+    </task>
+    <option name="localTasksCounter" value="122" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,8 +644,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactored lambda bindings and optimized use of references for dynamic tags&#10;&#10;- **AuraAttributeMenuWidgetController**: Updated lambda bindings to capture `FAttributeInfo` by value instead of reference for safer attribute broadcasting.&#10;- **AuraAbilitySystemComponent**: Modified `DynamicTags` usage to reference instead of copying for improved performance.&#10;- **Blueprint Updates**: Adjusted `BP_AuraCharacter` and `GA_Aura_Ability_Test` assets." />
-    <MESSAGE value="Updated `.idea/workspace.xml` to reflect recent file changes and cleaned up project task configurations. Adjusted `GA_Aura_Ability_Test` asset." />
     <MESSAGE value="Updated `AuraAttributeMenuWidgetController` to use `UAuraUserWidget` instead of `UUserWidget` for row widgets and adjusted related functions for consistency. Deferred attribute initialization in `AuraPlayerCharacter` to ensure proper ASC setup." />
     <MESSAGE value="Added `PostLoad` to `UAuraMMC_Base` to initialize capture definitions after property loading." />
     <MESSAGE value="Enhanced `AAuraPlayerController` with spline component initialization, improved target highlighting logic, and added auto-run functionality with cursor-based movement input." />
@@ -667,7 +667,9 @@
     <MESSAGE value="Updated `FireBolt` gameplay tag to follow montage category hierarchy and added supporting assets for `MontageEvent`." />
     <MESSAGE value="meow" />
     <MESSAGE value="Integrated `WaitGameplayEvent` into `AuraGA_ProjectileSpell` to handle projectile spawning dynamically based on gameplay events. Updated related methods and added `EventTag` property for configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrated `WaitGameplayEvent` into `AuraGA_ProjectileSpell` to handle projectile spawning dynamically based on gameplay events. Updated related methods and added `EventTag` property for configuration." />
+    <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to improve authority check by introducing `bIsServer` for clearer logic." />
+    <MESSAGE value="Simplified `AuraGA_ProjectileSpell` by removing unused include, updating `WaitGameplayEvent` parameters, and ensuring ability ends after projectile spawn." />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplified `AuraGA_ProjectileSpell` by removing unused include, updating `WaitGameplayEvent` parameters, and ensuring ability ends after projectile spawn." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
