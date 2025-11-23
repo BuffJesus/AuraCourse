@@ -9,10 +9,15 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/BP_Aura_Fire_Bolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/BP_Aura_Fire_Bolt.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +47,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://20" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -242,15 +247,8 @@
       <workItem from="1763846732608" duration="3610000" />
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
-      <workItem from="1763871917907" duration="9649000" />
-    </task>
-    <task id="LOCAL-00075" summary="Simplified conditional blocks in `AuraAttributeSet` by merging braces into single lines to improve readability and maintain consistency.">
-      <option name="closed" value="true" />
-      <created>1763685244835</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1763685244835</updated>
+      <workItem from="1763871917907" duration="9969000" />
+      <workItem from="1763919271674" duration="1932000" />
     </task>
     <task id="LOCAL-00076" summary="Refactored `AuraAttributeSet` by introducing helper methods to consolidate attribute clamping logic, improving readability and maintainability.">
       <option name="closed" value="true" />
@@ -636,7 +634,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763880580837</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` by adding debug logs, improving server/client differentiation, and incorporating Niagara effects with replication.">
+      <option name="closed" value="true" />
+      <created>1763881837750</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1763881837750</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,7 +652,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Enhanced `AAuraPlayerController` with spline component initialization, improved target highlighting logic, and added auto-run functionality with cursor-based movement input." />
     <MESSAGE value="Added `NavigationSystem` dependency and improved cursor-based movement in `AAuraPlayerController` with pathfinding, spline updates, and auto-run functionality." />
     <MESSAGE value="Added `AutoRun` functionality to `AAuraPlayerController` with spline-based navigation and updated `DefaultEngine.ini` for client-side navigation support." />
     <MESSAGE value="Improved navigation handling in `AAuraPlayerController` by integrating custom collision channels, enhancing pathfinding accuracy with `NavMesh` projection, and updating the navigation query extent. Added `AuraCollisionChannels` for compile-time trace safety and adjusted `DefaultEngine.ini` to define custom collision profiles." />
@@ -671,7 +676,8 @@
     <MESSAGE value="Simplified `AuraGA_ProjectileSpell` by removing unused include, updating `WaitGameplayEvent` parameters, and ensuring ability ends after projectile spawn." />
     <MESSAGE value="Added ability termination logic to `AuraGA_ProjectileSpell` for cases where `WaitGameplayEvent` fails or `CombatInterface` is unavailable." />
     <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` by integrating montage tasks with gameplay events, adding event-specific handlers, and ensuring proper ability termination logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhanced `AuraGA_ProjectileSpell` by integrating montage tasks with gameplay events, adding event-specific handlers, and ensuring proper ability termination logic." />
+    <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` by adding debug logs, improving server/client differentiation, and incorporating Niagara effects with replication." />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` by adding debug logs, improving server/client differentiation, and incorporating Niagara effects with replication." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

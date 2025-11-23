@@ -32,10 +32,6 @@ protected:
 	virtual void SetupInputComponent() override;
 
 private:
-	//~=============================================================================
-	// Input
-	//~=============================================================================
-	
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> AuraContext;
 
@@ -47,10 +43,6 @@ private:
 
 	void Move(const FInputActionValue& InputActionValue);
 
-	//~=============================================================================
-	// Cursor Trace & Highlighting
-	//~=============================================================================
-	
 	void CursorTrace();
 	
 	/** Cached hit result from cursor trace */
@@ -62,10 +54,6 @@ private:
 	/** Currently hovered enemy actor */
 	TScriptInterface<IAuraEnemyInterface> ThisActor;
 
-	//~=============================================================================
-	// Ability Input
-	//~=============================================================================
-	
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	void AbilityInputTagHeld(FGameplayTag InputTag);
@@ -75,10 +63,6 @@ private:
 
 	UAuraAbilitySystemComponent* GetASC();
 
-	//~=============================================================================
-	// Click-to-Move & Auto-Run
-	//~=============================================================================
-	
 	FVector CachedDestination { FVector::ZeroVector };
 	float FollowTime { 0.f };
 	float ShortPressThreshold { 0.5f };

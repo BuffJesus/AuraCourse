@@ -59,10 +59,6 @@ void AAuraPlayerController::SetupInputComponent()
 	);
 }
 
-//~=============================================================================
-// Input
-//~=============================================================================
-
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 {
 	const FVector2D InputAxisVector { InputActionValue.Get<FVector2D>() };
@@ -78,10 +74,6 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 	}
 }
-
-//~=============================================================================
-// Cursor Trace & Highlighting
-//~=============================================================================
 
 void AAuraPlayerController::CursorTrace()
 {
@@ -104,10 +96,6 @@ void AAuraPlayerController::CursorTrace()
 		}
 	}
 }
-
-//~=============================================================================
-// Ability Input
-//~=============================================================================
 
 void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 {
@@ -214,10 +202,6 @@ UAuraAbilitySystemComponent* AAuraPlayerController::GetASC()
 	}
 	return AuraAbilitySystemComponent;
 }
-
-//~=============================================================================
-// Click-to-Move & Auto-Run
-//~=============================================================================
 
 void AAuraPlayerController::AutoRun()
 {
