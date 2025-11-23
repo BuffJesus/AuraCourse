@@ -9,8 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_Base.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_Base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +41,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://17" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://19" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -230,23 +231,7 @@
       <workItem from="1763836407762" duration="228000" />
       <workItem from="1763836656352" duration="7309000" />
       <workItem from="1763846732608" duration="3610000" />
-      <workItem from="1763851681901" duration="9546000" />
-    </task>
-    <task id="LOCAL-00050" summary="Fixed incorrect attribute validation in `InitializeVitalAttributes` by replacing `DefaultPrimaryAttributes` with `DefaultVitalAttributes`.">
-      <option name="closed" value="true" />
-      <created>1763528812417</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1763528812418</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Added test assets for Blueprint actors and gameplay effects, and updated TestMap with relevant changes.">
-      <option name="closed" value="true" />
-      <created>1763594043992</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1763594043992</updated>
+      <workItem from="1763851681901" duration="11873000" />
     </task>
     <task id="LOCAL-00052" summary="Refactored `AuraAttributeSet` to introduce secondary attributes, expand macro usage for attribute replication, and streamline replication-related methods.">
       <option name="closed" value="true" />
@@ -624,7 +609,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763860494886</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="Added `PostLoad` to `UAuraMMC_Base` to initialize capture definitions after property loading.">
+      <option name="closed" value="true" />
+      <created>1763861248956</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1763861248956</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Enhanced `AAuraPlayerController` with spline component initialization, improved target highlighting logic, and added auto-run functionality with cursor-based movement input.">
+      <option name="closed" value="true" />
+      <created>1763862542626</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1763862542626</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -634,8 +635,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Simplified conditional blocks in `AuraAttributeSet` by merging braces into single lines to improve readability and maintain consistency." />
-    <MESSAGE value="Refactored `AuraAttributeSet` by introducing helper methods to consolidate attribute clamping logic, improving readability and maintainability." />
     <MESSAGE value="Added `WBP_Aura_Button` and `WBP_Aura_Button_AttributeMenu` blueprints, and updated existing blueprints (`WBP_Aura_AttributeMenu`, `WBP_Aura_TextValueButtonRow`, `WBP_Overlay`)." />
     <MESSAGE value="Expanded `AuraAttributeSet` with secondary attributes and improved gameplay attribute clamping logic. Updated `AuraTags` to include secondary attribute tags." />
     <MESSAGE value="Reorganized `AuraTags` to move `Vital` tags beneath `Primary` and `Secondary` attributes for improved structure and consistency." />
@@ -659,7 +658,9 @@
     <MESSAGE value="Refactored lambda bindings and optimized use of references for dynamic tags&#10;&#10;- **AuraAttributeMenuWidgetController**: Updated lambda bindings to capture `FAttributeInfo` by value instead of reference for safer attribute broadcasting.&#10;- **AuraAbilitySystemComponent**: Modified `DynamicTags` usage to reference instead of copying for improved performance.&#10;- **Blueprint Updates**: Adjusted `BP_AuraCharacter` and `GA_Aura_Ability_Test` assets." />
     <MESSAGE value="Updated `.idea/workspace.xml` to reflect recent file changes and cleaned up project task configurations. Adjusted `GA_Aura_Ability_Test` asset." />
     <MESSAGE value="Updated `AuraAttributeMenuWidgetController` to use `UAuraUserWidget` instead of `UUserWidget` for row widgets and adjusted related functions for consistency. Deferred attribute initialization in `AuraPlayerCharacter` to ensure proper ASC setup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated `AuraAttributeMenuWidgetController` to use `UAuraUserWidget` instead of `UUserWidget` for row widgets and adjusted related functions for consistency. Deferred attribute initialization in `AuraPlayerCharacter` to ensure proper ASC setup." />
+    <MESSAGE value="Added `PostLoad` to `UAuraMMC_Base` to initialize capture definitions after property loading." />
+    <MESSAGE value="Enhanced `AAuraPlayerController` with spline component initialization, improved target highlighting logic, and added auto-run functionality with cursor-based movement input." />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhanced `AAuraPlayerController` with spline component initialization, improved target highlighting logic, and added auto-run functionality with cursor-based movement input." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
