@@ -7,11 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +35,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -234,15 +231,7 @@
       <workItem from="1763846732608" duration="3610000" />
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
-      <workItem from="1763871917907" duration="301000" />
-    </task>
-    <task id="LOCAL-00060" summary="Added new gameplay calculation assets for various attributes (e.g., Armor, Critical Hit Chance) and removed outdated files related to `AuraMMC_MaxHealth` and `AuraMMC_MaxMana` calculations. Updated project configuration to reflect changes.">
-      <option name="closed" value="true" />
-      <created>1763616772614</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1763616772614</updated>
+      <workItem from="1763871917907" duration="606000" />
     </task>
     <task id="LOCAL-00061" summary="Cleaned up workspace file and removed outdated task entries to improve project configuration.">
       <option name="closed" value="true" />
@@ -628,7 +617,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763867662695</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Added `AuraProjectile` class with sphere collision and projectile movement components. Implemented basic overlap handling and initial projectile configuration.">
+      <option name="closed" value="true" />
+      <created>1763872518396</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1763872518397</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,7 +635,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Streamlined `AuraTags` with the addition of primary, secondary, and vital root tags for better gameplay tag organization. Improved `AuraAttributeInfo` with an editor utility to dynamically populate attributes from tags and revamped broadcast logic in `AuraAttributeMenuWidgetController` for more efficient attribute handling." />
     <MESSAGE value="Refined `AuraAttributeInfo` to use distinct primary, secondary, and vital root tags for better tag filtering and organization. Optimized gameplay tag handling and streamlined attribute processing logic." />
     <MESSAGE value="Updated `.idea/workspace.xml` and cleaned up IntelliJ project configuration. Refined `AuraMMC_Base.h` to improve code style by aligning brace formatting and standardized value initialization for clarity." />
     <MESSAGE value="Just changed some settings." />
@@ -663,7 +659,8 @@
     <MESSAGE value="Updated `TestMap.umap` in `Content/Aura/Maps`." />
     <MESSAGE value="Added MagicResistance to test AttributeMenuWidgetController functionality. Pretty easy to add a row now." />
     <MESSAGE value="Added `MagicResistance` attribute to `AuraAttributeSet` with replication, OnRep logic, and gameplay tags. Updated related assets to support the new attribute. (Just a test to see how easy it would be to add)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `MagicResistance` attribute to `AuraAttributeSet` with replication, OnRep logic, and gameplay tags. Updated related assets to support the new attribute. (Just a test to see how easy it would be to add)" />
+    <MESSAGE value="Added `AuraProjectile` class with sphere collision and projectile movement components. Implemented basic overlap handling and initial projectile configuration." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `AuraProjectile` class with sphere collision and projectile movement components. Implemented basic overlap handling and initial projectile configuration." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
