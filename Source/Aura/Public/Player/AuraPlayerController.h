@@ -1,4 +1,4 @@
-﻿// Copyright Druid Mechanics
+﻿// Not Sure Yet
 
 #pragma once
 

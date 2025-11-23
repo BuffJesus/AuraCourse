@@ -7,7 +7,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +24,8 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="40398" />
+    <option name="cachedIndexableFilesCount" value="40400" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,6 +44,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -61,6 +70,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraWidgetController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/HUD/AuraHUD.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/Widgets/AuraUserWidget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGameplayAbility.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComponent.h" root0="FORCE_HIGHLIGHTING" />
@@ -86,6 +96,8 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraWidgetController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/UI/HUD/AuraHUD.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/UI/Widgets/AuraUserWidget.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Plugins/Marketplace/NinjaGAS389eae05c463V5/Source/NinjaGAS/Public/AbilitySystem/NinjaGASAbilitySystemComponent.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Plugins/Marketplace/NinjaGAS389eae05c463V5/Source/NinjaGAS/Public/AbilitySystem/NinjaGASAttributeSet.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/CoreUObject/Public/UObject/UObjectGlobals.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/Engine/Classes/Components/PrimitiveComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
@@ -231,15 +243,7 @@
       <workItem from="1763846732608" duration="3610000" />
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
-      <workItem from="1763871917907" duration="606000" />
-    </task>
-    <task id="LOCAL-00061" summary="Cleaned up workspace file and removed outdated task entries to improve project configuration.">
-      <option name="closed" value="true" />
-      <created>1763617321626</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1763617321626</updated>
+      <workItem from="1763871917907" duration="1565000" />
     </task>
     <task id="LOCAL-00062" summary="Added `.idea` project configuration files for version control and IDE-specific settings.">
       <option name="closed" value="true" />
@@ -625,7 +629,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763872518397</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="Cleaned up IntelliJ `.idea/workspace.xml` by removing outdated change entries and redundant messages. Added new task for `AuraProjectile` implementation. Updated `TestMap.umap`.">
+      <option name="closed" value="true" />
+      <created>1763872702857</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1763872702857</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +647,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refined `AuraAttributeInfo` to use distinct primary, secondary, and vital root tags for better tag filtering and organization. Optimized gameplay tag handling and streamlined attribute processing logic." />
     <MESSAGE value="Updated `.idea/workspace.xml` and cleaned up IntelliJ project configuration. Refined `AuraMMC_Base.h` to improve code style by aligning brace formatting and standardized value initialization for clarity." />
     <MESSAGE value="Just changed some settings." />
     <MESSAGE value="Implemented startup ability for the base and character class." />
@@ -660,7 +671,8 @@
     <MESSAGE value="Added MagicResistance to test AttributeMenuWidgetController functionality. Pretty easy to add a row now." />
     <MESSAGE value="Added `MagicResistance` attribute to `AuraAttributeSet` with replication, OnRep logic, and gameplay tags. Updated related assets to support the new attribute. (Just a test to see how easy it would be to add)" />
     <MESSAGE value="Added `AuraProjectile` class with sphere collision and projectile movement components. Implemented basic overlap handling and initial projectile configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `AuraProjectile` class with sphere collision and projectile movement components. Implemented basic overlap handling and initial projectile configuration." />
+    <MESSAGE value="Cleaned up IntelliJ `.idea/workspace.xml` by removing outdated change entries and redundant messages. Added new task for `AuraProjectile` implementation. Updated `TestMap.umap`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up IntelliJ `.idea/workspace.xml` by removing outdated change entries and redundant messages. Added new task for `AuraProjectile` implementation. Updated `TestMap.umap`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
