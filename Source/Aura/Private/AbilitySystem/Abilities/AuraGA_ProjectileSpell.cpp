@@ -7,27 +7,49 @@
 #include "Interaction/AuraCombatInterface.h"
 
 void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
-                                              const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
-                                              const FGameplayEventData* TriggerEventData)
+											  const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
+											  const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 	
-	const bool bIsServer = HasAuthority(&ActivationInfo);
-	if (!bIsServer) { return; }
+	if (!HasAuthority(&ActivationInfo)) { return; }
 
-	AActor* AvatarActor = GetAvatarActorFromActorInfo();
-	IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor);
+	SpawnProjectile();
+}
+
+void UAuraGA_ProjectileSpell::SpawnProjectile()
+{
+	IAuraCombatInterface* CombatInterface { GetCombatInterfaceFromAvatar() };
 	if (!CombatInterface) { return; }
 
-	const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
-	FTransform SpawnTransform(SocketLocation);
+	const FTransform SpawnTransform { GetProjectileSpawnTransform(CombatInterface) };
 
-	AAuraProjectile* Projectile = GetWorld()->SpawnActorDeferred<AAuraProjectile>(
-		ProjectileClass, 
-		SpawnTransform, 
-		AvatarActor, 
-		Cast<APawn>(AvatarActor), 
+	if (AAuraProjectile* Projectile { CreateProjectile(SpawnTransform) })
+	{
+		Projectile->FinishSpawning(SpawnTransform);
+	}
+}
+
+IAuraCombatInterface* UAuraGA_ProjectileSpell::GetCombatInterfaceFromAvatar() const
+{
+	AActor* AvatarActor { GetAvatarActorFromActorInfo() };
+	return Cast<IAuraCombatInterface>(AvatarActor);
+}
+
+FTransform UAuraGA_ProjectileSpell::GetProjectileSpawnTransform(IAuraCombatInterface* CombatInterface) const
+{
+	const FVector SocketLocation { CombatInterface->GetCombatSocketLocation() };
+	return FTransform(SocketLocation);
+}
+
+AAuraProjectile* UAuraGA_ProjectileSpell::CreateProjectile(const FTransform& SpawnTransform)
+{
+	AActor* AvatarActor { GetAvatarActorFromActorInfo() };
+	
+	return GetWorld()->SpawnActorDeferred<AAuraProjectile>(
+		ProjectileClass,
+		SpawnTransform,
+		AvatarActor,
+		Cast<APawn>(AvatarActor),
 		ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
-
-	if (Projectile) { Projectile->FinishSpawning(SpawnTransform); }
 }
