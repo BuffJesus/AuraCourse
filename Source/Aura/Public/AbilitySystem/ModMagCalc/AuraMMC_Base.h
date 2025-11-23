@@ -41,6 +41,8 @@ public:
 	virtual float CalculateBaseMagnitude_Implementation(const FGameplayEffectSpec& Spec) const override;
 
 protected:
+	virtual void PostLoad() override;
+
 	/** The attribute to capture and use in the calculation */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attribute Capture")
 	FGameplayAttribute AttributeToCapture;

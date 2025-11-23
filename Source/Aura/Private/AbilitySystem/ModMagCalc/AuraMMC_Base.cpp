@@ -5,6 +5,15 @@
 
 UAuraMMC_Base::UAuraMMC_Base()
 {
+	// Don't call SetupCaptureDefinition here - AttributeToCapture isn't loaded yet
+}
+
+void UAuraMMC_Base::PostLoad()
+{
+	Super::PostLoad();
+	
+	// Setup capture definition after all properties are fully loaded from Blueprint
+	SetupCaptureDefinition();
 }
 
 void UAuraMMC_Base::SetupCaptureDefinition()
@@ -41,9 +50,6 @@ float UAuraMMC_Base::ApplyOperation(float Value, float Coefficient, EMMCOperatio
 
 float UAuraMMC_Base::CalculateBaseMagnitude_Implementation(const FGameplayEffectSpec& Spec) const
 {
-	// Setup capture definition if not already done
-	const_cast<UAuraMMC_Base*>(this)->SetupCaptureDefinition();
-
 	// Gather tags from source and target
 	const FGameplayTagContainer* SourceTags { Spec.CapturedSourceTags.GetAggregatedTags() };
 	const FGameplayTagContainer* TargetTags { Spec.CapturedTargetTags.GetAggregatedTags() };
