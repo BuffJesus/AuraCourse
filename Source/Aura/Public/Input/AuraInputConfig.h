@@ -15,7 +15,7 @@ struct FAuraInputAction
 	UPROPERTY(EditDefaultsOnly)
 	const class UInputAction* InputAction = nullptr;
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, meta = (Categories = "Aura.Input"))
 	FGameplayTag InputTag = FGameplayTag();
 };
 
