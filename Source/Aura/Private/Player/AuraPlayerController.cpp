@@ -1,6 +1,5 @@
 ﻿// Not Sure Yet
 
-
 #include "Player/AuraPlayerController.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AuraCollisionChannels.h"
@@ -16,7 +15,6 @@
 AAuraPlayerController::AAuraPlayerController()
 {
 	bReplicates = true;
-	
 	Spline = CreateDefaultSubobject<USplineComponent>(TEXT("Spline"));
 }
 
@@ -25,20 +23,6 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 	Super::PlayerTick(DeltaTime);
 	CursorTrace();
 	AutoRun();
-}
-
-void AAuraPlayerController::AutoRun()
-{
-	if (!bAutoRunning) { return; }
-	if (APawn* ControlledPawn = GetPawn())
-	{
-		const FVector LocationOnSpline = Spline->FindLocationClosestToWorldLocation(ControlledPawn->GetActorLocation(), ESplineCoordinateSpace::World);
-		const FVector Direction = Spline->FindDirectionClosestToWorldLocation(LocationOnSpline, ESplineCoordinateSpace::World);
-		ControlledPawn->AddMovementInput(Direction);
-
-		if (const float DistanceToDestination = (LocationOnSpline - CachedDestination).Length(); 
-			DistanceToDestination < AutoRunAcceptanceRadius) { bAutoRunning = false; }
-	}
 }
 
 void AAuraPlayerController::BeginPlay()
@@ -64,11 +48,15 @@ void AAuraPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, TEXT("SetupInputComponent Called"));
-
 	UAuraInputComponent* AuraInputComponent = CastChecked<UAuraInputComponent>(InputComponent);
 	AuraInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
-	AuraInputComponent->BindAbilityActions(InputConfig, this, &ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased, &ThisClass::AbilityInputTagHeld);
+	AuraInputComponent->BindAbilityActions(
+		InputConfig, 
+		this, 
+		&ThisClass::AbilityInputTagPressed, 
+		&ThisClass::AbilityInputTagReleased, 
+		&ThisClass::AbilityInputTagHeld
+	);
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
@@ -91,12 +79,22 @@ void AAuraPlayerController::CursorTrace()
 	LastActor = ThisActor;
 	ThisActor = CursorHit.GetActor();
 
-	// Check if actors changed AND are different
 	if (LastActor != ThisActor)
 	{
-		// Only call if the interface is actually valid
-		if (LastActor.GetInterface() != nullptr) { LastActor->UnHighlightActor(); }
-		if (ThisActor.GetInterface() != nullptr) { ThisActor->HighlightActor(); }
+		UpdateActorHighlighting(ThisActor, LastActor);
+	}
+}
+
+void AAuraPlayerController::UpdateActorHighlighting(TScriptInterface<IAuraEnemyInterface> NewActor, TScriptInterface<IAuraEnemyInterface> OldActor)
+{
+	if (OldActor.GetInterface() != nullptr)
+	{
+		OldActor->UnHighlightActor();
+	}
+	
+	if (NewActor.GetInterface() != nullptr)
+	{
+		NewActor->HighlightActor();
 	}
 }
 
@@ -104,82 +102,77 @@ void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 {
 	if (InputTag.MatchesTagExact(Aura::Input::LMB))
 	{
-		bTargeting = ThisActor ? true : false;
-		bAutoRunning = false;
+		HandleLMBPressed();
 	}
 }
 
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 {
-	if (!InputTag.MatchesTagExact(Aura::Input::LMB)) { if (GetASC()) { GetASC()->AbilityInputTagReleased(InputTag); } return;}
-	if (bTargeting) { if (GetASC()) { GetASC()->AbilityInputTagReleased(InputTag); } }
+	if (InputTag.MatchesTagExact(Aura::Input::LMB))
+	{
+		HandleLMBReleased();
+	}
 	else
 	{
-		if (APawn* ControlledPawn = GetPawn(); FollowTime <= ShortPressThreshold && ControlledPawn)
-		{
-			// Use custom Navigation trace channel to get impact point
-			FHitResult NavChannelHit;
-			GetHitResultUnderCursor(ECC_Navigation, false, NavChannelHit);
-			
-			if (NavChannelHit.bBlockingHit)
-			{
-				// Project the impact point onto the NavMesh with a larger query extent
-				// This ensures we find a valid NavMesh point even when clicking on or near obstacles
-				if (UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetCurrent(GetWorld()))
-				{
-					FNavLocation ImpactPointNavLocation;
-					// NOTE: Default Query Extent = FVector(50.0f, 50.0f, 250.0f)
-					// Using a much larger extent to handle clicks on/near obstacles
-					const FVector QueryingExtent{400.0f, 400.0f, 250.0f};
-					const FNavAgentProperties& NavAgentProps = GetNavAgentPropertiesRef();
-					
-					const bool bNavLocationFound = NavSystem->ProjectPointToNavigation(
-						NavChannelHit.ImpactPoint, 
-						ImpactPointNavLocation, 
-						QueryingExtent, 
-						&NavAgentProps
-					);
-					
-					if (bNavLocationFound)
-					{
-						if (UNavigationPath* NavPath = UNavigationSystemV1::FindPathToLocationSynchronously(
-							this, 
-							ControlledPawn->GetActorLocation(), 
-							ImpactPointNavLocation.Location))
-						{
-							if (NavPath->PathPoints.Num() > 0)
-							{
-								Spline->ClearSplinePoints();
-								for (const FVector& PointLoc : NavPath->PathPoints)
-								{
-									Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
-									DrawDebugSphere(GetWorld(), PointLoc, 10.f, 10, FColor::Green, false, 5.f);
-								}
-								CachedDestination = NavPath->PathPoints.Last();
-								bAutoRunning = true;
-							}
-						}
-					}
-				}
-			}
-		}
-		FollowTime = 0.f;
-		bTargeting = false;
+		HandleAbilityInput(InputTag, false, &UAuraAbilitySystemComponent::AbilityInputTagReleased);
 	}
 }
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
-	if (!InputTag.MatchesTagExact(Aura::Input::LMB)) { if (GetASC()) { GetASC()->AbilityInputTagHeld(InputTag); } return;}
-	if (bTargeting) { if (GetASC()) { GetASC()->AbilityInputTagHeld(InputTag); } }
+	if (InputTag.MatchesTagExact(Aura::Input::LMB))
+	{
+		HandleLMBHeld();
+	}
+	else
+	{
+		HandleAbilityInput(InputTag, false, &UAuraAbilitySystemComponent::AbilityInputTagHeld);
+	}
+}
+
+void AAuraPlayerController::HandleLMBPressed()
+{
+	bTargeting = ThisActor != nullptr;
+	bAutoRunning = false;
+}
+
+void AAuraPlayerController::HandleLMBReleased()
+{
+	if (bTargeting)
+	{
+		HandleAbilityInput(Aura::Input::LMB, true, &UAuraAbilitySystemComponent::AbilityInputTagReleased);
+	}
+	else if (FollowTime <= ShortPressThreshold)
+	{
+		FHitResult NavChannelHit;
+		if (GetHitResultUnderCursor(ECC_Navigation, false, NavChannelHit) && NavChannelHit.bBlockingHit)
+		{
+			FVector NavLocation;
+			if (FindNavigableDestination(NavChannelHit.ImpactPoint, NavLocation))
+			{
+				StartAutoRunToLocation(NavLocation);
+			}
+		}
+	}
+	
+	FollowTime = 0.f;
+	bTargeting = false;
+}
+
+void AAuraPlayerController::HandleLMBHeld()
+{
+	if (bTargeting)
+	{
+		HandleAbilityInput(Aura::Input::LMB, true, &UAuraAbilitySystemComponent::AbilityInputTagHeld);
+	}
 	else
 	{
 		FollowTime += GetWorld()->GetDeltaSeconds();
 		
-		// Use Navigation channel for cursor destination
-		if (FHitResult Hit; GetHitResultUnderCursor(ECC_Navigation, false, Hit)) 
-		{ 
-			CachedDestination = Hit.ImpactPoint; 
+		FHitResult Hit;
+		if (GetHitResultUnderCursor(ECC_Navigation, false, Hit))
+		{
+			CachedDestination = Hit.ImpactPoint;
 		}
 		
 		if (APawn* ControlledPawn = GetPawn())
@@ -190,12 +183,86 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 	}
 }
 
+void AAuraPlayerController::HandleAbilityInput(FGameplayTag InputTag, bool bIsTargeting, void(UAuraAbilitySystemComponent::*AbilityFunction)(FGameplayTag))
+{
+	if (UAuraAbilitySystemComponent* ASC = GetASC())
+	{
+		(ASC->*AbilityFunction)(InputTag);
+	}
+}
+
+bool AAuraPlayerController::FindNavigableDestination(const FVector& ClickLocation, FVector& OutNavLocation)
+{
+	UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetCurrent(GetWorld());
+	if (!NavSystem) return false;
+
+	FNavLocation NavLocation;
+	const FNavAgentProperties& NavAgentProps = GetNavAgentPropertiesRef();
+	
+	if (NavSystem->ProjectPointToNavigation(ClickLocation, NavLocation, NavigationQueryExtent, &NavAgentProps))
+	{
+		OutNavLocation = NavLocation.Location;
+		return true;
+	}
+	
+	return false;
+}
+
+void AAuraPlayerController::StartAutoRunToLocation(const FVector& Destination)
+{
+	APawn* ControlledPawn = GetPawn();
+	if (!ControlledPawn) return;
+
+	UNavigationPath* NavPath = UNavigationSystemV1::FindPathToLocationSynchronously(
+		this, 
+		ControlledPawn->GetActorLocation(), 
+		Destination
+	);
+	
+	if (!NavPath || NavPath->PathPoints.Num() == 0) return;
+
+	Spline->ClearSplinePoints();
+	for (const FVector& PointLoc : NavPath->PathPoints)
+	{
+		Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
+		DrawDebugSphere(GetWorld(), PointLoc, 10.f, 10, FColor::Green, false, 5.f);
+	}
+	
+	CachedDestination = NavPath->PathPoints.Last();
+	bAutoRunning = true;
+}
+
+void AAuraPlayerController::AutoRun()
+{
+	if (!bAutoRunning) return;
+	
+	APawn* ControlledPawn = GetPawn();
+	if (!ControlledPawn) return;
+
+	const FVector LocationOnSpline = Spline->FindLocationClosestToWorldLocation(
+		ControlledPawn->GetActorLocation(), 
+		ESplineCoordinateSpace::World
+	);
+	const FVector Direction = Spline->FindDirectionClosestToWorldLocation(
+		LocationOnSpline, 
+		ESplineCoordinateSpace::World
+	);
+	ControlledPawn->AddMovementInput(Direction);
+
+	const float DistanceToDestination = (LocationOnSpline - CachedDestination).Length();
+	if (DistanceToDestination < AutoRunAcceptanceRadius)
+	{
+		bAutoRunning = false;
+	}
+}
+
 UAuraAbilitySystemComponent* AAuraPlayerController::GetASC()
 {
 	if (AuraAbilitySystemComponent == nullptr)
 	{
-		AuraAbilitySystemComponent = Cast<UAuraAbilitySystemComponent>
-		(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetPawn<APawn>()));
+		AuraAbilitySystemComponent = Cast<UAuraAbilitySystemComponent>(
+			UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetPawn<APawn>())
+		);
 	}
 	return AuraAbilitySystemComponent;
 }
