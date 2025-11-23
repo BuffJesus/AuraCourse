@@ -5,8 +5,8 @@
 #include "Tags/AuraTags.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AuraAttributeInfo.h"
-#include "Blueprint/UserWidget.h"
 #include "Components/PanelWidget.h"
+#include "UI/Widgets/AuraUserWidget.h"
 
 void UAuraAttributeMenuWidgetController::BroadcastInitialValues()
 {
@@ -35,7 +35,7 @@ void UAuraAttributeMenuWidgetController::BindCallbacksToDependencies()
 	}
 }
 
-void UAuraAttributeMenuWidgetController::SetAttributeTagsOnExistingRows(UUserWidget* ParentWidget)
+void UAuraAttributeMenuWidgetController::SetAttributeTagsOnExistingRows(UAuraUserWidget* ParentWidget)
 {
 	if (!ParentWidget)
 	{
@@ -77,7 +77,7 @@ void UAuraAttributeMenuWidgetController::SetAttributeTagsOnExistingRows(UUserWid
 		}
 		
 		// Cast to UserWidget to call Blueprint functions
-		UUserWidget* RowUserWidget { Cast<UUserWidget>(RowWidget) };
+		UAuraUserWidget* RowUserWidget { Cast<UAuraUserWidget>(RowWidget) };
 		if (!RowUserWidget)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Widget %s is not a UserWidget"), *WidgetName);
@@ -109,21 +109,21 @@ void UAuraAttributeMenuWidgetController::SetAttributeTagsOnExistingRows(UUserWid
 	UE_LOG(LogTemp, Log, TEXT("Set attribute tags on %d existing row widgets"), TagsSet);
 }
 
-void UAuraAttributeMenuWidgetController::PopulatePrimaryAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass)
+void UAuraAttributeMenuWidgetController::PopulatePrimaryAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass)
 {
 	// Use Primary tag to filter
 	const FGameplayTag PrimaryTag { Aura::Attributes::Primary::Primary };
 	PopulateAttributeRowsInternal(Container, RowWidgetClass, PrimaryTag);
 }
 
-void UAuraAttributeMenuWidgetController::PopulateSecondaryAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass)
+void UAuraAttributeMenuWidgetController::PopulateSecondaryAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass)
 {
 	// Use Secondary tag to filter
 	const FGameplayTag SecondaryTag { Aura::Attributes::Secondary::Secondary };
 	PopulateAttributeRowsInternal(Container, RowWidgetClass, SecondaryTag);
 }
 
-void UAuraAttributeMenuWidgetController::PopulateVitalAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass)
+void UAuraAttributeMenuWidgetController::PopulateVitalAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass)
 {
 	// Use Vital tag to filter
 	const FGameplayTag VitalTag { Aura::Attributes::Vital::Vital };
@@ -131,7 +131,7 @@ void UAuraAttributeMenuWidgetController::PopulateVitalAttributeRows(UPanelWidget
 }
 
 void UAuraAttributeMenuWidgetController::PopulateAttributeRowsInternal(UPanelWidget* Container, 
-	TSubclassOf<UUserWidget> RowWidgetClass, const FGameplayTag& FilterTag)
+	TSubclassOf<UAuraUserWidget> RowWidgetClass, const FGameplayTag& FilterTag)
 {
 	if (!Container || !RowWidgetClass)
 	{
@@ -156,7 +156,7 @@ void UAuraAttributeMenuWidgetController::PopulateAttributeRowsInternal(UPanelWid
 		}
 		
 		// Create widget instance
-		UUserWidget* RowWidget { CreateWidget<UUserWidget>(Container->GetWorld(), RowWidgetClass) };
+		UAuraUserWidget* RowWidget { CreateWidget<UAuraUserWidget>(Container->GetWorld(), RowWidgetClass) };
 		if (!RowWidget)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Failed to create row widget for attribute: %s"), 

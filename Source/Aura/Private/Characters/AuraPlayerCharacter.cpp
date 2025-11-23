@@ -28,11 +28,18 @@ void AAuraPlayerCharacter::PossessedBy(AController* NewController)
 	// Init ability actor info for the Server
 	InitializeAbilityActorInfo();
 	
-	// Server only: Initialize default attributes (these will replicate to clients)
-	InitializeDefaultAttributes();
-
-	// Init abilities on server
-	AddCharacterAbilities();
+	// Defer to next frame to ensure ASC is fully initialized
+	if (GetWorld())
+	{
+		GetWorld()->GetTimerManager().SetTimerForNextTick([this]()
+		{
+			// Server only: Initialize default attributes (these will replicate to clients)
+			InitializeDefaultAttributes();
+			
+			// Init abilities on server
+			AddCharacterAbilities();
+		});
+	}
 }
 
 void AAuraPlayerCharacter::OnRep_PlayerState()

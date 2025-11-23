@@ -30,19 +30,19 @@ public:
 
 	// For pre-existing row widgets: Automatically sets tags on named Row_ widgets (e.g., Row_Strength, Row_Vigor)
 	UFUNCTION(BlueprintCallable, Category = "Aura|GAS|Attributes")
-	void SetAttributeTagsOnExistingRows(UUserWidget* ParentWidget);
+	void SetAttributeTagsOnExistingRows(UAuraUserWidget* ParentWidget);
 
 	// Populate Primary attributes (with buttons) - uses WBP_Aura_TextValueButtonRow
 	UFUNCTION(BlueprintCallable, Category = "Aura|GAS|Attributes")
-	void PopulatePrimaryAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass);
+	void PopulatePrimaryAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass);
 
 	// Populate Secondary attributes (no buttons) - uses WBP_Aura_TextValueRow
 	UFUNCTION(BlueprintCallable, Category = "Aura|GAS|Attributes")
-	void PopulateSecondaryAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass);
+	void PopulateSecondaryAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass);
 
 	// Generic function (for advanced use cases)
 	UFUNCTION(BlueprintCallable, Category = "Aura|GAS|Attributes")
-	void PopulateVitalAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass);
+	void PopulateVitalAttributeRows(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass);
 
 protected:
 	UPROPERTY(EditDefaultsOnly)
@@ -53,6 +53,6 @@ private:
 	void BroadcastAttributeInfo(const FAttributeInfo& Info) const;
 	
 	// Helper to populate with filter
-	void PopulateAttributeRowsInternal(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass, 
+	void PopulateAttributeRowsInternal(UPanelWidget* Container, TSubclassOf<UAuraUserWidget> RowWidgetClass, 
 		const FGameplayTag& FilterTag);
 };
