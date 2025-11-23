@@ -42,7 +42,7 @@ public:
 
 	// Generic function (for advanced use cases)
 	UFUNCTION(BlueprintCallable, Category = "Aura|GAS|Attributes")
-	void PopulateAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass);
+	void PopulateVitalAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass);
 
 protected:
 	UPROPERTY(EditDefaultsOnly)

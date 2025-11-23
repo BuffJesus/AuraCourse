@@ -125,10 +125,11 @@ void UAuraAttributeMenuWidgetController::PopulateSecondaryAttributeRows(UPanelWi
 	PopulateAttributeRowsInternal(Container, RowWidgetClass, SecondaryTag);
 }
 
-void UAuraAttributeMenuWidgetController::PopulateAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass)
+void UAuraAttributeMenuWidgetController::PopulateVitalAttributeRows(UPanelWidget* Container, TSubclassOf<UUserWidget> RowWidgetClass)
 {
-	// Populates ALL attributes (no filter)
-	PopulateAttributeRowsInternal(Container, RowWidgetClass, FGameplayTag());
+	// Use Vital tag to filter
+	const FGameplayTag VitalTag { Aura::Attributes::Vital::Vital };
+	PopulateAttributeRowsInternal(Container, RowWidgetClass, VitalTag);
 }
 
 void UAuraAttributeMenuWidgetController::PopulateAttributeRowsInternal(UPanelWidget* Container, 

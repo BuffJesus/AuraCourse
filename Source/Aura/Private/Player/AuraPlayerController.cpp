@@ -41,6 +41,8 @@ void AAuraPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
+	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, TEXT("SetupInputComponent Called"));
+
 	UAuraInputComponent* AuraInputComponent = CastChecked<UAuraInputComponent>(InputComponent);
 	AuraInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 	AuraInputComponent->BindAbilityActions(InputConfig, this, &ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased, &ThisClass::AbilityInputTagHeld);
@@ -84,15 +86,15 @@ void AAuraPlayerController::CursorTrace()
 
 void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Ability Input Tag Pressed: %s"), *InputTag.ToString()));
+	GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Green, *InputTag.ToString());
 }
 
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Ability Input Tag Released: %s"), *InputTag.ToString()));
+	GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Red, *InputTag.ToString());
 }
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Ability Input Tag Held: %s"), *InputTag.ToString()));
+	GEngine->AddOnScreenDebugMessage(3, 5.f, FColor::Cyan, *InputTag.ToString());
 }
