@@ -3,6 +3,7 @@
 
 #include "Player/AuraPlayerController.h"
 #include "AbilitySystemBlueprintLibrary.h"
+#include "AuraCollisionChannels.h"
 #include "EnhancedInputSubsystems.h"
 #include "NavigationSystem.h"
 #include "NavigationPath.h"
@@ -116,15 +117,50 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 	{
 		if (APawn* ControlledPawn = GetPawn(); FollowTime <= ShortPressThreshold && ControlledPawn)
 		{
-			if (UNavigationPath* NavPath = UNavigationSystemV1::FindPathToLocationSynchronously(this, ControlledPawn->GetActorLocation(), CachedDestination))
+			// Use custom Navigation trace channel to get impact point
+			FHitResult NavChannelHit;
+			GetHitResultUnderCursor(ECC_Navigation, false, NavChannelHit);
+			
+			if (NavChannelHit.bBlockingHit)
 			{
-				Spline->ClearSplinePoints();
-				for (const FVector& PointLoc : NavPath->PathPoints)
+				// Project the impact point onto the NavMesh with a larger query extent
+				// This ensures we find a valid NavMesh point even when clicking on or near obstacles
+				if (UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetCurrent(GetWorld()))
 				{
-					Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
-					DrawDebugSphere(GetWorld(), PointLoc, 10.f, 10, FColor::Green, false, 5.f);
+					FNavLocation ImpactPointNavLocation;
+					// NOTE: Default Query Extent = FVector(50.0f, 50.0f, 250.0f)
+					// Using a much larger extent to handle clicks on/near obstacles
+					const FVector QueryingExtent{400.0f, 400.0f, 250.0f};
+					const FNavAgentProperties& NavAgentProps = GetNavAgentPropertiesRef();
+					
+					const bool bNavLocationFound = NavSystem->ProjectPointToNavigation(
+						NavChannelHit.ImpactPoint, 
+						ImpactPointNavLocation, 
+						QueryingExtent, 
+						&NavAgentProps
+					);
+					
+					if (bNavLocationFound)
+					{
+						if (UNavigationPath* NavPath = UNavigationSystemV1::FindPathToLocationSynchronously(
+							this, 
+							ControlledPawn->GetActorLocation(), 
+							ImpactPointNavLocation.Location))
+						{
+							if (NavPath->PathPoints.Num() > 0)
+							{
+								Spline->ClearSplinePoints();
+								for (const FVector& PointLoc : NavPath->PathPoints)
+								{
+									Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
+									DrawDebugSphere(GetWorld(), PointLoc, 10.f, 10, FColor::Green, false, 5.f);
+								}
+								CachedDestination = NavPath->PathPoints.Last();
+								bAutoRunning = true;
+							}
+						}
+					}
 				}
-				bAutoRunning = true;
 			}
 		}
 		FollowTime = 0.f;
@@ -139,7 +175,13 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 	else
 	{
 		FollowTime += GetWorld()->GetDeltaSeconds();
-		if (FHitResult Hit; GetHitResultUnderCursor(ECC_Visibility, false, Hit)) { CachedDestination = Hit.ImpactPoint; }
+		
+		// Use Navigation channel for cursor destination
+		if (FHitResult Hit; GetHitResultUnderCursor(ECC_Navigation, false, Hit)) 
+		{ 
+			CachedDestination = Hit.ImpactPoint; 
+		}
+		
 		if (APawn* ControlledPawn = GetPawn())
 		{
 			const FVector WorldDirection = (CachedDestination - ControlledPawn->GetActorLocation()).GetSafeNormal();
@@ -157,5 +199,3 @@ UAuraAbilitySystemComponent* AAuraPlayerController::GetASC()
 	}
 	return AuraAbilitySystemComponent;
 }
-
-
