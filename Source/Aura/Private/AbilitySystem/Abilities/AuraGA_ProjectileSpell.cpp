@@ -2,21 +2,32 @@
 
 
 #include "AbilitySystem/Abilities/AuraGA_ProjectileSpell.h"
+
+#include "Abilities/Tasks/AbilityTask_WaitGameplayEvent.h"
 #include "Actors/AuraProjectile.h"
 #include "Interaction/AuraCombatInterface.h"
+#include "Tags/AuraTags.h"
 
 void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
-											  const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
-											  const FGameplayEventData* TriggerEventData)
+                                              const FGameplayAbilityActorInfo* ActorInfo, 
+                                              const FGameplayAbilityActivationInfo ActivationInfo,
+                                              const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 	
 	if (!HasAuthority(&ActivationInfo)) { return; }
-
-	SpawnProjectile();
+	
+	UAbilityTask_WaitGameplayEvent* WaitGameplayEventTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(
+		this, EventTag, GetAvatarActorFromActorInfo(), false, true);
+	
+	if (WaitGameplayEventTask)
+	{
+		WaitGameplayEventTask->EventReceived.AddDynamic(this, &UAuraGA_ProjectileSpell::SpawnProjectile);
+		WaitGameplayEventTask->ReadyForActivation();
+	}
 }
 
-void UAuraGA_ProjectileSpell::SpawnProjectile()
+void UAuraGA_ProjectileSpell::SpawnProjectile(FGameplayEventData Payload)
 {
 	IAuraCombatInterface* CombatInterface { GetCombatInterfaceFromAvatar() };
 	if (!CombatInterface) { return; }

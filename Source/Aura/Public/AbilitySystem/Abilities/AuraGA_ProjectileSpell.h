@@ -20,10 +20,15 @@ protected:
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, 
 		const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 	
-	void SpawnProjectile();
+	UFUNCTION()
+	void SpawnProjectile(FGameplayEventData Payload);
+	
 	IAuraCombatInterface* GetCombatInterfaceFromAvatar() const;
 	FTransform GetProjectileSpawnTransform(IAuraCombatInterface* CombatInterface) const;
 	AAuraProjectile* CreateProjectile(const FTransform& SpawnTransform);
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Projectile", meta = (Categories = "Aura.Event"))
+	FGameplayTag EventTag;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Projectile")
 	TSubclassOf<AAuraProjectile> ProjectileClass;
