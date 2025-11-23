@@ -25,12 +25,10 @@ void UAuraAttributeMenuWidgetController::BindCallbacksToDependencies()
 	const UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
 	check(AttributeInfo);
 	
-	// Loop through all attributes and bind to their value change delegates
 	for (const FAttributeInfo& Info : AttributeInfo->AttributeInfo)
 	{
-		// Bind using AttributeGetter directly - capture Info by reference
 		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Info.AttributeGetter)
-			.AddLambda([this, &Info](const FOnAttributeChangeData& Data)
+			.AddLambda([this, Info](const FOnAttributeChangeData& Data)
 			{
 				BroadcastAttributeInfo(Info);
 			});
