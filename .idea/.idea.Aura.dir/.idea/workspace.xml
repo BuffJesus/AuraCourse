@@ -9,8 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraAttributeMenuWidgetController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraAttributeMenuWidgetController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraAttributeMenuWidgetController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraAttributeMenuWidgetController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +22,6 @@
   </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="40398" />
-    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://24" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://26" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -105,25 +104,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Uproject.Aura.executor": "Debug",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "UnrealLinkOptionsId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Uproject.Aura.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;UnrealLinkOptionsId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Aura" type="Uproject" factoryName="rider.uproject">
       <configuration_1 setup="1">
@@ -232,15 +231,8 @@
       <workItem from="1763836407762" duration="228000" />
       <workItem from="1763836656352" duration="7309000" />
       <workItem from="1763846732608" duration="3610000" />
-      <workItem from="1763851681901" duration="14035000" />
-    </task>
-    <task id="LOCAL-00056" summary="Refactored attribute initialization in `AuraBaseCharacter` by replacing separate primary and vital attribute methods with a unified `InitializeDefaultAttributes` method, updated related gameplay effect application logic.">
-      <option name="closed" value="true" />
-      <created>1763604397341</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1763604397341</updated>
+      <workItem from="1763851681901" duration="14461000" />
+      <workItem from="1763866608376" duration="645000" />
     </task>
     <task id="LOCAL-00057" summary="Introduced `AuraCombatInterface` and refactored `EnemyInterface` to `AuraEnemyInterface` for consistency. Added player level functionality across Player and Enemy characters, along with replication setup in `AuraPlayerState`.">
       <option name="closed" value="true" />
@@ -626,7 +618,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763865396212</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Removed redundant `PopulateAttributeRows` methods and associated internal logic from `AuraAttributeMenuWidgetController`. Simplified functionality by focusing on managing existing row widgets and attribute tag assignment.">
+      <option name="closed" value="true" />
+      <created>1763865744749</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1763865744749</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +636,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `AuraAbilitySystemBPLibrary` blueprint function library and `AuraAttributeMenuWidgetController` to enhance UI functionality. Updated `AuraAttributeInfo` with default attribute initialization logic." />
     <MESSAGE value="Introduced `AuraAbilitySystemBPLibrary` with utility function to retrieve `AuraOverlayWidgetController`, added `AuraAttributeMenuWidgetController` class, and extended `AuraAttributeInfo` with default initialization logic." />
     <MESSAGE value="Added `GetAttributeMenuWidgetController` blueprint function in `AuraAbilitySystemBPLibrary`, extended `AAuraHUD` with generic widget controller creation, and introduced `AuraAttributeMenuWidgetController` for attribute menu handling. Updated related blueprints." />
     <MESSAGE value="Refactored `AuraAbilitySystemBPLibrary` to use a generic widget controller retrieval utility. Updated `AuraOverlayWidgetController` and `AuraAttributeMenuWidgetController` methods to leverage this abstraction. Enhanced `AuraAttributeMenuWidgetController` with `OnAttributeInfoChanged` delegate and related functionality." />
@@ -661,7 +660,8 @@
     <MESSAGE value="Added `AutoRun` functionality to `AAuraPlayerController` with spline-based navigation and updated `DefaultEngine.ini` for client-side navigation support." />
     <MESSAGE value="Improved navigation handling in `AAuraPlayerController` by integrating custom collision channels, enhancing pathfinding accuracy with `NavMesh` projection, and updating the navigation query extent. Added `AuraCollisionChannels` for compile-time trace safety and adjusted `DefaultEngine.ini` to define custom collision profiles." />
     <MESSAGE value="Refactored `AAuraPlayerController` to streamline input handling, improve cursor interaction, and enhance auto-run functionality. Centralized ability input logic, added helper functions for navigation, and updated actor highlighting for better readability and maintainability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AAuraPlayerController` to streamline input handling, improve cursor interaction, and enhance auto-run functionality. Centralized ability input logic, added helper functions for navigation, and updated actor highlighting for better readability and maintainability." />
+    <MESSAGE value="Removed redundant `PopulateAttributeRows` methods and associated internal logic from `AuraAttributeMenuWidgetController`. Simplified functionality by focusing on managing existing row widgets and attribute tag assignment." />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
