@@ -14,19 +14,23 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 	
 	const bool bIsServer = HasAuthority(&ActivationInfo);
 	if (!bIsServer) { return; }
-	
-	IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo());
+
+	AActor* AvatarActor = GetAvatarActorFromActorInfo();
+	IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor);
 	if (!CombatInterface) { return; }
+
 	const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
-	FTransform SpawnTransform;
-	SpawnTransform.SetLocation(SocketLocation);
-	
+	FTransform SpawnTransform(SocketLocation);
+
 	AAuraProjectile* Projectile = GetWorld()->SpawnActorDeferred<AAuraProjectile>(
 		ProjectileClass, 
 		SpawnTransform, 
-		GetAvatarActorFromActorInfo(), 
-		Cast<APawn>(GetAvatarActorFromActorInfo()), 
+		AvatarActor, 
+		Cast<APawn>(AvatarActor), 
 		ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
-	if (!Projectile) { return; }
-	Projectile->FinishSpawning(SpawnTransform);
+
+	if (Projectile)
+	{
+		Projectile->FinishSpawning(SpawnTransform);
+	}
 }
