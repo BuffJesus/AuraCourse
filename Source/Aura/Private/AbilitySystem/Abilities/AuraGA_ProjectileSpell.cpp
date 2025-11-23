@@ -2,11 +2,9 @@
 
 
 #include "AbilitySystem/Abilities/AuraGA_ProjectileSpell.h"
-
 #include "Abilities/Tasks/AbilityTask_WaitGameplayEvent.h"
 #include "Actors/AuraProjectile.h"
 #include "Interaction/AuraCombatInterface.h"
-#include "Tags/AuraTags.h"
 
 void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                               const FGameplayAbilityActorInfo* ActorInfo, 
@@ -19,7 +17,7 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 	if (!bIsServer) { return; }
 	
 	UAbilityTask_WaitGameplayEvent* WaitGameplayEventTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(
-		this, EventTag, GetAvatarActorFromActorInfo(), false, true);
+		this, EventTag, nullptr, false, true);
 	
 	if (WaitGameplayEventTask)
 	{
@@ -39,6 +37,8 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(FGameplayEventData Payload)
 	{
 		Projectile->FinishSpawning(SpawnTransform);
 	}
+	
+	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
 }
 
 IAuraCombatInterface* UAuraGA_ProjectileSpell::GetCombatInterfaceFromAvatar() const
