@@ -48,7 +48,7 @@ namespace Aura
 		{
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Montage, "Aura.Event.Montage", "Montage");
 			
-			UE_DEFINE_GAMEPLAY_TAG_COMMENT(FireBolt, "Aura.Event.FireBolt", "Fire bolt");
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(FireBolt, "Aura.Event.Montage.FireBolt", "Fire bolt");
 		}
 	}
 	namespace Message
