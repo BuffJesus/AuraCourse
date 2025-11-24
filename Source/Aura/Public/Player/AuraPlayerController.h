@@ -26,10 +26,16 @@ class AURA_API AAuraPlayerController : public APlayerController
 public:
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
+	
+	/** Get the current cursor hit result */
+	FORCEINLINE FHitResult GetCursorHit() const { return CursorHit; }
 
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
+	
+	/** Cached hit result from cursor trace */
+	FHitResult CursorHit;
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -44,9 +50,6 @@ private:
 	void Move(const FInputActionValue& InputActionValue);
 
 	void CursorTrace();
-	
-	/** Cached hit result from cursor trace */
-	FHitResult CursorHit;
 	
 	/** Previously hovered enemy actor */
 	TScriptInterface<IAuraEnemyInterface> LastActor;
