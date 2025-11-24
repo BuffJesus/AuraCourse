@@ -15,7 +15,7 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 	
 }
 
-void UAuraGA_ProjectileSpell::SpawnProjectile()
+void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 {
 	const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
 	const bool bIsLocallyControlled = GetActorInfo().IsLocallyControlled();
@@ -24,10 +24,12 @@ void UAuraGA_ProjectileSpell::SpawnProjectile()
 	if (!CombatInterface) return;
 
 	const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
+	FRotator Rotation { (TargetLocation - SocketLocation).Rotation()  };
+	Rotation.Pitch = 0.f;
 
 	FTransform SpawnTransform;
 	SpawnTransform.SetLocation(SocketLocation);
-	//TODO: Set the Projectile Rotation
+	SpawnTransform.SetRotation(Rotation.Quaternion());
 
 	// Server: Spawn authoritative projectile
 	if (bIsServer)
