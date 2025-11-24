@@ -8,8 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/Materials/M_FloorTest.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://19" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://21" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -242,15 +241,7 @@
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
-      <workItem from="1763919271674" duration="17481000" />
-    </task>
-    <task id="LOCAL-00098" summary="Updated `AuraAttributeMenuWidgetController` to use `UAuraUserWidget` instead of `UUserWidget` for row widgets and adjusted related functions for consistency. Deferred attribute initialization in `AuraPlayerCharacter` to ensure proper ASC setup.">
-      <option name="closed" value="true" />
-      <created>1763860494886</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1763860494886</updated>
+      <workItem from="1763919271674" duration="17787000" />
     </task>
     <task id="LOCAL-00099" summary="Added `PostLoad` to `UAuraMMC_Base` to initialize capture definitions after property loading.">
       <option name="closed" value="true" />
@@ -636,7 +627,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763959009342</updated>
     </task>
-    <option name="localTasksCounter" value="147" />
+    <task id="LOCAL-00147" summary="Added `UpdateFacingTarget` BlueprintImplementableEvent to `AuraCombatInterface` and `GetMotionWarpingComponent` BlueprintCallable function to `AuraBaseCharacter`.">
+      <option name="closed" value="true" />
+      <created>1763959651961</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1763959651961</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,7 +645,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added ability termination logic to `AuraGA_ProjectileSpell` for cases where `WaitGameplayEvent` fails or `CombatInterface` is unavailable." />
     <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` by integrating montage tasks with gameplay events, adding event-specific handlers, and ensuring proper ability termination logic." />
     <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` by adding debug logs, improving server/client differentiation, and incorporating Niagara effects with replication." />
     <MESSAGE value="Refactored `AuraGA_ProjectileSpell` by streamlining activation logic, simplifying projectile spawning, and removing unused montage/event-based tasks." />
@@ -671,7 +669,8 @@
     <MESSAGE value="Replaced `UAbilitySystemComponent` and `UAttributeSet` with `UAuraAbilitySystemComponent` and `UAuraAttributeSet` across relevant classes for stronger typing, added typed getters, and updated caching logic. Kind of broke it, working on fixing it." />
     <MESSAGE value="Compiles now" />
     <MESSAGE value="Updated `.idea/workspace.xml` to reflect recent file changes, added `M_FloorTest.uasset`, and modified `TestMap` assets." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` to reflect recent file changes, added `M_FloorTest.uasset`, and modified `TestMap` assets." />
+    <MESSAGE value="Added `UpdateFacingTarget` BlueprintImplementableEvent to `AuraCombatInterface` and `GetMotionWarpingComponent` BlueprintCallable function to `AuraBaseCharacter`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `UpdateFacingTarget` BlueprintImplementableEvent to `AuraCombatInterface` and `GetMotionWarpingComponent` BlueprintCallable function to `AuraBaseCharacter`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -25,6 +25,6 @@ public:
 	virtual int32 GetPlayerLevel() const;
 	virtual FVector GetCombatSocketLocation() const;
 	
-	UFUNCTION(BlueprintImplementableEvent, Category = "Aura|Combat")
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Aura|Combat")
 	void UpdateFacingTarget(const FVector& Target);
 };
