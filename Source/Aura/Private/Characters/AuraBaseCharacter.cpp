@@ -4,6 +4,7 @@
 
 #include "Characters/AuraBaseCharacter.h"
 #include "AbilitySystemComponent.h"
+#include "AuraCollisionChannels.h"
 #include "MotionWarpingComponent.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -15,7 +16,13 @@ AAuraBaseCharacter::AAuraBaseCharacter()
 	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>("MotionWarpingComponent");
 	
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
-	GetMesh()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	const TPair<ECollisionChannel, ECollisionResponse> MeshCollisionResponses[] 
+	{ {ECC_Camera, ECR_Ignore}, {ECC_Projectile, ECR_Overlap} };
+	
+	for (const auto& [Channel, Response] : MeshCollisionResponses)
+	{
+		GetMesh()->SetCollisionResponseToChannel(Channel, Response);
+	}
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), WeaponSocketName);
