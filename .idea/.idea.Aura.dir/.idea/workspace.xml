@@ -8,7 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://8" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -243,23 +245,7 @@
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
-      <workItem from="1764013609214" duration="4044000" />
-    </task>
-    <task id="LOCAL-00114" summary="Updated `AuraGA_ProjectileSpell` by adding `Category` metadata to `ProjectileClass` and simplifying conditional block for readability.">
-      <option name="closed" value="true" />
-      <created>1763875420701</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1763875420701</updated>
-    </task>
-    <task id="LOCAL-00115" summary="Refactored `AuraGA_ProjectileSpell` by splitting functionality into helper methods for improved readability and maintainability.">
-      <option name="closed" value="true" />
-      <created>1763875854907</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1763875854907</updated>
+      <workItem from="1764013609214" duration="4716000" />
     </task>
     <task id="LOCAL-00116" summary="Added `FireBolt` gameplay ability, supporting animation montage and associated gameplay tags. Updated plugin configurations and cleaned up project dependencies.">
       <option name="closed" value="true" />
@@ -637,7 +623,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764025983000</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="Simplified `AuraProjectile` initialization by introducing constants for speed, gravity, and lifespan. Updated `.idea/workspace.xml`.">
+      <option name="closed" value="true" />
+      <created>1764026232114</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1764026232114</updated>
+    </task>
+    <task id="LOCAL-00164" summary="Refactored impact effects in `AuraProjectile` by introducing `PlayImpactEffects` to avoid duplication and improve readability.">
+      <option name="closed" value="true" />
+      <created>1764026402293</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1764026402293</updated>
+    </task>
+    <option name="localTasksCounter" value="165" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,8 +649,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` in `AuraPlayerCharacter` and `AuraPlayerState` for stronger typing, added typed getters, and updated related initialization logic." />
-    <MESSAGE value="Cached controller and HUD in `AuraPlayerCharacter` and `AuraPlayerController` to optimize repeated access and reduce casting overhead." />
     <MESSAGE value="Refactored `AuraPlayerController` and `AuraPlayerCharacter` by migrating initialization logic, simplifying movement setup, and enhancing ability system initialization for better server-client synchronization." />
     <MESSAGE value="Enhanced `AuraPlayerController` with new input binding, cursor tracing, and auto-run functionality. Refactored movement handling and ability system integration for better gameplay responsiveness." />
     <MESSAGE value="Refactored `AuraWidgetController` to add typed `GetAuraAttributeSet` method with caching, improved attribute access in derived classes, and removed redundant casts." />
@@ -672,7 +672,9 @@
     <MESSAGE value="Refactored collision response arrays in `AuraBaseCharacter` and `AuraProjectile` for consistency and modularity." />
     <MESSAGE value="Refactored `AuraBaseCharacter` and `AuraProjectile` collision response arrays for improved modularity and cleaner initialization logic." />
     <MESSAGE value="Moved collision response arrays in `AuraBaseCharacter` and `AuraProjectile` to unnamed namespaces for improved encapsulation and cleaner header files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved collision response arrays in `AuraBaseCharacter` and `AuraProjectile` to unnamed namespaces for improved encapsulation and cleaner header files." />
+    <MESSAGE value="Simplified `AuraProjectile` initialization by introducing constants for speed, gravity, and lifespan. Updated `.idea/workspace.xml`." />
+    <MESSAGE value="Refactored impact effects in `AuraProjectile` by introducing `PlayImpactEffects` to avoid duplication and improve readability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored impact effects in `AuraProjectile` by introducing `PlayImpactEffects` to avoid duplication and improve readability." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
