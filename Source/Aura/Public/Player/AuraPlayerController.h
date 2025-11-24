@@ -38,13 +38,16 @@ protected:
 	FHitResult CursorHit;
 
 private:
-	UPROPERTY(EditAnywhere, Category = "Input")
+	UPROPERTY(EditAnywhere, Category = "Aura|Input")
 	TObjectPtr<UInputMappingContext> AuraContext;
 
-	UPROPERTY(EditAnywhere, Category = "Input")
+	UPROPERTY(EditAnywhere, Category = "Aura|Input")
 	TObjectPtr<UInputAction> MoveAction;
+	
+	UPROPERTY(EditAnywhere, Category = "Aura|Input")
+	TObjectPtr<UInputAction> ShiftAction;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Aura|Input")
 	TObjectPtr<UAuraInputConfig> InputConfig;
 
 	void Move(const FInputActionValue& InputActionValue);
@@ -60,6 +63,10 @@ private:
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	void AbilityInputTagHeld(FGameplayTag InputTag);
+	
+	void ShiftPressed() { bShiftHeld = true; };
+	void ShiftReleased() { bShiftHeld = false; };
+	bool bShiftHeld { false };
 
 	UPROPERTY()
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;

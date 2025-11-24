@@ -50,6 +50,8 @@ void AAuraPlayerController::SetupInputComponent()
 
 	UAuraInputComponent* AuraInputComponent { CastChecked<UAuraInputComponent>(InputComponent) };
 	AuraInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+	AuraInputComponent->BindAction(ShiftAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::ShiftPressed);
+	AuraInputComponent->BindAction(ShiftAction, ETriggerEvent::Completed, this, &AAuraPlayerController::ShiftReleased);
 	AuraInputComponent->BindAbilityActions(
 		InputConfig, 
 		this, 
@@ -114,13 +116,11 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 		if (GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
 		return;
 	}
+	
+	if (GetASC()) { GetASC()->AbilityInputTagReleased(InputTag); }
 
 	// LMB released - either trigger ability or start auto-run
-	if (bTargeting)
-	{
-		if (GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
-	}
-	else
+	if (!bTargeting && !bShiftHeld)
 	{
 		const APawn* ControlledPawn { GetPawn() };
 		if (FollowTime <= ShortPressThreshold && ControlledPawn)
@@ -175,7 +175,7 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 	}
 
 	// LMB held - either trigger ability or move toward cursor
-	if (bTargeting)
+	if (bTargeting || bShiftHeld)
 	{
 		if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
 	}
