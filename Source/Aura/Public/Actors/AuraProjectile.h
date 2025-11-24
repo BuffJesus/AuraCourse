@@ -23,7 +23,7 @@ public:
 
 	/** If true, this is a cosmetic-only projectile for client prediction */
 	UPROPERTY()
-	bool bIsCosmetic = true;
+	bool bIsCosmetic = false;
 
 protected:
 	virtual void BeginPlay() override;

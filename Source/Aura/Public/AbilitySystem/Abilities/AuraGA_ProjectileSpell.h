@@ -29,5 +29,5 @@ protected:
 
 	/** If true, spawn cosmetic projectile on client for instant feedback */
 	UPROPERTY(EditDefaultsOnly, Category = "Aura|Projectile")
-	bool bUseCosmeticPrediction = true;
+	bool bUseCosmeticPrediction = false;
 };
