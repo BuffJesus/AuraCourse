@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AuraWidgetController.h"
 #include "GameplayTagContainer.h"
 #include "AuraOverlayWidgetController.generated.h"
