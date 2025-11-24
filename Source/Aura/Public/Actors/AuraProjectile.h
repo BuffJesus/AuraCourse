@@ -26,6 +26,9 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void Destroyed() override;
 	
+	const TPair<ECollisionChannel, ECollisionResponse> SphereCollisionResponses[]
+	{ {ECC_WorldDynamic, ECR_Overlap}, {ECC_WorldStatic, ECR_Overlap}, {ECC_Pawn, ECR_Overlap} };
+	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UAudioComponent> AudioComponent;
 

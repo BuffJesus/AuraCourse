@@ -16,13 +16,9 @@ AAuraBaseCharacter::AAuraBaseCharacter()
 	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>("MotionWarpingComponent");
 	
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
-	static const TPair<ECollisionChannel, ECollisionResponse> MeshCollisionResponses[] 
-	{ {ECC_Camera, ECR_Ignore}, {ECC_Projectile, ECR_Overlap} };
 	
 	for (const auto& [Channel, Response] : MeshCollisionResponses)
-	{
-		GetMesh()->SetCollisionResponseToChannel(Channel, Response);
-	}
+	{ GetMesh()->SetCollisionResponseToChannel(Channel, Response); }
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), WeaponSocketName);

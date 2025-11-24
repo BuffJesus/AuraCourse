@@ -8,9 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -246,23 +243,7 @@
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
-      <workItem from="1764013609214" duration="3072000" />
-    </task>
-    <task id="LOCAL-00110" summary="Cleaned up IntelliJ `.idea/workspace.xml` by removing outdated change entries and redundant messages. Added new task for `AuraProjectile` implementation. Updated `TestMap.umap`.">
-      <option name="closed" value="true" />
-      <created>1763872702857</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1763872702857</updated>
-    </task>
-    <task id="LOCAL-00111" summary="Added `AuraGA_ProjectileSpell` class with gameplay ability logic. Integrated ability activation with debug message and updated project references.">
-      <option name="closed" value="true" />
-      <created>1763873492174</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1763873492174</updated>
+      <workItem from="1764013609214" duration="3401000" />
     </task>
     <task id="LOCAL-00112" summary="Improved `AuraGA_ProjectileSpell` gameplay ability by integrating projectile spawning logic, adding `ProjectileClass` property, and implementing combat socket location retrieval via `AuraCombatInterface`.">
       <option name="closed" value="true" />
@@ -640,7 +621,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763996239757</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="Set mesh collision responses in `AuraBaseCharacter` and sphere collision responses in `AuraProjectile` using arrays for cleaner and more modular configuration.">
+      <option name="closed" value="true" />
+      <created>1764025173483</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1764025173483</updated>
+    </task>
+    <task id="LOCAL-00160" summary="Refactored collision response arrays in `AuraBaseCharacter` and `AuraProjectile` for consistency and modularity.">
+      <option name="closed" value="true" />
+      <created>1764025462719</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1764025462719</updated>
+    </task>
+    <option name="localTasksCounter" value="161" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,8 +647,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated `SpawnProjectile` to include `TargetLocation` parameter, calculate projectile rotation, and set spawn transform orientation accurately." />
-    <MESSAGE value="Set camera collision responses to ignore for capsule and mesh components in `AuraBaseCharacter`." />
     <MESSAGE value="Added support for shift key input in `AuraPlayerController` with `ShiftPressed` and `ShiftReleased` handlers, updated input configuration to include `ShiftAction`, and adjusted targeting logic to account for shift state." />
     <MESSAGE value="Added `MotionWarpingComponent` to `AuraBaseCharacter`, replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` for stronger typing, and updated dependencies to include Motion Warping." />
     <MESSAGE value="Replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` in `AuraPlayerCharacter` and `AuraPlayerState` for stronger typing, added typed getters, and updated related initialization logic." />
@@ -675,7 +670,9 @@
     <MESSAGE value="Added `AudioComponent` to `AuraProjectile` for sound functionality, updated related assets, and modified `TestMap` assets." />
     <MESSAGE value="Set default lifespan for `AuraProjectile` and updated `.idea/workspace.xml`." />
     <MESSAGE value="Added `ECC_Projectile` collision channel, integrated it into `AuraProjectile` and `DefaultEngine.ini`, and removed pitch adjustment in `AuraGA_ProjectileSpell`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `ECC_Projectile` collision channel, integrated it into `AuraProjectile` and `DefaultEngine.ini`, and removed pitch adjustment in `AuraGA_ProjectileSpell`." />
+    <MESSAGE value="Set mesh collision responses in `AuraBaseCharacter` and sphere collision responses in `AuraProjectile` using arrays for cleaner and more modular configuration." />
+    <MESSAGE value="Refactored collision response arrays in `AuraBaseCharacter` and `AuraProjectile` for consistency and modularity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored collision response arrays in `AuraBaseCharacter` and `AuraProjectile` for consistency and modularity." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

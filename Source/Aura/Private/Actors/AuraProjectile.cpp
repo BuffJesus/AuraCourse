@@ -22,13 +22,9 @@ AAuraProjectile::AAuraProjectile()
 	Sphere->SetCollisionObjectType(ECC_Projectile);
 	Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	Sphere->SetCollisionResponseToAllChannels(ECR_Ignore);
-	const TPair<ECollisionChannel, ECollisionResponse> CollisionResponses[]
-	{ {ECC_WorldDynamic, ECR_Overlap}, {ECC_WorldStatic, ECR_Overlap}, {ECC_Pawn, ECR_Overlap} };
 	
-	for (const auto& [Channel, Response] : CollisionResponses)
-	{
-		Sphere->SetCollisionResponseToChannel(Channel, Response);
-	}
+	for (const auto& [Channel, Response] : SphereCollisionResponses)
+	{ Sphere->SetCollisionResponseToChannel(Channel, Response); }
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>("ProjectileMovement");
 	ProjectileMovement->InitialSpeed = 550.f;

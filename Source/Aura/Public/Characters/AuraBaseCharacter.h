@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "AuraCollisionChannels.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "AuraBaseCharacter.generated.h"
 
@@ -44,6 +45,10 @@ public:
 	FORCEINLINE UMotionWarpingComponent* GetMotionWarpingComponent() const { return MotionWarpingComponent; }
 
 protected:
+	
+	const TPair<ECollisionChannel, ECollisionResponse> MeshCollisionResponses[] 
+	{ {ECC_Camera, ECR_Ignore}, {ECC_Projectile, ECR_Overlap} };
+	
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 
