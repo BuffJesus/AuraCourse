@@ -7,7 +7,7 @@
 #include "AuraCombatInterface.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE()
+UINTERFACE(MinimalAPI, BlueprintType)
 class UAuraCombatInterface : public UInterface
 {
 	GENERATED_BODY()
