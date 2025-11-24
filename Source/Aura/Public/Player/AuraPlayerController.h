@@ -14,6 +14,7 @@ class IAuraEnemyInterface;
 class UAuraInputConfig;
 class UAuraAbilitySystemComponent;
 class USplineComponent;
+class AAuraHUD;
 
 /**
  * Player controller handling input, cursor interaction, and click-to-move navigation
@@ -29,6 +30,9 @@ public:
 	
 	/** Get the current cursor hit result */
 	FORCEINLINE FHitResult GetCursorHit() const { return CursorHit; }
+	
+	/** Get cached AuraHUD - casts and caches on first call */
+	AAuraHUD* GetAuraHUD();
 
 protected:
 	virtual void BeginPlay() override;
@@ -68,8 +72,13 @@ private:
 	void ShiftReleased() { bShiftHeld = false; };
 	bool bShiftHeld { false };
 
+	/** Cached ASC - initialized on first access */
 	UPROPERTY()
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
+
+	/** Cached HUD - initialized on first access */
+	UPROPERTY()
+	TObjectPtr<AAuraHUD> AuraHUD;
 
 	UAuraAbilitySystemComponent* GetASC();
 

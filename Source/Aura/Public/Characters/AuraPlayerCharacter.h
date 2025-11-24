@@ -6,6 +6,8 @@
 #include "AuraBaseCharacter.h"
 #include "AuraPlayerCharacter.generated.h"
 
+class AAuraPlayerController;
+
 UCLASS()
 class AURA_API AAuraPlayerCharacter : public AAuraBaseCharacter
 {
@@ -23,8 +25,11 @@ public:
 	virtual int32 GetPlayerLevel() const override;
 
 private:
-
 	virtual void InitializeAbilityActorInfo() override;
+
+	/** Cached player controller - initialized on first access */
+	UPROPERTY()
+	TObjectPtr<AAuraPlayerController> AuraPlayerController;
 
 	UPROPERTY(EditAnywhere, Category = "Aura|Movement")
 	float RotationRate{400.f};

@@ -69,9 +69,16 @@ void AAuraPlayerCharacter::InitializeAbilityActorInfo()
 	
 	AttributeSet = AuraPlayerState->GetAttributeSet();
 
-	if (AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(GetController()))
+	// Cache controller on first access - cast happens once
+	if (!AuraPlayerController)
 	{
-		if (AAuraHUD* AuraHUD { Cast<AAuraHUD>(AuraPlayerController->GetHUD()) })
+		AuraPlayerController = GetController<AAuraPlayerController>();
+	}
+
+	if (AuraPlayerController)
+	{
+		// Use cached controller's GetAuraHUD() - no cast needed!
+		if (AAuraHUD* AuraHUD { AuraPlayerController->GetAuraHUD() })
 		{
 			AuraHUD->InitOverlay(AuraPlayerController, AuraPlayerState, AbilitySystemComponent, AttributeSet);
 		}

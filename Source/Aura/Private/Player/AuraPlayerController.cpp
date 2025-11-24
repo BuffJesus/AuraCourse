@@ -1,5 +1,4 @@
-﻿
-// Not Sure Yet
+﻿// Not Sure Yet
 
 #include "Player/AuraPlayerController.h"
 #include "AbilitySystemBlueprintLibrary.h"
@@ -12,6 +11,7 @@
 #include "Input/AuraInputComponent.h"
 #include "Interaction/AuraEnemyInterface.h"
 #include "Tags/AuraTags.h"
+#include "UI/HUD/AuraHUD.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
@@ -203,6 +203,16 @@ UAuraAbilitySystemComponent* AAuraPlayerController::GetASC()
 		);
 	}
 	return AuraAbilitySystemComponent;
+}
+
+AAuraHUD* AAuraPlayerController::GetAuraHUD()
+{
+	if (!AuraHUD)
+	{
+		// Cast once and cache - happens only once per controller
+		AuraHUD = Cast<AAuraHUD>(GetHUD());
+	}
+	return AuraHUD;
 }
 
 void AAuraPlayerController::AutoRun()
