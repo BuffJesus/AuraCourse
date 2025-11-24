@@ -12,4 +12,5 @@
 
 // Custom trace channel for navigation queries
 // Maps to the first custom trace channel (ECC_GameTraceChannel1)
-#define ECC_Navigation ECC_GameTraceChannel1
+#define ECC_Navigation ECollisionChannel::ECC_GameTraceChannel1
+#define ECC_Projectile ECollisionChannel::ECC_GameTraceChannel2
