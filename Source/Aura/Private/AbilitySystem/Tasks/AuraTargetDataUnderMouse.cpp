@@ -6,7 +6,7 @@
 
 UAuraTargetDataUnderMouse* UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse(UGameplayAbility* OwningAbility)
 {
-	UAuraTargetDataUnderMouse* MyObj = NewAbilityTask<UAuraTargetDataUnderMouse>(OwningAbility);
+	UAuraTargetDataUnderMouse* MyObj { NewAbilityTask<UAuraTargetDataUnderMouse>(OwningAbility) };
 	return MyObj;
 }
 
