@@ -33,4 +33,3 @@ void AAuraPlayerState::OnRep_Level(int32 OldLevel)
 {
 	
 }
-

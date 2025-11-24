@@ -1,4 +1,5 @@
-﻿// Not Sure Yet
+﻿
+// Not Sure Yet
 
 #pragma once
 
@@ -9,6 +10,7 @@
 
 class UAttributeSet;
 class UAbilitySystemComponent;
+class UAuraAbilitySystemComponent;
 
 UCLASS()
 class AURA_API AAuraPlayerState : public APlayerState, public IAbilitySystemInterface
@@ -18,14 +20,20 @@ class AURA_API AAuraPlayerState : public APlayerState, public IAbilitySystemInte
 public:
 	AAuraPlayerState();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	
+	// Interface requirement - returns base type
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-	UAttributeSet* GetAttributeSet() const{ return AttributeSet; }
-
+	
+	// Typed getter - returns UAuraAbilitySystemComponent (no cast needed!)
+	FORCEINLINE UAuraAbilitySystemComponent* GetAuraAbilitySystemComponent() const { return AbilitySystemComponent; }
+	
+	FORCEINLINE UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 	FORCEINLINE int32 GetPlayerLevel() const { return Level; }
 
 protected:
+	// Store as typed pointer - no casting needed when accessing!
 	UPROPERTY(VisibleAnywhere, Category = "Aura|GAS")
-	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;

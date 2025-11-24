@@ -52,7 +52,7 @@ void AAuraPlayerCharacter::OnRep_PlayerState()
 
 int32 AAuraPlayerCharacter::GetPlayerLevel() const
 {
-	AAuraPlayerState* AuraPlayerState { GetPlayerState<AAuraPlayerState>() };
+	const AAuraPlayerState* AuraPlayerState { GetPlayerState<AAuraPlayerState>() };
 	check(AuraPlayerState);
 	return AuraPlayerState->GetPlayerLevel();
 }
@@ -61,9 +61,12 @@ void AAuraPlayerCharacter::InitializeAbilityActorInfo()
 {
 	AAuraPlayerState* AuraPlayerState { GetPlayerState<AAuraPlayerState>() };
 	check(AuraPlayerState);
-	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState, this);
-	Cast<UAuraAbilitySystemComponent>(AuraPlayerState->GetAbilitySystemComponent())->AbilityActorInfoSet();
-	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
+	
+	// Use typed getter - no cast needed!
+	AbilitySystemComponent = AuraPlayerState->GetAuraAbilitySystemComponent();
+	AbilitySystemComponent->InitAbilityActorInfo(AuraPlayerState, this);
+	AbilitySystemComponent->AbilityActorInfoSet();
+	
 	AttributeSet = AuraPlayerState->GetAttributeSet();
 
 	if (AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(GetController()))
