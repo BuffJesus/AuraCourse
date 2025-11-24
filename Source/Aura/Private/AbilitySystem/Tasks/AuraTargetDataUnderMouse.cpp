@@ -25,7 +25,9 @@ void UAuraTargetDataUnderMouse::Activate()
 		
 		ASC->AbilityTargetDataSetDelegate(SpecHandle, 
 			PredictionKey).AddUObject(this, &UAuraTargetDataUnderMouse::OnTargetDataReplicatedCallback);
-		ASC->CallReplicatedTargetDataDelegatesIfSet(SpecHandle, PredictionKey);
+		const bool bCalledDelegate { ASC->CallReplicatedTargetDataDelegatesIfSet(SpecHandle, PredictionKey) };
+		
+		if (!bCalledDelegate) { SetWaitingOnRemotePlayerData(); }
 	}
 }
 
@@ -55,5 +57,6 @@ void UAuraTargetDataUnderMouse::SendCursorData()
 void UAuraTargetDataUnderMouse::OnTargetDataReplicatedCallback(const FGameplayAbilityTargetDataHandle& Handle,
 	FGameplayTag ActivationTag)
 {
-	
+	AbilitySystemComponent->ConsumeClientReplicatedTargetData(GetAbilitySpecHandle(), GetActivationPredictionKey());
+	if (ShouldBroadcastAbilityTaskDelegates()) { ValidData.Broadcast(Handle); }
 }
