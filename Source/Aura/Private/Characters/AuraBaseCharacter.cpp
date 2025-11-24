@@ -16,7 +16,7 @@ AAuraBaseCharacter::AAuraBaseCharacter()
 	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>("MotionWarpingComponent");
 	
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
-	const TPair<ECollisionChannel, ECollisionResponse> MeshCollisionResponses[] 
+	static const TPair<ECollisionChannel, ECollisionResponse> MeshCollisionResponses[] 
 	{ {ECC_Camera, ECR_Ignore}, {ECC_Projectile, ECR_Overlap} };
 	
 	for (const auto& [Channel, Response] : MeshCollisionResponses)
