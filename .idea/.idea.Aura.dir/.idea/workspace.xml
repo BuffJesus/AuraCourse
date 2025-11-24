@@ -8,11 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Input/Actions/IA_Shift.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Input/Contexts/IMC_AuraContext.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Input/Contexts/IMC_AuraContext.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aura.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/Aura.uproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Aura.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +43,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://9" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://11" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -245,15 +246,7 @@
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
-      <workItem from="1763919271674" duration="11026000" />
-    </task>
-    <task id="LOCAL-00087" summary="Updated `.idea/workspace.xml` and cleaned up IntelliJ project configuration. Refined `AuraMMC_Base.h` to improve code style by aligning brace formatting and standardized value initialization for clarity.">
-      <option name="closed" value="true" />
-      <created>1763842423870</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1763842423870</updated>
+      <workItem from="1763919271674" duration="12182000" />
     </task>
     <task id="LOCAL-00088" summary="Just changed some settings.">
       <option name="closed" value="true" />
@@ -639,7 +632,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763952093769</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Added support for shift key input in `AuraPlayerController` with `ShiftPressed` and `ShiftReleased` handlers, updated input configuration to include `ShiftAction`, and adjusted targeting logic to account for shift state.">
+      <option name="closed" value="true" />
+      <created>1763952798649</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1763952798649</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,7 +650,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `AuraGA_ProjectileSpell` class with gameplay ability logic. Integrated ability activation with debug message and updated project references." />
     <MESSAGE value="Improved `AuraGA_ProjectileSpell` gameplay ability by integrating projectile spawning logic, adding `ProjectileClass` property, and implementing combat socket location retrieval via `AuraCombatInterface`." />
     <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to improve readability and maintainability by simplifying variable initialization, consolidating logic, and enhancing spawn transform creation." />
     <MESSAGE value="Updated `AuraGA_ProjectileSpell` by adding `Category` metadata to `ProjectileClass` and simplifying conditional block for readability." />
@@ -674,7 +674,8 @@
     <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` with client-side cosmetic prediction, improved server/client projectile spawning logic, and added support for cosmetic projectiles with configurable lifespan." />
     <MESSAGE value="Updated `SpawnProjectile` to include `TargetLocation` parameter, calculate projectile rotation, and set spawn transform orientation accurately." />
     <MESSAGE value="Set camera collision responses to ignore for capsule and mesh components in `AuraBaseCharacter`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Set camera collision responses to ignore for capsule and mesh components in `AuraBaseCharacter`." />
+    <MESSAGE value="Added support for shift key input in `AuraPlayerController` with `ShiftPressed` and `ShiftReleased` handlers, updated input configuration to include `ShiftAction`, and adjusted targeting logic to account for shift state." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for shift key input in `AuraPlayerController` with `ShiftPressed` and `ShiftReleased` handlers, updated input configuration to include `ShiftAction`, and adjusted targeting logic to account for shift state." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

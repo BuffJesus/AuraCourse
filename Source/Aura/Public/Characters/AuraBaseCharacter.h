@@ -1,4 +1,5 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+﻿
+// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -11,7 +12,9 @@
 class UGameplayAbility;
 class UGameplayEffect;
 class UAbilitySystemComponent;
+class UAuraAbilitySystemComponent;
 class UAttributeSet;
+class UMotionWarpingComponent;
 
 UCLASS(Abstract)
 class AURA_API AAuraBaseCharacter : public ACharacter, public IAbilitySystemInterface, public IAuraCombatInterface
@@ -21,8 +24,13 @@ class AURA_API AAuraBaseCharacter : public ACharacter, public IAbilitySystemInte
 public:
 	AAuraBaseCharacter();
 
+	// Interface requirement - returns base type
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
+	
+	// Typed getter - returns UAuraAbilitySystemComponent (no cast needed!)
+	FORCEINLINE UAuraAbilitySystemComponent* GetAuraAbilitySystemComponent() const { return AbilitySystemComponent; }
+	
+	FORCEINLINE UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	FName WeaponSocketName { "WeaponHandSocket" };
@@ -31,14 +39,18 @@ public:
 	FName WeaponTipSocketName { "WeaponTipSocket" };
 	
 	virtual FVector GetCombatSocketLocation() const override;
+	FORCEINLINE UMotionWarpingComponent* GetMotionWarpingComponent() const { return MotionWarpingComponent; }
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 
-	// These will be set by derived classes
+	// Store as typed pointer - no casting needed when accessing!
 	UPROPERTY(VisibleAnywhere, Category = "Aura|GAS")
-	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
+	
+	UPROPERTY(VisibleAnywhere, Category = "Aura|Combat")
+	TObjectPtr<UMotionWarpingComponent> MotionWarpingComponent;
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;

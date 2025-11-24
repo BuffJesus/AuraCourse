@@ -294,6 +294,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "MotionWarping",
+			"Enabled": true
+		},
+		{
 			"Name": "FullBodyIK",
 			"Enabled": true
 		},

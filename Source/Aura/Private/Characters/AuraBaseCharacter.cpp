@@ -1,15 +1,18 @@
-﻿// Not Sure Yet
+﻿
+// Not Sure Yet
 
 
 #include "Characters/AuraBaseCharacter.h"
-
 #include "AbilitySystemComponent.h"
+#include "MotionWarpingComponent.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Components/CapsuleComponent.h"
 
 AAuraBaseCharacter::AAuraBaseCharacter()
 {
 	PrimaryActorTick.bCanEverTick = false;
+	
+	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>("MotionWarpingComponent");
 	
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 	GetMesh()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
@@ -58,18 +61,18 @@ void AAuraBaseCharacter::InitializeDefaultAttributes() const
 
 void AAuraBaseCharacter::AddCharacterAbilities()
 {
-	UAuraAbilitySystemComponent* AuraASC = CastChecked<UAuraAbilitySystemComponent>(GetAbilitySystemComponent());
+	// No cast needed! Already have UAuraAbilitySystemComponent*
 	if (!HasAuthority()) { return; }
 
-	AuraASC->AddCharacterAbilities(StartupAbilities);
+	AbilitySystemComponent->AddCharacterAbilities(StartupAbilities);
 }
 
 void AAuraBaseCharacter::ApplyDefaultGameplayEffect(const TSubclassOf<UGameplayEffect> EffectClass, const float Level) const
 {
-	check(IsValid(GetAbilitySystemComponent()));
+	check(IsValid(AbilitySystemComponent));
 	check(EffectClass);
-	FGameplayEffectContextHandle EffectContext { GetAbilitySystemComponent()->MakeEffectContext() };
+	FGameplayEffectContextHandle EffectContext { AbilitySystemComponent->MakeEffectContext() };
 	EffectContext.AddSourceObject(this);
-	const FGameplayEffectSpecHandle SpecHandle { GetAbilitySystemComponent()->MakeOutgoingSpec(EffectClass, Level, EffectContext) };
-	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
+	const FGameplayEffectSpecHandle SpecHandle { AbilitySystemComponent->MakeOutgoingSpec(EffectClass, Level, EffectContext) };
+	AbilitySystemComponent->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), AbilitySystemComponent);
 }

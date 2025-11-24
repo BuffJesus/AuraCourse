@@ -16,7 +16,8 @@ public class Aura : ModuleRules
 			"InputCore", 
 			"EnhancedInput",
 			"UMG",
-			"NavigationSystem"
+			"NavigationSystem",
+			"MotionWarping"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]

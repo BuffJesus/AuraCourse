@@ -1,4 +1,5 @@
-﻿// Not Sure Yet
+﻿
+// Not Sure Yet
 
 #include "Player/AuraPlayerController.h"
 #include "AbilitySystemBlueprintLibrary.h"
@@ -194,8 +195,9 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 
 UAuraAbilitySystemComponent* AAuraPlayerController::GetASC()
 {
-	if (AuraAbilitySystemComponent == nullptr)
+	if (!AuraAbilitySystemComponent)
 	{
+		// Cast once and cache - happens only once per controller
 		AuraAbilitySystemComponent = Cast<UAuraAbilitySystemComponent>(
 			UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetPawn<APawn>())
 		);
