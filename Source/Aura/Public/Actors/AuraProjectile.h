@@ -35,9 +35,9 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> Sphere;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Aura|Effects")
 	TObjectPtr<UNiagaraSystem> ImpactEffect;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Aura|Effects")
 	TObjectPtr<USoundBase> ImpactSound;
 };
