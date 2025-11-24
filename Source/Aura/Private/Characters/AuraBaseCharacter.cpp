@@ -67,6 +67,14 @@ void AAuraBaseCharacter::AddCharacterAbilities()
 	AbilitySystemComponent->AddCharacterAbilities(StartupAbilities);
 }
 
+void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target)
+{
+	if (MotionWarpingComponent)
+	{
+		MotionWarpingComponent->AddOrUpdateWarpTargetFromLocation(FacingTargetWarpName, Target);
+	}
+}
+
 void AAuraBaseCharacter::ApplyDefaultGameplayEffect(const TSubclassOf<UGameplayEffect> EffectClass, const float Level) const
 {
 	check(IsValid(AbilitySystemComponent));
