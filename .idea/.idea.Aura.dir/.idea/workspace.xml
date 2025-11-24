@@ -8,8 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,15 +243,7 @@
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
-      <workItem from="1764013609214" duration="3710000" />
-    </task>
-    <task id="LOCAL-00113" summary="Refactored `AuraGA_ProjectileSpell` to improve readability and maintainability by simplifying variable initialization, consolidating logic, and enhancing spawn transform creation.">
-      <option name="closed" value="true" />
-      <created>1763875123100</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1763875123100</updated>
+      <workItem from="1764013609214" duration="4044000" />
     </task>
     <task id="LOCAL-00114" summary="Updated `AuraGA_ProjectileSpell` by adding `Category` metadata to `ProjectileClass` and simplifying conditional block for readability.">
       <option name="closed" value="true" />
@@ -638,7 +629,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764025759116</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="Moved collision response arrays in `AuraBaseCharacter` and `AuraProjectile` to unnamed namespaces for improved encapsulation and cleaner header files.">
+      <option name="closed" value="true" />
+      <created>1764025983000</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1764025983000</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,7 +647,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `MotionWarpingComponent` to `AuraBaseCharacter`, replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` for stronger typing, and updated dependencies to include Motion Warping." />
     <MESSAGE value="Replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` in `AuraPlayerCharacter` and `AuraPlayerState` for stronger typing, added typed getters, and updated related initialization logic." />
     <MESSAGE value="Cached controller and HUD in `AuraPlayerCharacter` and `AuraPlayerController` to optimize repeated access and reduce casting overhead." />
     <MESSAGE value="Refactored `AuraPlayerController` and `AuraPlayerCharacter` by migrating initialization logic, simplifying movement setup, and enhancing ability system initialization for better server-client synchronization." />
@@ -673,7 +671,8 @@
     <MESSAGE value="Set mesh collision responses in `AuraBaseCharacter` and sphere collision responses in `AuraProjectile` using arrays for cleaner and more modular configuration." />
     <MESSAGE value="Refactored collision response arrays in `AuraBaseCharacter` and `AuraProjectile` for consistency and modularity." />
     <MESSAGE value="Refactored `AuraBaseCharacter` and `AuraProjectile` collision response arrays for improved modularity and cleaner initialization logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraBaseCharacter` and `AuraProjectile` collision response arrays for improved modularity and cleaner initialization logic." />
+    <MESSAGE value="Moved collision response arrays in `AuraBaseCharacter` and `AuraProjectile` to unnamed namespaces for improved encapsulation and cleaner header files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved collision response arrays in `AuraBaseCharacter` and `AuraProjectile` to unnamed namespaces for improved encapsulation and cleaner header files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

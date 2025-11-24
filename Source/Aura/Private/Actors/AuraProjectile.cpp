@@ -14,6 +14,10 @@ namespace
 {
 	constexpr TPair<ECollisionChannel, ECollisionResponse> SphereCollisionResponses[]
 	{ {ECC_WorldDynamic, ECR_Overlap}, {ECC_WorldStatic, ECR_Overlap}, {ECC_Pawn, ECR_Overlap} };
+    
+	constexpr float Speed = 550.f;
+	constexpr float GravityScale = 0.f;
+	constexpr float LifeSpan = 10.f;
 }
 
 AAuraProjectile::AAuraProjectile()
@@ -33,9 +37,9 @@ AAuraProjectile::AAuraProjectile()
 	{ Sphere->SetCollisionResponseToChannel(Channel, Response); }
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>("ProjectileMovement");
-	ProjectileMovement->InitialSpeed = 550.f;
-	ProjectileMovement->MaxSpeed = 550.f;
-	ProjectileMovement->ProjectileGravityScale = 0.f;
+	ProjectileMovement->InitialSpeed = Speed;
+	ProjectileMovement->MaxSpeed = Speed;
+	ProjectileMovement->ProjectileGravityScale = GravityScale;
 }
 
 void AAuraProjectile::BeginPlay()
