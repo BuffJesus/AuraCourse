@@ -62,12 +62,12 @@ void AAuraPlayerCharacter::InitializeAbilityActorInfo()
 	AAuraPlayerState* AuraPlayerState { GetPlayerState<AAuraPlayerState>() };
 	check(AuraPlayerState);
 	
-	// Use typed getter - no cast needed!
+	// Use typed getters - no casts needed!
 	AbilitySystemComponent = AuraPlayerState->GetAuraAbilitySystemComponent();
 	AbilitySystemComponent->InitAbilityActorInfo(AuraPlayerState, this);
 	AbilitySystemComponent->AbilityActorInfoSet();
 	
-	AttributeSet = AuraPlayerState->GetAttributeSet();
+	AttributeSet = AuraPlayerState->GetAuraAttributeSet();
 
 	// Cache controller on first access - cast happens once
 	if (!AuraPlayerController)

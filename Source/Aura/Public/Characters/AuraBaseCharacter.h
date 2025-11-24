@@ -1,5 +1,4 @@
-﻿
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -13,7 +12,7 @@ class UGameplayAbility;
 class UGameplayEffect;
 class UAbilitySystemComponent;
 class UAuraAbilitySystemComponent;
-class UAttributeSet;
+class UAuraAttributeSet;
 class UMotionWarpingComponent;
 
 UCLASS(Abstract)
@@ -30,7 +29,8 @@ public:
 	// Typed getter - returns UAuraAbilitySystemComponent (no cast needed!)
 	FORCEINLINE UAuraAbilitySystemComponent* GetAuraAbilitySystemComponent() const { return AbilitySystemComponent; }
 	
-	FORCEINLINE UAttributeSet* GetAttributeSet() const { return AttributeSet; }
+	// Typed getter - returns UAuraAttributeSet (no cast needed!)
+	FORCEINLINE UAuraAttributeSet* GetAuraAttributeSet() const { return AttributeSet; }
 
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	FName WeaponSocketName { "WeaponHandSocket" };
@@ -52,8 +52,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Aura|Combat")
 	TObjectPtr<UMotionWarpingComponent> MotionWarpingComponent;
 
+	// Store as typed pointer - no casting needed when accessing!
 	UPROPERTY()
-	TObjectPtr<UAttributeSet> AttributeSet;
+	TObjectPtr<UAuraAttributeSet> AttributeSet;
 
 	virtual void InitializeAbilityActorInfo();
 

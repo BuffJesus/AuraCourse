@@ -36,7 +36,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://16" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://17" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -239,15 +239,7 @@
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
-      <workItem from="1763919271674" duration="14885000" />
-    </task>
-    <task id="LOCAL-00093" summary="Updated input action handling to support ability tags and introduced improved logging&#10;&#10;* **Input Config**: Renamed `FindInputActionForTag` to `FindAbilityInputActionForTag` in `UAuraInputConfig` for clarity.&#10;* **Logging**: Improved error logging for unmatched ability input actions.&#10;* **Player Controller**: Updated `AAuraPlayerController` to use `UAuraInputComponent` for binding ability actions (`Pressed`, `Released`, `Held`).&#10;* **Core Enhancements**: Refactored `UAuraInputComponent` to simplify action binding logic.">
-      <option name="closed" value="true" />
-      <created>1763855163352</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1763855163352</updated>
+      <workItem from="1763919271674" duration="15216000" />
     </task>
     <task id="LOCAL-00094" summary="Renamed `PopulateAttributeRows` to `PopulateVitalAttributeRows` in `AuraAttributeMenuWidgetController` for clarity. Updated function logic to filter by Vital attributes. Streamlined input action binding in `AuraInputComponent` and improved debug messages in `AuraPlayerController`.">
       <option name="closed" value="true" />
@@ -633,7 +625,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763956395077</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="Refactored `AuraWidgetController` to add typed `GetAuraAttributeSet` method with caching, improved attribute access in derived classes, and removed redundant casts.">
+      <option name="closed" value="true" />
+      <created>1763956859443</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1763956859444</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -643,7 +643,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated `FireBolt` gameplay tag to follow montage category hierarchy and added supporting assets for `MontageEvent`." />
     <MESSAGE value="meow" />
     <MESSAGE value="Integrated `WaitGameplayEvent` into `AuraGA_ProjectileSpell` to handle projectile spawning dynamically based on gameplay events. Updated related methods and added `EventTag` property for configuration." />
     <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to improve authority check by introducing `bIsServer` for clearer logic." />
@@ -668,7 +667,8 @@
     <MESSAGE value="Cached controller and HUD in `AuraPlayerCharacter` and `AuraPlayerController` to optimize repeated access and reduce casting overhead." />
     <MESSAGE value="Refactored `AuraPlayerController` and `AuraPlayerCharacter` by migrating initialization logic, simplifying movement setup, and enhancing ability system initialization for better server-client synchronization." />
     <MESSAGE value="Enhanced `AuraPlayerController` with new input binding, cursor tracing, and auto-run functionality. Refactored movement handling and ability system integration for better gameplay responsiveness." />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhanced `AuraPlayerController` with new input binding, cursor tracing, and auto-run functionality. Refactored movement handling and ability system integration for better gameplay responsiveness." />
+    <MESSAGE value="Refactored `AuraWidgetController` to add typed `GetAuraAttributeSet` method with caching, improved attribute access in derived classes, and removed redundant casts." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraWidgetController` to add typed `GetAuraAttributeSet` method with caching, improved attribute access in derived classes, and removed redundant casts." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
