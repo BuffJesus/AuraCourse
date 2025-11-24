@@ -9,6 +9,12 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Components/CapsuleComponent.h"
 
+namespace 
+{
+	constexpr TPair<ECollisionChannel, ECollisionResponse> MeshCollisionResponses[]
+	{ {ECC_Camera, ECR_Ignore}, {ECC_Projectile, ECR_Overlap} };
+}
+
 AAuraBaseCharacter::AAuraBaseCharacter()
 {
 	PrimaryActorTick.bCanEverTick = false;
