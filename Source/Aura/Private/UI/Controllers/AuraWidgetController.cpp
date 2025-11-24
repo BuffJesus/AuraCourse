@@ -1,7 +1,7 @@
 ﻿// Not Sure Yet
 
-
 #include "UI/Controllers/AuraWidgetController.h"
+#include "AbilitySystem/AuraAttributeSet.h"
 
 void UAuraWidgetController::SetWidgetControllerParams(const FWidgetControllerParams& Params)
 {
@@ -9,6 +9,9 @@ void UAuraWidgetController::SetWidgetControllerParams(const FWidgetControllerPar
 	PlayerState = Params.PlayerState;
 	AbilitySystemComponent = Params.AbilitySystemComponent;
 	AttributeSet = Params.AttributeSet;
+	
+	// Clear cached typed AttributeSet when params change
+	CachedAuraAttributeSet = nullptr;
 }
 
 void UAuraWidgetController::BroadcastInitialValues()
@@ -19,4 +22,14 @@ void UAuraWidgetController::BroadcastInitialValues()
 void UAuraWidgetController::BindCallbacksToDependencies()
 {
 	// Override in child classes
+}
+
+UAuraAttributeSet* UAuraWidgetController::GetAuraAttributeSet() const
+{
+	if (!CachedAuraAttributeSet && AttributeSet)
+	{
+		// Cast once and cache - happens only once per widget controller
+		CachedAuraAttributeSet = CastChecked<UAuraAttributeSet>(AttributeSet);
+	}
+	return CachedAuraAttributeSet;
 }

@@ -7,7 +7,7 @@
 
 void UAuraAttributeMenuWidgetController::BroadcastInitialValues()
 {
-	const UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
+	// Use typed getter - no cast needed!
 	check(AttributeInfo);
 	
 	// Loop through all attributes in the DataAsset and broadcast initial values
@@ -19,7 +19,7 @@ void UAuraAttributeMenuWidgetController::BroadcastInitialValues()
 
 void UAuraAttributeMenuWidgetController::BindCallbacksToDependencies()
 {
-	const UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
+	// Use typed getter - no cast needed!
 	check(AttributeInfo);
 	
 	// Bind to attribute change delegates for all attributes
@@ -109,8 +109,8 @@ void UAuraAttributeMenuWidgetController::SetAttributeTagsOnExistingRows(UAuraUse
 
 void UAuraAttributeMenuWidgetController::BroadcastAttributeInfo(const FAttributeInfo& Info) const
 {
-	// Get the current value from AttributeSet using the AttributeGetter
-	const UAuraAttributeSet* AS { CastChecked<UAuraAttributeSet>(AttributeSet) };
+	// Use typed getter - no cast needed!
+	const UAuraAttributeSet* AS { GetAuraAttributeSet() };
 	
 	// Create a copy of Info and update the AttributeValue
 	FAttributeInfo NewInfo { Info };

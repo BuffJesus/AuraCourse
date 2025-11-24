@@ -7,21 +7,19 @@
 
 void UAuraOverlayWidgetController::BroadcastInitialValues()
 {
-	const UAuraAttributeSet* AuraAttributeSet { CastChecked<UAuraAttributeSet>(AttributeSet) };
-	const float Health { AuraAttributeSet->GetHealth() };
-	const float MaxHealth { AuraAttributeSet->GetMaxHealth() };
-	const float Mana { AuraAttributeSet->GetMana() };
-	const float MaxMana { AuraAttributeSet->GetMaxMana() };
-
-	OnHealthChanged.Broadcast(Health);
-	OnMaxHealthChanged.Broadcast(MaxHealth);
-	OnManaChanged.Broadcast(Mana);
-	OnMaxManaChanged.Broadcast(MaxMana);
+	// Use typed getter - no cast needed!
+	const UAuraAttributeSet* AuraAttributeSet { GetAuraAttributeSet() };
+	
+	OnHealthChanged.Broadcast(AuraAttributeSet->GetHealth());
+	OnMaxHealthChanged.Broadcast(AuraAttributeSet->GetMaxHealth());
+	OnManaChanged.Broadcast(AuraAttributeSet->GetMana());
+	OnMaxManaChanged.Broadcast(AuraAttributeSet->GetMaxMana());
 }
 
 void UAuraOverlayWidgetController::BindCallbacksToDependencies()
 {
-	const UAuraAttributeSet* AuraAttributeSet { CastChecked<UAuraAttributeSet>(AttributeSet) };
+	// Use typed getter - no cast needed!
+	const UAuraAttributeSet* AuraAttributeSet { GetAuraAttributeSet() };
 
 	BindAttributeChangeDelegate(AuraAttributeSet->GetHealthAttribute(), OnHealthChanged);
 	BindAttributeChangeDelegate(AuraAttributeSet->GetMaxHealthAttribute(), OnMaxHealthChanged);
@@ -34,12 +32,11 @@ void UAuraOverlayWidgetController::BindCallbacksToDependencies()
 			for (const FGameplayTag& Tag : AssetTags)
 			{
 				// Use the parent Message tag
-
 				// Check if this tag matches "Aura.Message" or any child
 				if (const FGameplayTag MessageTag { Aura::Message::Message }; Tag.MatchesTag(MessageTag))
 				{
 					const FUIWidgetRow* Row { GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag) };
-					OnMessageWidgetRowChanged.Broadcast(*Row);
+					if (Row) OnMessageWidgetRowChanged.Broadcast(*Row);
 				}
 			}
 		}

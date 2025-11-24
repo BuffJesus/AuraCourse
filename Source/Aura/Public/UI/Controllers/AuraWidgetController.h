@@ -8,6 +8,7 @@
 
 class UAttributeSet;
 class UAbilitySystemComponent;
+class UAuraAttributeSet;
 
 USTRUCT(BlueprintType)
 struct FWidgetControllerParams
@@ -30,8 +31,9 @@ struct FWidgetControllerParams
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TObjectPtr<UAttributeSet> AttributeSet { nullptr };
 };
+
 /**
- * 
+ * Base widget controller class
  */
 UCLASS()
 class AURA_API UAuraWidgetController : public UObject
@@ -45,6 +47,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual void BroadcastInitialValues();
 	virtual void BindCallbacksToDependencies();
+	
+	/** Get typed AttributeSet - caches cast on first call */
+	UAuraAttributeSet* GetAuraAttributeSet() const;
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Aura|WidgetController")
@@ -58,4 +63,8 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Aura|WidgetController")
 	TObjectPtr<UAttributeSet> AttributeSet;
+
+private:
+	/** Cached typed AttributeSet - initialized on first access */
+	mutable TObjectPtr<UAuraAttributeSet> CachedAuraAttributeSet;
 };
