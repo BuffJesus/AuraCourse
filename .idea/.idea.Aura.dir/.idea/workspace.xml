@@ -7,14 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -246,15 +239,7 @@
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
-      <workItem from="1763919271674" duration="18864000" />
-    </task>
-    <task id="LOCAL-00101" summary="Added `NavigationSystem` dependency and improved cursor-based movement in `AAuraPlayerController` with pathfinding, spline updates, and auto-run functionality.">
-      <option name="closed" value="true" />
-      <created>1763863579459</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1763863579459</updated>
+      <workItem from="1763919271674" duration="18909000" />
     </task>
     <task id="LOCAL-00102" summary="Added `AutoRun` functionality to `AAuraPlayerController` with spline-based navigation and updated `DefaultEngine.ini` for client-side navigation support.">
       <option name="closed" value="true" />
@@ -640,7 +625,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763959966942</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="Implemented `UpdateFacingTarget` as a `BlueprintNativeEvent` in `AuraCombatInterface` and added its functionality to `AuraBaseCharacter`, along with `FacingTargetWarpName` property for motion warping.">
+      <option name="closed" value="true" />
+      <created>1763960806016</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1763960806016</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +643,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactored `AuraGA_ProjectileSpell` by streamlining activation logic, simplifying projectile spawning, and removing unused montage/event-based tasks." />
     <MESSAGE value="Added `AuraTargetDataUnderMouse` ability task to streamline target data retrieval under the mouse cursor, and updated Blueprint function metadata in `AuraAbilitySystemBPLibrary`." />
     <MESSAGE value="Added multicast delegate and activation logic to `AuraTargetDataUnderMouse` for broadcasting cursor hit data." />
     <MESSAGE value="Removed redundant newline in `AuraTargetDataUnderMouse` implementation." />
@@ -675,7 +667,8 @@
     <MESSAGE value="Added `UpdateFacingTarget` BlueprintImplementableEvent to `AuraCombatInterface` and `GetMotionWarpingComponent` BlueprintCallable function to `AuraBaseCharacter`." />
     <MESSAGE value="Marked `UAuraCombatInterface` as `BlueprintType` and added `MinimalAPI` specifier for enhanced usability in Blueprints and minimal export." />
     <MESSAGE value="Made `UpdateFacingTarget` in `AuraCombatInterface` callable from Blueprints by adding `BlueprintCallable` specifier." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made `UpdateFacingTarget` in `AuraCombatInterface` callable from Blueprints by adding `BlueprintCallable` specifier." />
+    <MESSAGE value="Implemented `UpdateFacingTarget` as a `BlueprintNativeEvent` in `AuraCombatInterface` and added its functionality to `AuraBaseCharacter`, along with `FacingTargetWarpName` property for motion warping." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented `UpdateFacingTarget` as a `BlueprintNativeEvent` in `AuraCombatInterface` and added its functionality to `AuraBaseCharacter`, along with `FacingTargetWarpName` property for motion warping." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

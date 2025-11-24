@@ -26,7 +26,7 @@ void UAuraOverlayWidgetController::BindCallbacksToDependencies()
 	BindAttributeChangeDelegate(AuraAttributeSet->GetManaAttribute(), OnManaChanged);
 	BindAttributeChangeDelegate(AuraAttributeSet->GetMaxManaAttribute(), OnMaxManaChanged);
 
-	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
+	GetAuraAbilitySystemComponent()->EffectAssetTags.AddLambda(
 		[this](const FGameplayTagContainer& AssetTags)
 		{
 			for (const FGameplayTag& Tag : AssetTags)
