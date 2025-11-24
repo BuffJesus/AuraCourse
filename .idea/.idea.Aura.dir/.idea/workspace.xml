@@ -8,12 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Assets/Materials/M_FloorTest.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraWidgetController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraWidgetController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/UI/HUD/AuraHUD.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/HUD/AuraHUD.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraWidgetController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/UI/Controllers/AuraWidgetController.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/UI/HUD/AuraHUD.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/UI/HUD/AuraHUD.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap_BuiltData.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +41,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://17" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://18" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -246,23 +244,7 @@
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
-      <workItem from="1763919271674" duration="16153000" />
-    </task>
-    <task id="LOCAL-00095" summary="Added support for input action handling based on gameplay tags&#10;&#10;- **Gameplay Tags**: Introduced `Input` gameplay tag for categorizing input actions.&#10;- **AuraAbilitySystemComponent**: Added functions to handle input tags (`Held`, `Released`) and integrated startup input tags for abilities.&#10;- **Player Controller**: Implemented `GetASC` to retrieve the Ability System Component and route input actions.&#10;- **Code Enhancements**: Updated `AuraGameplayAbility`, `AuraInputConfig`, and relevant classes to improve input handling and ability mapping logic.">
-      <option name="closed" value="true" />
-      <created>1763859243611</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1763859243611</updated>
-    </task>
-    <task id="LOCAL-00096" summary="Refactored lambda bindings and optimized use of references for dynamic tags&#10;&#10;- **AuraAttributeMenuWidgetController**: Updated lambda bindings to capture `FAttributeInfo` by value instead of reference for safer attribute broadcasting.&#10;- **AuraAbilitySystemComponent**: Modified `DynamicTags` usage to reference instead of copying for improved performance.&#10;- **Blueprint Updates**: Adjusted `BP_AuraCharacter` and `GA_Aura_Ability_Test` assets.">
-      <option name="closed" value="true" />
-      <created>1763859802742</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1763859802742</updated>
+      <workItem from="1763919271674" duration="17090000" />
     </task>
     <task id="LOCAL-00097" summary="Updated `.idea/workspace.xml` to reflect recent file changes and cleaned up project task configurations. Adjusted `GA_Aura_Ability_Test` asset.">
       <option name="closed" value="true" />
@@ -640,7 +622,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763957159290</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="Replaced `UAbilitySystemComponent` and `UAttributeSet` with `UAuraAbilitySystemComponent` and `UAuraAttributeSet` across relevant classes for stronger typing, added typed getters, and updated caching logic. Kind of broke it, working on fixing it.">
+      <option name="closed" value="true" />
+      <created>1763957868539</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1763957868539</updated>
+    </task>
+    <task id="LOCAL-00145" summary="Compiles now">
+      <option name="closed" value="true" />
+      <created>1763958033279</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1763958033279</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,8 +648,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Integrated `WaitGameplayEvent` into `AuraGA_ProjectileSpell` to handle projectile spawning dynamically based on gameplay events. Updated related methods and added `EventTag` property for configuration." />
-    <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to improve authority check by introducing `bIsServer` for clearer logic." />
     <MESSAGE value="Simplified `AuraGA_ProjectileSpell` by removing unused include, updating `WaitGameplayEvent` parameters, and ensuring ability ends after projectile spawn." />
     <MESSAGE value="Added ability termination logic to `AuraGA_ProjectileSpell` for cases where `WaitGameplayEvent` fails or `CombatInterface` is unavailable." />
     <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` by integrating montage tasks with gameplay events, adding event-specific handlers, and ensuring proper ability termination logic." />
@@ -675,7 +671,9 @@
     <MESSAGE value="Enhanced `AuraPlayerController` with new input binding, cursor tracing, and auto-run functionality. Refactored movement handling and ability system integration for better gameplay responsiveness." />
     <MESSAGE value="Refactored `AuraWidgetController` to add typed `GetAuraAttributeSet` method with caching, improved attribute access in derived classes, and removed redundant casts." />
     <MESSAGE value="Replaced `UAttributeSet` with `UAuraAttributeSet` in `AuraBaseCharacter`, `AuraPlayerState`, and related classes for stronger typing, added typed getters, and updated initialization logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced `UAttributeSet` with `UAuraAttributeSet` in `AuraBaseCharacter`, `AuraPlayerState`, and related classes for stronger typing, added typed getters, and updated initialization logic." />
+    <MESSAGE value="Replaced `UAbilitySystemComponent` and `UAttributeSet` with `UAuraAbilitySystemComponent` and `UAuraAttributeSet` across relevant classes for stronger typing, added typed getters, and updated caching logic. Kind of broke it, working on fixing it." />
+    <MESSAGE value="Compiles now" />
+    <option name="LAST_COMMIT_MESSAGE" value="Compiles now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
