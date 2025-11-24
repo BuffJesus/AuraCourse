@@ -39,6 +39,8 @@ public:
 	FName WeaponTipSocketName { "WeaponTipSocket" };
 	
 	virtual FVector GetCombatSocketLocation() const override;
+	
+	UFUNCTION(BlueprintCallable, Category = "Aura|Combat")
 	FORCEINLINE UMotionWarpingComponent* GetMotionWarpingComponent() const { return MotionWarpingComponent; }
 
 protected:

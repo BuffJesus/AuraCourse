@@ -24,4 +24,7 @@ class AURA_API IAuraCombatInterface
 public:
 	virtual int32 GetPlayerLevel() const;
 	virtual FVector GetCombatSocketLocation() const;
+	
+	UFUNCTION(BlueprintImplementableEvent, Category = "Aura|Combat")
+	void UpdateFacingTarget(const FVector& Target);
 };

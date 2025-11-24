@@ -8,10 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Materials/M_FloorTest.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap_BuiltData.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Materials/M_FloorTest.uasset" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://18" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://19" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -244,15 +242,7 @@
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
-      <workItem from="1763919271674" duration="17090000" />
-    </task>
-    <task id="LOCAL-00097" summary="Updated `.idea/workspace.xml` to reflect recent file changes and cleaned up project task configurations. Adjusted `GA_Aura_Ability_Test` asset.">
-      <option name="closed" value="true" />
-      <created>1763859862604</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1763859862604</updated>
+      <workItem from="1763919271674" duration="17481000" />
     </task>
     <task id="LOCAL-00098" summary="Updated `AuraAttributeMenuWidgetController` to use `UAuraUserWidget` instead of `UUserWidget` for row widgets and adjusted related functions for consistency. Deferred attribute initialization in `AuraPlayerCharacter` to ensure proper ASC setup.">
       <option name="closed" value="true" />
@@ -638,7 +628,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763958033279</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="Updated `.idea/workspace.xml` to reflect recent file changes, added `M_FloorTest.uasset`, and modified `TestMap` assets.">
+      <option name="closed" value="true" />
+      <created>1763959009342</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1763959009342</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,7 +646,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Simplified `AuraGA_ProjectileSpell` by removing unused include, updating `WaitGameplayEvent` parameters, and ensuring ability ends after projectile spawn." />
     <MESSAGE value="Added ability termination logic to `AuraGA_ProjectileSpell` for cases where `WaitGameplayEvent` fails or `CombatInterface` is unavailable." />
     <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` by integrating montage tasks with gameplay events, adding event-specific handlers, and ensuring proper ability termination logic." />
     <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` by adding debug logs, improving server/client differentiation, and incorporating Niagara effects with replication." />
@@ -673,7 +670,8 @@
     <MESSAGE value="Replaced `UAttributeSet` with `UAuraAttributeSet` in `AuraBaseCharacter`, `AuraPlayerState`, and related classes for stronger typing, added typed getters, and updated initialization logic." />
     <MESSAGE value="Replaced `UAbilitySystemComponent` and `UAttributeSet` with `UAuraAbilitySystemComponent` and `UAuraAttributeSet` across relevant classes for stronger typing, added typed getters, and updated caching logic. Kind of broke it, working on fixing it." />
     <MESSAGE value="Compiles now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Compiles now" />
+    <MESSAGE value="Updated `.idea/workspace.xml` to reflect recent file changes, added `M_FloorTest.uasset`, and modified `TestMap` assets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` to reflect recent file changes, added `M_FloorTest.uasset`, and modified `TestMap` assets." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
