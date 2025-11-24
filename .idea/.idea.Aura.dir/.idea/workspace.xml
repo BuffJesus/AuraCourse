@@ -8,6 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/BP_Aura_Fire_Bolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/BP_Aura_Fire_Bolt.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap_BuiltData.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" afterDir="false" />
     </list>
@@ -39,7 +43,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://5" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -243,23 +247,7 @@
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
-      <workItem from="1763987788042" duration="3004000" />
-    </task>
-    <task id="LOCAL-00105" summary="Removed redundant `PopulateAttributeRows` methods and associated internal logic from `AuraAttributeMenuWidgetController`. Simplified functionality by focusing on managing existing row widgets and attribute tag assignment.">
-      <option name="closed" value="true" />
-      <created>1763865744749</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1763865744749</updated>
-    </task>
-    <task id="LOCAL-00106" summary="Refactored `AAuraPlayerController` to enhance code organization and maintainability by introducing categorized comments, streamlining logic for LMB input handling, and improving cursor-based navigation functionality.">
-      <option name="closed" value="true" />
-      <created>1763867256882</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1763867256882</updated>
+      <workItem from="1763987788042" duration="4615000" />
     </task>
     <task id="LOCAL-00107" summary="Updated `TestMap.umap` in `Content/Aura/Maps`.">
       <option name="closed" value="true" />
@@ -637,7 +625,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763989993564</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="Added impact effects and sounds to `AuraProjectile` via `Destroyed` and `OnSphereOverlap`, with authority checks.">
+      <option name="closed" value="true" />
+      <created>1763991493693</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1763991493693</updated>
+    </task>
+    <task id="LOCAL-00155" summary="Updated `.idea/workspace.xml` and categorized `ImpactEffect` and `ImpactSound` properties in `AuraProjectile` under `Aura|Effects`.">
+      <option name="closed" value="true" />
+      <created>1763991665107</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1763991665107</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,8 +651,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Cleaned up syntax in `AuraTargetDataUnderMouse` by replacing `=` with uniform initialization and adjusted Blueprint metadata formatting for readability." />
-    <MESSAGE value="Added server/client target data replication and callback handling in `AuraTargetDataUnderMouse`, along with `SendCursorData` functionality." />
     <MESSAGE value="Improved `AuraTargetDataUnderMouse` by adding fallback for remote player data and ensuring client-replicated target data is consumed before broadcasting." />
     <MESSAGE value="Updated `GA_Aura_Fire_Bolt` Blueprint asset." />
     <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` with client-side cosmetic prediction, improved server/client projectile spawning logic, and added support for cosmetic projectiles with configurable lifespan." />
@@ -672,7 +674,9 @@
     <MESSAGE value="Refactored `AuraOverlayWidgetController` to use `GetAuraAbilitySystemComponent` for stronger typing and improved readability." />
     <MESSAGE value="Updated default values for cosmetic projectile prediction logic in `AuraGA_ProjectileSpell` and `AuraProjectile` to disable cosmetic projectiles by default." />
     <MESSAGE value="Removed cosmetic projectile handling logic from `AuraProjectile` and `AuraGA_ProjectileSpell` to simplify server-authoritative spawning." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed cosmetic projectile handling logic from `AuraProjectile` and `AuraGA_ProjectileSpell` to simplify server-authoritative spawning." />
+    <MESSAGE value="Added impact effects and sounds to `AuraProjectile` via `Destroyed` and `OnSphereOverlap`, with authority checks." />
+    <MESSAGE value="Updated `.idea/workspace.xml` and categorized `ImpactEffect` and `ImpactSound` properties in `AuraProjectile` under `Aura|Effects`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` and categorized `ImpactEffect` and `ImpactSound` properties in `AuraProjectile` under `Aura|Effects`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

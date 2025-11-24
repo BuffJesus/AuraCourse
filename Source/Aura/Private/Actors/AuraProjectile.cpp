@@ -33,9 +33,11 @@ AAuraProjectile::AAuraProjectile()
 void AAuraProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-
-		// Only authoritative projectiles handle overlaps
-		Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap);
+	
+	SetLifeSpan(10.f);
+	
+	// Only authoritative projectiles handle overlaps
+	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap);
 }
 
 void AAuraProjectile::Destroyed()
