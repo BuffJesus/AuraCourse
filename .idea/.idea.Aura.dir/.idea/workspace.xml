@@ -8,12 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Tasks/AuraTargetDataUnderMouse.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Tasks/AuraTargetDataUnderMouse.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://7" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -246,23 +242,7 @@
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
-      <workItem from="1763919271674" duration="9788000" />
-    </task>
-    <task id="LOCAL-00084" summary="Enhanced `AuraAttributeMenuWidgetController` with improved attribute change broadcasting via `AttributeInfoDelegate`. Updated `AuraAttributeInfo` to include `FGameplayAttribute` for streamlined data handling. Revised attribute-related blueprints and added delegate bindings in `AuraAttributeSet`.">
-      <option name="closed" value="true" />
-      <created>1763839447793</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1763839447793</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Streamlined `AuraTags` with the addition of primary, secondary, and vital root tags for better gameplay tag organization. Improved `AuraAttributeInfo` with an editor utility to dynamically populate attributes from tags and revamped broadcast logic in `AuraAttributeMenuWidgetController` for more efficient attribute handling.">
-      <option name="closed" value="true" />
-      <created>1763841361245</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1763841361245</updated>
+      <workItem from="1763919271674" duration="10362000" />
     </task>
     <task id="LOCAL-00086" summary="Refined `AuraAttributeInfo` to use distinct primary, secondary, and vital root tags for better tag filtering and organization. Optimized gameplay tag handling and streamlined attribute processing logic.">
       <option name="closed" value="true" />
@@ -640,7 +620,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763950454223</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` with client-side cosmetic prediction, improved server/client projectile spawning logic, and added support for cosmetic projectiles with configurable lifespan.">
+      <option name="closed" value="true" />
+      <created>1763951576796</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1763951576796</updated>
+    </task>
+    <task id="LOCAL-00134" summary="Updated `SpawnProjectile` to include `TargetLocation` parameter, calculate projectile rotation, and set spawn transform orientation accurately.">
+      <option name="closed" value="true" />
+      <created>1763951736769</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1763951736769</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,8 +646,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `MagicResistance` attribute to `AuraAttributeSet` with replication, OnRep logic, and gameplay tags. Updated related assets to support the new attribute. (Just a test to see how easy it would be to add)" />
-    <MESSAGE value="Added `AuraProjectile` class with sphere collision and projectile movement components. Implemented basic overlap handling and initial projectile configuration." />
     <MESSAGE value="Cleaned up IntelliJ `.idea/workspace.xml` by removing outdated change entries and redundant messages. Added new task for `AuraProjectile` implementation. Updated `TestMap.umap`." />
     <MESSAGE value="Added `AuraGA_ProjectileSpell` class with gameplay ability logic. Integrated ability activation with debug message and updated project references." />
     <MESSAGE value="Improved `AuraGA_ProjectileSpell` gameplay ability by integrating projectile spawning logic, adding `ProjectileClass` property, and implementing combat socket location retrieval via `AuraCombatInterface`." />
@@ -675,7 +669,9 @@
     <MESSAGE value="Added server/client target data replication and callback handling in `AuraTargetDataUnderMouse`, along with `SendCursorData` functionality." />
     <MESSAGE value="Improved `AuraTargetDataUnderMouse` by adding fallback for remote player data and ensuring client-replicated target data is consumed before broadcasting." />
     <MESSAGE value="Updated `GA_Aura_Fire_Bolt` Blueprint asset." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated `GA_Aura_Fire_Bolt` Blueprint asset." />
+    <MESSAGE value="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` with client-side cosmetic prediction, improved server/client projectile spawning logic, and added support for cosmetic projectiles with configurable lifespan." />
+    <MESSAGE value="Updated `SpawnProjectile` to include `TargetLocation` parameter, calculate projectile rotation, and set spawn transform orientation accurately." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `SpawnProjectile` to include `TargetLocation` parameter, calculate projectile rotation, and set spawn transform orientation accurately." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
