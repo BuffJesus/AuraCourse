@@ -94,6 +94,8 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		{
 			const float ClampedValue { FMath::Clamp(CurrentValue, 0.f, MaxValue) };
 			bIsHealth ? SetHealth(ClampedValue) : SetMana(ClampedValue);
+			GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, 
+			FString::Printf(TEXT("DAMAGE! %s Health: %.0f"), *Props.TargetAvatarActor->GetName(), GetHealth()));
 		}
 	}
 

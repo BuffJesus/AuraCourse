@@ -9,8 +9,11 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +43,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://3" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -245,15 +248,7 @@
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
-      <workItem from="1764013609214" duration="4716000" />
-    </task>
-    <task id="LOCAL-00116" summary="Added `FireBolt` gameplay ability, supporting animation montage and associated gameplay tags. Updated plugin configurations and cleaned up project dependencies.">
-      <option name="closed" value="true" />
-      <created>1763877656266</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1763877656266</updated>
+      <workItem from="1764013609214" duration="5733000" />
     </task>
     <task id="LOCAL-00117" summary="Updated `FireBolt` gameplay tag to follow montage category hierarchy and added supporting assets for `MontageEvent`.">
       <option name="closed" value="true" />
@@ -639,7 +634,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764026402293</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="Updated project configuration files and `BP_Enemy_Base.uasset` for changes in excluded files and workspace settings.">
+      <option name="closed" value="true" />
+      <created>1764026892247</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1764026892247</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,7 +652,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactored `AuraPlayerController` and `AuraPlayerCharacter` by migrating initialization logic, simplifying movement setup, and enhancing ability system initialization for better server-client synchronization." />
     <MESSAGE value="Enhanced `AuraPlayerController` with new input binding, cursor tracing, and auto-run functionality. Refactored movement handling and ability system integration for better gameplay responsiveness." />
     <MESSAGE value="Refactored `AuraWidgetController` to add typed `GetAuraAttributeSet` method with caching, improved attribute access in derived classes, and removed redundant casts." />
     <MESSAGE value="Replaced `UAttributeSet` with `UAuraAttributeSet` in `AuraBaseCharacter`, `AuraPlayerState`, and related classes for stronger typing, added typed getters, and updated initialization logic." />
@@ -674,7 +676,8 @@
     <MESSAGE value="Moved collision response arrays in `AuraBaseCharacter` and `AuraProjectile` to unnamed namespaces for improved encapsulation and cleaner header files." />
     <MESSAGE value="Simplified `AuraProjectile` initialization by introducing constants for speed, gravity, and lifespan. Updated `.idea/workspace.xml`." />
     <MESSAGE value="Refactored impact effects in `AuraProjectile` by introducing `PlayImpactEffects` to avoid duplication and improve readability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored impact effects in `AuraProjectile` by introducing `PlayImpactEffects` to avoid duplication and improve readability." />
+    <MESSAGE value="Updated project configuration files and `BP_Enemy_Base.uasset` for changes in excluded files and workspace settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated project configuration files and `BP_Enemy_Base.uasset` for changes in excluded files and workspace settings." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

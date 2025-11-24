@@ -26,8 +26,7 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Projectile")
 	TSubclassOf<AAuraProjectile> ProjectileClass;
-
-	/** If true, spawn cosmetic projectile on client for instant feedback */
-	UPROPERTY(EditDefaultsOnly, Category = "Aura|Projectile")
-	bool bUseCosmeticPrediction = false;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GAS")
+	TSubclassOf<UGameplayEffect> DamageEffectClass;
 };

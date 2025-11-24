@@ -33,6 +33,8 @@ void AAuraEnemyCharacter::InitializeAbilityActorInfo()
 {
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
+	
+	InitializeDefaultAttributes();
 }
 
 void AAuraEnemyCharacter::HighlightActor()

@@ -3,6 +3,8 @@
 
 #include "Actors/AuraProjectile.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
+#include "AbilitySystemComponent.h"
 #include "AuraCollisionChannels.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Components/AudioComponent.h"
@@ -60,10 +62,7 @@ void AAuraProjectile::PlayImpactEffects() const
 
 void AAuraProjectile::Destroyed()
 {
-	if (!bHit && !HasAuthority())
-	{
-		PlayImpactEffects();
-	}
+	if (!bHit && !HasAuthority()) { PlayImpactEffects(); }
 	Super::Destroyed();
 }
 
@@ -72,7 +71,13 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 {
 	PlayImpactEffects();
 	
-	if (HasAuthority()) { Destroy(); }
+	if (HasAuthority())
+	{
+		if (UAbilitySystemComponent* TargetASC { UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor) })
+		{ TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get()); }
+		
+		Destroy();
+	}
 	else { bHit = true; }
 }
 
