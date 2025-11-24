@@ -25,6 +25,9 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void Destroyed() override;
+	
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UAudioComponent> AudioComponent;
 
 	UFUNCTION()
 	void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, 
