@@ -1,4 +1,5 @@
-﻿// Not Sure Yet
+﻿
+// Not Sure Yet
 
 #pragma once
 
@@ -6,8 +7,7 @@
 #include "UObject/Object.h"
 #include "AuraWidgetController.generated.h"
 
-class UAttributeSet;
-class UAbilitySystemComponent;
+class UAuraAbilitySystemComponent;
 class UAuraAttributeSet;
 
 USTRUCT(BlueprintType)
@@ -16,7 +16,8 @@ struct FWidgetControllerParams
 	GENERATED_BODY()
 
 	FWidgetControllerParams() {}
-	FWidgetControllerParams(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS) 
+	// Keep base types for flexibility
+	FWidgetControllerParams(APlayerController* PC, APlayerState* PS, UAuraAbilitySystemComponent* ASC, UAuraAttributeSet* AS) 
 		: PlayerController(PC), PlayerState(PS), AbilitySystemComponent(ASC), AttributeSet(AS) {}
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -26,10 +27,10 @@ struct FWidgetControllerParams
 	TObjectPtr<APlayerState> PlayerState { nullptr };
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent { nullptr };
+	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent { nullptr };
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TObjectPtr<UAttributeSet> AttributeSet { nullptr };
+	TObjectPtr<UAuraAttributeSet> AttributeSet { nullptr };
 };
 
 /**
@@ -48,6 +49,9 @@ public:
 	virtual void BroadcastInitialValues();
 	virtual void BindCallbacksToDependencies();
 	
+	/** Get typed AbilitySystemComponent - caches cast on first call */
+	UAuraAbilitySystemComponent* GetAuraAbilitySystemComponent() const;
+	
 	/** Get typed AttributeSet - caches cast on first call */
 	UAuraAttributeSet* GetAuraAttributeSet() const;
 
@@ -59,12 +63,13 @@ protected:
 	TObjectPtr<APlayerState> PlayerState;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Aura|WidgetController")
-	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Aura|WidgetController")
-	TObjectPtr<UAttributeSet> AttributeSet;
+	TObjectPtr<UAuraAttributeSet> AttributeSet;
 
 private:
-	/** Cached typed AttributeSet - initialized on first access */
+	/** Cached typed components - initialized on first access */
+	mutable TObjectPtr<UAuraAbilitySystemComponent> CachedAuraASC;
 	mutable TObjectPtr<UAuraAttributeSet> CachedAuraAttributeSet;
 };

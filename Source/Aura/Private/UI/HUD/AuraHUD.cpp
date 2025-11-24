@@ -17,7 +17,7 @@ UAuraAttributeMenuWidgetController* AAuraHUD::GetAttributeMenuWidgetController(c
 	return GetOrCreateWidgetController<UAuraAttributeMenuWidgetController>(AttributeMenuWidgetController, AttributeMenuWidgetControllerClass, Params);
 }
 
-void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
+void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAuraAbilitySystemComponent* ASC, UAuraAttributeSet* AS)
 {
 	checkf(OverlayWidgetClass, TEXT("OverlayWidgetClass is not set, please fill out BP_AuraHUD"));
 	checkf(OverlayWidgetControllerClass, TEXT("OverlayWidgetControllerClass is not set, please fill out BP_AuraHUD"));
