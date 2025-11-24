@@ -9,10 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +40,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://13" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://14" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://15" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -245,15 +244,7 @@
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
-      <workItem from="1763919271674" duration="13214000" />
-    </task>
-    <task id="LOCAL-00090" summary="Implement attribute tag assignment by row name in Attribute Menu&#10;&#10;Implemented `SetAttributeTagsOnExistingRows` in `AuraAttributeMenuWidgetController`. This function allows mapping Attribute Tags to existing widget rows by matching the attribute name (derived from the tag) to the widget name (e.g., `Aura.Attributes.Primary.Strength` -&gt; `Row_Strength`).&#10;&#10;*   **AuraAttributeMenuWidgetController**: Added `SetAttributeTagsOnExistingRows` to iterate attribute info and find matching widgets in the hierarchy.&#10;*   **WBP_Aura_AttributeMenu**: Updated to utilize the new controller logic for initializing attribute rows.&#10;*   **WBP_Aura_TextValueRow**: Updated blueprint asset.">
-      <option name="closed" value="true" />
-      <created>1763849481350</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1763849481350</updated>
+      <workItem from="1763919271674" duration="14228000" />
     </task>
     <task id="LOCAL-00091" summary="Added `AuraInputConfig` for input action management and updated gameplay tags to support input configurations.&#10;&#10;* **AuraInputConfig**: Introduced `UAuraInputConfig` class and `FAuraInputAction` struct for organizing input actions and tags.&#10;* **Gameplay Tags**: Added new input-related gameplay tags (e.g., LMB, RMB, numbers 1-4) for improved input handling.&#10;* **Blueprints**: Created input-related assets (e.g., `DA_Aura_InputConfig`, `IA_X` actions) for configuration management.">
       <option name="closed" value="true" />
@@ -639,7 +630,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763954228682</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="Cached controller and HUD in `AuraPlayerCharacter` and `AuraPlayerController` to optimize repeated access and reduce casting overhead.">
+      <option name="closed" value="true" />
+      <created>1763954917543</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1763954917543</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,7 +648,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated `AuraGA_ProjectileSpell` by adding `Category` metadata to `ProjectileClass` and simplifying conditional block for readability." />
     <MESSAGE value="Refactored `AuraGA_ProjectileSpell` by splitting functionality into helper methods for improved readability and maintainability." />
     <MESSAGE value="Added `FireBolt` gameplay ability, supporting animation montage and associated gameplay tags. Updated plugin configurations and cleaned up project dependencies." />
     <MESSAGE value="Updated `FireBolt` gameplay tag to follow montage category hierarchy and added supporting assets for `MontageEvent`." />
@@ -674,7 +672,8 @@
     <MESSAGE value="Added support for shift key input in `AuraPlayerController` with `ShiftPressed` and `ShiftReleased` handlers, updated input configuration to include `ShiftAction`, and adjusted targeting logic to account for shift state." />
     <MESSAGE value="Added `MotionWarpingComponent` to `AuraBaseCharacter`, replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` for stronger typing, and updated dependencies to include Motion Warping." />
     <MESSAGE value="Replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` in `AuraPlayerCharacter` and `AuraPlayerState` for stronger typing, added typed getters, and updated related initialization logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` in `AuraPlayerCharacter` and `AuraPlayerState` for stronger typing, added typed getters, and updated related initialization logic." />
+    <MESSAGE value="Cached controller and HUD in `AuraPlayerCharacter` and `AuraPlayerController` to optimize repeated access and reduce casting overhead." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cached controller and HUD in `AuraPlayerCharacter` and `AuraPlayerController` to optimize repeated access and reduce casting overhead." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
