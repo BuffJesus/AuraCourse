@@ -14,20 +14,28 @@ UAuraTargetDataUnderMouse* UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse
 
 void UAuraTargetDataUnderMouse::Activate()
 {
-	if (const bool bIsLocallyControlled { IsLocallyControlled() }) { SendCursorData(); }
+	if (const bool bIsLocallyControlled { IsLocallyControlled() })
+	{
+		SendCursorData();
+	}
 	else
 	{
 		const FGameplayAbilitySpecHandle SpecHandle { GetAbilitySpecHandle() };
 		const FPredictionKey PredictionKey { GetActivationPredictionKey() };
 		UAbilitySystemComponent* const ASC { AbilitySystemComponent.Get() };
 		
-		if (!ASC) { return; }
+		if (!ASC)
+		{
+			return;
+		}
 		
 		ASC->AbilityTargetDataSetDelegate(SpecHandle, 
 			PredictionKey).AddUObject(this, &UAuraTargetDataUnderMouse::OnTargetDataReplicatedCallback);
-		const bool bCalledDelegate { ASC->CallReplicatedTargetDataDelegatesIfSet(SpecHandle, PredictionKey) };
-		
-		if (!bCalledDelegate) { SetWaitingOnRemotePlayerData(); }
+
+		if (const bool bCalledDelegate { ASC->CallReplicatedTargetDataDelegatesIfSet(SpecHandle, PredictionKey) }; !bCalledDelegate)
+		{
+			SetWaitingOnRemotePlayerData();
+		}
 	}
 }
 
@@ -41,7 +49,7 @@ void UAuraTargetDataUnderMouse::SendCursorData()
 	
 	if (const AAuraPlayerController* PC { Cast<AAuraPlayerController>(Ability->GetCurrentActorInfo()->PlayerController.Get()) })
 	{
-		const FHitResult CursorHit = PC->GetCursorHit();
+		const FHitResult CursorHit { PC->GetCursorHit() };
 		Data->HitResult = CursorHit;
 		
 		AbilitySystemComponent->ServerSetReplicatedTargetData(GetAbilitySpecHandle(), 
@@ -50,7 +58,10 @@ void UAuraTargetDataUnderMouse::SendCursorData()
 			FGameplayTag(), 
 			AbilitySystemComponent->ScopedPredictionKey);
 		
-		if (ShouldBroadcastAbilityTaskDelegates()) { ValidData.Broadcast(Handle); }
+		if (ShouldBroadcastAbilityTaskDelegates())
+		{
+			ValidData.Broadcast(Handle);
+		}
 	}
 }
 
@@ -58,5 +69,8 @@ void UAuraTargetDataUnderMouse::OnTargetDataReplicatedCallback(const FGameplayAb
 	FGameplayTag ActivationTag)
 {
 	AbilitySystemComponent->ConsumeClientReplicatedTargetData(GetAbilitySpecHandle(), GetActivationPredictionKey());
-	if (ShouldBroadcastAbilityTaskDelegates()) { ValidData.Broadcast(Handle); }
+	if (ShouldBroadcastAbilityTaskDelegates())
+	{
+		ValidData.Broadcast(Handle);
+	}
 }

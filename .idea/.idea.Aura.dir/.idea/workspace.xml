@@ -8,7 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Tasks/AuraTargetDataUnderMouse.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Tasks/AuraTargetDataUnderMouse.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +43,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://4" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -241,23 +246,7 @@
       <workItem from="1763851681901" duration="14461000" />
       <workItem from="1763866608376" duration="1074000" />
       <workItem from="1763871917907" duration="9969000" />
-      <workItem from="1763919271674" duration="8418000" />
-    </task>
-    <task id="LOCAL-00082" summary="Added `GetAttributeMenuWidgetController` blueprint function in `AuraAbilitySystemBPLibrary`, extended `AAuraHUD` with generic widget controller creation, and introduced `AuraAttributeMenuWidgetController` for attribute menu handling. Updated related blueprints.">
-      <option name="closed" value="true" />
-      <created>1763701649339</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1763701649339</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Refactored `AuraAbilitySystemBPLibrary` to use a generic widget controller retrieval utility. Updated `AuraOverlayWidgetController` and `AuraAttributeMenuWidgetController` methods to leverage this abstraction. Enhanced `AuraAttributeMenuWidgetController` with `OnAttributeInfoChanged` delegate and related functionality.">
-      <option name="closed" value="true" />
-      <created>1763702890770</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1763702890770</updated>
+      <workItem from="1763919271674" duration="9788000" />
     </task>
     <task id="LOCAL-00084" summary="Enhanced `AuraAttributeMenuWidgetController` with improved attribute change broadcasting via `AttributeInfoDelegate`. Updated `AuraAttributeInfo` to include `FGameplayAttribute` for streamlined data handling. Revised attribute-related blueprints and added delegate bindings in `AuraAttributeSet`.">
       <option name="closed" value="true" />
@@ -635,7 +624,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763949767162</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Improved `AuraTargetDataUnderMouse` by adding fallback for remote player data and ensuring client-replicated target data is consumed before broadcasting.">
+      <option name="closed" value="true" />
+      <created>1763950139071</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1763950139071</updated>
+    </task>
+    <task id="LOCAL-00132" summary="Updated `GA_Aura_Fire_Bolt` Blueprint asset.">
+      <option name="closed" value="true" />
+      <created>1763950454223</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1763950454223</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -645,8 +650,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated `TestMap.umap` in `Content/Aura/Maps`." />
-    <MESSAGE value="Added MagicResistance to test AttributeMenuWidgetController functionality. Pretty easy to add a row now." />
     <MESSAGE value="Added `MagicResistance` attribute to `AuraAttributeSet` with replication, OnRep logic, and gameplay tags. Updated related assets to support the new attribute. (Just a test to see how easy it would be to add)" />
     <MESSAGE value="Added `AuraProjectile` class with sphere collision and projectile movement components. Implemented basic overlap handling and initial projectile configuration." />
     <MESSAGE value="Cleaned up IntelliJ `.idea/workspace.xml` by removing outdated change entries and redundant messages. Added new task for `AuraProjectile` implementation. Updated `TestMap.umap`." />
@@ -670,7 +673,9 @@
     <MESSAGE value="Removed redundant newline in `AuraTargetDataUnderMouse` implementation." />
     <MESSAGE value="Cleaned up syntax in `AuraTargetDataUnderMouse` by replacing `=` with uniform initialization and adjusted Blueprint metadata formatting for readability." />
     <MESSAGE value="Added server/client target data replication and callback handling in `AuraTargetDataUnderMouse`, along with `SendCursorData` functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added server/client target data replication and callback handling in `AuraTargetDataUnderMouse`, along with `SendCursorData` functionality." />
+    <MESSAGE value="Improved `AuraTargetDataUnderMouse` by adding fallback for remote player data and ensuring client-replicated target data is consumed before broadcasting." />
+    <MESSAGE value="Updated `GA_Aura_Fire_Bolt` Blueprint asset." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `GA_Aura_Fire_Bolt` Blueprint asset." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,8 +1,7 @@
-// Copyright Druid Mechanics
+// Not Sure Yet
 
 
 #include "Actors/AuraProjectile.h"
-
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 
@@ -28,7 +27,18 @@ AAuraProjectile::AAuraProjectile()
 void AAuraProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap);
+	
+	if (bIsCosmetic)
+	{
+		// Cosmetic projectiles don't do gameplay logic
+		Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		SetLifeSpan(CosmeticLifespan);
+	}
+	else
+	{
+		// Only authoritative projectiles handle overlaps
+		Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap);
+	}
 }
 
 void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
