@@ -23,6 +23,8 @@ T* UAuraAbilitySystemBPLibrary::GetWidgetController(const UObject* WorldContextO
 		if (AAuraHUD* AuraHUD { Cast<AAuraHUD>(PC->GetHUD()) })
 		{
 			AAuraPlayerState* PS { PC->GetPlayerState<AAuraPlayerState>() };
+			if (!PS) { return nullptr; }
+
 			UAuraAbilitySystemComponent* ASC { PS->GetAuraAbilitySystemComponent() };
 			UAuraAttributeSet* AS { PS->GetAuraAttributeSet() };
 			const FWidgetControllerParams Params(PC, PS, ASC, AS);

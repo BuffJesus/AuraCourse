@@ -8,12 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://24" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://32" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -256,31 +252,7 @@
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
-      <workItem from="1764013609214" duration="20257000" />
-    </task>
-    <task id="LOCAL-00137" summary="Added `MotionWarpingComponent` to `AuraBaseCharacter`, replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` for stronger typing, and updated dependencies to include Motion Warping.">
-      <option name="closed" value="true" />
-      <created>1763953886667</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1763953886667</updated>
-    </task>
-    <task id="LOCAL-00138" summary="Replaced `UAbilitySystemComponent` with `UAuraAbilitySystemComponent` in `AuraPlayerCharacter` and `AuraPlayerState` for stronger typing, added typed getters, and updated related initialization logic.">
-      <option name="closed" value="true" />
-      <created>1763954228682</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1763954228682</updated>
-    </task>
-    <task id="LOCAL-00139" summary="Cached controller and HUD in `AuraPlayerCharacter` and `AuraPlayerController` to optimize repeated access and reduce casting overhead.">
-      <option name="closed" value="true" />
-      <created>1763954917543</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1763954917543</updated>
+      <workItem from="1764013609214" duration="21495000" />
     </task>
     <task id="LOCAL-00140" summary="Refactored `AuraPlayerController` and `AuraPlayerCharacter` by migrating initialization logic, simplifying movement setup, and enhancing ability system initialization for better server-client synchronization.">
       <option name="closed" value="true" />
@@ -650,7 +622,31 @@
       <option name="project" value="LOCAL" />
       <updated>1764045642166</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="Broke it, but we'll fix it.">
+      <option name="closed" value="true" />
+      <created>1764046178903</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1764046178903</updated>
+    </task>
+    <task id="LOCAL-00187" summary="Made `GetCharacterClass` in `AuraBaseCharacter` non-pure virtual by providing a default implementation returning `ECharacterClass::DefaultClass`. Updated `.idea/workspace.xml`.">
+      <option name="closed" value="true" />
+      <created>1764046245754</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1764046245754</updated>
+    </task>
+    <task id="LOCAL-00188" summary="Updated `BP_AuraGameMode` and `TestMap` assets.">
+      <option name="closed" value="true" />
+      <created>1764046547819</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1764046547819</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,9 +656,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactored `AuraBaseCharacter` and `AuraProjectile` collision response arrays for improved modularity and cleaner initialization logic." />
-    <MESSAGE value="Moved collision response arrays in `AuraBaseCharacter` and `AuraProjectile` to unnamed namespaces for improved encapsulation and cleaner header files." />
-    <MESSAGE value="Simplified `AuraProjectile` initialization by introducing constants for speed, gravity, and lifespan. Updated `.idea/workspace.xml`." />
     <MESSAGE value="Refactored impact effects in `AuraProjectile` by introducing `PlayImpactEffects` to avoid duplication and improve readability." />
     <MESSAGE value="Updated project configuration files and `BP_Enemy_Base.uasset` for changes in excluded files and workspace settings." />
     <MESSAGE value="Added damage application to `AuraProjectile` using `GameplayEffectSpecHandle`, updated `AuraGA_ProjectileSpell` initialization, and improved debug feedback for health changes in `AuraAttributeSet`." />
@@ -685,7 +678,10 @@
     <MESSAGE value="Replaced attribute arrays in `AuraBaseCharacter` with `ECharacterClass` for streamlined initialization. Updated default attribute handling to utilize `UAuraAbilitySystemBPLibrary`." />
     <MESSAGE value="Removed `DefaultClass` property from `AuraEnemyCharacter` and updated `BP_AuraCharacter` asset." />
     <MESSAGE value="Moved `CharacterClass` property from `AuraBaseCharacter` to `AuraEnemyCharacter` and updated `BP_Enemy_Base` asset accordingly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved `CharacterClass` property from `AuraBaseCharacter` to `AuraEnemyCharacter` and updated `BP_Enemy_Base` asset accordingly." />
+    <MESSAGE value="Broke it, but we'll fix it." />
+    <MESSAGE value="Made `GetCharacterClass` in `AuraBaseCharacter` non-pure virtual by providing a default implementation returning `ECharacterClass::DefaultClass`. Updated `.idea/workspace.xml`." />
+    <MESSAGE value="Updated `BP_AuraGameMode` and `TestMap` assets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `BP_AuraGameMode` and `TestMap` assets." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
