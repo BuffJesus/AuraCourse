@@ -6,7 +6,7 @@
 #include "AuraBaseCharacter.h"
 #include "AuraPlayerCharacter.generated.h"
 
-class AAuraPlayerController;
+class AAuraPlayerController;  // ← Remove UAuraPlayerAttributeSet forward declaration
 
 UCLASS()
 class AURA_API AAuraPlayerCharacter : public AAuraBaseCharacter
@@ -26,7 +26,7 @@ public:
 
 private:
 	virtual void InitializeAbilityActorInfo() override;
-
+	
 	/** Cached player controller - initialized on first access */
 	UPROPERTY()
 	TObjectPtr<AAuraPlayerController> AuraPlayerController;

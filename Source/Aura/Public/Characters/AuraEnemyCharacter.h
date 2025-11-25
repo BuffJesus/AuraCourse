@@ -38,9 +38,6 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|UI")
 	FVector2D HealthBarDrawSize { FVector2D(500.f, 50.f) };
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|UI")
-	FVector HealthBarOffset { FVector(0.f, 0.f, 100.f) };
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|GAS")
 	int32 Level { 1 };

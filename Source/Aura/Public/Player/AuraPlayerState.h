@@ -7,7 +7,7 @@
 #include "GameFramework/PlayerState.h"
 #include "AuraPlayerState.generated.h"
 
-class UAuraAttributeSet;
+class UAuraPlayerAttributeSet;
 class UAbilitySystemComponent;
 class UAuraAbilitySystemComponent;
 
@@ -26,8 +26,8 @@ public:
 	// Typed getter - returns UAuraAbilitySystemComponent (no cast needed!)
 	FORCEINLINE UAuraAbilitySystemComponent* GetAuraAbilitySystemComponent() const { return AbilitySystemComponent; }
 	
-	// Typed getter - returns UAuraAttributeSet (no cast needed!)
-	FORCEINLINE UAuraAttributeSet* GetAuraAttributeSet() const { return AttributeSet; }
+	// Typed getter - returns UAuraPlayerAttributeSet (no cast needed!)
+	FORCEINLINE UAuraPlayerAttributeSet* GetAuraAttributeSet() const { return AttributeSet; }
 	
 	FORCEINLINE int32 GetPlayerLevel() const { return Level; }
 
@@ -36,9 +36,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Aura|GAS")
 	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
 
-	// Store as typed pointer - no casting needed when accessing!
+	// Store as typed pointer for player-specific attributes - no casting needed when accessing!
 	UPROPERTY()
-	TObjectPtr<UAuraAttributeSet> AttributeSet;
+	TObjectPtr<UAuraPlayerAttributeSet> AttributeSet;
 
 	UPROPERTY(VisibleAnywhere, ReplicatedUsing = OnRep_Level, Category = "Aura")
 	int32 Level { 1 };
