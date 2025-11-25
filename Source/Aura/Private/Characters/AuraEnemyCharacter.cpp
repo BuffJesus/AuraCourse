@@ -26,15 +26,30 @@ void AAuraEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	InitializeAbilityActorInfo();
-	
-	// Server only: Initialize default attributes (these will replicate to clients)
-	if (HasAuthority()) { InitializeDefaultAttributes(); }
+
+	if (const UAuraAttributeSet* AttributeSet { GetAuraAttributeSet() })
+	{
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetHealthAttribute()).AddLambda(
+			[this](const FOnAttributeChangeData& Data)
+			{
+				OnHealthChanged.Broadcast(Data.NewValue);
+			}
+		);
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetMaxHealthAttribute()).AddLambda(
+			[this](const FOnAttributeChangeData& Data)
+			{
+				OnMaxHealthChanged.Broadcast(Data.NewValue);
+			}
+		);
+	}
 }
 
 void AAuraEnemyCharacter::InitializeAbilityActorInfo()
 {
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 	AbilitySystemComponent->AbilityActorInfoSet();
+	
+	InitializeDefaultAttributes();
 }
 
 void AAuraEnemyCharacter::HighlightActor()

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AuraBaseCharacter.h"
+#include "UI/Controllers/AuraOverlayWidgetController.h"
 #include "Interaction/AuraEnemyInterface.h"
 #include "AuraEnemyCharacter.generated.h"
 
@@ -21,6 +22,12 @@ public:
 	virtual void UnHighlightActor() override;
 
 	virtual int32 GetPlayerLevel() const override;
+	
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnHealthChanged;
+	
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnMaxHealthChanged;
 
 protected:
 	virtual void BeginPlay() override;
