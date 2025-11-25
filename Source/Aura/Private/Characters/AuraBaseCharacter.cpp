@@ -49,7 +49,7 @@ void AAuraBaseCharacter::InitializeAbilityActorInfo()
 
 void AAuraBaseCharacter::InitializeDefaultAttributes() const
 {
-	UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(this, CharacterClass, 1.f, AbilitySystemComponent);
+	UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(this, GetCharacterClass(), 1.f, AbilitySystemComponent);
 }
 
 void AAuraBaseCharacter::AddCharacterAbilities()

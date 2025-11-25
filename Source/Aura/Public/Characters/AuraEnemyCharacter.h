@@ -46,4 +46,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Character Class Defaults")
 	ECharacterClass CharacterClass { ECharacterClass::Warrior };
 	
+	virtual ECharacterClass GetCharacterClass() const override { return CharacterClass; }
+	
 };

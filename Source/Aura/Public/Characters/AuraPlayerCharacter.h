@@ -1,4 +1,5 @@
-﻿// Not Sure Yet
+﻿
+// Not Sure Yet
 
 #pragma once
 
@@ -6,7 +7,7 @@
 #include "AuraBaseCharacter.h"
 #include "AuraPlayerCharacter.generated.h"
 
-class AAuraPlayerController;  // ← Remove UAuraPlayerAttributeSet forward declaration
+class AAuraPlayerController;
 
 UCLASS()
 class AURA_API AAuraPlayerCharacter : public AAuraBaseCharacter
@@ -23,6 +24,8 @@ public:
 	virtual void OnRep_PlayerState() override;
 
 	virtual int32 GetPlayerLevel() const override;
+	
+	virtual ECharacterClass GetCharacterClass() const override;
 
 private:
 	virtual void InitializeAbilityActorInfo() override;

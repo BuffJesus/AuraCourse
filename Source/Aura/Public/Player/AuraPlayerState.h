@@ -31,6 +31,8 @@ public:
 	FORCEINLINE UAuraPlayerAttributeSet* GetAuraAttributeSet() const { return AttributeSet; }
 	
 	FORCEINLINE int32 GetPlayerLevel() const { return Level; }
+	
+	FORCEINLINE ECharacterClass GetCharacterClass() const { return CharacterClass; }
 
 protected:
 	// Store as typed pointer - no casting needed when accessing!
@@ -41,11 +43,11 @@ protected:
 	UPROPERTY()
 	TObjectPtr<UAuraPlayerAttributeSet> AttributeSet;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, ReplicatedUsing = OnRep_Level, Category = "Aura|CharacterClassDefaults")
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing = OnRep_Level, Category = "Aura")
 	int32 Level { 1 };
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|CharacterClassDefaults")
-	ECharacterClass DefaultClass { ECharacterClass::Elementalist };
+
+	UPROPERTY(EditDefaultsOnly, Category = "Aura|Character Class Defaults")
+	ECharacterClass CharacterClass { ECharacterClass::Elementalist };
 
 	UFUNCTION()
 	void OnRep_Level(int32 OldLevel);

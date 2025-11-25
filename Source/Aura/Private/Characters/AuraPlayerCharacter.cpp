@@ -57,6 +57,13 @@ int32 AAuraPlayerCharacter::GetPlayerLevel() const
 	return AuraPlayerState->GetPlayerLevel();
 }
 
+ECharacterClass AAuraPlayerCharacter::GetCharacterClass() const
+{
+	const AAuraPlayerState* AuraPlayerState { GetPlayerState<AAuraPlayerState>() };
+	check(AuraPlayerState);
+	return AuraPlayerState->GetCharacterClass();
+}
+
 void AAuraPlayerCharacter::InitializeAbilityActorInfo()
 {
 	AAuraPlayerState* AuraPlayerState { GetPlayerState<AAuraPlayerState>() };

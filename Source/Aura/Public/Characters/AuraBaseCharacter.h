@@ -63,11 +63,13 @@ protected:
 	virtual void InitializeAbilityActorInfo();
 
 	void InitializeDefaultAttributes() const;
+	
+	// Pure virtual function - child classes must provide their CharacterClass
+	virtual ECharacterClass GetCharacterClass() const = 0;
 
 	void AddCharacterAbilities();
-	
-	// Implement the interface function - use _Implementation for BlueprintNativeEvent
 	virtual void UpdateFacingTarget_Implementation(const FVector& Target) override;
+
 
 	/** Name of the warp target used for motion warping */
 	UPROPERTY(EditDefaultsOnly, Category = "Aura|Combat")
