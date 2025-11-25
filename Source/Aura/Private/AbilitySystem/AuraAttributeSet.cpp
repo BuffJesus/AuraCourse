@@ -110,10 +110,6 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			SetHealth(FMath::Clamp(NewHealth, 0.f, GetMaxHealth()));
 			
 			const bool bFatal { NewHealth <= 0.f };
-			if (bFatal)
-			{
-				GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, FString::Printf(TEXT("Player died")));
-			}
 		}
 	}
 }

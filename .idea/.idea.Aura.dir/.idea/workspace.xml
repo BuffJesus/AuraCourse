@@ -8,8 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/CT_Fireball_Damage.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGameplayAbility.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGameplayAbility.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +43,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -253,23 +257,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="1317000" />
-    </task>
-    <task id="LOCAL-00142" summary="Refactored `AuraWidgetController` to add typed `GetAuraAttributeSet` method with caching, improved attribute access in derived classes, and removed redundant casts.">
-      <option name="closed" value="true" />
-      <created>1763956859443</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1763956859444</updated>
-    </task>
-    <task id="LOCAL-00143" summary="Replaced `UAttributeSet` with `UAuraAttributeSet` in `AuraBaseCharacter`, `AuraPlayerState`, and related classes for stronger typing, added typed getters, and updated initialization logic.">
-      <option name="closed" value="true" />
-      <created>1763957159290</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1763957159290</updated>
+      <workItem from="1764074021602" duration="3688000" />
     </task>
     <task id="LOCAL-00144" summary="Replaced `UAbilitySystemComponent` and `UAttributeSet` with `UAuraAbilitySystemComponent` and `UAuraAttributeSet` across relevant classes for stronger typing, added typed getters, and updated caching logic. Kind of broke it, working on fixing it.">
       <option name="closed" value="true" />
@@ -647,7 +635,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764047805623</updated>
     </task>
-    <option name="localTasksCounter" value="191" />
+    <task id="LOCAL-00191" summary="Added support for `Damage` gameplay tag in `AuraTags`, applied tag-based damage magnitude assignment in `AuraGA_ProjectileSpell`, and added on-screen debug message for player death in `AuraAttributeSet`.">
+      <option name="closed" value="true" />
+      <created>1764076625484</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1764076625484</updated>
+    </task>
+    <task id="LOCAL-00192" summary="Updated `GE_Aura_Test_Damage` asset.">
+      <option name="closed" value="true" />
+      <created>1764076708996</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1764076708996</updated>
+    </task>
+    <option name="localTasksCounter" value="193" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,8 +661,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added damage application to `AuraProjectile` using `GameplayEffectSpecHandle`, updated `AuraGA_ProjectileSpell` initialization, and improved debug feedback for health changes in `AuraAttributeSet`." />
-    <MESSAGE value="Refactored widget controller initialization in `AuraHUD` and removed server authority check for broadcasting initial values. Simplified ability actor initialization in `AuraEnemyCharacter`." />
     <MESSAGE value="Added health bar component to `AuraEnemyCharacter` with configurable size and offset. Updated initialization logic to attach and display the health bar." />
     <MESSAGE value="Added health change delegates to `AuraEnemyCharacter` and initialized attribute change broadcasting for health and max health." />
     <MESSAGE value="Updated `AuraEnemyCharacter` to broadcast initial health and max health values for server authority and refactored health-related delegate initialization." />
@@ -682,7 +684,9 @@
     <MESSAGE value="Updated `BP_AuraGameMode` and `TestMap` assets." />
     <MESSAGE value="Added null check for `PlayerState` in `GetWidgetController` to prevent potential crashes." />
     <MESSAGE value="Added `IncomingDamage` as a meta attribute in `AuraAttributeSet` and implemented health reduction logic based on incoming damage." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `IncomingDamage` as a meta attribute in `AuraAttributeSet` and implemented health reduction logic based on incoming damage." />
+    <MESSAGE value="Added support for `Damage` gameplay tag in `AuraTags`, applied tag-based damage magnitude assignment in `AuraGA_ProjectileSpell`, and added on-screen debug message for player death in `AuraAttributeSet`." />
+    <MESSAGE value="Updated `GE_Aura_Test_Damage` asset." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `GE_Aura_Test_Damage` asset." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

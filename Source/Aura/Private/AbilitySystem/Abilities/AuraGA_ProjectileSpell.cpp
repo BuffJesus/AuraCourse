@@ -2,7 +2,6 @@
 
 
 #include "AbilitySystem/Abilities/AuraGA_ProjectileSpell.h"
-
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "Actors/AuraProjectile.h"
@@ -25,7 +24,7 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 	if (CombatInterface)
 	{
 		const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
-		FRotator Rotation = (TargetLocation - SocketLocation).Rotation();
+		const FRotator Rotation = (TargetLocation - SocketLocation).Rotation();
 
 		FTransform SpawnTransform;
 		SpawnTransform.SetLocation(SocketLocation);
@@ -41,7 +40,9 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 		const UAbilitySystemComponent* SourceASC { UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo()) };
 		const FGameplayEffectSpecHandle SpecHandle { SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), SourceASC->MakeEffectContext()) };
 		
-		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Aura::Damage::Damage, 50.f);
+		const float ScaledDamage { Damage.GetValueAtLevel(GetAbilityLevel()) };
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Damage: %f"), ScaledDamage));
+		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Aura::Damage::Damage, ScaledDamage);
 		Projectile->DamageEffectSpecHandle = SpecHandle;
 		
 		Projectile->FinishSpawning(SpawnTransform);
