@@ -4,6 +4,7 @@
 #include "Aura/Aura.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
+#include "Components/WidgetComponent.h"
 
 AAuraEnemyCharacter::AAuraEnemyCharacter()
 {
@@ -15,6 +16,10 @@ AAuraEnemyCharacter::AAuraEnemyCharacter()
 	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 	
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
+	
+	HealthBar = CreateDefaultSubobject<UWidgetComponent>("HealthBar");
+	HealthBar->SetupAttachment(GetRootComponent());
+	HealthBar->SetWidgetSpace(EWidgetSpace::Screen);
 }
 
 void AAuraEnemyCharacter::BeginPlay()
@@ -23,10 +28,7 @@ void AAuraEnemyCharacter::BeginPlay()
 	InitializeAbilityActorInfo();
 	
 	// Server only: Initialize default attributes (these will replicate to clients)
-	if (HasAuthority())
-	{
-		InitializeDefaultAttributes();
-	}
+	if (HasAuthority()) { InitializeDefaultAttributes(); }
 }
 
 void AAuraEnemyCharacter::InitializeAbilityActorInfo()
