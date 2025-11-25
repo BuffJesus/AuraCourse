@@ -7,12 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Game/AuraGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Game/AuraGameModeBase.h" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +36,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://20" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://21" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -254,23 +249,7 @@
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
-      <workItem from="1764013609214" duration="17970000" />
-    </task>
-    <task id="LOCAL-00131" summary="Improved `AuraTargetDataUnderMouse` by adding fallback for remote player data and ensuring client-replicated target data is consumed before broadcasting.">
-      <option name="closed" value="true" />
-      <created>1763950139071</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1763950139071</updated>
-    </task>
-    <task id="LOCAL-00132" summary="Updated `GA_Aura_Fire_Bolt` Blueprint asset.">
-      <option name="closed" value="true" />
-      <created>1763950454223</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1763950454223</updated>
+      <workItem from="1764013609214" duration="18281000" />
     </task>
     <task id="LOCAL-00133" summary="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` with client-side cosmetic prediction, improved server/client projectile spawning logic, and added support for cosmetic projectiles with configurable lifespan.">
       <option name="closed" value="true" />
@@ -648,7 +627,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764043060227</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="Added support for initializing default attributes based on character class and level. Updated `AuraGameModeBase` and `AuraAbilitySystemBPLibrary` with relevant functionality and properties.">
+      <option name="closed" value="true" />
+      <created>1764043882448</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1764043882448</updated>
+    </task>
+    <task id="LOCAL-00181" summary="Added null check for `WorldContextObject` in `GetWidgetController` and included missing `AuraPlayerAttributeSet` header in `AuraAbilitySystemBPLibrary`.">
+      <option name="closed" value="true" />
+      <created>1764044170589</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1764044170589</updated>
+    </task>
+    <option name="localTasksCounter" value="182" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,8 +653,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated `.idea/workspace.xml` and categorized `ImpactEffect` and `ImpactSound` properties in `AuraProjectile` under `Aura|Effects`." />
-    <MESSAGE value="Added `AudioComponent` to `AuraProjectile` for sound functionality, updated related assets, and modified `TestMap` assets." />
     <MESSAGE value="Set default lifespan for `AuraProjectile` and updated `.idea/workspace.xml`." />
     <MESSAGE value="Added `ECC_Projectile` collision channel, integrated it into `AuraProjectile` and `DefaultEngine.ini`, and removed pitch adjustment in `AuraGA_ProjectileSpell`." />
     <MESSAGE value="Set mesh collision responses in `AuraBaseCharacter` and sphere collision responses in `AuraProjectile` using arrays for cleaner and more modular configuration." />
@@ -683,7 +676,9 @@
     <MESSAGE value="Organized attribute-related GameplayEffect and ModifierMagnitudeCalculation assets by class and shared types for better modularity and clarity. Updated `BP_Enemy_Base` with changes for compatibility." />
     <MESSAGE value="Reorganized GameplayEffect and ModifierMagnitudeCalculation assets by class and role types. Updated related asset paths and `.idea` configurations for improved modularity and project structure." />
     <MESSAGE value="Added and updated class-specific and shared GameplayEffect assets for attribute handling, including new `DA_Aura_Class_Info` and vital attribute effects." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added and updated class-specific and shared GameplayEffect assets for attribute handling, including new `DA_Aura_Class_Info` and vital attribute effects." />
+    <MESSAGE value="Added support for initializing default attributes based on character class and level. Updated `AuraGameModeBase` and `AuraAbilitySystemBPLibrary` with relevant functionality and properties." />
+    <MESSAGE value="Added null check for `WorldContextObject` in `GetWidgetController` and included missing `AuraPlayerAttributeSet` header in `AuraAbilitySystemBPLibrary`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added null check for `WorldContextObject` in `GetWidgetController` and included missing `AuraPlayerAttributeSet` header in `AuraAbilitySystemBPLibrary`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -48,29 +48,20 @@ UAuraAttributeMenuWidgetController* UAuraAbilitySystemBPLibrary::GetAttributeMen
 void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject, 
 	ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* ASC)
 {
-	if (!ASC || !WorldContextObject)
-	{
-		return;
-	}
+	if (!ASC || !WorldContextObject) { return; }
 	
 	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
-	if (!AuraGameMode)
-	{
-		return;
-	}
+	if (!AuraGameMode) { return; }
 	
 	const UAuraCharacterClassInfo* CharacterClassInfo = AuraGameMode->CharacterClassInfo;
-	if (!CharacterClassInfo)
-	{
-		return;
-	}
+	if (!CharacterClassInfo) { return; }
 	
 	const FCharacterClassDefaultInfo ClassDefaultInfo = CharacterClassInfo->GetDefaultInfo(CharacterClass);
 	
 	// Helper lambda to apply gameplay effects
 	auto ApplyGameplayEffect = [&](const TSubclassOf<UGameplayEffect>& EffectClass)
 	{
-		if (!EffectClass) return;
+		if (!EffectClass) { return; }
 		
 		FGameplayEffectContextHandle ContextHandle = ASC->MakeEffectContext();
 		ContextHandle.AddSourceObject(ASC->GetAvatarActor());
