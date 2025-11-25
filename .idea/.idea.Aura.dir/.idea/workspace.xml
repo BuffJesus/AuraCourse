@@ -8,67 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_Armor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_ArmorPenetration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_BlockChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_CriticalHitChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_CriticalHitDamage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_CriticalHitResistance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_HealthRegeneration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_ManaRegeneration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_MaxHealth.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_MaxMana.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_Armor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_ArmorPenetration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_BlockChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_CriticalHitChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_CriticalHitDamage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_CriticalHitResistance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_HealthRegeneration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_ManaRegeneration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_Armor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_ArmorPenetration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_BlockChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_CriticalHitChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_CriticalHitDamage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_CriticalHitResistance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_HealthRegeneration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_ManaRegeneration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_Armor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_ArmorPenetration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_BlockChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_CriticalHitChance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_CriticalHitDamage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_CriticalHitResistance.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_HealthRegeneration.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_ManaRegeneration.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/Effects/GE_Aura_Default_Attributes_Primary.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/Effects/GE_Aura_Default_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/Effects/GE_Aura_Default_Attributes_Secondary.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/Effects/GE_Aura_Default_Attributes_Vital.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Armor.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_ArmorPenetration.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_BlockChance.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_CriticalHitChance.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_CriticalHitDamage.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_CriticalHitResistance.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_HealthRegeneration.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_ManaRegeneration.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_MaxHealth.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_MaxMana.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/Effects/GE_Aura_Elementalist_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/Effects/GE_Aura_Elementalist_Attributes_Secondary.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/Effects/GE_Aura_Ranger_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/Effects/GE_Aura_Ranger_Attributes_Secondary.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Shared/MMC/MMC_Aura_Armor.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Shared/MMC/MMC_Aura_ArmorPenetration.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Shared/MMC/MMC_Aura_BlockChance.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Shared/MMC/MMC_Aura_CriticalHitChance.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Shared/MMC/MMC_Aura_CriticalHitDamage.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Shared/MMC/MMC_Aura_CriticalHitResistance.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Shared/MMC/MMC_Aura_HealthRegeneration.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Shared/MMC/MMC_Aura_ManaRegeneration.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/Effects/GE_Aura_Warrior_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/Effects/GE_Aura_Warrior_Attributes_Secondary.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Game/AuraGameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Game/AuraGameModeBase.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +22,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="39707" />
+    <option name="cachedIndexableFilesCount" value="39708" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -311,23 +254,7 @@
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
-      <workItem from="1764013609214" duration="16507000" />
-    </task>
-    <task id="LOCAL-00129" summary="Cleaned up syntax in `AuraTargetDataUnderMouse` by replacing `=` with uniform initialization and adjusted Blueprint metadata formatting for readability.">
-      <option name="closed" value="true" />
-      <created>1763947311553</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1763947311553</updated>
-    </task>
-    <task id="LOCAL-00130" summary="Added server/client target data replication and callback handling in `AuraTargetDataUnderMouse`, along with `SendCursorData` functionality.">
-      <option name="closed" value="true" />
-      <created>1763949767161</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1763949767162</updated>
+      <workItem from="1764013609214" duration="17970000" />
     </task>
     <task id="LOCAL-00131" summary="Improved `AuraTargetDataUnderMouse` by adding fallback for remote player data and ensuring client-replicated target data is consumed before broadcasting.">
       <option name="closed" value="true" />
@@ -705,7 +632,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764040281157</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <task id="LOCAL-00178" summary="Reorganized GameplayEffect and ModifierMagnitudeCalculation assets by class and role types. Updated related asset paths and `.idea` configurations for improved modularity and project structure.">
+      <option name="closed" value="true" />
+      <created>1764042399796</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1764042399796</updated>
+    </task>
+    <task id="LOCAL-00179" summary="Added and updated class-specific and shared GameplayEffect assets for attribute handling, including new `DA_Aura_Class_Info` and vital attribute effects.">
+      <option name="closed" value="true" />
+      <created>1764043060227</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1764043060227</updated>
+    </task>
+    <option name="localTasksCounter" value="180" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -715,8 +658,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Removed cosmetic projectile handling logic from `AuraProjectile` and `AuraGA_ProjectileSpell` to simplify server-authoritative spawning." />
-    <MESSAGE value="Added impact effects and sounds to `AuraProjectile` via `Destroyed` and `OnSphereOverlap`, with authority checks." />
     <MESSAGE value="Updated `.idea/workspace.xml` and categorized `ImpactEffect` and `ImpactSound` properties in `AuraProjectile` under `Aura|Effects`." />
     <MESSAGE value="Added `AudioComponent` to `AuraProjectile` for sound functionality, updated related assets, and modified `TestMap` assets." />
     <MESSAGE value="Set default lifespan for `AuraProjectile` and updated `.idea/workspace.xml`." />
@@ -740,7 +681,9 @@
     <MESSAGE value="Added `DefaultClass` to `ECharacterClass` in `AuraCharacterClassInfo`." />
     <MESSAGE value="Moved `SecondaryAttributes` from `CharacterClassInfo` to `ClassDefaults` and reorganized related GameplayEffect assets for improved structure and clarity." />
     <MESSAGE value="Organized attribute-related GameplayEffect and ModifierMagnitudeCalculation assets by class and shared types for better modularity and clarity. Updated `BP_Enemy_Base` with changes for compatibility." />
-    <option name="LAST_COMMIT_MESSAGE" value="Organized attribute-related GameplayEffect and ModifierMagnitudeCalculation assets by class and shared types for better modularity and clarity. Updated `BP_Enemy_Base` with changes for compatibility." />
+    <MESSAGE value="Reorganized GameplayEffect and ModifierMagnitudeCalculation assets by class and role types. Updated related asset paths and `.idea` configurations for improved modularity and project structure." />
+    <MESSAGE value="Added and updated class-specific and shared GameplayEffect assets for attribute handling, including new `DA_Aura_Class_Info` and vital attribute effects." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added and updated class-specific and shared GameplayEffect assets for attribute handling, including new `DA_Aura_Class_Info` and vital attribute effects." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

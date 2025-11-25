@@ -2,11 +2,15 @@
 
 
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
+
+#include "Game/AuraGameModeBase.h"
+#include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerState.h"
 #include "UI/Controllers/AuraAttributeMenuWidgetController.h"
 #include "UI/Controllers/AuraOverlayWidgetController.h"
 #include "UI/Controllers/AuraWidgetController.h"
 #include "UI/HUD/AuraHUD.h"
+
 
 template <typename T>
 T* UAuraAbilitySystemBPLibrary::GetWidgetController(const UObject* WorldContextObject,
@@ -37,4 +41,46 @@ UAuraAttributeMenuWidgetController* UAuraAbilitySystemBPLibrary::GetAttributeMen
 	const UObject* WorldContextObject)
 {
 	return GetWidgetController<UAuraAttributeMenuWidgetController>(WorldContextObject, &AAuraHUD::GetAttributeMenuWidgetController);
+}
+
+
+// ... existing code ...
+
+void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject, 
+	ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* ASC)
+{
+	if (!ASC || !WorldContextObject)
+	{
+		return;
+	}
+	
+	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	if (!AuraGameMode)
+	{
+		return;
+	}
+	
+	const UAuraCharacterClassInfo* CharacterClassInfo = AuraGameMode->CharacterClassInfo;
+	if (!CharacterClassInfo)
+	{
+		return;
+	}
+	
+	const FCharacterClassDefaultInfo ClassDefaultInfo = CharacterClassInfo->GetDefaultInfo(CharacterClass);
+	
+	// Helper lambda to apply gameplay effects
+	auto ApplyGameplayEffect = [&](const TSubclassOf<UGameplayEffect>& EffectClass)
+	{
+		if (!EffectClass) return;
+		
+		FGameplayEffectContextHandle ContextHandle = ASC->MakeEffectContext();
+		ContextHandle.AddSourceObject(ASC->GetAvatarActor());
+		const FGameplayEffectSpecHandle SpecHandle = ASC->MakeOutgoingSpec(EffectClass, Level, ContextHandle);
+		ASC->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
+	};
+	
+	// Apply all attribute effects
+	ApplyGameplayEffect(ClassDefaultInfo.PrimaryAttributes);
+	ApplyGameplayEffect(ClassDefaultInfo.SecondaryAttributes);
+	ApplyGameplayEffect(CharacterClassInfo->VitalAttributes);
 }
