@@ -126,6 +126,12 @@ public:
 	FGameplayAttributeData Mana;
 	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, Mana);
 #pragma endregion
+	
+#pragma region Meta Attribute Declaration
+	UPROPERTY(BlueprintReadOnly, Category = "Aura|Attributes|Meta")
+	FGameplayAttributeData IncomingDamage;
+	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, IncomingDamage);
+#pragma endregion
 
 #pragma region Primary Attribute Replication
 	UFUNCTION() void OnRep_Strength(const FGameplayAttributeData& Old) const;
