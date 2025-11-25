@@ -72,4 +72,8 @@ namespace Aura
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Three);
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Four);
 	}
+	namespace Damage
+	{
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage);
+	}
 }

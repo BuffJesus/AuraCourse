@@ -71,4 +71,8 @@ namespace Aura
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Three, "Aura.Input.3", "Button 3");
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Four, "Aura.Input.4", "Button 4");
 	}
+	namespace Damage
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Damage, "Aura.Damage", "Damage");
+	}
 }
