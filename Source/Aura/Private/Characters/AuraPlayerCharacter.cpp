@@ -5,7 +5,6 @@
 #include "Player/AuraPlayerState.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
-#include "AbilitySystem/AuraPlayerAttributeSet.h"
 #include "Player/AuraPlayerController.h"
 #include "UI/HUD/AuraHUD.h"
 
@@ -69,7 +68,7 @@ void AAuraPlayerCharacter::InitializeAbilityActorInfo()
 	AbilitySystemComponent->AbilityActorInfoSet();
 	
 	// Store in BASE class member via polymorphism (explicit cast needed for TObjectPtr)
-	AttributeSet = static_cast<UAuraAttributeSet*>(AuraPlayerState->GetAuraAttributeSet());
+	AttributeSet = Cast<UAuraAttributeSet>(AuraPlayerState->GetAuraAttributeSet());
 
 	// Cache controller on first access - cast happens once
 	if (!AuraPlayerController) { AuraPlayerController = GetController<AAuraPlayerController>(); }
