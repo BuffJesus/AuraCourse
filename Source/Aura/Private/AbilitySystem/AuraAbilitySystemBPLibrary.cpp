@@ -2,10 +2,10 @@
 
 
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
-
 #include "Game/AuraGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerState.h"
+#include "AbilitySystem/AuraPlayerAttributeSet.h"
 #include "UI/Controllers/AuraAttributeMenuWidgetController.h"
 #include "UI/Controllers/AuraOverlayWidgetController.h"
 #include "UI/Controllers/AuraWidgetController.h"
@@ -16,6 +16,8 @@ template <typename T>
 T* UAuraAbilitySystemBPLibrary::GetWidgetController(const UObject* WorldContextObject,
 													 T* (AAuraHUD::*GetControllerFunc)(const FWidgetControllerParams&))
 {
+	if (!WorldContextObject) { return nullptr; }
+	
 	if (APlayerController* PC { WorldContextObject->GetWorld()->GetFirstPlayerController() })
 	{
 		if (AAuraHUD* AuraHUD { Cast<AAuraHUD>(PC->GetHUD()) })
@@ -42,9 +44,6 @@ UAuraAttributeMenuWidgetController* UAuraAbilitySystemBPLibrary::GetAttributeMen
 {
 	return GetWidgetController<UAuraAttributeMenuWidgetController>(WorldContextObject, &AAuraHUD::GetAttributeMenuWidgetController);
 }
-
-
-// ... existing code ...
 
 void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject, 
 	ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* ASC)
