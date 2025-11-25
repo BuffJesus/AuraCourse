@@ -65,8 +65,7 @@ protected:
 	void InitializeDefaultAttributes() const;
 	
 	// Pure virtual function - child classes must provide their CharacterClass
-	virtual ECharacterClass GetCharacterClass() const = 0;
-
+	virtual ECharacterClass GetCharacterClass() const { return ECharacterClass::DefaultClass; }
 	void AddCharacterAbilities();
 	virtual void UpdateFacingTarget_Implementation(const FVector& Target) override;
 
