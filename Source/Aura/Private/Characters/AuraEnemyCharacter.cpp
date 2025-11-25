@@ -5,6 +5,7 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "Components/WidgetComponent.h"
+#include "UI/Widgets/AuraUserWidget.h"
 
 AAuraEnemyCharacter::AAuraEnemyCharacter()
 {
@@ -26,21 +27,28 @@ void AAuraEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	InitializeAbilityActorInfo();
-
-	if (const UAuraAttributeSet* AttributeSet { GetAuraAttributeSet() })
+	
+	if (UAuraUserWidget* AuraUserWidget { Cast<UAuraUserWidget>(HealthBar->GetUserWidgetObject()) })
 	{
-		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetHealthAttribute()).AddLambda(
-			[this](const FOnAttributeChangeData& Data)
-			{
-				OnHealthChanged.Broadcast(Data.NewValue);
-			}
+		AuraUserWidget->SetWidgetController(this);
+	}
+	
+	if (const UAuraAttributeSet* AuraAttributeSet { GetAuraAttributeSet() })
+	{
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetHealthAttribute()).AddLambda(
+			[this](const FOnAttributeChangeData& Data){ OnHealthChanged.Broadcast(Data.NewValue); }
 		);
-		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetMaxHealthAttribute()).AddLambda(
-			[this](const FOnAttributeChangeData& Data)
-			{
-				OnMaxHealthChanged.Broadcast(Data.NewValue);
-			}
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetMaxHealthAttribute()).AddLambda(
+			[this](const FOnAttributeChangeData& Data){ OnMaxHealthChanged.Broadcast(Data.NewValue); }
 		);
+		
+		// Only broadcast initial values if they're valid (replicated on clients)
+		// On clients, the delegates above will fire when attributes replicate
+		if (HasAuthority())
+		{
+			OnHealthChanged.Broadcast(AuraAttributeSet->GetHealth());
+			OnMaxHealthChanged.Broadcast(AuraAttributeSet->GetMaxHealth());
+		}
 	}
 }
 
@@ -49,7 +57,8 @@ void AAuraEnemyCharacter::InitializeAbilityActorInfo()
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 	AbilitySystemComponent->AbilityActorInfoSet();
 	
-	InitializeDefaultAttributes();
+	// Only initialize attributes on the server
+	if (HasAuthority()) { InitializeDefaultAttributes(); }
 }
 
 void AAuraEnemyCharacter::HighlightActor()
@@ -57,21 +66,15 @@ void AAuraEnemyCharacter::HighlightActor()
 	GetMesh()->SetRenderCustomDepth(true);
 	GetMesh()->SetCustomDepthStencilValue(CustomDepthRed);
 	
-	if (Weapon)
-	{
-		Weapon->SetRenderCustomDepth(true);
-		Weapon->SetCustomDepthStencilValue(CustomDepthRed);
-	}
+	if (Weapon) { Weapon->SetRenderCustomDepth(true); }
+	Weapon->SetCustomDepthStencilValue(CustomDepthRed);
 }
 
 void AAuraEnemyCharacter::UnHighlightActor()
 {
 	GetMesh()->SetRenderCustomDepth(false);
 	
-	if (Weapon)
-	{
-		Weapon->SetRenderCustomDepth(false);
-	}
+	if (Weapon) { Weapon->SetRenderCustomDepth(false); }
 }
 
 int32 AAuraEnemyCharacter::GetPlayerLevel() const
