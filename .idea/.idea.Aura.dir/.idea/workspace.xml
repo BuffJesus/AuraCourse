@@ -8,21 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSetMacros.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraEnemyAttributeSet.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraPlayerAttributeSet.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraCharacterClassInfo.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSetMacros.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraEnemyAttributeSet.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraPlayerAttributeSet.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraCharacterClassInfo.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerState.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://15" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://17" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -265,15 +252,7 @@
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
-      <workItem from="1764013609214" duration="13801000" />
-    </task>
-    <task id="LOCAL-00123" summary="Enhanced `AuraGA_ProjectileSpell` by integrating montage tasks with gameplay events, adding event-specific handlers, and ensuring proper ability termination logic.">
-      <option name="closed" value="true" />
-      <created>1763880580837</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1763880580837</updated>
+      <workItem from="1764013609214" duration="14144000" />
     </task>
     <task id="LOCAL-00124" summary="Enhanced `AuraGA_ProjectileSpell` and `AuraProjectile` by adding debug logs, improving server/client differentiation, and incorporating Niagara effects with replication.">
       <option name="closed" value="true" />
@@ -659,7 +638,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764034602420</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="Added `AuraPlayerAttributeSet` and `AuraEnemyAttributeSet` for player- and enemy-specific attributes. Introduced `AuraCharacterClassInfo` to manage default class-specific attributes.">
+      <option name="closed" value="true" />
+      <created>1764036683013</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1764036683013</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -669,7 +656,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `UpdateFacingTarget` BlueprintImplementableEvent to `AuraCombatInterface` and `GetMotionWarpingComponent` BlueprintCallable function to `AuraBaseCharacter`." />
     <MESSAGE value="Marked `UAuraCombatInterface` as `BlueprintType` and added `MinimalAPI` specifier for enhanced usability in Blueprints and minimal export." />
     <MESSAGE value="Made `UpdateFacingTarget` in `AuraCombatInterface` callable from Blueprints by adding `BlueprintCallable` specifier." />
     <MESSAGE value="Implemented `UpdateFacingTarget` as a `BlueprintNativeEvent` in `AuraCombatInterface` and added its functionality to `AuraBaseCharacter`, along with `FacingTargetWarpName` property for motion warping." />
@@ -694,7 +680,8 @@
     <MESSAGE value="Added health change delegates to `AuraEnemyCharacter` and initialized attribute change broadcasting for health and max health." />
     <MESSAGE value="Updated `AuraEnemyCharacter` to broadcast initial health and max health values for server authority and refactored health-related delegate initialization." />
     <MESSAGE value="Refined health change broadcasting in `AuraEnemyCharacter` to exclude invalid health values and removed debug messaging from `AuraAttributeSet`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refined health change broadcasting in `AuraEnemyCharacter` to exclude invalid health values and removed debug messaging from `AuraAttributeSet`." />
+    <MESSAGE value="Added `AuraPlayerAttributeSet` and `AuraEnemyAttributeSet` for player- and enemy-specific attributes. Introduced `AuraCharacterClassInfo` to manage default class-specific attributes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `AuraPlayerAttributeSet` and `AuraEnemyAttributeSet` for player- and enemy-specific attributes. Introduced `AuraCharacterClassInfo` to manage default class-specific attributes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

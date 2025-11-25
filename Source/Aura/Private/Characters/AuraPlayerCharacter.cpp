@@ -62,12 +62,10 @@ void AAuraPlayerCharacter::InitializeAbilityActorInfo()
 	AAuraPlayerState* AuraPlayerState { GetPlayerState<AAuraPlayerState>() };
 	check(AuraPlayerState);
 	
-	// Use typed getters - no casts needed!
 	AbilitySystemComponent = AuraPlayerState->GetAuraAbilitySystemComponent();
 	AbilitySystemComponent->InitAbilityActorInfo(AuraPlayerState, this);
 	AbilitySystemComponent->AbilityActorInfoSet();
 	
-	// Store in BASE class member via polymorphism (explicit cast needed for TObjectPtr)
 	AttributeSet = Cast<UAuraAttributeSet>(AuraPlayerState->GetAuraAttributeSet());
 
 	// Cache controller on first access - cast happens once
