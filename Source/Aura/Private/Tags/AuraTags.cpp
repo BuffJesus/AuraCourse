@@ -40,6 +40,12 @@ namespace Aura
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Mana, "Aura.Attributes.Vital.Mana", "Amount of mana an Actor can use");
 		}
 	}
+	namespace Effects
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Effects, "Aura.Effects", "Effects");
+		
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HitReact, "Aura.Effects.HitReact", "Hit reaction");
+	}
 	namespace Event
 	{
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event, "Aura.Event", "Event");

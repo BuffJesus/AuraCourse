@@ -41,6 +41,12 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Mana);
 		}
 	}
+	namespace Effects
+	{
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects);
+		
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HitReact);
+	}
 	namespace Event
 	{
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Event);
