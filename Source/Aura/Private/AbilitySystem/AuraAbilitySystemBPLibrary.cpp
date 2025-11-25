@@ -71,6 +71,6 @@ void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* Wor
 	
 	// Apply all attribute effects
 	ApplyGameplayEffect(ClassDefaultInfo.PrimaryAttributes);
-	ApplyGameplayEffect(ClassDefaultInfo.SecondaryAttributes);
+	ApplyGameplayEffect(ClassDefaultInfo.SecondaryAttributes);  // Changed from ClassDefaultInfo!
 	ApplyGameplayEffect(CharacterClassInfo->VitalAttributes);
 }

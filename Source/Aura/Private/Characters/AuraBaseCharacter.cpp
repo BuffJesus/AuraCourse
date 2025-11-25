@@ -1,5 +1,4 @@
-﻿
-// Not Sure Yet
+﻿// Not Sure Yet
 
 
 #include "Characters/AuraBaseCharacter.h"
@@ -7,6 +6,7 @@
 #include "AuraCollisionChannels.h"
 #include "MotionWarpingComponent.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "Components/CapsuleComponent.h"
 
 namespace 
@@ -49,23 +49,7 @@ void AAuraBaseCharacter::InitializeAbilityActorInfo()
 
 void AAuraBaseCharacter::InitializeDefaultAttributes() const
 {
-	// Apply Primary Attributes first
-	for (const TSubclassOf<UGameplayEffect>& Effect : DefaultPrimaryAttributes)
-	{
-		if (Effect) { ApplyDefaultGameplayEffect(Effect); }
-	}
-
-	// Apply Secondary Attributes second (these depend on Primary)
-	for (const TSubclassOf<UGameplayEffect>& Effect : DefaultSecondaryAttributes)
-	{
-		if (Effect) { ApplyDefaultGameplayEffect(Effect); }
-	}
-
-	// Apply Vital Attributes last (these depend on Secondary like MaxHealth/MaxMana)
-	for (const TSubclassOf<UGameplayEffect>& Effect : DefaultVitalAttributes)
-	{
-		if (Effect) { ApplyDefaultGameplayEffect(Effect); }
-	}
+	UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(this, CharacterClass, 1.f, AbilitySystemComponent);
 }
 
 void AAuraBaseCharacter::AddCharacterAbilities()
@@ -84,7 +68,7 @@ void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target
 	}
 }
 
-void AAuraBaseCharacter::ApplyDefaultGameplayEffect(const TSubclassOf<UGameplayEffect> EffectClass, const float Level) const
+void AAuraBaseCharacter::ApplyGameplayEffectClassToSelf(const TSubclassOf<UGameplayEffect> EffectClass, const float Level) const
 {
 	check(IsValid(AbilitySystemComponent));
 	check(EffectClass);

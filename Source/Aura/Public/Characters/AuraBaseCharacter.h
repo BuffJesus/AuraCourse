@@ -7,6 +7,7 @@
 #include "AbilitySystemInterface.h"
 #include "AuraCollisionChannels.h"
 #include "Interaction/AuraCombatInterface.h"
+#include "AbilitySystem/Data/AuraCharacterClassInfo.h"
 #include "AuraBaseCharacter.generated.h"
 
 class UGameplayAbility;
@@ -61,14 +62,8 @@ protected:
 
 	virtual void InitializeAbilityActorInfo();
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Attributes")
-	TArray<TSubclassOf<UGameplayEffect>> DefaultPrimaryAttributes;
-
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Attributes")
-	TArray<TSubclassOf<UGameplayEffect>> DefaultSecondaryAttributes;
-
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Attributes")
-	TArray<TSubclassOf<UGameplayEffect>> DefaultVitalAttributes;
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Character Class Defaults")
+	ECharacterClass CharacterClass { ECharacterClass::DefaultClass };
 
 	void InitializeDefaultAttributes() const;
 
@@ -82,7 +77,7 @@ protected:
 	FName FacingTargetWarpName = "FacingTarget";
 
 private:
-	void ApplyDefaultGameplayEffect(TSubclassOf<UGameplayEffect> EffectClass, float Level = 1.f) const;
+	void ApplyGameplayEffectClassToSelf(TSubclassOf<UGameplayEffect> EffectClass, float Level = 1.f) const;
 
 	UPROPERTY(EditAnywhere, Category = "Aura|Abilities")
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;

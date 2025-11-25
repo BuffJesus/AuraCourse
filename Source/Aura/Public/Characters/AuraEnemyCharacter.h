@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AuraBaseCharacter.h"
+#include "AbilitySystem/Data/AuraCharacterClassInfo.h"
 #include "UI/Controllers/AuraOverlayWidgetController.h"
 #include "Interaction/AuraEnemyInterface.h"
 #include "AuraEnemyCharacter.generated.h"
@@ -39,6 +40,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|UI")
 	FVector2D HealthBarDrawSize { FVector2D(500.f, 50.f) };
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|GAS")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|CharacterClassDefaults")
 	int32 Level { 1 };
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|CharacterClassDefaults")
+	ECharacterClass DefaultClass { ECharacterClass::Warrior };
 };

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemInterface.h"
+#include "AbilitySystem/Data/AuraCharacterClassInfo.h"
 #include "GameFramework/PlayerState.h"
 #include "AuraPlayerState.generated.h"
 
@@ -40,8 +41,11 @@ protected:
 	UPROPERTY()
 	TObjectPtr<UAuraPlayerAttributeSet> AttributeSet;
 
-	UPROPERTY(VisibleAnywhere, ReplicatedUsing = OnRep_Level, Category = "Aura")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, ReplicatedUsing = OnRep_Level, Category = "Aura|CharacterClassDefaults")
 	int32 Level { 1 };
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|CharacterClassDefaults")
+	ECharacterClass DefaultClass { ECharacterClass::Elementalist };
 
 	UFUNCTION()
 	void OnRep_Level(int32 OldLevel);
