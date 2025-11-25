@@ -62,9 +62,6 @@ protected:
 
 	virtual void InitializeAbilityActorInfo();
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Character Class Defaults")
-	ECharacterClass CharacterClass { ECharacterClass::DefaultClass };
-
 	void InitializeDefaultAttributes() const;
 
 	void AddCharacterAbilities();

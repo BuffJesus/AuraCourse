@@ -43,4 +43,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|CharacterClassDefaults")
 	int32 Level { 1 };
 	
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Character Class Defaults")
+	ECharacterClass CharacterClass { ECharacterClass::Warrior };
+	
 };
