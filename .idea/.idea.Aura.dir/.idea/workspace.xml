@@ -9,11 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Goblins/BP_Goblin_Slingshot.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Goblins/BP_Goblin_Slingshot.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Goblins/BP_Goblin_Spear.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Goblins/BP_Goblin_Spear.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_Aura_Enemy_HealthBar.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/ProgressBar/WBP_Aura_Enemy_HealthBar.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://11" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://15" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -249,15 +245,7 @@
       <workItem from="1763871917907" duration="9969000" />
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
-      <workItem from="1764013609214" duration="9417000" />
-    </task>
-    <task id="LOCAL-00121" summary="Simplified `AuraGA_ProjectileSpell` by removing unused include, updating `WaitGameplayEvent` parameters, and ensuring ability ends after projectile spawn.">
-      <option name="closed" value="true" />
-      <created>1763879493790</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1763879493790</updated>
+      <workItem from="1764013609214" duration="11500000" />
     </task>
     <task id="LOCAL-00122" summary="Added ability termination logic to `AuraGA_ProjectileSpell` for cases where `WaitGameplayEvent` fails or `CombatInterface` is unavailable.">
       <option name="closed" value="true" />
@@ -643,7 +631,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764031446740</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="Updated `AuraEnemyCharacter` to broadcast initial health and max health values for server authority and refactored health-related delegate initialization.">
+      <option name="closed" value="true" />
+      <created>1764032407929</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1764032407929</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -653,7 +649,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Compiles now" />
     <MESSAGE value="Updated `.idea/workspace.xml` to reflect recent file changes, added `M_FloorTest.uasset`, and modified `TestMap` assets." />
     <MESSAGE value="Added `UpdateFacingTarget` BlueprintImplementableEvent to `AuraCombatInterface` and `GetMotionWarpingComponent` BlueprintCallable function to `AuraBaseCharacter`." />
     <MESSAGE value="Marked `UAuraCombatInterface` as `BlueprintType` and added `MinimalAPI` specifier for enhanced usability in Blueprints and minimal export." />
@@ -678,7 +673,8 @@
     <MESSAGE value="Refactored widget controller initialization in `AuraHUD` and removed server authority check for broadcasting initial values. Simplified ability actor initialization in `AuraEnemyCharacter`." />
     <MESSAGE value="Added health bar component to `AuraEnemyCharacter` with configurable size and offset. Updated initialization logic to attach and display the health bar." />
     <MESSAGE value="Added health change delegates to `AuraEnemyCharacter` and initialized attribute change broadcasting for health and max health." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added health change delegates to `AuraEnemyCharacter` and initialized attribute change broadcasting for health and max health." />
+    <MESSAGE value="Updated `AuraEnemyCharacter` to broadcast initial health and max health values for server authority and refactored health-related delegate initialization." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `AuraEnemyCharacter` to broadcast initial health and max health values for server authority and refactored health-related delegate initialization." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

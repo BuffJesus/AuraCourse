@@ -36,7 +36,10 @@ void AAuraEnemyCharacter::BeginPlay()
 	if (const UAuraAttributeSet* AuraAttributeSet { GetAuraAttributeSet() })
 	{
 		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetHealthAttribute()).AddLambda(
-			[this](const FOnAttributeChangeData& Data){ OnHealthChanged.Broadcast(Data.NewValue); }
+			[this](const FOnAttributeChangeData& Data)
+			{
+				if (Data.NewValue > 0.f) { OnHealthChanged.Broadcast(Data.NewValue); }
+			}
 		);
 		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetMaxHealthAttribute()).AddLambda(
 			[this](const FOnAttributeChangeData& Data){ OnMaxHealthChanged.Broadcast(Data.NewValue); }
