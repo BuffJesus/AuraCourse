@@ -11,6 +11,7 @@
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Tags/AuraTags.h"
 
 namespace 
 {
@@ -74,7 +75,17 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 	if (HasAuthority())
 	{
 		if (UAbilitySystemComponent* TargetASC { UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor) })
-		{ TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get()); }
+		{
+			TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get());
+			// 2. Send gameplay event to trigger HitReact ability
+			FGameplayEventData EventData;
+			EventData.Instigator = GetOwner();
+			EventData.Target = OtherActor;
+            
+			// This tag should match your HitReact ability's trigger tag
+			const FGameplayTag EventTag { Aura::Event::HitReact };
+			TargetASC->HandleGameplayEvent(EventTag, &EventData);
+		}
 		
 		Destroy();
 	}

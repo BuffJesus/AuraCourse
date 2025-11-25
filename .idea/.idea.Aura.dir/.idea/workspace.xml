@@ -8,9 +8,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/GA_Aura_Ability_HitReact.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/GE_Aura_HitReact.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_HitReact.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +31,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="39708" />
+    <option name="cachedIndexableFilesCount" value="39710" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -41,7 +50,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://4" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -73,6 +83,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/Controllers/AuraWidgetController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/HUD/AuraHUD.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/Widgets/AuraUserWidget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_HitReact.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGameplayAbility.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" root0="FORCE_HIGHLIGHTING" />
@@ -255,15 +266,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="4982000" />
-    </task>
-    <task id="LOCAL-00145" summary="Compiles now">
-      <option name="closed" value="true" />
-      <created>1763958033279</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1763958033279</updated>
+      <workItem from="1764074021602" duration="15745000" />
     </task>
     <task id="LOCAL-00146" summary="Updated `.idea/workspace.xml` to reflect recent file changes, added `M_FloorTest.uasset`, and modified `TestMap` assets.">
       <option name="closed" value="true" />
@@ -649,7 +652,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764079462297</updated>
     </task>
-    <option name="localTasksCounter" value="194" />
+    <task id="LOCAL-00194" summary="Added `Effects` and `HitReact` gameplay tags in `AuraTags` for extended tag-based functionality.">
+      <option name="closed" value="true" />
+      <created>1764080753846</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1764080753847</updated>
+    </task>
+    <option name="localTasksCounter" value="195" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -659,7 +670,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added health change delegates to `AuraEnemyCharacter` and initialized attribute change broadcasting for health and max health." />
     <MESSAGE value="Updated `AuraEnemyCharacter` to broadcast initial health and max health values for server authority and refactored health-related delegate initialization." />
     <MESSAGE value="Refined health change broadcasting in `AuraEnemyCharacter` to exclude invalid health values and removed debug messaging from `AuraAttributeSet`." />
     <MESSAGE value="Added `AuraPlayerAttributeSet` and `AuraEnemyAttributeSet` for player- and enemy-specific attributes. Introduced `AuraCharacterClassInfo` to manage default class-specific attributes." />
@@ -684,7 +694,8 @@
     <MESSAGE value="Added support for `Damage` gameplay tag in `AuraTags`, applied tag-based damage magnitude assignment in `AuraGA_ProjectileSpell`, and added on-screen debug message for player death in `AuraAttributeSet`." />
     <MESSAGE value="Updated `GE_Aura_Test_Damage` asset." />
     <MESSAGE value="Applied scalable damage calculation in `AuraGA_ProjectileSpell`, added `Damage` property to `AuraGameplayAbility`, and removed redundant debug message for player death in `AuraAttributeSet`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Applied scalable damage calculation in `AuraGA_ProjectileSpell`, added `Damage` property to `AuraGameplayAbility`, and removed redundant debug message for player death in `AuraAttributeSet`." />
+    <MESSAGE value="Added `Effects` and `HitReact` gameplay tags in `AuraTags` for extended tag-based functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `Effects` and `HitReact` gameplay tags in `AuraTags` for extended tag-based functionality." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

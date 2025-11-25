@@ -50,6 +50,7 @@ namespace Aura
 	{
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event, "Aura.Event", "Event");
 		
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HitReact, "Aura.Event.HitReact", "Hit reaction");
 		namespace Montage
 		{
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Montage, "Aura.Event.Montage", "Montage");

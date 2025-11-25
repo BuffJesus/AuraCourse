@@ -2,9 +2,11 @@
 
 #include "Characters/AuraEnemyCharacter.h"
 #include "Aura/Aura.h"
+#include "Tags/AuraTags.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraEnemyAttributeSet.h"
 #include "Components/WidgetComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "UI/Widgets/AuraUserWidget.h"
 
 AAuraEnemyCharacter::AAuraEnemyCharacter()
@@ -26,6 +28,7 @@ AAuraEnemyCharacter::AAuraEnemyCharacter()
 void AAuraEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
 	InitializeAbilityActorInfo();
 	
 	if (UAuraUserWidget* AuraUserWidget { Cast<UAuraUserWidget>(HealthBar->GetUserWidgetObject()) })
@@ -42,6 +45,11 @@ void AAuraEnemyCharacter::BeginPlay()
 			[this](const FOnAttributeChangeData& Data){ OnMaxHealthChanged.Broadcast(Data.NewValue); }
 		);
 		
+		AbilitySystemComponent->RegisterGameplayTagEvent(Aura::Effects::HitReact, EGameplayTagEventType::NewOrRemoved).AddUObject(
+			this,
+			&AAuraEnemyCharacter::HitReactTagChanged
+		);
+		
 		// Only broadcast initial values if they're valid (replicated on clients)
 		// On clients, the delegates above will fire when attributes replicate
 		if (HasAuthority())
@@ -50,6 +58,12 @@ void AAuraEnemyCharacter::BeginPlay()
 			OnMaxHealthChanged.Broadcast(AuraAttributeSet->GetMaxHealth());
 		}
 	}
+}
+
+void AAuraEnemyCharacter::HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
+{
+	bHasHitReactTag = NewCount > 0;
+	GetCharacterMovement()->MaxWalkSpeed = bHasHitReactTag ? 0.f : BaseWalkSpeed;
 }
 
 void AAuraEnemyCharacter::InitializeAbilityActorInfo()

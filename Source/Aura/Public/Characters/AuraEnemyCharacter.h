@@ -29,6 +29,14 @@ public:
 	
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnMaxHealthChanged;
+	
+	void HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Aura|Combat")
+	bool bHasHitReactTag { false };
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Aura|Combat")
+	float BaseWalkSpeed { 250.f };
 
 protected:
 	virtual void BeginPlay() override;
@@ -43,7 +51,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|CharacterClassDefaults")
 	int32 Level { 1 };
 	
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Character Class Defaults")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|CharacterClassDefaults")
 	ECharacterClass CharacterClass { ECharacterClass::Warrior };
 	
 	virtual ECharacterClass GetCharacterClass() const override { return CharacterClass; }

@@ -45,6 +45,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Aura|Combat")
 	FORCEINLINE UMotionWarpingComponent* GetMotionWarpingComponent() const { return MotionWarpingComponent; }
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Combat")
+	TObjectPtr<UAnimMontage> HitReactMontage;
+	
 protected:
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;

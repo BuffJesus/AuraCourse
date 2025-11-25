@@ -51,6 +51,8 @@ namespace Aura
 	{
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Event);
 		
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HitReact);
+		
 		namespace Montage
 		{
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage);
