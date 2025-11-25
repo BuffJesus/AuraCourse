@@ -12,10 +12,13 @@ UAuraGA_HitReact::UAuraGA_HitReact()
 	// This should match a tag like "Event.HitReact" or "Ability.HitReact"
 }
 
+
 void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                        const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
                                        const FGameplayEventData* TriggerEventData)
 {
+	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_HitReact::ActivateAbility called!"));
+	
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 	
 	// Apply the HitReact Gameplay Effect to self FIRST
@@ -32,6 +35,7 @@ void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	AActor* AvatarActor = GetAvatarActorFromActorInfo();
 	if (!AvatarActor)
 	{
+		UE_LOG(LogTemp, Error, TEXT("No AvatarActor found!"));
 		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
 		return;
 	}
@@ -46,6 +50,8 @@ void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	// Play the montage and wait for it to complete
 	if (MontageToPlay)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Playing HitReact montage: %s"), *MontageToPlay->GetName());
+		
 		UAbilityTask_PlayMontageAndWait* PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
 			this,
 			NAME_None,
@@ -61,6 +67,7 @@ void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	}
 	else
 	{
+		UE_LOG(LogTemp, Warning, TEXT("No HitReact montage found, ending ability"));
 		EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
 	}
 }
