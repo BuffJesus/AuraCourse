@@ -49,6 +49,12 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	const IAuraCombatInterface* SourceCombatInterface = Cast<IAuraCombatInterface>(SourceAvatar);
 	const IAuraCombatInterface* TargetCombatInterface = Cast<IAuraCombatInterface>(TargetAvatar);
 	
+	// Null check to ensure we have valid combat interfaces
+	if (!SourceCombatInterface || !TargetCombatInterface)
+	{
+		return;
+	}
+	
 	const FGameplayEffectSpec Spec { ExecutionParams.GetOwningSpec() };
 	
 	const FGameplayTagContainer* SourceTags { Spec.CapturedSourceTags.GetAggregatedTags() };
@@ -78,18 +84,63 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	SourceArmorPenetration = FMath::Max<float>(SourceArmorPenetration, 0.f);
 
 	const UAuraCharacterClassInfo* CharacterClassInfo = UAuraAbilitySystemBPLibrary::GetCharacterClassInfo(SourceAvatar);
-	if (!CharacterClassInfo) { return; }
+	if (!CharacterClassInfo) 
+	{ 
+		UE_LOG(LogTemp, Error, TEXT("CharacterClassInfo is NULL!"));
+		return; 
+	}
+
+	if (!CharacterClassInfo->DamageCalcCoefficients)
+	{
+		UE_LOG(LogTemp, Error, TEXT("DamageCalcCoefficients is NULL!"));
+		return;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("DamageCalcCoefficients: %s"), *CharacterClassInfo->DamageCalcCoefficients->GetName());
+
 	const FRealCurve* ArmorPenCurve { CharacterClassInfo->DamageCalcCoefficients->FindCurve(FName("ArmorPenetration"), FString()) };
-	if (!ArmorPenCurve) { return; }
-	const float ArmorPenCoefficient { ArmorPenCurve->Eval(SourceCombatInterface->GetCharacterLevel()) };
+	if (!ArmorPenCurve) 
+	{ 
+		UE_LOG(LogTemp, Error, TEXT("ArmorPenCurve not found!"));
+		return; 
+	}
+	
+	const int32 SourceLevel = SourceCombatInterface->GetCharacterLevel();
+	const int32 TargetLevel = TargetCombatInterface->GetCharacterLevel();
+	const float ArmorPenCoefficient { ArmorPenCurve->Eval(SourceLevel) };
+	
+	UE_LOG(LogTemp, Warning, TEXT("=== DAMAGE CALC DEBUG ==="));
+	UE_LOG(LogTemp, Warning, TEXT("Initial Damage: %.2f"), Damage);
+	UE_LOG(LogTemp, Warning, TEXT("Source Level: %d, Target Level: %d"), SourceLevel, TargetLevel);
+	UE_LOG(LogTemp, Warning, TEXT("TargetArmor: %.2f, SourceArmorPen: %.2f"), TargetArmor, SourceArmorPenetration);
+	UE_LOG(LogTemp, Warning, TEXT("ArmorPenCoefficient (at level %d): %.4f"), SourceLevel, ArmorPenCoefficient);
 	
 	const float EffectiveArmor { TargetArmor * (100 - SourceArmorPenetration * ArmorPenCoefficient) / 100.f };
+	UE_LOG(LogTemp, Warning, TEXT("EffectiveArmor: %.2f"), EffectiveArmor);
 
 	const FRealCurve* EffectiveArmorCurve { CharacterClassInfo->DamageCalcCoefficients->FindCurve(FName("EffectiveArmor"), FString()) };
-	if (!EffectiveArmorCurve) { return; }
-	const float EffectiveArmorCoefficient { EffectiveArmorCurve->Eval(TargetCombatInterface->GetCharacterLevel()) };
+	if (!EffectiveArmorCurve) 
+	{ 
+		UE_LOG(LogTemp, Error, TEXT("EffectiveArmorCurve not found!"));
+		return; 
+	}
+
+	// Check if we're finding the same curve twice (this would be the bug!)
+	UE_LOG(LogTemp, Warning, TEXT("Are curves the same? %s"), (ArmorPenCurve == EffectiveArmorCurve) ? TEXT("YES - THIS IS THE BUG!") : TEXT("No"));
+
+	const float EffectiveArmorCoefficient { EffectiveArmorCurve->Eval(TargetLevel) };
+	
+	UE_LOG(LogTemp, Warning, TEXT("EffectiveArmorCoefficient (at level %d): %.4f"), TargetLevel, EffectiveArmorCoefficient);
+	
+	// Manual check to see what the curve should actually return
+	UE_LOG(LogTemp, Warning, TEXT("Manual check - EffectiveArmorCurve at level 1: %.4f"), EffectiveArmorCurve->Eval(1));
+	UE_LOG(LogTemp, Warning, TEXT("Manual check - EffectiveArmorCurve at level 10: %.4f"), EffectiveArmorCurve->Eval(10));
+	UE_LOG(LogTemp, Warning, TEXT("Manual check - EffectiveArmorCurve at level 11: %.4f"), EffectiveArmorCurve->Eval(11));
 	
 	Damage *= (100 - EffectiveArmor * EffectiveArmorCoefficient) / 100.f;
+	
+	UE_LOG(LogTemp, Warning, TEXT("Final Damage: %.2f"), Damage);
+	UE_LOG(LogTemp, Warning, TEXT("========================="));
 	
 	const FGameplayModifierEvaluatedData EvaluatedData(UAuraAttributeSet::GetIncomingDamageAttribute(), EGameplayModOp::Additive, Damage);
 	OutExecutionOutput.AddOutputModifier(EvaluatedData);
