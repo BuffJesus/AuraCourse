@@ -77,9 +77,14 @@ namespace Aura
 			namespace Projectile
 			{
 				UE_DECLARE_GAMEPLAY_TAG_EXTERN(Projectile);
-            
-				UE_DECLARE_GAMEPLAY_TAG_EXTERN(Flight);
-				UE_DECLARE_GAMEPLAY_TAG_EXTERN(Impact);
+				
+				namespace Fireball
+				{
+					UE_DECLARE_GAMEPLAY_TAG_EXTERN(Fireball);
+					
+					UE_DECLARE_GAMEPLAY_TAG_EXTERN(Flight);
+					UE_DECLARE_GAMEPLAY_TAG_EXTERN(Impact);
+				}
 			}
 		}
 	}
