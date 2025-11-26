@@ -5,7 +5,9 @@
 #include "GameFramework/Character.h"
 #include "GameplayEffectExtension.h"
 #include "Interaction/AuraCombatInterface.h"
+#include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
+#include "Player/AuraPlayerController.h"
 #include "Tags/AuraTags.h"
 
 #pragma region Macros
@@ -116,7 +118,20 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				{
 					CombatInterface->Die();
 				}
+				ShowFloatingText(Props, LocalIncomingDamage);
 			}
+		}
+	}
+}
+
+void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, const float Damage) const
+{
+	if (Props.SourceCharacter != Props.TargetCharacter)
+	{
+		if (AAuraPlayerController* PC { Cast<AAuraPlayerController>
+			(UGameplayStatics::GetPlayerController(Props.SourceCharacter, 0)) })
+		{
+			PC->ShowDamageNumber(Damage, Props.TargetCharacter);
 		}
 	}
 }

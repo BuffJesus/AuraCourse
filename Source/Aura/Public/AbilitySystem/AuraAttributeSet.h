@@ -166,4 +166,5 @@ private:
 	void ClampVitalAttribute(const FGameplayAttribute& VitalAttribute, float& NewValue) const;
 	void ClampMaxAttribute(const FGameplayAttribute& MaxAttribute, float& NewValue) const;
 	void ClampCurrentVitalAttributes();
+	void ShowFloatingText(const FEffectProperties& Props, float Damage) const;
 };
