@@ -46,9 +46,9 @@ void AAuraProjectile::BeginPlay()
 	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap);
 
 	// Cache the source ASC from the owner
-	if (AActor* Owner = GetOwner())
+	if (AActor* OwnerActor = GetOwner())
 	{
-		SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Owner);
+		SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OwnerActor);
 	}
 
 	// Start flight cue if configured (Add = start looping)
