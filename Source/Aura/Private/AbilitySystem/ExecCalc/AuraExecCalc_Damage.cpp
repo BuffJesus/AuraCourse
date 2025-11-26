@@ -2,11 +2,11 @@
 
 
 #include "AbilitySystem/ExecCalc/AuraExecCalc_Damage.h"
-#include "AbilitySystem/Data/AuraDamageCalcConfig.h"
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AuraCharacterClassInfo.h"
+#include "AbilitySystem/Data/AuraDamageCalcConfig.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
 

@@ -8,7 +8,7 @@
 
 class UAuraDamageCalcConfig;
 
-UCLASS()
+UCLASS(Blueprintable, BlueprintType)
 class AURA_API UAuraExecCalc_Damage : public UGameplayEffectExecutionCalculation
 {
 	GENERATED_BODY()
@@ -23,5 +23,5 @@ public:
 
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|DamageCalculation")
-	UAuraDamageCalcConfig* DamageConfig;
+	TObjectPtr<UAuraDamageCalcConfig> DamageConfig;
 };
