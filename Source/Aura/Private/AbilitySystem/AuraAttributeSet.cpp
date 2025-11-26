@@ -112,13 +112,15 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			const float NewHealth { GetHealth() - LocalIncomingDamage };
 			SetHealth(FMath::Clamp(NewHealth, 0.f, GetMaxHealth()));
 
+			// Show damage text for ALL damage, not just fatal
+			ShowFloatingText(Props, LocalIncomingDamage);
+
 			if (const bool bFatal { NewHealth <= 0.f })
 			{
 				if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(Props.TargetAvatarActor))
 				{
 					CombatInterface->Die();
 				}
-				ShowFloatingText(Props, LocalIncomingDamage);
 			}
 		}
 	}
