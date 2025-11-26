@@ -24,6 +24,8 @@ public:
 
 	virtual int32 GetPlayerLevel() const override;
 	
+	virtual void Die() override;
+	
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnHealthChanged;
 	
@@ -37,6 +39,9 @@ public:
 	
 	UPROPERTY(BlueprintReadOnly, Category = "Aura|Combat")
 	float BaseWalkSpeed { 250.f };
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Combat")
+	float LifeSpan { 5.f };
 
 protected:
 	virtual void BeginPlay() override;

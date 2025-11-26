@@ -24,6 +24,11 @@ class AURA_API AAuraBaseCharacter : public ACharacter, public IAbilitySystemInte
 
 public:
 	AAuraBaseCharacter();
+	
+	virtual void Die() override;
+	
+	UFUNCTION(NetMulticast, Reliable)
+	virtual void MulticastHandleDeath();
 
 	// Interface requirement - returns base type
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;

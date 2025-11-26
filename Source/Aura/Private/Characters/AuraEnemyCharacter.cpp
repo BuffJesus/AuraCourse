@@ -97,3 +97,9 @@ int32 AAuraEnemyCharacter::GetPlayerLevel() const
 {
 	return Level;
 }
+
+void AAuraEnemyCharacter::Die()
+{
+	SetLifeSpan(LifeSpan);
+	Super::Die();
+}
