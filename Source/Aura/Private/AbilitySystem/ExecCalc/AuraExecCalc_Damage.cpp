@@ -49,12 +49,12 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
 	auto GetAvatarFromASC = [](const UAbilitySystemComponent* ASC) -> const AActor*
-    {
-    	return ASC ? ASC->GetAvatarActor() : nullptr;
-    };
+	{
+		return ASC ? ASC->GetAvatarActor() : nullptr;
+	};
 
-    const AActor* SourceAvatar { GetAvatarFromASC(ExecutionParams.GetSourceAbilitySystemComponent()) };
-    const AActor* TargetAvatar { GetAvatarFromASC(ExecutionParams.GetTargetAbilitySystemComponent()) };
+	const AActor* SourceAvatar { GetAvatarFromASC(ExecutionParams.GetSourceAbilitySystemComponent()) };
+	const AActor* TargetAvatar { GetAvatarFromASC(ExecutionParams.GetTargetAbilitySystemComponent()) };
 	const IAuraCombatInterface* SourceCombatInterface = Cast<IAuraCombatInterface>(SourceAvatar);
 	const IAuraCombatInterface* TargetCombatInterface = Cast<IAuraCombatInterface>(TargetAvatar);
 	
@@ -76,6 +76,8 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	// Get Damage Set by Caller Magnitude
 	float Damage { Spec.GetSetByCallerMagnitude(Aura::Damage::Damage) };
 	
+	// === BLOCK CHANCE CALCULATION ===
+	
 	// Capture TargetBlockChance on Target, determine if successful
 	float TargetBlockChance { 0.f };
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().BlockChanceDef, EvalParams, TargetBlockChance);
@@ -83,6 +85,8 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	
 	const bool bBlocked { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= TargetBlockChance };
 	Damage = bBlocked ? Damage * 0.5f : Damage;
+	
+	// === ARMOR MITIGATION CALCULATION ===
 	
 	float TargetArmor { 0.f };
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvalParams, TargetArmor);
@@ -124,7 +128,7 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	UE_LOG(LogTemp, Warning, TEXT("TargetArmor: %.2f, SourceArmorPen: %.2f"), TargetArmor, SourceArmorPenetration);
 	UE_LOG(LogTemp, Warning, TEXT("ArmorPenCoefficient (at level %d): %.4f"), SourceLevel, ArmorPenCoefficient);
 	
-	const float EffectiveArmor { TargetArmor * (100 - SourceArmorPenetration * ArmorPenCoefficient) / 100.f };
+	const float EffectiveArmor { TargetArmor * (100.f - SourceArmorPenetration * ArmorPenCoefficient) / 100.f };
 	UE_LOG(LogTemp, Warning, TEXT("EffectiveArmor: %.2f"), EffectiveArmor);
 
 	const FRealCurve* EffectiveArmorCurve { CharacterClassInfo->DamageCalcCoefficients->FindCurve(FName("EffectiveArmor"), FString()) };
@@ -134,19 +138,11 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 		return; 
 	}
 
-	// Check if we're finding the same curve twice (this would be the bug!)
-	UE_LOG(LogTemp, Warning, TEXT("Are curves the same? %s"), (ArmorPenCurve == EffectiveArmorCurve) ? TEXT("YES - THIS IS THE BUG!") : TEXT("No"));
-
 	const float EffectiveArmorCoefficient { EffectiveArmorCurve->Eval(TargetLevel) };
 	
 	UE_LOG(LogTemp, Warning, TEXT("EffectiveArmorCoefficient (at level %d): %.4f"), TargetLevel, EffectiveArmorCoefficient);
 	
-	// Manual check to see what the curve should actually return
-	UE_LOG(LogTemp, Warning, TEXT("Manual check - EffectiveArmorCurve at level 1: %.4f"), EffectiveArmorCurve->Eval(1));
-	UE_LOG(LogTemp, Warning, TEXT("Manual check - EffectiveArmorCurve at level 10: %.4f"), EffectiveArmorCurve->Eval(10));
-	UE_LOG(LogTemp, Warning, TEXT("Manual check - EffectiveArmorCurve at level 11: %.4f"), EffectiveArmorCurve->Eval(11));
-	
-	Damage *= (100 - EffectiveArmor * EffectiveArmorCoefficient) / 100.f;
+	Damage *= (100.f - EffectiveArmor * EffectiveArmorCoefficient) / 100.f;
 	
 	UE_LOG(LogTemp, Warning, TEXT("Damage after armor: %.2f"), Damage);
 	
@@ -162,20 +158,27 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().CriticalHitResistanceDef, EvalParams, TargetCriticalHitResistance);
 	TargetCriticalHitResistance = FMath::Max<float>(TargetCriticalHitResistance, 0.f);
 	
-	// 4. BONUS: Use CriticalHitResistanceCoefficient curve to scale resistance by target level
+	// 3. ArmorPenetration reduces CriticalHitResistance (mirrors armor calculation)
+	const float EffectiveCriticalHitResistance { TargetCriticalHitResistance * (100.f - SourceArmorPenetration * ArmorPenCoefficient) / 100.f };
+	
+	UE_LOG(LogTemp, Warning, TEXT("SourceCritChance: %.2f, TargetCritResist: %.2f, EffectiveCritResist: %.2f"), 
+		SourceCriticalHitChance, TargetCriticalHitResistance, EffectiveCriticalHitResistance);
+	
+	// 4. Get CriticalHitResistance coefficient curve
 	const FRealCurve* CriticalHitResistanceCurve { CharacterClassInfo->DamageCalcCoefficients->FindCurve(FName("CriticalHitResistance"), FString()) };
 	const float CriticalHitResistanceCoefficient = CriticalHitResistanceCurve ? CriticalHitResistanceCurve->Eval(TargetLevel) : 1.f;
 	
-	// Apply resistance to reduce crit chance (clamped to 0 minimum)
-	const float EffectiveCriticalHitChance { FMath::Max(0.f, SourceCriticalHitChance - TargetCriticalHitResistance * CriticalHitResistanceCoefficient) };
+	// 5. Apply resistance as percentage reduction to crit chance (mirrors damage mitigation)
+	float EffectiveCriticalHitChance { SourceCriticalHitChance * (100.f - EffectiveCriticalHitResistance * CriticalHitResistanceCoefficient) / 100.f };
+	EffectiveCriticalHitChance = FMath::Max(0.f, EffectiveCriticalHitChance);
 	
-	UE_LOG(LogTemp, Warning, TEXT("CritChance: %.2f, CritResist: %.2f, CritResistCoef: %.2f, EffectiveCritChance: %.2f"), 
-		SourceCriticalHitChance, TargetCriticalHitResistance, CriticalHitResistanceCoefficient, EffectiveCriticalHitChance);
+	UE_LOG(LogTemp, Warning, TEXT("CritResistCoef: %.2f, Final EffectiveCritChance: %.2f"), 
+		CriticalHitResistanceCoefficient, EffectiveCriticalHitChance);
 	
-	// Determine if this is a critical hit
+	// 6. Determine if this is a critical hit
 	const bool bCriticalHit { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= EffectiveCriticalHitChance };
 	
-	// 3. If critical hit, double damage and add CriticalHitDamage bonus
+	// 7. If critical hit, double damage and add CriticalHitDamage bonus
 	if (bCriticalHit)
 	{
 		float SourceCriticalHitDamage { 0.f };
