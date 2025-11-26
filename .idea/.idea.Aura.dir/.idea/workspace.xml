@@ -8,15 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/BP_Aura_DamageTextComponent.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/UI/Widgets/AuraDamageTextComponent.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/UI/Widgets/AuraDamageTextComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/WBP_Aura_DamageText.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/WBP_Aura_DamageText.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Player/BP_AuraPlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Player/BP_AuraPlayerController.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/BP_Aura_DamageTextComponent.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/BP_Aura_DamageTextComponent.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://18" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://19" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -264,23 +257,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="26996000" />
-    </task>
-    <task id="LOCAL-00160" summary="Refactored collision response arrays in `AuraBaseCharacter` and `AuraProjectile` for consistency and modularity.">
-      <option name="closed" value="true" />
-      <created>1764025462719</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1764025462719</updated>
-    </task>
-    <task id="LOCAL-00161" summary="Refactored `AuraBaseCharacter` and `AuraProjectile` collision response arrays for improved modularity and cleaner initialization logic.">
-      <option name="closed" value="true" />
-      <created>1764025759116</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1764025759116</updated>
+      <workItem from="1764074021602" duration="27381000" />
     </task>
     <task id="LOCAL-00162" summary="Moved collision response arrays in `AuraBaseCharacter` and `AuraProjectile` to unnamed namespaces for improved encapsulation and cleaner header files.">
       <option name="closed" value="true" />
@@ -658,7 +635,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764126671101</updated>
     </task>
-    <option name="localTasksCounter" value="209" />
+    <task id="LOCAL-00209" summary="Added floating damage text system with `UAuraDamageTextComponent`. Integrated `ShowFloatingText` method in `AuraAttributeSet` and `ShowDamageNumber` in `AuraPlayerController` for displaying damage values.">
+      <option name="closed" value="true" />
+      <created>1764128219363</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1764128219363</updated>
+    </task>
+    <task id="LOCAL-00210" summary="Updated damage number logic to iterate through all player controllers, ensuring correct display for multiplayer scenarios.">
+      <option name="closed" value="true" />
+      <created>1764128359930</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1764128359930</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,8 +661,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Removed `DefaultClass` property from `AuraEnemyCharacter` and updated `BP_AuraCharacter` asset." />
-    <MESSAGE value="Moved `CharacterClass` property from `AuraBaseCharacter` to `AuraEnemyCharacter` and updated `BP_Enemy_Base` asset accordingly." />
     <MESSAGE value="Broke it, but we'll fix it." />
     <MESSAGE value="Made `GetCharacterClass` in `AuraBaseCharacter` non-pure virtual by providing a default implementation returning `ECharacterClass::DefaultClass`. Updated `.idea/workspace.xml`." />
     <MESSAGE value="Updated `BP_AuraGameMode` and `TestMap` assets." />
@@ -693,7 +684,9 @@
     <MESSAGE value="Added glow effect support to `AuraBaseCharacter` with timeline-driven material updates and reusable parameter update logic." />
     <MESSAGE value="Added `MulticastHandleDeath` implementation to `AuraEnemyCharacter` for synchronized health bar destruction across clients." />
     <MESSAGE value="Removed unused `SlateWrapperTypes` header from `AuraEnemyCharacter` and updated `.idea/workspace.xml` changes for consistency." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unused `SlateWrapperTypes` header from `AuraEnemyCharacter` and updated `.idea/workspace.xml` changes for consistency." />
+    <MESSAGE value="Added floating damage text system with `UAuraDamageTextComponent`. Integrated `ShowFloatingText` method in `AuraAttributeSet` and `ShowDamageNumber` in `AuraPlayerController` for displaying damage values." />
+    <MESSAGE value="Updated damage number logic to iterate through all player controllers, ensuring correct display for multiplayer scenarios." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated damage number logic to iterate through all player controllers, ensuring correct display for multiplayer scenarios." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
