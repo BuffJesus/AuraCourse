@@ -37,11 +37,23 @@ void AAuraBaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	if (DissolveCurve)
+	// Lambda to reduce duplication in timeline curve binding
+	auto BindCurveToTimeline = [this](UCurveFloat* Curve, const FName& CallbackName)
 	{
-		FOnTimelineFloat TimelineCallback;
-		TimelineCallback.BindUFunction(this, FName("UpdateDissolveMaterial"));
-		DissolveTimeline->AddInterpFloat(DissolveCurve, TimelineCallback);
+		if (Curve)
+		{
+			FOnTimelineFloat Callback;
+			Callback.BindUFunction(this, CallbackName);
+			DissolveTimeline->AddInterpFloat(Curve, Callback);
+		}
+	};
+	
+	BindCurveToTimeline(DissolveCurve, FName("UpdateDissolveMaterial"));
+	BindCurveToTimeline(GlowCurve, FName("UpdateGlowMaterial"));
+	
+	// Configure timeline settings if we have any curves
+	if (DissolveCurve || GlowCurve)
+	{
 		DissolveTimeline->SetLooping(false);
 		DissolveTimeline->SetIgnoreTimeDilation(false);
 	}
@@ -94,7 +106,6 @@ void AAuraBaseCharacter::AddCharacterAbilities()
 {
 	// No cast needed! Already have UAuraAbilitySystemComponent*
 	if (!HasAuthority()) { return; }
-
 	AbilitySystemComponent->AddCharacterAbilities(StartupAbilities);
 }
 
@@ -110,6 +121,8 @@ void AAuraBaseCharacter::Dissolve()
 {
 	DissolveMaterialInstances.Empty();
 
+	// Lambda to apply dissolve material to a mesh component
+	// Captures 'this' to add MIDs to the instance array
 	auto ApplyDissolve = [this](const int32 MaterialIndex, UMaterialInstance* MaterialInstance, USkeletalMeshComponent* MeshComponent)
 	{
 		if (IsValid(MaterialInstance))
@@ -123,16 +136,26 @@ void AAuraBaseCharacter::Dissolve()
 	ApplyDissolve(0, DissolveMaterialInstance, GetMesh());
 	ApplyDissolve(0, WeaponDissolveMaterialInstance, Weapon);
 
-	if (DissolveCurve) { DissolveTimeline->PlayFromStart(); }
+	if (DissolveCurve || GlowCurve) { DissolveTimeline->PlayFromStart(); }
 }
 
 void AAuraBaseCharacter::UpdateDissolveMaterial(float DissolveValue)
 {
-	for (auto& MIDynamic : DissolveMaterialInstances)
+	UpdateMaterialParameter(DissolveParameterName, DissolveValue);
+}
+
+void AAuraBaseCharacter::UpdateGlowMaterial(float GlowValue)
+{
+	UpdateMaterialParameter(GlowParameterName, GlowValue);
+}
+
+void AAuraBaseCharacter::UpdateMaterialParameter(const FName& ParameterName, float Value)
+{
+	for (auto& MID : DissolveMaterialInstances)
 	{
-		if (MIDynamic)
+		if (MID)
 		{
-			MIDynamic->SetScalarParameterValue(DissolveParameterName, DissolveValue);
+			MID->SetScalarParameterValue(ParameterName, Value);
 		}
 	}
 }

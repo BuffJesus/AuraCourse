@@ -90,22 +90,33 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Combat")
 	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
 
+	// #region Dissolve Timeline
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UTimelineComponent> DissolveTimeline;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Dissolve")
 	TObjectPtr<UCurveFloat> DissolveCurve;
 
-	// Timeline callback - must be a UFUNCTION
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Dissolve")
+	TObjectPtr<UCurveFloat> GlowCurve;
+
+	// Timeline callbacks - must be UFUNCTIONs
 	UFUNCTION()
 	void UpdateDissolveMaterial(float DissolveValue);
+
+	UFUNCTION()
+	void UpdateGlowMaterial(float GlowValue);
 
 	// Storage for MIDs so the timeline can update them
 	UPROPERTY(VisibleAnywhere, Category = "Aura|Combat")
 	TArray<TObjectPtr<UMaterialInstanceDynamic>> DissolveMaterialInstances;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Combat")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Dissolve")
 	FName DissolveParameterName { "Dissolve" };
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Dissolve")
+	FName GlowParameterName { "Glow" };
+	// #endregion Dissolve Timeline
 	
 	FORCEINLINE virtual UAnimMontage* GetHitReactMontage_Implementation() const override
 	{
@@ -121,4 +132,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Aura|Abilities")
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
+
+	/** Generic helper to update a material parameter on all dissolve MIDs */
+	void UpdateMaterialParameter(const FName& ParameterName, float Value);
 };
