@@ -9,9 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://12" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://13" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -257,23 +255,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="20097000" />
-    </task>
-    <task id="LOCAL-00152" summary="Updated default values for cosmetic projectile prediction logic in `AuraGA_ProjectileSpell` and `AuraProjectile` to disable cosmetic projectiles by default.">
-      <option name="closed" value="true" />
-      <created>1763988301722</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1763988301722</updated>
-    </task>
-    <task id="LOCAL-00153" summary="Removed cosmetic projectile handling logic from `AuraProjectile` and `AuraGA_ProjectileSpell` to simplify server-authoritative spawning.">
-      <option name="closed" value="true" />
-      <created>1763989993564</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1763989993564</updated>
+      <workItem from="1764074021602" duration="20972000" />
     </task>
     <task id="LOCAL-00154" summary="Added impact effects and sounds to `AuraProjectile` via `Destroyed` and `OnSphereOverlap`, with authority checks.">
       <option name="closed" value="true" />
@@ -651,7 +633,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764117483023</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="Implemented `Die` method in `AuraBaseCharacter` and `AuraEnemyCharacter` with death handling logic, including physics simulation and lifespan configuration. Added `Die` to `AuraCombatInterface` as a pure virtual method.">
+      <option name="closed" value="true" />
+      <created>1764120605329</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1764120605329</updated>
+    </task>
+    <task id="LOCAL-00202" summary="Refactored `AuraGA_ProjectileSpell` to use `TestLevel` for damage scaling and added `TestLevel` property. Integrated `Die` method call into `AuraAttributeSet` for fatal damage handling using `AuraCombatInterface`.">
+      <option name="closed" value="true" />
+      <created>1764120876177</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1764120876177</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,8 +659,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Moved `SecondaryAttributes` from `CharacterClassInfo` to `ClassDefaults` and reorganized related GameplayEffect assets for improved structure and clarity." />
-    <MESSAGE value="Organized attribute-related GameplayEffect and ModifierMagnitudeCalculation assets by class and shared types for better modularity and clarity. Updated `BP_Enemy_Base` with changes for compatibility." />
     <MESSAGE value="Reorganized GameplayEffect and ModifierMagnitudeCalculation assets by class and role types. Updated related asset paths and `.idea` configurations for improved modularity and project structure." />
     <MESSAGE value="Added and updated class-specific and shared GameplayEffect assets for attribute handling, including new `DA_Aura_Class_Info` and vital attribute effects." />
     <MESSAGE value="Added support for initializing default attributes based on character class and level. Updated `AuraGameModeBase` and `AuraAbilitySystemBPLibrary` with relevant functionality and properties." />
@@ -686,7 +682,9 @@
     <MESSAGE value="Refactored `AuraGA_HitReact` to use uniform initialization for `CombatInterface` casting." />
     <MESSAGE value="Guarded `AddCharacterAbilities` call with authority check in `AuraEnemyCharacter`." />
     <MESSAGE value="Refactored `HitReact` ability to include effect cleanup logic, ensuring proper effect removal on montage completion, interruption, or cancellation. Added getter for `HitReactMontage` in `AuraBaseCharacter`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `HitReact` ability to include effect cleanup logic, ensuring proper effect removal on montage completion, interruption, or cancellation. Added getter for `HitReactMontage` in `AuraBaseCharacter`." />
+    <MESSAGE value="Implemented `Die` method in `AuraBaseCharacter` and `AuraEnemyCharacter` with death handling logic, including physics simulation and lifespan configuration. Added `Die` to `AuraCombatInterface` as a pure virtual method." />
+    <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to use `TestLevel` for damage scaling and added `TestLevel` property. Integrated `Die` method call into `AuraAttributeSet` for fatal damage handling using `AuraCombatInterface`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraGA_ProjectileSpell` to use `TestLevel` for damage scaling and added `TestLevel` property. Integrated `Die` method call into `AuraAttributeSet` for fatal damage handling using `AuraCombatInterface`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
