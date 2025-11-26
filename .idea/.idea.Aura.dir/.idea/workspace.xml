@@ -8,10 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/CF_Aura_Dissolve.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/CF_Aura_Glow.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/WBP_Aura_DamageText.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://16" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://17" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -257,15 +255,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="24682000" />
-    </task>
-    <task id="LOCAL-00158" summary="Added `ECC_Projectile` collision channel, integrated it into `AuraProjectile` and `DefaultEngine.ini`, and removed pitch adjustment in `AuraGA_ProjectileSpell`.">
-      <option name="closed" value="true" />
-      <created>1763996239757</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1763996239757</updated>
+      <workItem from="1764074021602" duration="25484000" />
     </task>
     <task id="LOCAL-00159" summary="Set mesh collision responses in `AuraBaseCharacter` and sphere collision responses in `AuraProjectile` using arrays for cleaner and more modular configuration.">
       <option name="closed" value="true" />
@@ -651,7 +641,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764124911542</updated>
     </task>
-    <option name="localTasksCounter" value="207" />
+    <task id="LOCAL-00207" summary="Added `MulticastHandleDeath` implementation to `AuraEnemyCharacter` for synchronized health bar destruction across clients.">
+      <option name="closed" value="true" />
+      <created>1764125603413</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1764125603413</updated>
+    </task>
+    <option name="localTasksCounter" value="208" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +659,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Condensed null checks and lambda formatting in `InitializeDefaultAttributes` for better readability. Removed redundant lines in `.idea/workspace.xml`." />
     <MESSAGE value="Replaced attribute arrays in `AuraBaseCharacter` with `ECharacterClass` for streamlined initialization. Updated default attribute handling to utilize `UAuraAbilitySystemBPLibrary`." />
     <MESSAGE value="Removed `DefaultClass` property from `AuraEnemyCharacter` and updated `BP_AuraCharacter` asset." />
     <MESSAGE value="Moved `CharacterClass` property from `AuraBaseCharacter` to `AuraEnemyCharacter` and updated `BP_Enemy_Base` asset accordingly." />
@@ -686,7 +683,8 @@
     <MESSAGE value="Replaced health bar visibility toggle with component destruction in `Die` method." />
     <MESSAGE value="Added dissolve effect implementation to `AuraBaseCharacter` with timeline-driven material updates." />
     <MESSAGE value="Added glow effect support to `AuraBaseCharacter` with timeline-driven material updates and reusable parameter update logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added glow effect support to `AuraBaseCharacter` with timeline-driven material updates and reusable parameter update logic." />
+    <MESSAGE value="Added `MulticastHandleDeath` implementation to `AuraEnemyCharacter` for synchronized health bar destruction across clients." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `MulticastHandleDeath` implementation to `AuraEnemyCharacter` for synchronized health bar destruction across clients." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,7 +1,6 @@
 ﻿// Not Sure Yet
 
 #include "Characters/AuraEnemyCharacter.h"
-#include "Components/SlateWrapperTypes.h"
 #include "Aura/Aura.h"
 #include "Tags/AuraTags.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
