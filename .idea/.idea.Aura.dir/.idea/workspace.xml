@@ -8,12 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Spell_Fireball.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Cues/Fireball/GCN_Aura_FireBall_Impact.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Cues/Fireball/GCN_Aura_FireBall_Impact.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Cues/Fireball/GCN_Aura_Fireball_Flight.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Cues/Fireball/GCN_Aura_Fireball_Flight.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,15 +264,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="35099000" />
-    </task>
-    <task id="LOCAL-00177" summary="Organized attribute-related GameplayEffect and ModifierMagnitudeCalculation assets by class and shared types for better modularity and clarity. Updated `BP_Enemy_Base` with changes for compatibility.">
-      <option name="closed" value="true" />
-      <created>1764040281157</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1764040281157</updated>
+      <workItem from="1764074021602" duration="35634000" />
     </task>
     <task id="LOCAL-00178" summary="Reorganized GameplayEffect and ModifierMagnitudeCalculation assets by class and role types. Updated related asset paths and `.idea` configurations for improved modularity and project structure.">
       <option name="closed" value="true" />
@@ -663,7 +650,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764135925942</updated>
     </task>
-    <option name="localTasksCounter" value="226" />
+    <task id="LOCAL-00226" summary="Updated `.idea/workspace.xml` to include changes for Fireball gameplay cues and adjustments to projectile-related assets.">
+      <option name="closed" value="true" />
+      <created>1764136297975</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1764136297975</updated>
+    </task>
+    <option name="localTasksCounter" value="227" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -673,7 +668,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Implemented `Die` method in `AuraBaseCharacter` and `AuraEnemyCharacter` with death handling logic, including physics simulation and lifespan configuration. Added `Die` to `AuraCombatInterface` as a pure virtual method." />
     <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to use `TestLevel` for damage scaling and added `TestLevel` property. Integrated `Die` method call into `AuraAttributeSet` for fatal damage handling using `AuraCombatInterface`." />
     <MESSAGE value="Hid health bar on death in `AuraEnemyCharacter` and adjusted lifespan order in `Die`." />
     <MESSAGE value="Replaced health bar visibility toggle with component destruction in `Die` method." />
@@ -698,7 +692,8 @@
     <MESSAGE value="Added projectile Gameplay Cue configuration to `AuraGA_ProjectileSpell` and `AuraProjectile`, allowing customizable flight and impact effects via gameplay tags." />
     <MESSAGE value="Renamed a variable in `AuraProjectile` for clarity (`Owner` to `OwnerActor`)." />
     <MESSAGE value="Added `Fireball` gameplay tag namespace and associated Cues for flight and impact effects. Enhanced tag structure under `Projectile` for better organization." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `Fireball` gameplay tag namespace and associated Cues for flight and impact effects. Enhanced tag structure under `Projectile` for better organization." />
+    <MESSAGE value="Updated `.idea/workspace.xml` to include changes for Fireball gameplay cues and adjustments to projectile-related assets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` to include changes for Fireball gameplay cues and adjustments to projectile-related assets." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
