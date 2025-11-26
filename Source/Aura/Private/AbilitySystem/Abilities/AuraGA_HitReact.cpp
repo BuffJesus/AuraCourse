@@ -46,7 +46,7 @@ void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 
 	// Get HitReactMontage from the Combat Interface
 	UAnimMontage* MontageToPlay = nullptr;
-	if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+	if (const IAuraCombatInterface* CombatInterface { Cast<IAuraCombatInterface>(AvatarActor) })
 	{
 		MontageToPlay = CombatInterface->Execute_GetHitReactMontage(AvatarActor);
 	}
