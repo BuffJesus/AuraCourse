@@ -14,3 +14,4 @@ FVector IAuraCombatInterface::GetCombatSocketLocation() const
 {
 	return FVector();
 }
+

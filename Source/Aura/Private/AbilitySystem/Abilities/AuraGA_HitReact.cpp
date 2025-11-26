@@ -15,9 +15,9 @@ UAuraGA_HitReact::UAuraGA_HitReact()
 	AbilityTriggers.Add(TriggerData);
 }
 
-
 void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
-                                       const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
+                                       const FGameplayAbilityActorInfo* ActorInfo, 
+                                       const FGameplayAbilityActivationInfo ActivationInfo,
                                        const FGameplayEventData* TriggerEventData)
 {
 	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_HitReact::ActivateAbility called!"));
@@ -25,13 +25,12 @@ void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 	
 	// Apply the HitReact Gameplay Effect to self FIRST
-	// This should apply the tags shown in your image (Aura.Effects.HitReact)
 	if (HitReactEffect)
 	{
-		if (const FGameplayEffectSpecHandle SpecHandle { MakeOutgoingGameplayEffectSpec(HitReactEffect, GetAbilityLevel()) }; SpecHandle.IsValid())
+		if (const FGameplayEffectSpecHandle SpecHandle = MakeOutgoingGameplayEffectSpec(HitReactEffect, GetAbilityLevel()); SpecHandle.IsValid())
 		{
-			// Use the parameters directly instead of Current* members
-			const FActiveGameplayEffectHandle ActiveHandle { ApplyGameplayEffectSpecToOwner(Handle, ActorInfo, ActivationInfo, SpecHandle) };
+			// Store the handle so we can remove it when montage completes
+			HitReactEffectHandle = ApplyGameplayEffectSpecToOwner(Handle, ActorInfo, ActivationInfo, SpecHandle);
 		}
 	}
 	
@@ -46,7 +45,7 @@ void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 
 	// Get HitReactMontage from the Combat Interface
 	UAnimMontage* MontageToPlay = nullptr;
-	if (const IAuraCombatInterface* CombatInterface { Cast<IAuraCombatInterface>(AvatarActor) })
+	if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
 	{
 		MontageToPlay = CombatInterface->Execute_GetHitReactMontage(AvatarActor);
 	}
@@ -78,15 +77,28 @@ void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 
 void UAuraGA_HitReact::OnMontageCompleted()
 {
-	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
+	// Remove the effect before ending the ability
+	CleanupAndEndAbility(false);
 }
 
 void UAuraGA_HitReact::OnMontageCancelled()
 {
-	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
+	// Remove the effect if montage was cancelled
+	CleanupAndEndAbility();
 }
 
 void UAuraGA_HitReact::OnMontageInterrupted()
 {
-	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
+	// Remove the effect if montage was interrupted
+	CleanupAndEndAbility();
+}
+
+void UAuraGA_HitReact::CleanupAndEndAbility(bool bWasCancelled)
+{
+	if (HitReactEffectHandle.IsValid())
+	{
+		GetAbilitySystemComponentFromActorInfo()->RemoveActiveGameplayEffect(HitReactEffectHandle);
+	}
+	
+	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, bWasCancelled);
 }

@@ -25,6 +25,8 @@ public:
 	TSubclassOf<UGameplayEffect> HitReactEffect;
 
 private:
+	FActiveGameplayEffectHandle HitReactEffectHandle;
+	
 	UFUNCTION()
 	void OnMontageCompleted();
 	
@@ -33,4 +35,6 @@ private:
 	
 	UFUNCTION()
 	void OnMontageInterrupted();
+	
+	void CleanupAndEndAbility(bool bWasCancelled = true);
 };

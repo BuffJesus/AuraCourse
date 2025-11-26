@@ -71,7 +71,11 @@ protected:
 	virtual ECharacterClass GetCharacterClass() const { return ECharacterClass::DefaultClass; }
 	void AddCharacterAbilities();
 	virtual void UpdateFacingTarget_Implementation(const FVector& Target) override;
-
+	
+	FORCEINLINE virtual UAnimMontage* GetHitReactMontage_Implementation() const override
+	{
+		return HitReactMontage;
+	}
 
 	/** Name of the warp target used for motion warping */
 	UPROPERTY(EditDefaultsOnly, Category = "Aura|Combat")
