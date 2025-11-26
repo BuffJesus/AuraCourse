@@ -8,8 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/GE_Aura_Test_Damage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/GE_Aura_Test_Damage.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://24" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://25" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -261,15 +260,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="31328000" />
-    </task>
-    <task id="LOCAL-00168" summary="Added health bar component to `AuraEnemyCharacter` with configurable size and offset. Updated initialization logic to attach and display the health bar.">
-      <option name="closed" value="true" />
-      <created>1764029508888</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1764029508888</updated>
+      <workItem from="1764074021602" duration="31668000" />
     </task>
     <task id="LOCAL-00169" summary="Added health change delegates to `AuraEnemyCharacter` and initialized attribute change broadcasting for health and max health.">
       <option name="closed" value="true" />
@@ -655,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764132084852</updated>
     </task>
-    <option name="localTasksCounter" value="217" />
+    <task id="LOCAL-00217" summary="Added gameplay tag support to `UAuraExecCalc_Damage` and refined armor attribute calculation.">
+      <option name="closed" value="true" />
+      <created>1764132714690</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1764132714690</updated>
+    </task>
+    <option name="localTasksCounter" value="218" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -665,7 +664,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated `GE_Aura_Test_Damage` asset." />
     <MESSAGE value="Applied scalable damage calculation in `AuraGA_ProjectileSpell`, added `Damage` property to `AuraGameplayAbility`, and removed redundant debug message for player death in `AuraAttributeSet`." />
     <MESSAGE value="Added `Effects` and `HitReact` gameplay tags in `AuraTags` for extended tag-based functionality." />
     <MESSAGE value="Implemented `HitReact` ability and integrated corresponding gameplay tags. Added `HitReact` montage logic to characters and triggered ability in response to hits." />
@@ -690,7 +688,8 @@
     <MESSAGE value="Namespace `GameplayCue` updated to include `GameplayCue.Aura.DamageText` for improved organization and clarity. Adjusted `AuraAttributeSet` references accordingly." />
     <MESSAGE value="Added `UAuraExecCalc_Damage` for custom damage calculations and updated project configuration files accordingly." />
     <MESSAGE value="Added armor attribute capture to `UAuraExecCalc_Damage` for improved damage calculation support." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added armor attribute capture to `UAuraExecCalc_Damage` for improved damage calculation support." />
+    <MESSAGE value="Added gameplay tag support to `UAuraExecCalc_Damage` and refined armor attribute calculation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added gameplay tag support to `UAuraExecCalc_Damage` and refined armor attribute calculation." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -707,6 +706,11 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp</url>
+          <line>53</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
