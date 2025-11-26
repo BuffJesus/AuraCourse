@@ -112,8 +112,14 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			const float NewHealth { GetHealth() - LocalIncomingDamage };
 			SetHealth(FMath::Clamp(NewHealth, 0.f, GetMaxHealth()));
 
-			// Show damage text for ALL damage, not just fatal
-			ShowFloatingText(Props, LocalIncomingDamage);
+			// Execute gameplay cue to show damage text
+			FGameplayCueParameters CueParams;
+			CueParams.RawMagnitude = LocalIncomingDamage;
+			CueParams.EffectContext = Data.EffectSpec.GetContext();
+			CueParams.SourceObject = Props.SourceAvatarActor;
+			CueParams.TargetAttachComponent = Props.TargetCharacter->GetRootComponent();
+        
+			Props.TargetASC->ExecuteGameplayCue(Aura::GameplayCue::DamageText, CueParams);
 
 			if (const bool bFatal { NewHealth <= 0.f })
 			{
@@ -121,20 +127,6 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				{
 					CombatInterface->Die();
 				}
-			}
-		}
-	}
-}
-
-void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, const float Damage) const
-{
-	if (Props.SourceCharacter != Props.TargetCharacter)
-	{
-		for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; ++It)
-		{
-			if (auto PC = Cast<AAuraPlayerController>(It->Get()))
-			{
-				PC->ShowDamageNumber(Damage, Props.TargetCharacter);
 			}
 		}
 	}

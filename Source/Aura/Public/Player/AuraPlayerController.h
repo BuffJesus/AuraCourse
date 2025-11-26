@@ -29,9 +29,6 @@ public:
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
 	
-	UFUNCTION(Client, Reliable)
-	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter) const;
-	
 	/** Get the current cursor hit result */
 	FORCEINLINE FHitResult GetCursorHit() const { return CursorHit; }
 	

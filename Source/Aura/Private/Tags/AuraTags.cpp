@@ -40,6 +40,10 @@ namespace Aura
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Mana, "Aura.Attributes.Vital.Mana", "Amount of mana an Actor can use");
 		}
 	}
+	namespace Damage
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Damage, "Aura.Damage", "Damage");
+	}
 	namespace Effects
 	{
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Effects, "Aura.Effects", "Effects");
@@ -57,15 +61,13 @@ namespace Aura
 			
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(FireBolt, "Aura.Event.Montage.FireBolt", "Fire bolt");
 		}
-	}
-	namespace Message
-	{
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Message, "Aura.Message", "Message");
 		
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HealthPotion, "Aura.Message.HealthPotion", "Health potion");
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaPotion, "Aura.Message.ManaPotion", "Mana potion");
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HealthCrystal, "Aura.Message.HealthCrystal", "Health crystal");
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaCrystal, "Aura.Message.ManaCrystal", "Mana crystal");
+	}
+	namespace GameplayCue
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(GameplayCue, "Aura.GameplayCue", "Gameplay cue");
+		
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(DamageText, "Aura.GameplayCue.DamageText", "Damage text");
 	}
 	namespace Input
 	{
@@ -78,8 +80,13 @@ namespace Aura
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Three, "Aura.Input.3", "Button 3");
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Four, "Aura.Input.4", "Button 4");
 	}
-	namespace Damage
+	namespace Message
 	{
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Damage, "Aura.Damage", "Damage");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Message, "Aura.Message", "Message");
+		
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HealthPotion, "Aura.Message.HealthPotion", "Health potion");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaPotion, "Aura.Message.ManaPotion", "Mana potion");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HealthCrystal, "Aura.Message.HealthCrystal", "Health crystal");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaCrystal, "Aura.Message.ManaCrystal", "Mana crystal");
 	}
 }

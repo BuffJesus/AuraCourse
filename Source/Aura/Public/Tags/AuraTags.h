@@ -41,6 +41,10 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Mana);
 		}
 	}
+	namespace Damage
+	{
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage);
+	}
 	namespace Effects
 	{
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects);
@@ -60,14 +64,11 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(FireBolt);
 		}
 	}
-	namespace Message
+	namespace GameplayCue
 	{
-		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Message);
-		
-		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HealthPotion);
-		UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaPotion);
-		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HealthCrystal);
-		UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaCrystal);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(GameplayCue);
+    
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(DamageText);
 	}
 	namespace Input
 	{
@@ -80,8 +81,13 @@ namespace Aura
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Three);
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Four);
 	}
-	namespace Damage
+	namespace Message
 	{
-		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Message);
+		
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HealthPotion);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaPotion);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HealthCrystal);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaCrystal);
 	}
 }
