@@ -7,7 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://8" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://9" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -252,23 +255,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="16563000" />
-    </task>
-    <task id="LOCAL-00148" summary="Marked `UAuraCombatInterface` as `BlueprintType` and added `MinimalAPI` specifier for enhanced usability in Blueprints and minimal export.">
-      <option name="closed" value="true" />
-      <created>1763959708934</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1763959708934</updated>
-    </task>
-    <task id="LOCAL-00149" summary="Made `UpdateFacingTarget` in `AuraCombatInterface` callable from Blueprints by adding `BlueprintCallable` specifier.">
-      <option name="closed" value="true" />
-      <created>1763959966942</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1763959966942</updated>
+      <workItem from="1764074021602" duration="17239000" />
     </task>
     <task id="LOCAL-00150" summary="Implemented `UpdateFacingTarget` as a `BlueprintNativeEvent` in `AuraCombatInterface` and added its functionality to `AuraBaseCharacter`, along with `FacingTargetWarpName` property for motion warping.">
       <option name="closed" value="true" />
@@ -646,7 +633,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764114936736</updated>
     </task>
-    <option name="localTasksCounter" value="197" />
+    <task id="LOCAL-00197" summary="Enhanced `HitReact` ability initialization: added gameplay event trigger with tag and refactored effect application for clarity.">
+      <option name="closed" value="true" />
+      <created>1764115333493</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1764115333493</updated>
+    </task>
+    <task id="LOCAL-00198" summary="Refactored `AuraGA_HitReact` to use uniform initialization for `CombatInterface` casting.">
+      <option name="closed" value="true" />
+      <created>1764115377242</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1764115377242</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,8 +659,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `AuraPlayerAttributeSet` and `AuraEnemyAttributeSet` for player- and enemy-specific attributes. Introduced `AuraCharacterClassInfo` to manage default class-specific attributes." />
-    <MESSAGE value="Refined health change delegate in `AuraEnemyCharacter` by removing redundant value check. Replaced `static_cast` with `Cast` in `AuraPlayerCharacter` for attribute set initialization and removed unused include." />
     <MESSAGE value="Replaced comments in `AuraPlayerCharacter` with cleaner code and removed outdated debug remarks. Updated `.idea` files for workspace adjustments." />
     <MESSAGE value="Added `DefaultClass` to `ECharacterClass` in `AuraCharacterClassInfo`." />
     <MESSAGE value="Moved `SecondaryAttributes` from `CharacterClassInfo` to `ClassDefaults` and reorganized related GameplayEffect assets for improved structure and clarity." />
@@ -681,7 +682,9 @@
     <MESSAGE value="Added `Effects` and `HitReact` gameplay tags in `AuraTags` for extended tag-based functionality." />
     <MESSAGE value="Implemented `HitReact` ability and integrated corresponding gameplay tags. Added `HitReact` montage logic to characters and triggered ability in response to hits." />
     <MESSAGE value="Added logging to `HitReact` ability for improved debugging: warnings for activation and montage playback, error for missing AvatarActor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logging to `HitReact` ability for improved debugging: warnings for activation and montage playback, error for missing AvatarActor." />
+    <MESSAGE value="Enhanced `HitReact` ability initialization: added gameplay event trigger with tag and refactored effect application for clarity." />
+    <MESSAGE value="Refactored `AuraGA_HitReact` to use uniform initialization for `CombatInterface` casting." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraGA_HitReact` to use uniform initialization for `CombatInterface` casting." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
