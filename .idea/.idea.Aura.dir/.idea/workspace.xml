@@ -7,11 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Animations/Spear/AM_Aura_Goblin_Spear_HitReact.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/GA_Aura_Ability_HitReact.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/GA_Aura_Ability_HitReact.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +36,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://7" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://8" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -256,15 +252,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="16248000" />
-    </task>
-    <task id="LOCAL-00147" summary="Added `UpdateFacingTarget` BlueprintImplementableEvent to `AuraCombatInterface` and `GetMotionWarpingComponent` BlueprintCallable function to `AuraBaseCharacter`.">
-      <option name="closed" value="true" />
-      <created>1763959651961</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1763959651961</updated>
+      <workItem from="1764074021602" duration="16563000" />
     </task>
     <task id="LOCAL-00148" summary="Marked `UAuraCombatInterface` as `BlueprintType` and added `MinimalAPI` specifier for enhanced usability in Blueprints and minimal export.">
       <option name="closed" value="true" />
@@ -650,7 +638,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764114237772</updated>
     </task>
-    <option name="localTasksCounter" value="196" />
+    <task id="LOCAL-00196" summary="Added logging to `HitReact` ability for improved debugging: warnings for activation and montage playback, error for missing AvatarActor.">
+      <option name="closed" value="true" />
+      <created>1764114936736</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1764114936736</updated>
+    </task>
+    <option name="localTasksCounter" value="197" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +656,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refined health change broadcasting in `AuraEnemyCharacter` to exclude invalid health values and removed debug messaging from `AuraAttributeSet`." />
     <MESSAGE value="Added `AuraPlayerAttributeSet` and `AuraEnemyAttributeSet` for player- and enemy-specific attributes. Introduced `AuraCharacterClassInfo` to manage default class-specific attributes." />
     <MESSAGE value="Refined health change delegate in `AuraEnemyCharacter` by removing redundant value check. Replaced `static_cast` with `Cast` in `AuraPlayerCharacter` for attribute set initialization and removed unused include." />
     <MESSAGE value="Replaced comments in `AuraPlayerCharacter` with cleaner code and removed outdated debug remarks. Updated `.idea` files for workspace adjustments." />
@@ -685,7 +680,8 @@
     <MESSAGE value="Applied scalable damage calculation in `AuraGA_ProjectileSpell`, added `Damage` property to `AuraGameplayAbility`, and removed redundant debug message for player death in `AuraAttributeSet`." />
     <MESSAGE value="Added `Effects` and `HitReact` gameplay tags in `AuraTags` for extended tag-based functionality." />
     <MESSAGE value="Implemented `HitReact` ability and integrated corresponding gameplay tags. Added `HitReact` montage logic to characters and triggered ability in response to hits." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented `HitReact` ability and integrated corresponding gameplay tags. Added `HitReact` montage logic to characters and triggered ability in response to hits." />
+    <MESSAGE value="Added logging to `HitReact` ability for improved debugging: warnings for activation and montage playback, error for missing AvatarActor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added logging to `HitReact` ability for improved debugging: warnings for activation and montage playback, error for missing AvatarActor." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

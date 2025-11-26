@@ -2,14 +2,17 @@
 #include "AbilitySystemComponent.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
+#include "Tags/AuraTags.h"
 
 UAuraGA_HitReact::UAuraGA_HitReact()
 {
-	// Configure ability to be triggered by gameplay event
 	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
 	
-	// Set the activation policy to trigger on gameplay event
-	// This should match a tag like "Event.HitReact" or "Ability.HitReact"
+	// Set up the ability to trigger on gameplay event
+	FAbilityTriggerData TriggerData;
+	TriggerData.TriggerTag = Aura::Event::HitReact;
+	TriggerData.TriggerSource = EGameplayAbilityTriggerSource::GameplayEvent;
+	AbilityTriggers.Add(TriggerData);
 }
 
 
@@ -25,9 +28,10 @@ void UAuraGA_HitReact::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	// This should apply the tags shown in your image (Aura.Effects.HitReact)
 	if (HitReactEffect)
 	{
-		if (const FGameplayEffectSpecHandle SpecHandle = MakeOutgoingGameplayEffectSpec(HitReactEffect, GetAbilityLevel()); SpecHandle.IsValid())
+		if (const FGameplayEffectSpecHandle SpecHandle { MakeOutgoingGameplayEffectSpec(HitReactEffect, GetAbilityLevel()) }; SpecHandle.IsValid())
 		{
-			ApplyGameplayEffectSpecToOwner(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, SpecHandle);
+			// Use the parameters directly instead of Current* members
+			const FActiveGameplayEffectHandle ActiveHandle { ApplyGameplayEffectSpecToOwner(Handle, ActorInfo, ActivationInfo, SpecHandle) };
 		}
 	}
 	
