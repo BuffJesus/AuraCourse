@@ -8,8 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraDamageCalcConfig.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraDamageCalcConfig.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_Luck.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_Luck.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ExecCalc/AuraExecCalc_Damage.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ExecCalc/AuraExecCalc_Damage.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +57,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileImpact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraAttributeInfo.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraCharacterClassInfo.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraDamageCalcConfig.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Tasks/AuraTargetDataUnderMouse.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -91,6 +95,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Cues/AuraGCN_ProjectileImpact.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraAttributeInfo.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraCharacterClassInfo.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraDamageCalcConfig.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ExecCalc/AuraExecCalc_Damage.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_Base.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Tasks/AuraTargetDataUnderMouse.h" root0="FORCE_HIGHLIGHTING" />
@@ -266,15 +271,7 @@
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
-      <workItem from="1764160983768" duration="18019000" />
-    </task>
-    <task id="LOCAL-00188" summary="Updated `BP_AuraGameMode` and `TestMap` assets.">
-      <option name="closed" value="true" />
-      <created>1764046547819</created>
-      <option name="number" value="00188" />
-      <option name="presentableId" value="LOCAL-00188" />
-      <option name="project" value="LOCAL" />
-      <updated>1764046547819</updated>
+      <workItem from="1764160983768" duration="19027000" />
     </task>
     <task id="LOCAL-00189" summary="Added null check for `PlayerState` in `GetWidgetController` to prevent potential crashes.">
       <option name="closed" value="true" />
@@ -660,7 +657,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764199305891</updated>
     </task>
-    <option name="localTasksCounter" value="237" />
+    <task id="LOCAL-00237" summary="Updated `.idea/workspace.xml` to remove outdated change references and synced project files.">
+      <option name="closed" value="true" />
+      <created>1764200046323</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
+      <option name="project" value="LOCAL" />
+      <updated>1764200046323</updated>
+    </task>
+    <option name="localTasksCounter" value="238" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,7 +675,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replaced `ShowFloatingText` with `GameplayCue` for damage text display and removed redundant logic in `AuraAttributeSet` and `AuraPlayerController`. Added `UAuraGCN_DamageText` to manage floating damage text." />
     <MESSAGE value="Namespace `GameplayCue` updated to include `GameplayCue.Aura.DamageText` for improved organization and clarity. Adjusted `AuraAttributeSet` references accordingly." />
     <MESSAGE value="Added `UAuraExecCalc_Damage` for custom damage calculations and updated project configuration files accordingly." />
     <MESSAGE value="Added armor attribute capture to `UAuraExecCalc_Damage` for improved damage calculation support." />
@@ -695,7 +699,8 @@
     <MESSAGE value="Refactored `AuraExecCalc_Damage` to streamline attribute capture and coefficient calculations, added helper lambdas, and incorporated `Luck` into armor penetration and critical hit chance logic." />
     <MESSAGE value="Refactored `AuraExecCalc_Damage` to simplify attribute captures with helper lambdas, incorporated `Luck` into critical hit and armor penetration calculations, and streamlined debug logging." />
     <MESSAGE value="Added `Luck`-based attribute modifiers and effects for all character classes. Updated secondary attribute effect assets and UI to reflect changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `Luck`-based attribute modifiers and effects for all character classes. Updated secondary attribute effect assets and UI to reflect changes." />
+    <MESSAGE value="Updated `.idea/workspace.xml` to remove outdated change references and synced project files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` to remove outdated change references and synced project files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

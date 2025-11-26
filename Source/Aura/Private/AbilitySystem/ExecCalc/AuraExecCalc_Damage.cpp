@@ -2,6 +2,7 @@
 
 
 #include "AbilitySystem/ExecCalc/AuraExecCalc_Damage.h"
+#include "AbilitySystem/Data/AuraDamageCalcConfig.h"
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
@@ -51,6 +52,14 @@ UAuraExecCalc_Damage::UAuraExecCalc_Damage()
 void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams,
 	FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
+	// Validate DamageConfig
+	const UAuraDamageCalcConfig* Config = GetDamageConfig();
+	if (!Config)
+	{
+		UE_LOG(LogTemp, Error, TEXT("DamageConfig is NULL! Cannot execute damage calculation."));
+		return;
+	}
+	
 	// Setup and Helper Lambdas
 	auto GetAvatarFromASC = [](const UAbilitySystemComponent* ASC) -> const AActor*
 	{
@@ -116,26 +125,36 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	const float SourceLuck { CaptureAttribute(DamageStatics().LuckDef, EvalParams) };
 	const float TargetBlockChance { CaptureAttribute(DamageStatics().BlockChanceDef, EvalParams) };
 	
-	// Block Chance
+	// Block Chance - Using Config
 	const bool bBlocked { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= TargetBlockChance };
-	Damage = bBlocked ? Damage * 0.5f : Damage;
+	Damage = bBlocked ? Damage * Config->BlockDamageReduction : Damage;
 	
-	// Armor Mitigation
+	// Armor Mitigation - Using Config
 	const float TargetArmor { CaptureAttribute(DamageStatics().ArmorDef, EvalParams) };
 	float SourceArmorPenetration { CaptureAttribute(DamageStatics().ArmorPenetrationDef, EvalParams) };
-	SourceArmorPenetration += SourceLuck; // Luck increases armor penetration
+	
+	// Apply Luck to Armor Penetration - Using Config
+	if (Config->bLuckAffectsArmorPenetration)
+	{
+		SourceArmorPenetration += SourceLuck * Config->LuckToArmorPenetrationRatio;
+	}
 	
 	const float ArmorPenCoefficient { GetCurveCoefficient(CharacterClassInfo->DamageCalcCoefficients, 
-		FName("ArmorPenetration"), SourceLevel) };
+		Config->ArmorPenCurveName, SourceLevel) };
 	const float EffectiveArmor { TargetArmor * (100.f - SourceArmorPenetration * ArmorPenCoefficient) / 100.f };
 	const float EffectiveArmorCoefficient { GetCurveCoefficient(CharacterClassInfo->DamageCalcCoefficients, 
-		FName("EffectiveArmor"), TargetLevel) };
+		Config->EffectiveArmorCurveName, TargetLevel) };
 	
 	Damage *= (100.f - EffectiveArmor * EffectiveArmorCoefficient) / 100.f;
 	
-	// Critical Hit
+	// Critical Hit - Using Config
 	float SourceCriticalHitChance { CaptureAttribute(DamageStatics().CriticalHitChanceDef, EvalParams) };
-	SourceCriticalHitChance += SourceLuck; // Luck increases crit chance
+	
+	// Apply Luck to Critical Hit Chance - Using Config
+	if (Config->bLuckAffectsCriticalHitChance)
+	{
+		SourceCriticalHitChance += SourceLuck * Config->LuckToCriticalHitChanceRatio;
+	}
 	
 	const float TargetCriticalHitResistance { CaptureAttribute(DamageStatics().CriticalHitResistanceDef, EvalParams) };
 	const float EffectiveCriticalHitResistance { TargetCriticalHitResistance * (100.f - SourceArmorPenetration * ArmorPenCoefficient) / 100.f };
@@ -149,7 +168,8 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	if (bCriticalHit)
 	{
 		const float SourceCriticalHitDamage { CaptureAttribute(DamageStatics().CriticalHitDamageDef, EvalParams) };
-		Damage = Damage * 2.f + SourceCriticalHitDamage;
+		// Using Config for Crit Multiplier
+		Damage = Damage * Config->CriticalHitMultiplier + SourceCriticalHitDamage;
 		
 		UE_LOG(LogTemp, Warning, TEXT("*** CRITICAL HIT! *** Damage: %.2f (CritDamage Bonus: %.2f)"), Damage, SourceCriticalHitDamage);
 	}

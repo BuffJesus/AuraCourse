@@ -6,9 +6,8 @@
 #include "GameplayEffectExecutionCalculation.h"
 #include "AuraExecCalc_Damage.generated.h"
 
-/**
- * 
- */
+class UAuraDamageCalcConfig;
+
 UCLASS()
 class AURA_API UAuraExecCalc_Damage : public UGameplayEffectExecutionCalculation
 {
@@ -19,4 +18,10 @@ public:
 	
 	virtual void Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, 
 		FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const override;
+
+	FORCEINLINE UAuraDamageCalcConfig* GetDamageConfig() const { return DamageConfig; }
+
+protected:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|DamageCalculation")
+	UAuraDamageCalcConfig* DamageConfig;
 };
