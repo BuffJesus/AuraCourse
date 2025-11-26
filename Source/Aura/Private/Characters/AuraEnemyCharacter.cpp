@@ -102,6 +102,6 @@ int32 AAuraEnemyCharacter::GetPlayerLevel() const
 void AAuraEnemyCharacter::Die()
 {
 	Super::Die();
-	if (HealthBar) { HealthBar->SetVisibility(false); }
+	HealthBar->DestroyComponent();
 	SetLifeSpan(LifeSpan);
 }
