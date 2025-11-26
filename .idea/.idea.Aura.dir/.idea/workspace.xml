@@ -9,7 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Data/CT_Aura_DamageCalcCoefficients.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Data/CT_Aura_DamageCalcCoefficients.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://9" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://10" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -267,15 +267,7 @@
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
-      <workItem from="1764160983768" duration="6053000" />
-    </task>
-    <task id="LOCAL-00182" summary="Condensed null checks and lambda formatting in `InitializeDefaultAttributes` for better readability. Removed redundant lines in `.idea/workspace.xml`.">
-      <option name="closed" value="true" />
-      <created>1764044234931</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1764044234931</updated>
+      <workItem from="1764160983768" duration="10021000" />
     </task>
     <task id="LOCAL-00183" summary="Replaced attribute arrays in `AuraBaseCharacter` with `ECharacterClass` for streamlined initialization. Updated default attribute handling to utilize `UAuraAbilitySystemBPLibrary`.">
       <option name="closed" value="true" />
@@ -661,7 +653,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764165233678</updated>
     </task>
-    <option name="localTasksCounter" value="231" />
+    <task id="LOCAL-00231" summary="Added comprehensive debug logging and null checks to `AuraExecCalc_Damage`. Enhanced armor and damage coefficient validation with detailed logging for level-based calculations.">
+      <option name="closed" value="true" />
+      <created>1764167990047</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1764167990047</updated>
+    </task>
+    <option name="localTasksCounter" value="232" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -671,7 +671,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added glow effect support to `AuraBaseCharacter` with timeline-driven material updates and reusable parameter update logic." />
     <MESSAGE value="Added `MulticastHandleDeath` implementation to `AuraEnemyCharacter` for synchronized health bar destruction across clients." />
     <MESSAGE value="Removed unused `SlateWrapperTypes` header from `AuraEnemyCharacter` and updated `.idea/workspace.xml` changes for consistency." />
     <MESSAGE value="Added floating damage text system with `UAuraDamageTextComponent`. Integrated `ShowFloatingText` method in `AuraAttributeSet` and `ShowDamageNumber` in `AuraPlayerController` for displaying damage values." />
@@ -696,7 +695,8 @@
     <MESSAGE value="Enabled `bUseDebugTargetFromHud` in `DefaultEngine.ini` for debugging ability system targets." />
     <MESSAGE value="Moved `bUseDebugTargetFromHud` from `DefaultEngine.ini` to `DefaultGame.ini` to align with configuration standards." />
     <MESSAGE value="Renamed `GetPlayerLevel` to `GetCharacterLevel` across all classes and interfaces. Enhanced damage calculations with level-based coefficients using `DamageCalcCoefficients` data." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed `GetPlayerLevel` to `GetCharacterLevel` across all classes and interfaces. Enhanced damage calculations with level-based coefficients using `DamageCalcCoefficients` data." />
+    <MESSAGE value="Added comprehensive debug logging and null checks to `AuraExecCalc_Damage`. Enhanced armor and damage coefficient validation with detailed logging for level-based calculations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comprehensive debug logging and null checks to `AuraExecCalc_Damage`. Enhanced armor and damage coefficient validation with detailed logging for level-based calculations." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
