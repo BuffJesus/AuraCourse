@@ -6,28 +6,16 @@
 
 bool UAuraGCN_DamageText::OnExecute_Implementation(AActor* Target, const FGameplayCueParameters& Parameters) const
 {
-	if (!DamageTextComponentClass)
-	{
-		return false;
-	}
+	if (!DamageTextComponentClass) { return false; }
 	
 	// Use the Location parameter to find the actual damage recipient
 	ACharacter* TargetCharacter { nullptr };
     
 	// If Location is set, trace to find the character at that location
-	if (!Parameters.Location.IsZero())
-	{
-		TargetCharacter = Cast<ACharacter>(Target);
-	}
-	else
-	{
-		TargetCharacter = Cast<ACharacter>(Target);
-	}
+	if (!Parameters.Location.IsZero()) { TargetCharacter = Cast<ACharacter>(Target); }
+	else { TargetCharacter = Cast<ACharacter>(Target); }
 
-	if (!TargetCharacter)
-	{
-		return false;
-	}
+	if (!TargetCharacter) { return false; }
 
 	const float Damage { Parameters.RawMagnitude };
 

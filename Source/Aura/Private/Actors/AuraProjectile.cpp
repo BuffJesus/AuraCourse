@@ -1,16 +1,11 @@
 // Not Sure Yet
 
-
 #include "Actors/AuraProjectile.h"
-
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "AuraCollisionChannels.h"
-#include "NiagaraFunctionLibrary.h"
-#include "Components/AudioComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Kismet/GameplayStatics.h"
 #include "Tags/AuraTags.h"
 
 namespace 
@@ -27,8 +22,6 @@ AAuraProjectile::AAuraProjectile()
 {
 	PrimaryActorTick.bCanEverTick = false;
 	bReplicates = true;
-	
-	AudioComponent = CreateDefaultSubobject<UAudioComponent>("AudioComponent");
 
 	Sphere = CreateDefaultSubobject<USphereComponent>("Sphere");
 	SetRootComponent(Sphere);
@@ -50,45 +43,77 @@ void AAuraProjectile::BeginPlay()
 	Super::BeginPlay();
 	
 	SetLifeSpan(LifeSpan);
-	
-	// Only authoritative projectiles handle overlaps
 	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap);
-}
 
-void AAuraProjectile::PlayImpactEffects() const
-{
-	UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(), FRotator::ZeroRotator);
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation());
+	// Cache the source ASC from the owner
+	if (AActor* Owner = GetOwner())
+	{
+		SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Owner);
+	}
+
+	// Start flight sound cue (Add = start looping)
+	if (SourceASC)
+	{
+		FGameplayCueParameters CueParams;
+		CueParams.SourceObject = this;
+		CueParams.Location = GetActorLocation();
+		
+		SourceASC->AddGameplayCue(Aura::GameplayCue::Aura::Projectile::Flight, CueParams);
+	}
 }
 
 void AAuraProjectile::Destroyed()
 {
-	if (!bHit && !HasAuthority()) { PlayImpactEffects(); }
+	// Stop flight sound if we're being destroyed without hitting
+	// (e.g., timed out)
+	if (!bHit && SourceASC)
+	{
+		SourceASC->RemoveGameplayCue(Aura::GameplayCue::Aura::Projectile::Flight);
+		
+		// Also play impact effects on clients when projectile is destroyed
+		if (!HasAuthority())
+		{
+			FGameplayCueParameters CueParams;
+			CueParams.Location = GetActorLocation();
+			
+			SourceASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::Projectile::Impact, CueParams);
+		}
+	}
+
 	Super::Destroyed();
 }
 
 void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 									  UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	PlayImpactEffects();
-	
 	if (HasAuthority())
 	{
+		// Apply damage
 		if (UAbilitySystemComponent* TargetASC { UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor) })
 		{
 			TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get());
-			// 2. Send gameplay event to trigger HitReact ability
+			
+			// Trigger HitReact ability
 			FGameplayEventData EventData;
 			EventData.Instigator = GetOwner();
 			EventData.Target = OtherActor;
-            
-			// This tag should match your HitReact ability's trigger tag
-			const FGameplayTag EventTag { Aura::Event::HitReact };
-			TargetASC->HandleGameplayEvent(EventTag, &EventData);
+			TargetASC->HandleGameplayEvent(Aura::Event::HitReact, &EventData);
+		}
+
+		// Stop flight sound (Remove = stop looping)
+		if (SourceASC)
+		{
+			SourceASC->RemoveGameplayCue(Aura::GameplayCue::Aura::Projectile::Flight);
+			
+			// Play impact effects
+			FGameplayCueParameters CueParams;
+			CueParams.Location = GetActorLocation();
+			CueParams.Normal = SweepResult.ImpactNormal;
+			
+			SourceASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::Projectile::Impact, CueParams);
 		}
 		
 		Destroy();
 	}
 	else { bHit = true; }
 }
-

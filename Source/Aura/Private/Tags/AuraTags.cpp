@@ -72,6 +72,14 @@ namespace Aura
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Aura, "GameplayCue.Aura", "Aura gameplay cues");
         
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(DamageText, "GameplayCue.Aura.DamageText", "Damage text display");
+        
+			namespace Projectile
+			{
+				UE_DEFINE_GAMEPLAY_TAG_COMMENT(Projectile, "GameplayCue.Aura.Projectile", "Projectile cues");
+            
+				UE_DEFINE_GAMEPLAY_TAG_COMMENT(Flight, "GameplayCue.Aura.Projectile.Flight", "Projectile flight sound");
+				UE_DEFINE_GAMEPLAY_TAG_COMMENT(Impact, "GameplayCue.Aura.Projectile.Impact", "Projectile impact effects");
+			}
 		}
 	}
 	namespace Input

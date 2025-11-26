@@ -73,6 +73,14 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Aura);
         
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(DamageText);
+        
+			namespace Projectile
+			{
+				UE_DECLARE_GAMEPLAY_TAG_EXTERN(Projectile);
+            
+				UE_DECLARE_GAMEPLAY_TAG_EXTERN(Flight);
+				UE_DECLARE_GAMEPLAY_TAG_EXTERN(Impact);
+			}
 		}
 	}
 	namespace Input
