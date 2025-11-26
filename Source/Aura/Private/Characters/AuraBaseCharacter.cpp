@@ -18,7 +18,9 @@ namespace
 AAuraBaseCharacter::AAuraBaseCharacter()
 {
 	PrimaryActorTick.bCanEverTick = false;
-	
+
+	DissolveTimeline = CreateDefaultSubobject<UTimelineComponent>("DissolveTimeline");
+
 	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>("MotionWarpingComponent");
 	
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
@@ -29,6 +31,20 @@ AAuraBaseCharacter::AAuraBaseCharacter()
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), WeaponSocketName);
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
+void AAuraBaseCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	if (DissolveCurve)
+	{
+		FOnTimelineFloat TimelineCallback;
+		TimelineCallback.BindUFunction(this, FName("UpdateDissolveMaterial"));
+		DissolveTimeline->AddInterpFloat(DissolveCurve, TimelineCallback);
+		DissolveTimeline->SetLooping(false);
+		DissolveTimeline->SetIgnoreTimeDilation(false);
+	}
 }
 
 void AAuraBaseCharacter::MulticastHandleDeath_Implementation()
@@ -43,6 +59,7 @@ void AAuraBaseCharacter::MulticastHandleDeath_Implementation()
 	GetMesh()->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
 	
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	Dissolve();
 }
 
 
@@ -86,6 +103,37 @@ void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target
 	if (MotionWarpingComponent)
 	{
 		MotionWarpingComponent->AddOrUpdateWarpTargetFromLocation(FacingTargetWarpName, Target);
+	}
+}
+
+void AAuraBaseCharacter::Dissolve()
+{
+	DissolveMaterialInstances.Empty();
+
+	auto ApplyDissolve = [this](const int32 MaterialIndex, UMaterialInstance* MaterialInstance, USkeletalMeshComponent* MeshComponent)
+	{
+		if (IsValid(MaterialInstance))
+		{
+			UMaterialInstanceDynamic* MIDynamic = UMaterialInstanceDynamic::Create(MaterialInstance, this);
+			MeshComponent->SetMaterial(MaterialIndex, MIDynamic);
+			DissolveMaterialInstances.Add(MIDynamic);
+		}
+	};
+
+	ApplyDissolve(0, DissolveMaterialInstance, GetMesh());
+	ApplyDissolve(0, WeaponDissolveMaterialInstance, Weapon);
+
+	if (DissolveCurve) { DissolveTimeline->PlayFromStart(); }
+}
+
+void AAuraBaseCharacter::UpdateDissolveMaterial(float DissolveValue)
+{
+	for (auto& MIDynamic : DissolveMaterialInstances)
+	{
+		if (MIDynamic)
+		{
+			MIDynamic->SetScalarParameterValue(DissolveParameterName, DissolveValue);
+		}
 	}
 }
 

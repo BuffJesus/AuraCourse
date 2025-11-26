@@ -8,6 +8,7 @@
 #include "AuraCollisionChannels.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "AbilitySystem/Data/AuraCharacterClassInfo.h"
+#include "Components/TimelineComponent.h"
 #include "AuraBaseCharacter.generated.h"
 
 class UGameplayAbility;
@@ -24,7 +25,7 @@ class AURA_API AAuraBaseCharacter : public ACharacter, public IAbilitySystemInte
 
 public:
 	AAuraBaseCharacter();
-	
+
 	virtual void Die() override;
 	
 	UFUNCTION(NetMulticast, Reliable)
@@ -54,6 +55,8 @@ public:
 	TObjectPtr<UAnimMontage> HitReactMontage;
 	
 protected:
+	virtual void BeginPlay() override;
+	
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 
@@ -76,6 +79,33 @@ protected:
 	virtual ECharacterClass GetCharacterClass() const { return ECharacterClass::DefaultClass; }
 	void AddCharacterAbilities();
 	virtual void UpdateFacingTarget_Implementation(const FVector& Target) override;
+	void Dissolve();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartDissolveTimeline(UMaterialInstanceDynamic* MaterialInstanceDynamic);
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Combat")
+	TObjectPtr<UMaterialInstance> DissolveMaterialInstance;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Combat")
+	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UTimelineComponent> DissolveTimeline;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<UCurveFloat> DissolveCurve;
+
+	// Timeline callback - must be a UFUNCTION
+	UFUNCTION()
+	void UpdateDissolveMaterial(float DissolveValue);
+
+	// Storage for MIDs so the timeline can update them
+	UPROPERTY(VisibleAnywhere, Category = "Aura|Combat")
+	TArray<TObjectPtr<UMaterialInstanceDynamic>> DissolveMaterialInstances;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Combat")
+	FName DissolveParameterName { "Dissolve" };
 	
 	FORCEINLINE virtual UAnimMontage* GetHitReactMontage_Implementation() const override
 	{
