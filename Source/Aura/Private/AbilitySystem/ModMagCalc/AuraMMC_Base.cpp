@@ -67,7 +67,7 @@ float UAuraMMC_Base::CalculateBaseMagnitude_Implementation(const FGameplayEffect
 	int32 PlayerLevel { 1 };
 	if (IAuraCombatInterface* CombatInterface { Cast<IAuraCombatInterface>(Spec.GetContext().GetSourceObject()) })
 	{
-		PlayerLevel = CombatInterface->GetPlayerLevel();
+		PlayerLevel = CombatInterface->GetCharacterLevel();
 	}
 
 	// Calculate attribute term

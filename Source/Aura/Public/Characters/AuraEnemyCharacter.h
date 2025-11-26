@@ -22,7 +22,7 @@ public:
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
 
-	virtual int32 GetPlayerLevel() const override;
+	virtual int32 GetCharacterLevel() const override;
 	
 	virtual void Die() override;
 	virtual void MulticastHandleDeath_Implementation() override;

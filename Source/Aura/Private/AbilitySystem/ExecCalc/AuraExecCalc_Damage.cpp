@@ -3,7 +3,10 @@
 
 #include "AbilitySystem/ExecCalc/AuraExecCalc_Damage.h"
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystem/Data/AuraCharacterClassInfo.h"
+#include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
 
 struct AuraDamageStatics
@@ -43,6 +46,8 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
     
     const AActor* SourceAvatar { GetAvatarFromASC(ExecutionParams.GetSourceAbilitySystemComponent()) };
     const AActor* TargetAvatar { GetAvatarFromASC(ExecutionParams.GetTargetAbilitySystemComponent()) };
+	const IAuraCombatInterface* SourceCombatInterface = Cast<IAuraCombatInterface>(SourceAvatar);
+	const IAuraCombatInterface* TargetCombatInterface = Cast<IAuraCombatInterface>(TargetAvatar);
 	
 	const FGameplayEffectSpec Spec { ExecutionParams.GetOwningSpec() };
 	
@@ -71,9 +76,20 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	float SourceArmorPenetration { 0.f };
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorPenetrationDef, EvalParams, SourceArmorPenetration);
 	SourceArmorPenetration = FMath::Max<float>(SourceArmorPenetration, 0.f);
+
+	const UAuraCharacterClassInfo* CharacterClassInfo = UAuraAbilitySystemBPLibrary::GetCharacterClassInfo(SourceAvatar);
+	if (!CharacterClassInfo) { return; }
+	const FRealCurve* ArmorPenCurve { CharacterClassInfo->DamageCalcCoefficients->FindCurve(FName("ArmorPenetration"), FString()) };
+	if (!ArmorPenCurve) { return; }
+	const float ArmorPenCoefficient { ArmorPenCurve->Eval(SourceCombatInterface->GetCharacterLevel()) };
 	
-	const float EffectiveArmor { TargetArmor * (100 - SourceArmorPenetration * 0.25f) / 100.f };
-	Damage *= (100 - EffectiveArmor * 0.333f) / 100.f;
+	const float EffectiveArmor { TargetArmor * (100 - SourceArmorPenetration * ArmorPenCoefficient) / 100.f };
+
+	const FRealCurve* EffectiveArmorCurve { CharacterClassInfo->DamageCalcCoefficients->FindCurve(FName("EffectiveArmor"), FString()) };
+	if (!EffectiveArmorCurve) { return; }
+	const float EffectiveArmorCoefficient { EffectiveArmorCurve->Eval(TargetCombatInterface->GetCharacterLevel()) };
+	
+	Damage *= (100 - EffectiveArmor * EffectiveArmorCoefficient) / 100.f;
 	
 	const FGameplayModifierEvaluatedData EvaluatedData(UAuraAttributeSet::GetIncomingDamageAttribute(), EGameplayModOp::Additive, Damage);
 	OutExecutionOutput.AddOutputModifier(EvaluatedData);

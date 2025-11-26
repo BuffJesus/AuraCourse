@@ -76,3 +76,13 @@ void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* Wor
 	ApplyGameplayEffect(ClassDefaultInfo.SecondaryAttributes);  // Changed from ClassDefaultInfo!
 	ApplyGameplayEffect(CharacterClassInfo->VitalAttributes);
 }
+
+UAuraCharacterClassInfo* UAuraAbilitySystemBPLibrary::GetCharacterClassInfo(const UObject* WorldContextObject)
+{
+	if (!WorldContextObject) { return nullptr; }
+	
+	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	if (!AuraGameMode) { return nullptr; }
+	
+	return AuraGameMode->CharacterClassInfo;
+}

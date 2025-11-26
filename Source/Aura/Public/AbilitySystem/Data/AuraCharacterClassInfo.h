@@ -44,6 +44,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Aura|CommonClassDefaults")
 	TSubclassOf<UGameplayEffect> VitalAttributes;
 	
+	UPROPERTY(EditDefaultsOnly, Category = "Aura|CommonClassDefaults")
+	TObjectPtr<UCurveTable> DamageCalcCoefficients;
+	
 	FORCEINLINE FCharacterClassDefaultInfo GetDefaultInfo(const ECharacterClass Class) const
 	{
 		return CharacterClassInfo.FindRef(Class);

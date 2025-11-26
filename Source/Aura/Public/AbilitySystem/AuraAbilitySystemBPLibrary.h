@@ -29,6 +29,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Aura|BPLibrary|CharacterClassDefaults")
 	static void InitializeDefaultAttributes(const UObject* WorldContextObject, ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* ASC);
 
+	UFUNCTION(BlueprintCallable, Category = "Aura|BPLibrary|CharacterClassDefaults")
+	static UAuraCharacterClassInfo* GetCharacterClassInfo(const UObject* WorldContextObject);
+	
 private:
 	template <typename T>
 	static T* GetWidgetController(const UObject* WorldContextObject, 
