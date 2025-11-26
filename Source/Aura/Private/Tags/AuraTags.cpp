@@ -75,10 +75,11 @@ namespace Aura
         
 			namespace Projectile
 			{
+				UE_DEFINE_GAMEPLAY_TAG_COMMENT(Projectile, "GameplayCue.Aura.Projectile", "Projectile gameplay cues");
 				namespace Fireball
 				{
-					UE_DEFINE_GAMEPLAY_TAG_COMMENT(Projectile, "GameplayCue.Aura.Projectile.Fireball", "Fireball projectile cues");
-            
+					UE_DEFINE_GAMEPLAY_TAG_COMMENT(Fireball, "GameplayCue.Aura.Projectile.Fireball", "Fireball gameplay cues");
+					
 					UE_DEFINE_GAMEPLAY_TAG_COMMENT(Flight, "GameplayCue.Aura.Projectile.Fireball.Flight", "Fireball flight sound");
 					UE_DEFINE_GAMEPLAY_TAG_COMMENT(Impact, "GameplayCue.Aura.Projectile.Fireball.Impact", "Fireball impact effects");
 				}
