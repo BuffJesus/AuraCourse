@@ -51,9 +51,39 @@ UAuraExecCalc_Damage::UAuraExecCalc_Damage()
 void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams,
 	FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
+	// Setup and Helper Lambdas
 	auto GetAvatarFromASC = [](const UAbilitySystemComponent* ASC) -> const AActor*
 	{
 		return ASC ? ASC->GetAvatarActor() : nullptr;
+	};
+
+	// Helper lambda to capture and clamp attributes
+	auto CaptureAttribute = [&ExecutionParams](const FGameplayEffectAttributeCaptureDefinition& CaptureDef, 
+		const FAggregatorEvaluateParameters& EvalParams) -> float
+	{
+		float Value { 0.f };
+		ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(CaptureDef, EvalParams, Value);
+		return FMath::Max(Value, 0.f);
+	};
+
+	// Helper lambda to safely get curve coefficients
+	auto GetCurveCoefficient = [](const UCurveTable* CurveTable, const FName& CurveName, 
+		const int32 Level, const float DefaultValue = 1.f) -> float
+	{
+		if (!CurveTable)
+		{
+			UE_LOG(LogTemp, Error, TEXT("CurveTable is NULL for curve: %s"), *CurveName.ToString());
+			return DefaultValue;
+		}
+		
+		const FRealCurve* Curve = CurveTable->FindCurve(CurveName, FString());
+		if (!Curve)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Curve not found: %s"), *CurveName.ToString());
+			return DefaultValue;
+		}
+		
+		return Curve->Eval(Level);
 	};
 
 	const AActor* SourceAvatar { GetAvatarFromASC(ExecutionParams.GetSourceAbilitySystemComponent()) };
@@ -61,14 +91,9 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	const IAuraCombatInterface* SourceCombatInterface = Cast<IAuraCombatInterface>(SourceAvatar);
 	const IAuraCombatInterface* TargetCombatInterface = Cast<IAuraCombatInterface>(TargetAvatar);
 	
-	// Null check to ensure we have valid combat interfaces
-	if (!SourceCombatInterface || !TargetCombatInterface)
-	{
-		return;
-	}
+	if (!SourceCombatInterface || !TargetCombatInterface) { return; }
 	
 	const FGameplayEffectSpec Spec { ExecutionParams.GetOwningSpec() };
-	
 	const FGameplayTagContainer* SourceTags { Spec.CapturedSourceTags.GetAggregatedTags() };
 	const FGameplayTagContainer* TargetTags { Spec.CapturedTargetTags.GetAggregatedTags() };
 	
@@ -76,127 +101,69 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	EvalParams.SourceTags = SourceTags;
 	EvalParams.TargetTags = TargetTags;
 	
-	// Get Damage Set by Caller Magnitude
-	float Damage { Spec.GetSetByCallerMagnitude(Aura::Damage::Damage) };
-	
-	// === BLOCK CHANCE CALCULATION ===
-	
-	// Capture TargetBlockChance on Target, determine if successful
-	float TargetBlockChance { 0.f };
-	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().BlockChanceDef, EvalParams, TargetBlockChance);
-	TargetBlockChance = FMath::Max<float>(TargetBlockChance, 0.f);
-	
-	const bool bBlocked { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= TargetBlockChance };
-	Damage = bBlocked ? Damage * 0.5f : Damage;
-	
-	// === ARMOR MITIGATION CALCULATION ===
-	
-	float TargetArmor { 0.f };
-	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvalParams, TargetArmor);
-	TargetArmor = FMath::Max<float>(TargetArmor, 0.f);
-	
-	float SourceArmorPenetration { 0.f };
-	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorPenetrationDef, EvalParams, SourceArmorPenetration);
-	SourceArmorPenetration = FMath::Max<float>(SourceArmorPenetration, 0.f);
-
 	const UAuraCharacterClassInfo* CharacterClassInfo = UAuraAbilitySystemBPLibrary::GetCharacterClassInfo(SourceAvatar);
-	if (!CharacterClassInfo) 
-	{ 
-		UE_LOG(LogTemp, Error, TEXT("CharacterClassInfo is NULL!"));
-		return; 
-	}
-
-	if (!CharacterClassInfo->DamageCalcCoefficients)
+	if (!CharacterClassInfo || !CharacterClassInfo->DamageCalcCoefficients)
 	{
-		UE_LOG(LogTemp, Error, TEXT("DamageCalcCoefficients is NULL!"));
+		UE_LOG(LogTemp, Error, TEXT("CharacterClassInfo or DamageCalcCoefficients is NULL!"));
 		return;
-	}
-
-	UE_LOG(LogTemp, Warning, TEXT("DamageCalcCoefficients: %s"), *CharacterClassInfo->DamageCalcCoefficients->GetName());
-
-	const FRealCurve* ArmorPenCurve { CharacterClassInfo->DamageCalcCoefficients->FindCurve(FName("ArmorPenetration"), FString()) };
-	if (!ArmorPenCurve) 
-	{ 
-		UE_LOG(LogTemp, Error, TEXT("ArmorPenCurve not found!"));
-		return; 
 	}
 	
 	const int32 SourceLevel = SourceCombatInterface->GetCharacterLevel();
 	const int32 TargetLevel = TargetCombatInterface->GetCharacterLevel();
-	const float ArmorPenCoefficient { ArmorPenCurve->Eval(SourceLevel) };
 	
-	UE_LOG(LogTemp, Warning, TEXT("=== DAMAGE CALC DEBUG ==="));
-	UE_LOG(LogTemp, Warning, TEXT("Initial Damage: %.2f"), Damage);
-	UE_LOG(LogTemp, Warning, TEXT("Source Level: %d, Target Level: %d"), SourceLevel, TargetLevel);
-	UE_LOG(LogTemp, Warning, TEXT("TargetArmor: %.2f, SourceArmorPen: %.2f"), TargetArmor, SourceArmorPenetration);
-	UE_LOG(LogTemp, Warning, TEXT("ArmorPenCoefficient (at level %d): %.4f"), SourceLevel, ArmorPenCoefficient);
+	// Attribute Capture
+	float Damage { Spec.GetSetByCallerMagnitude(Aura::Damage::Damage) };
+	const float SourceLuck { CaptureAttribute(DamageStatics().LuckDef, EvalParams) };
+	const float TargetBlockChance { CaptureAttribute(DamageStatics().BlockChanceDef, EvalParams) };
 	
+	// Block Chance
+	const bool bBlocked { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= TargetBlockChance };
+	Damage = bBlocked ? Damage * 0.5f : Damage;
+	
+	// Armor Mitigation
+	const float TargetArmor { CaptureAttribute(DamageStatics().ArmorDef, EvalParams) };
+	float SourceArmorPenetration { CaptureAttribute(DamageStatics().ArmorPenetrationDef, EvalParams) };
+	SourceArmorPenetration += SourceLuck; // Luck increases armor penetration
+	
+	const float ArmorPenCoefficient { GetCurveCoefficient(CharacterClassInfo->DamageCalcCoefficients, 
+		FName("ArmorPenetration"), SourceLevel) };
 	const float EffectiveArmor { TargetArmor * (100.f - SourceArmorPenetration * ArmorPenCoefficient) / 100.f };
-	UE_LOG(LogTemp, Warning, TEXT("EffectiveArmor: %.2f"), EffectiveArmor);
-
-	const FRealCurve* EffectiveArmorCurve { CharacterClassInfo->DamageCalcCoefficients->FindCurve(FName("EffectiveArmor"), FString()) };
-	if (!EffectiveArmorCurve) 
-	{ 
-		UE_LOG(LogTemp, Error, TEXT("EffectiveArmorCurve not found!"));
-		return; 
-	}
-
-	const float EffectiveArmorCoefficient { EffectiveArmorCurve->Eval(TargetLevel) };
-	
-	UE_LOG(LogTemp, Warning, TEXT("EffectiveArmorCoefficient (at level %d): %.4f"), TargetLevel, EffectiveArmorCoefficient);
+	const float EffectiveArmorCoefficient { GetCurveCoefficient(CharacterClassInfo->DamageCalcCoefficients, 
+		FName("EffectiveArmor"), TargetLevel) };
 	
 	Damage *= (100.f - EffectiveArmor * EffectiveArmorCoefficient) / 100.f;
 	
-	UE_LOG(LogTemp, Warning, TEXT("Damage after armor: %.2f"), Damage);
+	// Critical Hit
+	float SourceCriticalHitChance { CaptureAttribute(DamageStatics().CriticalHitChanceDef, EvalParams) };
+	SourceCriticalHitChance += SourceLuck; // Luck increases crit chance
 	
-	// === CRITICAL HIT CALCULATION ===
-	
-	// 1. Capture CriticalHitChance from Source
-	float SourceCriticalHitChance { 0.f };
-	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().CriticalHitChanceDef, EvalParams, SourceCriticalHitChance);
-	SourceCriticalHitChance = FMath::Max<float>(SourceCriticalHitChance, 0.f);
-	
-	// 2. Capture CriticalHitResistance from Target
-	float TargetCriticalHitResistance { 0.f };
-	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().CriticalHitResistanceDef, EvalParams, TargetCriticalHitResistance);
-	TargetCriticalHitResistance = FMath::Max<float>(TargetCriticalHitResistance, 0.f);
-	
-	// 3. ArmorPenetration reduces CriticalHitResistance (mirrors armor calculation)
+	const float TargetCriticalHitResistance { CaptureAttribute(DamageStatics().CriticalHitResistanceDef, EvalParams) };
 	const float EffectiveCriticalHitResistance { TargetCriticalHitResistance * (100.f - SourceArmorPenetration * ArmorPenCoefficient) / 100.f };
+	const float CriticalHitResistanceCoefficient { GetCurveCoefficient(CharacterClassInfo->DamageCalcCoefficients, 
+		FName("CriticalHitResistance"), TargetLevel) };
 	
-	UE_LOG(LogTemp, Warning, TEXT("SourceCritChance: %.2f, TargetCritResist: %.2f, EffectiveCritResist: %.2f"), 
-		SourceCriticalHitChance, TargetCriticalHitResistance, EffectiveCriticalHitResistance);
-	
-	// 4. Get CriticalHitResistance coefficient curve
-	const FRealCurve* CriticalHitResistanceCurve { CharacterClassInfo->DamageCalcCoefficients->FindCurve(FName("CriticalHitResistance"), FString()) };
-	const float CriticalHitResistanceCoefficient = CriticalHitResistanceCurve ? CriticalHitResistanceCurve->Eval(TargetLevel) : 1.f;
-	
-	// 5. Apply resistance as percentage reduction to crit chance (mirrors damage mitigation)
 	float EffectiveCriticalHitChance { SourceCriticalHitChance * (100.f - EffectiveCriticalHitResistance * CriticalHitResistanceCoefficient) / 100.f };
 	EffectiveCriticalHitChance = FMath::Max(0.f, EffectiveCriticalHitChance);
 	
-	UE_LOG(LogTemp, Warning, TEXT("CritResistCoef: %.2f, Final EffectiveCritChance: %.2f"), 
-		CriticalHitResistanceCoefficient, EffectiveCriticalHitChance);
-	
-	// 6. Determine if this is a critical hit
 	const bool bCriticalHit { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= EffectiveCriticalHitChance };
-	
-	// 7. If critical hit, double damage and add CriticalHitDamage bonus
 	if (bCriticalHit)
 	{
-		float SourceCriticalHitDamage { 0.f };
-		ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().CriticalHitDamageDef, EvalParams, SourceCriticalHitDamage);
-		SourceCriticalHitDamage = FMath::Max<float>(SourceCriticalHitDamage, 0.f);
-		
-		// Double damage plus add the CriticalHitDamage bonus
+		const float SourceCriticalHitDamage { CaptureAttribute(DamageStatics().CriticalHitDamageDef, EvalParams) };
 		Damage = Damage * 2.f + SourceCriticalHitDamage;
 		
 		UE_LOG(LogTemp, Warning, TEXT("*** CRITICAL HIT! *** Damage: %.2f (CritDamage Bonus: %.2f)"), Damage, SourceCriticalHitDamage);
 	}
 	
+	// Debug Logging
+	UE_LOG(LogTemp, Warning, TEXT("=== DAMAGE CALC DEBUG ==="));
+	UE_LOG(LogTemp, Warning, TEXT("Source Level: %d | Target Level: %d | Luck: %.2f"), SourceLevel, TargetLevel, SourceLuck);
+	UE_LOG(LogTemp, Warning, TEXT("Initial Damage: %.2f | Blocked: %s"), Spec.GetSetByCallerMagnitude(Aura::Damage::Damage), bBlocked ? TEXT("Yes") : TEXT("No"));
+	UE_LOG(LogTemp, Warning, TEXT("Armor: %.2f | ArmorPen: %.2f (+ Luck) | Effective: %.2f"), TargetArmor, SourceArmorPenetration, EffectiveArmor);
+	UE_LOG(LogTemp, Warning, TEXT("CritChance: %.2f%% (+ Luck) | CritResist: %.2f | Effective: %.2f%%"), SourceCriticalHitChance, TargetCriticalHitResistance, EffectiveCriticalHitChance);
 	UE_LOG(LogTemp, Warning, TEXT("Final Damage: %.2f"), Damage);
 	UE_LOG(LogTemp, Warning, TEXT("========================="));
 	
+	// Apply Damage
 	const FGameplayModifierEvaluatedData EvaluatedData(UAuraAttributeSet::GetIncomingDamageAttribute(), EGameplayModOp::Additive, Damage);
 	OutExecutionOutput.AddOutputModifier(EvaluatedData);
 }

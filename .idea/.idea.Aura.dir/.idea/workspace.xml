@@ -9,12 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Data/CT_Aura_DamageCalcCoefficients.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Data/CT_Aura_DamageCalcCoefficients.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSet.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,15 +266,7 @@
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
-      <workItem from="1764160983768" duration="15528000" />
-    </task>
-    <task id="LOCAL-00185" summary="Moved `CharacterClass` property from `AuraBaseCharacter` to `AuraEnemyCharacter` and updated `BP_Enemy_Base` asset accordingly.">
-      <option name="closed" value="true" />
-      <created>1764045642166</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1764045642166</updated>
+      <workItem from="1764160983768" duration="16282000" />
     </task>
     <task id="LOCAL-00186" summary="Broke it, but we'll fix it.">
       <option name="closed" value="true" />
@@ -665,7 +652,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764173695042</updated>
     </task>
-    <option name="localTasksCounter" value="234" />
+    <task id="LOCAL-00234" summary="Replaced `MagicResistance` attribute with `Luck` in `AuraAttributeSet` and updated related gameplay tags, replication logic, and damage calculation methods.">
+      <option name="closed" value="true" />
+      <created>1764197021599</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1764197021599</updated>
+    </task>
+    <option name="localTasksCounter" value="235" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -675,7 +670,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added floating damage text system with `UAuraDamageTextComponent`. Integrated `ShowFloatingText` method in `AuraAttributeSet` and `ShowDamageNumber` in `AuraPlayerController` for displaying damage values." />
     <MESSAGE value="Updated damage number logic to iterate through all player controllers, ensuring correct display for multiplayer scenarios." />
     <MESSAGE value="Refactored `UAuraDamageTextComponent` initialization and updated `ShowDamageNumber` to improve component attachment logic. Marked `ShowDamageNumber` as `const`." />
     <MESSAGE value="Updated `ShowFloatingText` call in `AuraAttributeSet` to display damage text for all damage instances, not just fatal damage." />
@@ -700,7 +694,8 @@
     <MESSAGE value="Added comprehensive debug logging and null checks to `AuraExecCalc_Damage`. Enhanced armor and damage coefficient validation with detailed logging for level-based calculations." />
     <MESSAGE value="Added critical hit calculations to `AuraExecCalc_Damage`, including support for `CriticalHitChance`, `CriticalHitDamage`, and `CriticalHitResistance`. Enhanced logging for detailed debugging of critical hit outcomes." />
     <MESSAGE value="Refactored `AuraExecCalc_Damage` for improved readability, added block chance and armor mitigation debug sections, and refined critical hit resistance calculations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraExecCalc_Damage` for improved readability, added block chance and armor mitigation debug sections, and refined critical hit resistance calculations." />
+    <MESSAGE value="Replaced `MagicResistance` attribute with `Luck` in `AuraAttributeSet` and updated related gameplay tags, replication logic, and damage calculation methods." />
+    <option name="LAST_COMMIT_MESSAGE" value="Replaced `MagicResistance` attribute with `Luck` in `AuraAttributeSet` and updated related gameplay tags, replication logic, and damage calculation methods." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
