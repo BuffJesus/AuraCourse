@@ -7,11 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/GE_Aura_Test_Damage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/GE_Aura_Test_Damage.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +36,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://27" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://28" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -262,15 +258,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="32615000" />
-    </task>
-    <task id="LOCAL-00171" summary="Refined health change broadcasting in `AuraEnemyCharacter` to exclude invalid health values and removed debug messaging from `AuraAttributeSet`.">
-      <option name="closed" value="true" />
-      <created>1764034602420</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1764034602420</updated>
+      <workItem from="1764074021602" duration="32918000" />
     </task>
     <task id="LOCAL-00172" summary="Added `AuraPlayerAttributeSet` and `AuraEnemyAttributeSet` for player- and enemy-specific attributes. Introduced `AuraCharacterClassInfo` to manage default class-specific attributes.">
       <option name="closed" value="true" />
@@ -656,7 +644,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764133358667</updated>
     </task>
-    <option name="localTasksCounter" value="220" />
+    <task id="LOCAL-00220" summary="Added `BlockChance` attribute capture to `UAuraExecCalc_Damage` and incorporated block chance logic into damage calculations.">
+      <option name="closed" value="true" />
+      <created>1764134058465</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1764134058465</updated>
+    </task>
+    <option name="localTasksCounter" value="221" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -666,7 +662,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Implemented `HitReact` ability and integrated corresponding gameplay tags. Added `HitReact` montage logic to characters and triggered ability in response to hits." />
     <MESSAGE value="Added logging to `HitReact` ability for improved debugging: warnings for activation and montage playback, error for missing AvatarActor." />
     <MESSAGE value="Enhanced `HitReact` ability initialization: added gameplay event trigger with tag and refactored effect application for clarity." />
     <MESSAGE value="Refactored `AuraGA_HitReact` to use uniform initialization for `CombatInterface` casting." />
@@ -691,7 +686,8 @@
     <MESSAGE value="Added gameplay tag support to `UAuraExecCalc_Damage` and refined armor attribute calculation." />
     <MESSAGE value="Updated `.idea/workspace.xml` to reflect changes in project configuration and added breakpoint in `AuraExecCalc_Damage.cpp`." />
     <MESSAGE value="Refactored `UAuraExecCalc_Damage` to use `SetByCallerMagnitude` for damage calculation and removed redundant armor logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `UAuraExecCalc_Damage` to use `SetByCallerMagnitude` for damage calculation and removed redundant armor logic." />
+    <MESSAGE value="Added `BlockChance` attribute capture to `UAuraExecCalc_Damage` and incorporated block chance logic into damage calculations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `BlockChance` attribute capture to `UAuraExecCalc_Damage` and incorporated block chance logic into damage calculations." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -708,6 +704,11 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp</url>
+          <line>61</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
