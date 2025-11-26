@@ -128,10 +128,12 @@ void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, const f
 {
 	if (Props.SourceCharacter != Props.TargetCharacter)
 	{
-		if (AAuraPlayerController* PC { Cast<AAuraPlayerController>
-			(UGameplayStatics::GetPlayerController(Props.SourceCharacter, 0)) })
+		for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; ++It)
 		{
-			PC->ShowDamageNumber(Damage, Props.TargetCharacter);
+			if (auto PC = Cast<AAuraPlayerController>(It->Get()))
+			{
+				PC->ShowDamageNumber(Damage, Props.TargetCharacter);
+			}
 		}
 	}
 }
