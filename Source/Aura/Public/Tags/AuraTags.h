@@ -31,7 +31,7 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaRegeneration);
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(MaxHealth);
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(MaxMana);
-			UE_DECLARE_GAMEPLAY_TAG_EXTERN(MagicResistance);
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Luck);
 		}
 		namespace Vital
 		{
