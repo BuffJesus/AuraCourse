@@ -1,6 +1,5 @@
 // Not Sure Yet
 
-
 #include "AbilitySystem/Abilities/AuraGA_ProjectileSpell.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
@@ -37,13 +36,25 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 			Cast<APawn>(GetOwningActorFromActorInfo()),
 			ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
 
+		// Set up damage effect
 		const UAbilitySystemComponent* SourceASC { UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo()) };
 		const FGameplayEffectSpecHandle SpecHandle { SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), SourceASC->MakeEffectContext()) };
 		
 		const float ScaledDamage { Damage.GetValueAtLevel(TestLevel) };
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Damage: %f"), ScaledDamage));
 		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Aura::Damage::Damage, ScaledDamage);
 		Projectile->DamageEffectSpecHandle = SpecHandle;
+		
+		// Only override cue tags if ability has them configured
+		// Otherwise, projectile keeps its Blueprint defaults
+		if (ProjectileFlightCue.IsValid())
+		{
+			Projectile->FlightCueTag = ProjectileFlightCue;
+		}
+		
+		if (ProjectileImpactCue.IsValid())
+		{
+			Projectile->ImpactCueTag = ProjectileImpactCue;
+		}
 		
 		Projectile->FinishSpawning(SpawnTransform);
 	}

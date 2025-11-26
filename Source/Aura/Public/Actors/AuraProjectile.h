@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameplayEffectTypes.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/Actor.h"
 #include "AuraProjectile.generated.h"
 
@@ -24,6 +25,14 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = true))
 	FGameplayEffectSpecHandle DamageEffectSpecHandle;
+
+	/** Gameplay Cue to play during flight (looping) - Can be set in projectile BP or overridden by ability */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ExposeOnSpawn = true, Categories = "Aura|GameplayCue"))
+	FGameplayTag FlightCueTag;
+
+	/** Gameplay Cue to play on impact (one-shot) - Can be set in projectile BP or overridden by ability */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ExposeOnSpawn = true, Categories = "Aura|GameplayCue"))
+	FGameplayTag ImpactCueTag;
 
 protected:
 	virtual void BeginPlay() override;

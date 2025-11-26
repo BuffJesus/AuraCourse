@@ -8,16 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileFlight.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileImpact.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Cues/AuraGCN_ProjectileFlight.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Cues/AuraGCN_ProjectileImpact.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Cues/GCN_Aura_ProjectileFlight.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Cues/GCN_Aura_ProjectileImpact.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_DamageText.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_DamageText.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +44,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://30" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://31" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -273,15 +270,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="33649000" />
-    </task>
-    <task id="LOCAL-00173" summary="Refined health change delegate in `AuraEnemyCharacter` by removing redundant value check. Replaced `static_cast` with `Cast` in `AuraPlayerCharacter` for attribute set initialization and removed unused include.">
-      <option name="closed" value="true" />
-      <created>1764036953593</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1764036953593</updated>
+      <workItem from="1764074021602" duration="34353000" />
     </task>
     <task id="LOCAL-00174" summary="Replaced comments in `AuraPlayerCharacter` with cleaner code and removed outdated debug remarks. Updated `.idea` files for workspace adjustments.">
       <option name="closed" value="true" />
@@ -667,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764134304587</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="Added `AuraGCN_ProjectileFlight` and `AuraGCN_ProjectileImpact` gameplay cues for managing projectile flight audio and impact effects. Refactored `AuraProjectile` to use these cues, improving sound and effect handling.">
+      <option name="closed" value="true" />
+      <created>1764134843828</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1764134843828</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -677,7 +674,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Enhanced `HitReact` ability initialization: added gameplay event trigger with tag and refactored effect application for clarity." />
     <MESSAGE value="Refactored `AuraGA_HitReact` to use uniform initialization for `CombatInterface` casting." />
     <MESSAGE value="Guarded `AddCharacterAbilities` call with authority check in `AuraEnemyCharacter`." />
     <MESSAGE value="Refactored `HitReact` ability to include effect cleanup logic, ensuring proper effect removal on montage completion, interruption, or cancellation. Added getter for `HitReactMontage` in `AuraBaseCharacter`." />
@@ -702,7 +698,8 @@
     <MESSAGE value="Refactored `UAuraExecCalc_Damage` to use `SetByCallerMagnitude` for damage calculation and removed redundant armor logic." />
     <MESSAGE value="Added `BlockChance` attribute capture to `UAuraExecCalc_Damage` and incorporated block chance logic into damage calculations." />
     <MESSAGE value="Refactored `UAuraGCN_DamageText` to improve target character resolution using `FGameplayCueParameters.Location` and simplified validation checks." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `UAuraGCN_DamageText` to improve target character resolution using `FGameplayCueParameters.Location` and simplified validation checks." />
+    <MESSAGE value="Added `AuraGCN_ProjectileFlight` and `AuraGCN_ProjectileImpact` gameplay cues for managing projectile flight audio and impact effects. Refactored `AuraProjectile` to use these cues, improving sound and effect handling." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `AuraGCN_ProjectileFlight` and `AuraGCN_ProjectileImpact` gameplay cues for managing projectile flight audio and impact effects. Refactored `AuraProjectile` to use these cues, improving sound and effect handling." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -51,32 +51,31 @@ void AAuraProjectile::BeginPlay()
 		SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Owner);
 	}
 
-	// Start flight sound cue (Add = start looping)
-	if (SourceASC)
+	// Start flight cue if configured (Add = start looping)
+	if (SourceASC && FlightCueTag.IsValid())
 	{
 		FGameplayCueParameters CueParams;
 		CueParams.SourceObject = this;
 		CueParams.Location = GetActorLocation();
 		
-		SourceASC->AddGameplayCue(Aura::GameplayCue::Aura::Projectile::Flight, CueParams);
+		SourceASC->AddGameplayCue(FlightCueTag, CueParams);
 	}
 }
 
 void AAuraProjectile::Destroyed()
 {
-	// Stop flight sound if we're being destroyed without hitting
-	// (e.g., timed out)
-	if (!bHit && SourceASC)
+	// Stop flight cue if we're being destroyed without hitting (e.g., timed out)
+	if (!bHit && SourceASC && FlightCueTag.IsValid())
 	{
-		SourceASC->RemoveGameplayCue(Aura::GameplayCue::Aura::Projectile::Flight);
+		SourceASC->RemoveGameplayCue(FlightCueTag);
 		
 		// Also play impact effects on clients when projectile is destroyed
-		if (!HasAuthority())
+		if (!HasAuthority() && ImpactCueTag.IsValid())
 		{
 			FGameplayCueParameters CueParams;
 			CueParams.Location = GetActorLocation();
 			
-			SourceASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::Projectile::Impact, CueParams);
+			SourceASC->ExecuteGameplayCue(ImpactCueTag, CueParams);
 		}
 	}
 
@@ -100,20 +99,26 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 			TargetASC->HandleGameplayEvent(Aura::Event::HitReact, &EventData);
 		}
 
-		// Stop flight sound (Remove = stop looping)
-		if (SourceASC)
+		// Stop flight cue (Remove = stop looping)
+		if (SourceASC && FlightCueTag.IsValid())
 		{
-			SourceASC->RemoveGameplayCue(Aura::GameplayCue::Aura::Projectile::Flight);
-			
-			// Play impact effects
+			SourceASC->RemoveGameplayCue(FlightCueTag);
+		}
+		
+		// Play impact cue
+		if (SourceASC && ImpactCueTag.IsValid())
+		{
 			FGameplayCueParameters CueParams;
 			CueParams.Location = GetActorLocation();
 			CueParams.Normal = SweepResult.ImpactNormal;
 			
-			SourceASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::Projectile::Impact, CueParams);
+			SourceASC->ExecuteGameplayCue(ImpactCueTag, CueParams);
 		}
 		
 		Destroy();
 	}
-	else { bHit = true; }
+	else
+	{
+		bHit = true;
+	}
 }
