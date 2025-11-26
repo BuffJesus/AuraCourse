@@ -8,8 +8,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_Luck.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_Luck.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_Luck.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_Luck.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Data/DA_Aura_Attribute_Info.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Data/DA_Aura_Attribute_Info.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/Effects/GE_Aura_Default_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/Effects/GE_Aura_Default_Attributes_Secondary.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/Effects/GE_Aura_Elementalist_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/Effects/GE_Aura_Elementalist_Attributes_Secondary.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/Effects/GE_Aura_Ranger_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/Effects/GE_Aura_Ranger_Attributes_Secondary.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/Effects/GE_Aura_Warrior_Attributes_Secondary.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/Effects/GE_Aura_Warrior_Attributes_Secondary.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_AttributeMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_AttributeMenu.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +47,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://13" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://14" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -266,15 +274,7 @@
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
-      <workItem from="1764160983768" duration="16282000" />
-    </task>
-    <task id="LOCAL-00186" summary="Broke it, but we'll fix it.">
-      <option name="closed" value="true" />
-      <created>1764046178903</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1764046178903</updated>
+      <workItem from="1764160983768" duration="17224000" />
     </task>
     <task id="LOCAL-00187" summary="Made `GetCharacterClass` in `AuraBaseCharacter` non-pure virtual by providing a default implementation returning `ECharacterClass::DefaultClass`. Updated `.idea/workspace.xml`.">
       <option name="closed" value="true" />
@@ -660,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764197021599</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="Refactored `AuraExecCalc_Damage` to simplify attribute captures with helper lambdas, incorporated `Luck` into critical hit and armor penetration calculations, and streamlined debug logging.">
+      <option name="closed" value="true" />
+      <created>1764197719636</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1764197719636</updated>
+    </task>
+    <option name="localTasksCounter" value="236" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,8 +678,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated damage number logic to iterate through all player controllers, ensuring correct display for multiplayer scenarios." />
-    <MESSAGE value="Refactored `UAuraDamageTextComponent` initialization and updated `ShowDamageNumber` to improve component attachment logic. Marked `ShowDamageNumber` as `const`." />
     <MESSAGE value="Updated `ShowFloatingText` call in `AuraAttributeSet` to display damage text for all damage instances, not just fatal damage." />
     <MESSAGE value="Replaced `ShowFloatingText` with `GameplayCue` for damage text display and removed redundant logic in `AuraAttributeSet` and `AuraPlayerController`. Added `UAuraGCN_DamageText` to manage floating damage text." />
     <MESSAGE value="Namespace `GameplayCue` updated to include `GameplayCue.Aura.DamageText` for improved organization and clarity. Adjusted `AuraAttributeSet` references accordingly." />
@@ -695,7 +701,9 @@
     <MESSAGE value="Added critical hit calculations to `AuraExecCalc_Damage`, including support for `CriticalHitChance`, `CriticalHitDamage`, and `CriticalHitResistance`. Enhanced logging for detailed debugging of critical hit outcomes." />
     <MESSAGE value="Refactored `AuraExecCalc_Damage` for improved readability, added block chance and armor mitigation debug sections, and refined critical hit resistance calculations." />
     <MESSAGE value="Replaced `MagicResistance` attribute with `Luck` in `AuraAttributeSet` and updated related gameplay tags, replication logic, and damage calculation methods." />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced `MagicResistance` attribute with `Luck` in `AuraAttributeSet` and updated related gameplay tags, replication logic, and damage calculation methods." />
+    <MESSAGE value="Refactored `AuraExecCalc_Damage` to streamline attribute capture and coefficient calculations, added helper lambdas, and incorporated `Luck` into armor penetration and critical hit chance logic." />
+    <MESSAGE value="Refactored `AuraExecCalc_Damage` to simplify attribute captures with helper lambdas, incorporated `Luck` into critical hit and armor penetration calculations, and streamlined debug logging." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraExecCalc_Damage` to simplify attribute captures with helper lambdas, incorporated `Luck` into critical hit and armor penetration calculations, and streamlined debug logging." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
