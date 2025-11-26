@@ -8,10 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ExecCalc/AuraExecCalc_Damage.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Cues/GCN_Aura_DamageText.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Cues/GCN_Aura_DamageText.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,15 +261,7 @@
       <workItem from="1763919271674" duration="18909000" />
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
-      <workItem from="1764074021602" duration="29888000" />
-    </task>
-    <task id="LOCAL-00166" summary="Added damage application to `AuraProjectile` using `GameplayEffectSpecHandle`, updated `AuraGA_ProjectileSpell` initialization, and improved debug feedback for health changes in `AuraAttributeSet`.">
-      <option name="closed" value="true" />
-      <created>1764028054070</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1764028054070</updated>
+      <workItem from="1764074021602" duration="30594000" />
     </task>
     <task id="LOCAL-00167" summary="Refactored widget controller initialization in `AuraHUD` and removed server authority check for broadcasting initial values. Simplified ability actor initialization in `AuraEnemyCharacter`.">
       <option name="closed" value="true" />
@@ -657,7 +647,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764130148881</updated>
     </task>
-    <option name="localTasksCounter" value="215" />
+    <task id="LOCAL-00215" summary="Added `UAuraExecCalc_Damage` for custom damage calculations and updated project configuration files accordingly.">
+      <option name="closed" value="true" />
+      <created>1764131163250</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1764131163250</updated>
+    </task>
+    <option name="localTasksCounter" value="216" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,7 +665,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `IncomingDamage` as a meta attribute in `AuraAttributeSet` and implemented health reduction logic based on incoming damage." />
     <MESSAGE value="Added support for `Damage` gameplay tag in `AuraTags`, applied tag-based damage magnitude assignment in `AuraGA_ProjectileSpell`, and added on-screen debug message for player death in `AuraAttributeSet`." />
     <MESSAGE value="Updated `GE_Aura_Test_Damage` asset." />
     <MESSAGE value="Applied scalable damage calculation in `AuraGA_ProjectileSpell`, added `Damage` property to `AuraGameplayAbility`, and removed redundant debug message for player death in `AuraAttributeSet`." />
@@ -692,7 +689,8 @@
     <MESSAGE value="Updated `ShowFloatingText` call in `AuraAttributeSet` to display damage text for all damage instances, not just fatal damage." />
     <MESSAGE value="Replaced `ShowFloatingText` with `GameplayCue` for damage text display and removed redundant logic in `AuraAttributeSet` and `AuraPlayerController`. Added `UAuraGCN_DamageText` to manage floating damage text." />
     <MESSAGE value="Namespace `GameplayCue` updated to include `GameplayCue.Aura.DamageText` for improved organization and clarity. Adjusted `AuraAttributeSet` references accordingly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Namespace `GameplayCue` updated to include `GameplayCue.Aura.DamageText` for improved organization and clarity. Adjusted `AuraAttributeSet` references accordingly." />
+    <MESSAGE value="Added `UAuraExecCalc_Damage` for custom damage calculations and updated project configuration files accordingly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `UAuraExecCalc_Damage` for custom damage calculations and updated project configuration files accordingly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
