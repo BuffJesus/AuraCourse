@@ -102,6 +102,13 @@ int32 AAuraEnemyCharacter::GetPlayerLevel() const
 void AAuraEnemyCharacter::Die()
 {
 	Super::Die();
-	HealthBar->DestroyComponent();
 	SetLifeSpan(LifeSpan);
+}
+
+void AAuraEnemyCharacter::MulticastHandleDeath_Implementation()
+{
+	Super::MulticastHandleDeath_Implementation();
+	
+	// Destroy health bar on all clients
+	if (HealthBar) { HealthBar->DestroyComponent(); }
 }

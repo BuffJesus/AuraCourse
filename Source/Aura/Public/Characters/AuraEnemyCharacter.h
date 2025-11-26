@@ -25,6 +25,7 @@ public:
 	virtual int32 GetPlayerLevel() const override;
 	
 	virtual void Die() override;
+	virtual void MulticastHandleDeath_Implementation() override;
 	
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnHealthChanged;

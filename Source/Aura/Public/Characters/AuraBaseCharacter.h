@@ -116,7 +116,6 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Dissolve")
 	FName GlowParameterName { "Glow" };
-	// #endregion Dissolve Timeline
 	
 	FORCEINLINE virtual UAnimMontage* GetHitReactMontage_Implementation() const override
 	{
