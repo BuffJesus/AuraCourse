@@ -119,7 +119,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			CueParams.SourceObject = Props.SourceAvatarActor;
 			CueParams.TargetAttachComponent = Props.TargetCharacter->GetRootComponent();
         
-			Props.TargetASC->ExecuteGameplayCue(Aura::GameplayCue::DamageText, CueParams);
+			Props.TargetASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::DamageText, CueParams);
 
 			if (const bool bFatal { NewHealth <= 0.f })
 			{

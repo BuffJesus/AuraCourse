@@ -68,7 +68,12 @@ namespace Aura
 	{
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(GameplayCue);
     
-		UE_DECLARE_GAMEPLAY_TAG_EXTERN(DamageText);
+		namespace Aura
+		{
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Aura);
+        
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(DamageText);
+		}
 	}
 	namespace Input
 	{

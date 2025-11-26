@@ -65,9 +65,14 @@ namespace Aura
 	}
 	namespace GameplayCue
 	{
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(GameplayCue, "Aura.GameplayCue", "Gameplay cue");
-		
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(DamageText, "Aura.GameplayCue.DamageText", "Damage text");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(GameplayCue, "GameplayCue", "Gameplay cue root");
+    
+		namespace Aura
+		{
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Aura, "GameplayCue.Aura", "Aura gameplay cues");
+        
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(DamageText, "GameplayCue.Aura.DamageText", "Damage text display");
+		}
 	}
 	namespace Input
 	{
