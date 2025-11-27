@@ -50,25 +50,52 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 
 void UAuraAttributeSet::ClampVitalAttribute(const FGameplayAttribute& VitalAttribute, float& NewValue) const
 {
+	// Lambda to clamp a vital attribute to its max value
+	auto ClampToMax = [&NewValue](const float MaxValue)
+	{
+		if (MaxValue > 0.f)
+		{
+			NewValue = FMath::Clamp(NewValue, 0.f, MaxValue);
+		}
+	};
+	
 	if (VitalAttribute == GetHealthAttribute())
 	{
-		if (GetMaxHealth() > 0.f) { NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth()); }
+		ClampToMax(GetMaxHealth());
 	}
 	else if (VitalAttribute == GetManaAttribute())
 	{
-		if (GetMaxMana() > 0.f) { NewValue = FMath::Clamp(NewValue, 0.f, GetMaxMana()); }
+		ClampToMax(GetMaxMana());
 	}
 }
 
 void UAuraAttributeSet::ClampMaxAttribute(const FGameplayAttribute& MaxAttribute, float& NewValue) const
 {
-	if (MaxAttribute == GetMaxHealthAttribute() || MaxAttribute == GetMaxManaAttribute()) { NewValue = FMath::Max(NewValue, 0.f); }
+	if (MaxAttribute == GetMaxHealthAttribute() || MaxAttribute == GetMaxManaAttribute())
+	{
+		NewValue = FMath::Max(NewValue, 0.f);
+	}
 }
 
 void UAuraAttributeSet::ClampCurrentVitalAttributes()
 {
-	if (GetMaxHealth() > 0.f) { SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth())); }
-	if (GetMaxMana() > 0.f) { SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana())); }
+	// Lambda to clamp a vital stat to its max
+	auto ClampVital = [](float& CurrentValue, const float MaxValue)
+	{
+		if (MaxValue > 0.f)
+		{
+			CurrentValue = FMath::Clamp(CurrentValue, 0.f, MaxValue);
+		}
+	};
+	
+	float CurrentHealth { GetHealth() };
+	float CurrentMana { GetMana() };
+	
+	ClampVital(CurrentHealth, GetMaxHealth());
+	ClampVital(CurrentMana, GetMaxMana());
+	
+	SetHealth(CurrentHealth);
+	SetMana(CurrentMana);
 }
 
 void UAuraAttributeSet::PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const
@@ -88,25 +115,40 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 
 	const FGameplayAttribute& ModifiedAttribute { Data.EvaluatedData.Attribute };
 
-	// When Health or Mana is modified directly, clamp to max
-	if (ModifiedAttribute == GetHealthAttribute() || ModifiedAttribute == GetManaAttribute())
+	// Lambda for clamping a vital attribute (Health or Mana) to its max
+	auto ClampVitalToMax = [this](const bool bIsHealth)
 	{
-		const bool bIsHealth { ModifiedAttribute == GetHealthAttribute() };
 		const float CurrentValue { bIsHealth ? GetHealth() : GetMana() };
-		if (const float MaxValue { bIsHealth ? GetMaxHealth() : GetMaxMana() }; MaxValue > 0.f)
+		const float MaxValue { bIsHealth ? GetMaxHealth() : GetMaxMana() };
+		
+		if (MaxValue > 0.f)
 		{
 			const float ClampedValue { FMath::Clamp(CurrentValue, 0.f, MaxValue) };
 			bIsHealth ? SetHealth(ClampedValue) : SetMana(ClampedValue);
 		}
+	};
+	
+	// When Health or Mana is modified directly, clamp to max
+	if (ModifiedAttribute == GetHealthAttribute())
+	{
+		ClampVitalToMax(true);
+	}
+	else if (ModifiedAttribute == GetManaAttribute())
+	{
+		ClampVitalToMax(false);
 	}
 
 	// When MaxHealth or MaxMana changes, re-clamp current values
-	if (ModifiedAttribute == GetMaxHealthAttribute() || ModifiedAttribute == GetMaxManaAttribute()) { ClampCurrentVitalAttributes(); }
+	if (ModifiedAttribute == GetMaxHealthAttribute() || ModifiedAttribute == GetMaxManaAttribute())
+	{
+		ClampCurrentVitalAttributes();
+	}
 	
 	if (Data.EvaluatedData.Attribute == GetIncomingDamageAttribute())
 	{
 		const float LocalIncomingDamage { GetIncomingDamage() };
 		SetIncomingDamage(0.f);
+		
 		if (LocalIncomingDamage > 0.f)
 		{
 			const float NewHealth { GetHealth() - LocalIncomingDamage };
@@ -121,7 +163,8 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
         
 			Props.TargetASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::DamageText, CueParams);
 
-			if (const bool bFatal { NewHealth <= 0.f })
+			const bool bFatal { NewHealth <= 0.f };
+			if (bFatal)
 			{
 				if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(Props.TargetAvatarActor))
 				{
@@ -183,4 +226,3 @@ IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Luck)
 
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Health)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Mana)
-

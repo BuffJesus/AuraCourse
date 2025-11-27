@@ -7,10 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AuraAbilityTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AuraAbilityTypes.h" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +17,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="39717" />
+    <option name="cachedIndexableFilesCount" value="39720" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -273,14 +270,7 @@
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
-    </task>
-    <task id="LOCAL-00200" summary="Refactored `HitReact` ability to include effect cleanup logic, ensuring proper effect removal on montage completion, interruption, or cancellation. Added getter for `HitReactMontage` in `AuraBaseCharacter`.">
-      <option name="closed" value="true" />
-      <created>1764117483023</created>
-      <option name="number" value="00200" />
-      <option name="presentableId" value="LOCAL-00200" />
-      <option name="project" value="LOCAL" />
-      <updated>1764117483023</updated>
+      <workItem from="1764209847114" duration="533000" />
     </task>
     <task id="LOCAL-00201" summary="Implemented `Die` method in `AuraBaseCharacter` and `AuraEnemyCharacter` with death handling logic, including physics simulation and lifespan configuration. Added `Die` to `AuraCombatInterface` as a pure virtual method.">
       <option name="closed" value="true" />
@@ -666,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764208186344</updated>
     </task>
-    <option name="localTasksCounter" value="249" />
+    <task id="LOCAL-00249" summary="Added `const` qualifiers to `SetIsBlockedHit` and `SetIsCriticalHit` methods in `FAuraGameplayEffectContext` to ensure better type safety.">
+      <option name="closed" value="true" />
+      <created>1764210001799</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1764210001799</updated>
+    </task>
+    <option name="localTasksCounter" value="250" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -676,7 +674,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `Fireball` gameplay tag namespace and associated Cues for flight and impact effects. Enhanced tag structure under `Projectile` for better organization." />
     <MESSAGE value="Updated `.idea/workspace.xml` to include changes for Fireball gameplay cues and adjustments to projectile-related assets." />
     <MESSAGE value="Added `ArmorPenetration` attribute capture to `UAuraExecCalc_Damage` and incorporated armor penetration into damage calculations." />
     <MESSAGE value="Enabled `bUseDebugTargetFromHud` in `DefaultEngine.ini` for debugging ability system targets." />
@@ -701,7 +698,8 @@
     <MESSAGE value="Added validation for `ProjectileClass` and `DamageEffectClass` in `AuraGA_ProjectileSpell` to prevent invalid instantiation. Simplified `FTransform` initialization and removed unused variable `TestLevel`." />
     <MESSAGE value="Added `FAuraGameplayEffectContext` with serialization support and helper methods for critical and blocked hit tracking." />
     <MESSAGE value="Fixed inheritance syntax for `FAuraGameplayEffectContext` by adding `public` to ensure proper access specifier usage." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed inheritance syntax for `FAuraGameplayEffectContext` by adding `public` to ensure proper access specifier usage." />
+    <MESSAGE value="Added `const` qualifiers to `SetIsBlockedHit` and `SetIsCriticalHit` methods in `FAuraGameplayEffectContext` to ensure better type safety." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `const` qualifiers to `SetIsBlockedHit` and `SetIsCriticalHit` methods in `FAuraGameplayEffectContext` to ensure better type safety." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
