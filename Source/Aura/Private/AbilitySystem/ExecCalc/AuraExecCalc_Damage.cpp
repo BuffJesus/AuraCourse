@@ -128,10 +128,9 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	
 	// Block Chance - Using Config
 	const bool bBlocked { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= TargetBlockChance };
+	
 	FGameplayEffectContextHandle EffectContextHandle { Spec.GetContext() };
-	FGameplayEffectContext* Context { EffectContextHandle.Get() };
-	FAuraGameplayEffectContext* AuraContext { static_cast<FAuraGameplayEffectContext*>(Context) };
-	AuraContext->SetIsBlockedHit(bBlocked);
+	UAuraAbilitySystemBPLibrary::SetIsBlockedHit(EffectContextHandle, bBlocked);
 	
 	Damage = bBlocked ? Damage * Config->BlockDamageReduction : Damage;
 	
@@ -173,6 +172,8 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	const bool bCriticalHit { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= EffectiveCriticalHitChance };
 	if (bCriticalHit)
 	{
+		UAuraAbilitySystemBPLibrary::SetIsCriticalHit(EffectContextHandle, true);
+		
 		const float SourceCriticalHitDamage { CaptureAttribute(DamageStatics().CriticalHitDamageDef, EvalParams) };
 		// Using Config for Crit Multiplier
 		Damage = Damage * Config->CriticalHitMultiplier + SourceCriticalHitDamage;

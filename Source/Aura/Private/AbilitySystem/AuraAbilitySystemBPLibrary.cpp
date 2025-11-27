@@ -108,7 +108,7 @@ bool UAuraAbilitySystemBPLibrary::IsBlockedHit(const FGameplayEffectContextHandl
 	return false;
 }
 
-bool UAuraAbilitySystemBPLibrary::IsCritcialHit(const FGameplayEffectContextHandle& EffectContextHandle)
+bool UAuraAbilitySystemBPLibrary::IsCriticalHit(const FGameplayEffectContextHandle& EffectContextHandle)
 {
 	if (const FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
 	{

@@ -4,6 +4,7 @@
 #include "AbilitySystemBlueprintLibrary.h"
 #include "GameFramework/Character.h"
 #include "GameplayEffectExtension.h"
+#include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
@@ -160,7 +161,9 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			CueParams.EffectContext = Data.EffectSpec.GetContext();
 			CueParams.SourceObject = Props.SourceAvatarActor;
 			CueParams.TargetAttachComponent = Props.TargetCharacter->GetRootComponent();
-        
+			
+			const bool bBlock { UAuraAbilitySystemBPLibrary::IsBlockedHit(Props.EffectContextHandle) };
+			const bool bCritical { UAuraAbilitySystemBPLibrary::IsCriticalHit(Props.EffectContextHandle) };
 			Props.TargetASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::DamageText, CueParams);
 
 			const bool bFatal { NewHealth <= 0.f };

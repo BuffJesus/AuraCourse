@@ -8,7 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,23 +276,7 @@
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
-      <workItem from="1764209847114" duration="6499000" />
-    </task>
-    <task id="LOCAL-00209" summary="Added floating damage text system with `UAuraDamageTextComponent`. Integrated `ShowFloatingText` method in `AuraAttributeSet` and `ShowDamageNumber` in `AuraPlayerController` for displaying damage values.">
-      <option name="closed" value="true" />
-      <created>1764128219363</created>
-      <option name="number" value="00209" />
-      <option name="presentableId" value="LOCAL-00209" />
-      <option name="project" value="LOCAL" />
-      <updated>1764128219363</updated>
-    </task>
-    <task id="LOCAL-00210" summary="Updated damage number logic to iterate through all player controllers, ensuring correct display for multiplayer scenarios.">
-      <option name="closed" value="true" />
-      <created>1764128359930</created>
-      <option name="number" value="00210" />
-      <option name="presentableId" value="LOCAL-00210" />
-      <option name="project" value="LOCAL" />
-      <updated>1764128359930</updated>
+      <workItem from="1764209847114" duration="7134000" />
     </task>
     <task id="LOCAL-00211" summary="Refactored `UAuraDamageTextComponent` initialization and updated `ShowDamageNumber` to improve component attachment logic. Marked `ShowDamageNumber` as `const`.">
       <option name="closed" value="true" />
@@ -668,7 +654,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764216155978</updated>
     </task>
-    <option name="localTasksCounter" value="258" />
+    <task id="LOCAL-00258" summary="Refactored `AuraAbilitySystemBPLibrary` to centralize `FAuraGameplayEffectContext` access with helper methods. Simplified critical and blocked hit checks.">
+      <option name="closed" value="true" />
+      <created>1764216550995</created>
+      <option name="number" value="00258" />
+      <option name="presentableId" value="LOCAL-00258" />
+      <option name="project" value="LOCAL" />
+      <updated>1764216550995</updated>
+    </task>
+    <task id="LOCAL-00259" summary="Added `SetIsCriticalHit` method to `AuraAbilitySystemBPLibrary` for managing critical hit states in gameplay effects. Updated related blueprint exposure.">
+      <option name="closed" value="true" />
+      <created>1764216681933</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1764216681933</updated>
+    </task>
+    <option name="localTasksCounter" value="260" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -678,8 +680,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Replaced `MagicResistance` attribute with `Luck` in `AuraAttributeSet` and updated related gameplay tags, replication logic, and damage calculation methods." />
-    <MESSAGE value="Refactored `AuraExecCalc_Damage` to streamline attribute capture and coefficient calculations, added helper lambdas, and incorporated `Luck` into armor penetration and critical hit chance logic." />
     <MESSAGE value="Refactored `AuraExecCalc_Damage` to simplify attribute captures with helper lambdas, incorporated `Luck` into critical hit and armor penetration calculations, and streamlined debug logging." />
     <MESSAGE value="Added `Luck`-based attribute modifiers and effects for all character classes. Updated secondary attribute effect assets and UI to reflect changes." />
     <MESSAGE value="Updated `.idea/workspace.xml` to remove outdated change references and synced project files." />
@@ -703,7 +703,9 @@
     <MESSAGE value="Added `AuraAbilitySystemGlobals` with custom effect context allocation and updated project configuration settings." />
     <MESSAGE value="Added critical and blocked hit checks to `AuraAbilitySystemBPLibrary`. Refactored `AuraExecCalc_Potion` paths and updated damage calculations in `AuraExecCalc_Damage` for blocked hit handling." />
     <MESSAGE value="Added `SetIsBlockedHit` method to `AuraAbilitySystemBPLibrary` for managing blocked hit states in gameplay effects. Updated related blueprint exposure." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `SetIsBlockedHit` method to `AuraAbilitySystemBPLibrary` for managing blocked hit states in gameplay effects. Updated related blueprint exposure." />
+    <MESSAGE value="Refactored `AuraAbilitySystemBPLibrary` to centralize `FAuraGameplayEffectContext` access with helper methods. Simplified critical and blocked hit checks." />
+    <MESSAGE value="Added `SetIsCriticalHit` method to `AuraAbilitySystemBPLibrary` for managing critical hit states in gameplay effects. Updated related blueprint exposure." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `SetIsCriticalHit` method to `AuraAbilitySystemBPLibrary` for managing critical hit states in gameplay effects. Updated related blueprint exposure." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
