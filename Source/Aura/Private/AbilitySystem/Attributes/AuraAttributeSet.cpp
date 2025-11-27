@@ -173,7 +173,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			// Extract hit type from custom effect context
 			const bool bBlocked = UAuraAbilitySystemBPLibrary::IsBlockedHit(Props.EffectContextHandle);
 			const bool bCriticalHit = UAuraAbilitySystemBPLibrary::IsCriticalHit(Props.EffectContextHandle);
-			
+
 			// Check for meme damage values
 			const bool bIsNiceHit = FMath::IsNearlyEqual(LocalIncomingDamage, 69.f, 0.01f);
 			const bool bIsDankHit = FMath::IsNearlyEqual(LocalIncomingDamage, 420.f, 0.01f);
@@ -193,22 +193,12 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			{
 				UAuraAbilitySystemBPLibrary::SetIsPiHit(Props.EffectContextHandle, true);
 			}
-        
+
 			// Setup GameplayCue parameters with hit type information
 			FGameplayCueParameters CueParams;
 			CueParams.RawMagnitude = LocalIncomingDamage;
 			CueParams.EffectContext = Props.EffectContextHandle;
-        
-			// Use NormalizedMagnitude and TargetAttachComponent to pass boolean flags
-			// This is a workaround since FGameplayCueParameters doesn't have custom fields
-			// We'll encode: 0 = normal, 1 = blocked, 2 = critical, 3 = blocked+critical
-			float HitTypeEncoded = 0.f;
-			if (bBlocked && bCriticalHit) { HitTypeEncoded = 3.f; }
-			else if (bCriticalHit) { HitTypeEncoded = 2.f; }
-			else if (bBlocked) { HitTypeEncoded = 1.f; }
-        
-			CueParams.NormalizedMagnitude = HitTypeEncoded;
-        
+
 			Props.TargetASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::DamageText, CueParams);
 		}
 	}

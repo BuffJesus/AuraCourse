@@ -9,7 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/WBP_Aura_DamageText.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/WBP_Aura_DamageText.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,23 +276,7 @@
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
       <workItem from="1764209847114" duration="9753000" />
-      <workItem from="1764247000972" duration="1394000" />
-    </task>
-    <task id="LOCAL-00214" summary="Namespace `GameplayCue` updated to include `GameplayCue.Aura.DamageText` for improved organization and clarity. Adjusted `AuraAttributeSet` references accordingly.">
-      <option name="closed" value="true" />
-      <created>1764130148881</created>
-      <option name="number" value="00214" />
-      <option name="presentableId" value="LOCAL-00214" />
-      <option name="project" value="LOCAL" />
-      <updated>1764130148881</updated>
-    </task>
-    <task id="LOCAL-00215" summary="Added `UAuraExecCalc_Damage` for custom damage calculations and updated project configuration files accordingly.">
-      <option name="closed" value="true" />
-      <created>1764131163250</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
-      <option name="project" value="LOCAL" />
-      <updated>1764131163250</updated>
+      <workItem from="1764247000972" duration="4028000" />
     </task>
     <task id="LOCAL-00216" summary="Added armor attribute capture to `UAuraExecCalc_Damage` for improved damage calculation support.">
       <option name="closed" value="true" />
@@ -670,7 +654,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764219495693</updated>
     </task>
-    <option name="localTasksCounter" value="263" />
+    <task id="LOCAL-00263" summary="Removed outdated change references and synced `.idea/workspace.xml` with updated file paths and project settings.">
+      <option name="closed" value="true" />
+      <created>1764257392223</created>
+      <option name="number" value="00263" />
+      <option name="presentableId" value="LOCAL-00263" />
+      <option name="project" value="LOCAL" />
+      <updated>1764257392223</updated>
+    </task>
+    <task id="LOCAL-00264" summary="Added support for meme damage values (Nice, Dank, Pi) in `AuraGCN_DamageText` and `AuraAbilitySystemBPLibrary`. Updated hit type serialization, `SetDamageText`, and gameplay effect context replication.">
+      <option name="closed" value="true" />
+      <created>1764258798583</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1764258798583</updated>
+    </task>
+    <option name="localTasksCounter" value="265" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -680,8 +680,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `UAuraDamageCalcConfig` to centralize damage calculation parameters in `AuraExecCalc_Damage` and updated logic to use configuration values for block, armor mitigation, and critical hit calculations." />
-    <MESSAGE value="Made `UAuraExecCalc_Damage` `Blueprintable` and `BlueprintType`, updated `DamageConfig` to use `TObjectPtr`, and adjusted include order." />
     <MESSAGE value="Added new Blueprint assets for damage calculation, including coefficient data (`CT_Aura_DamageCalcCoefficients`) and configurations (`DA_Aura_Damage_Default`, `DA_Aura_Damage_LuckBuild`), and updated project file references." />
     <MESSAGE value="Added `UAuraExecCalc_Potion` for handling potion-based health and mana restoration, introduced new gameplay tags (`HealthRestoration`, `ManaRestoration`) in `AuraTags`, and updated `AuraGA_ProjectileSpell` for enhanced effect context handling." />
     <MESSAGE value="Added `SetByCallerMagnitude` support to `AAuraEffectActor` for dynamic effect customization, refactored potion execution calculations to rely solely on `SetByCaller` values, and improved overlap-based effect application with streamlined policies." />
@@ -705,7 +703,9 @@
     <MESSAGE value="Fixed typo in `IsCriticalHit` method name across `AuraAbilitySystemBPLibrary`. Added usage in critical hit checks and updated blueprint function redirects." />
     <MESSAGE value="Encoded hit type into `NormalizedMagnitude` in `AuraGCN_DamageText` to account for blocked and critical hits. Updated `SetDamageText` to accept additional hit-type flags. Added fatal damage handling in `AuraAttributeSet`." />
     <MESSAGE value="Updated `.idea/workspace.xml` and `Aura.uproject.DotSettings.user` with new file references and synced changes for damage text components." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` and `Aura.uproject.DotSettings.user` with new file references and synced changes for damage text components." />
+    <MESSAGE value="Removed outdated change references and synced `.idea/workspace.xml` with updated file paths and project settings." />
+    <MESSAGE value="Added support for meme damage values (Nice, Dank, Pi) in `AuraGCN_DamageText` and `AuraAbilitySystemBPLibrary`. Updated hit type serialization, `SetDamageText`, and gameplay effect context replication." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for meme damage values (Nice, Dank, Pi) in `AuraGCN_DamageText` and `AuraAbilitySystemBPLibrary`. Updated hit type serialization, `SetDamageText`, and gameplay effect context replication." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
