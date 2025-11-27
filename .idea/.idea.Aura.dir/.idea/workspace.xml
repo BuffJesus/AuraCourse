@@ -8,9 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AuraAbilityTypes.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AuraAbilityTypes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +62,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Tasks/AuraTargetDataUnderMouse.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Actors/AuraEffectActor.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AuraAbilityTypes.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AuraCollisionChannels.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -101,6 +102,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Tasks/AuraTargetDataUnderMouse.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Actors/AuraEffectActor.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Actors/AuraProjectile.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AuraAbilityTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AuraCollisionChannels.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" root0="FORCE_HIGHLIGHTING" />
@@ -271,15 +273,7 @@
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
-      <workItem from="1764160983768" duration="25050000" />
-    </task>
-    <task id="LOCAL-00197" summary="Enhanced `HitReact` ability initialization: added gameplay event trigger with tag and refactored effect application for clarity.">
-      <option name="closed" value="true" />
-      <created>1764115333493</created>
-      <option name="number" value="00197" />
-      <option name="presentableId" value="LOCAL-00197" />
-      <option name="project" value="LOCAL" />
-      <updated>1764115333493</updated>
+      <workItem from="1764160983768" duration="26084000" />
     </task>
     <task id="LOCAL-00198" summary="Refactored `AuraGA_HitReact` to use uniform initialization for `CombatInterface` casting.">
       <option name="closed" value="true" />
@@ -665,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764206665552</updated>
     </task>
-    <option name="localTasksCounter" value="246" />
+    <task id="LOCAL-00246" summary="Added validation for `ProjectileClass` and `DamageEffectClass` in `AuraGA_ProjectileSpell` to prevent invalid instantiation. Simplified `FTransform` initialization and removed unused variable `TestLevel`.">
+      <option name="closed" value="true" />
+      <created>1764207176922</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1764207176922</updated>
+    </task>
+    <option name="localTasksCounter" value="247" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -675,7 +677,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `AuraGCN_ProjectileFlight` and `AuraGCN_ProjectileImpact` gameplay cues for managing projectile flight audio and impact effects. Refactored `AuraProjectile` to use these cues, improving sound and effect handling." />
     <MESSAGE value="Added projectile Gameplay Cue configuration to `AuraGA_ProjectileSpell` and `AuraProjectile`, allowing customizable flight and impact effects via gameplay tags." />
     <MESSAGE value="Renamed a variable in `AuraProjectile` for clarity (`Owner` to `OwnerActor`)." />
     <MESSAGE value="Added `Fireball` gameplay tag namespace and associated Cues for flight and impact effects. Enhanced tag structure under `Projectile` for better organization." />
@@ -700,7 +701,8 @@
     <MESSAGE value="Removed default value assignment for `SetByCallerMagnitudes` parameter in `ApplyEffectToTarget` for better compliance with usage patterns." />
     <MESSAGE value="Expanded potion scaling in `UAuraExecCalc_Potion` with level, Vigor, and Intelligence bonuses. Added configuration properties for scaling customization and debug logging for restoration details." />
     <MESSAGE value="Enhanced effect context in `AuraGA_ProjectileSpell` by associating abilities, projectiles, actors, and hit results. Fixed ability level usage in damage scaling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhanced effect context in `AuraGA_ProjectileSpell` by associating abilities, projectiles, actors, and hit results. Fixed ability level usage in damage scaling." />
+    <MESSAGE value="Added validation for `ProjectileClass` and `DamageEffectClass` in `AuraGA_ProjectileSpell` to prevent invalid instantiation. Simplified `FTransform` initialization and removed unused variable `TestLevel`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added validation for `ProjectileClass` and `DamageEffectClass` in `AuraGA_ProjectileSpell` to prevent invalid instantiation. Simplified `FTransform` initialization and removed unused variable `TestLevel`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
