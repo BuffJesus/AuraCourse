@@ -10,6 +10,7 @@
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AuraAbilityTypes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AuraAbilityTypes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AuraAbilityTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AuraAbilityTypes.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://1" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -273,15 +274,7 @@
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
-      <workItem from="1764209847114" duration="1224000" />
-    </task>
-    <task id="LOCAL-00202" summary="Refactored `AuraGA_ProjectileSpell` to use `TestLevel` for damage scaling and added `TestLevel` property. Integrated `Die` method call into `AuraAttributeSet` for fatal damage handling using `AuraCombatInterface`.">
-      <option name="closed" value="true" />
-      <created>1764120876177</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
-      <option name="project" value="LOCAL" />
-      <updated>1764120876177</updated>
+      <workItem from="1764209847114" duration="2853000" />
     </task>
     <task id="LOCAL-00203" summary="Hid health bar on death in `AuraEnemyCharacter` and adjusted lifespan order in `Die`.">
       <option name="closed" value="true" />
@@ -667,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764210536438</updated>
     </task>
-    <option name="localTasksCounter" value="251" />
+    <task id="LOCAL-00251" summary="Enhanced `FAuraGameplayEffectContext` serialization to include custom fields for critical and blocked hits. Improved bitmask handling for efficient data replication.">
+      <option name="closed" value="true" />
+      <created>1764211089166</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1764211089166</updated>
+    </task>
+    <option name="localTasksCounter" value="252" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -677,7 +678,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `ArmorPenetration` attribute capture to `UAuraExecCalc_Damage` and incorporated armor penetration into damage calculations." />
     <MESSAGE value="Enabled `bUseDebugTargetFromHud` in `DefaultEngine.ini` for debugging ability system targets." />
     <MESSAGE value="Moved `bUseDebugTargetFromHud` from `DefaultEngine.ini` to `DefaultGame.ini` to align with configuration standards." />
     <MESSAGE value="Renamed `GetPlayerLevel` to `GetCharacterLevel` across all classes and interfaces. Enhanced damage calculations with level-based coefficients using `DamageCalcCoefficients` data." />
@@ -702,7 +702,8 @@
     <MESSAGE value="Fixed inheritance syntax for `FAuraGameplayEffectContext` by adding `public` to ensure proper access specifier usage." />
     <MESSAGE value="Added `const` qualifiers to `SetIsBlockedHit` and `SetIsCriticalHit` methods in `FAuraGameplayEffectContext` to ensure better type safety." />
     <MESSAGE value="Refactored attribute clamping logic in `UAuraAttributeSet` by introducing reusable lambdas for improved readability and consistency." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored attribute clamping logic in `UAuraAttributeSet` by introducing reusable lambdas for improved readability and consistency." />
+    <MESSAGE value="Enhanced `FAuraGameplayEffectContext` serialization to include custom fields for critical and blocked hits. Improved bitmask handling for efficient data replication." />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhanced `FAuraGameplayEffectContext` serialization to include custom fields for critical and blocked hits. Improved bitmask handling for efficient data replication." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

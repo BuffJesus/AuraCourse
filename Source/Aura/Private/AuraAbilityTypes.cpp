@@ -4,7 +4,7 @@ bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* M
 {
 	// CRITICAL: First, serialize the parent class data
 	// This handles all the standard FGameplayEffectContext data like instigator, ability, etc.
-	uint32 RepBits = 0;
+	uint32 RepBits { 0 };
 	if (Ar.IsSaving())
 	{
 		// Build a bit mask of what data we need to serialize
