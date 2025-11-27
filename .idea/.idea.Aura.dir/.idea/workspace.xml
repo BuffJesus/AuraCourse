@@ -8,12 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Data/EC_Aura_Potion_Mana.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/BP_Aura_Potion_Heal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/BP_Aura_Potion_Heal.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/BP_Aura_Potion_Mana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/BP_Aura_Potion_Mana.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Heal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Heal.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Mana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Mana.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Test/BP_Aura_EffectActor_Test.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Test/BP_Aura_EffectActor_Test.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://25" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://26" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -274,15 +271,7 @@
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
-      <workItem from="1764160983768" duration="23835000" />
-    </task>
-    <task id="LOCAL-00195" summary="Implemented `HitReact` ability and integrated corresponding gameplay tags. Added `HitReact` montage logic to characters and triggered ability in response to hits.">
-      <option name="closed" value="true" />
-      <created>1764114237772</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1764114237772</updated>
+      <workItem from="1764160983768" duration="24643000" />
     </task>
     <task id="LOCAL-00196" summary="Added logging to `HitReact` ability for improved debugging: warnings for activation and montage playback, error for missing AvatarActor.">
       <option name="closed" value="true" />
@@ -668,7 +657,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764205017992</updated>
     </task>
-    <option name="localTasksCounter" value="244" />
+    <task id="LOCAL-00244" summary="Expanded potion scaling in `UAuraExecCalc_Potion` with level, Vigor, and Intelligence bonuses. Added configuration properties for scaling customization and debug logging for restoration details.">
+      <option name="closed" value="true" />
+      <created>1764205925499</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1764205925499</updated>
+    </task>
+    <option name="localTasksCounter" value="245" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -678,7 +675,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `BlockChance` attribute capture to `UAuraExecCalc_Damage` and incorporated block chance logic into damage calculations." />
     <MESSAGE value="Refactored `UAuraGCN_DamageText` to improve target character resolution using `FGameplayCueParameters.Location` and simplified validation checks." />
     <MESSAGE value="Added `AuraGCN_ProjectileFlight` and `AuraGCN_ProjectileImpact` gameplay cues for managing projectile flight audio and impact effects. Refactored `AuraProjectile` to use these cues, improving sound and effect handling." />
     <MESSAGE value="Added projectile Gameplay Cue configuration to `AuraGA_ProjectileSpell` and `AuraProjectile`, allowing customizable flight and impact effects via gameplay tags." />
@@ -703,7 +699,8 @@
     <MESSAGE value="Added `UAuraExecCalc_Potion` for handling potion-based health and mana restoration, introduced new gameplay tags (`HealthRestoration`, `ManaRestoration`) in `AuraTags`, and updated `AuraGA_ProjectileSpell` for enhanced effect context handling." />
     <MESSAGE value="Added `SetByCallerMagnitude` support to `AAuraEffectActor` for dynamic effect customization, refactored potion execution calculations to rely solely on `SetByCaller` values, and improved overlap-based effect application with streamlined policies." />
     <MESSAGE value="Removed default value assignment for `SetByCallerMagnitudes` parameter in `ApplyEffectToTarget` for better compliance with usage patterns." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed default value assignment for `SetByCallerMagnitudes` parameter in `ApplyEffectToTarget` for better compliance with usage patterns." />
+    <MESSAGE value="Expanded potion scaling in `UAuraExecCalc_Potion` with level, Vigor, and Intelligence bonuses. Added configuration properties for scaling customization and debug logging for restoration details." />
+    <option name="LAST_COMMIT_MESSAGE" value="Expanded potion scaling in `UAuraExecCalc_Potion` with level, Vigor, and Intelligence bonuses. Added configuration properties for scaling customization and debug logging for restoration details." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

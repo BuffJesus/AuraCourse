@@ -38,10 +38,18 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 
 		// Set up damage effect
 		const UAbilitySystemComponent* SourceASC { UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo()) };
-		const FGameplayEffectContextHandle EffectContextHandle { SourceASC->MakeEffectContext() };
+		FGameplayEffectContextHandle EffectContextHandle { SourceASC->MakeEffectContext() };
+		EffectContextHandle.SetAbility(this);
+		EffectContextHandle.AddSourceObject(Projectile);
+		TArray<TWeakObjectPtr<AActor>> Actors;
+		Actors.Add(Projectile);
+		EffectContextHandle.AddActors(Actors);
+		FHitResult HitResult;
+		HitResult.Location = TargetLocation;
+		EffectContextHandle.AddHitResult(HitResult);
 		const FGameplayEffectSpecHandle SpecHandle { SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), EffectContextHandle) };
 		
-		const float ScaledDamage { Damage.GetValueAtLevel(TestLevel) };
+		const float ScaledDamage { Damage.GetValueAtLevel(GetAbilityLevel()) };
 		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Aura::Damage::Damage, ScaledDamage);
 		Projectile->DamageEffectSpecHandle = SpecHandle;
 		
