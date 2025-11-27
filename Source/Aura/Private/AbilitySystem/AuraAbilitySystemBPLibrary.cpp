@@ -89,9 +89,19 @@ UAuraCharacterClassInfo* UAuraAbilitySystemBPLibrary::GetCharacterClassInfo(cons
 	return AuraGameMode->CharacterClassInfo;
 }
 
+FAuraGameplayEffectContext* UAuraAbilitySystemBPLibrary::GetAuraEffectContext(FGameplayEffectContextHandle& EffectContextHandle)
+{
+	return static_cast<FAuraGameplayEffectContext*>(EffectContextHandle.Get());
+}
+
+const FAuraGameplayEffectContext* UAuraAbilitySystemBPLibrary::GetAuraEffectContext(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	return static_cast<const FAuraGameplayEffectContext*>(EffectContextHandle.Get());
+}
+
 bool UAuraAbilitySystemBPLibrary::IsBlockedHit(const FGameplayEffectContextHandle& EffectContextHandle)
 {
-	if (const FAuraGameplayEffectContext* AuraEffectContext { static_cast<const FAuraGameplayEffectContext*>(EffectContextHandle.Get()) })
+	if (const FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
 	{
 		return AuraEffectContext->IsBlockedHit();
 	}
@@ -100,18 +110,16 @@ bool UAuraAbilitySystemBPLibrary::IsBlockedHit(const FGameplayEffectContextHandl
 
 bool UAuraAbilitySystemBPLibrary::IsCritcialHit(const FGameplayEffectContextHandle& EffectContextHandle)
 {
-	if (const FAuraGameplayEffectContext* AuraEffectContext { static_cast<const FAuraGameplayEffectContext*>(EffectContextHandle.Get()) })
+	if (const FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
 	{
 		return AuraEffectContext->IsCriticalHit();
 	}
 	return false;
 }
 
-void UAuraAbilitySystemBPLibrary::SetIsBlockedHit(FGameplayEffectContextHandle& EffectContextHandle,
-	bool bInIsBlockedHit)
+void UAuraAbilitySystemBPLibrary::SetIsBlockedHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInIsBlockedHit)
 {
-	FAuraGameplayEffectContext* AuraEffectContext { static_cast<FAuraGameplayEffectContext*>(EffectContextHandle.Get()) };
-	if (AuraEffectContext)
+	if (FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
 	{
 		AuraEffectContext->SetIsBlockedHit(bInIsBlockedHit);
 	}

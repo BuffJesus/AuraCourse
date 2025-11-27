@@ -8,6 +8,7 @@
 #include "UI/HUD/AuraHUD.h"
 #include "AuraAbilitySystemBPLibrary.generated.h"
 
+struct FAuraGameplayEffectContext;
 struct FGameplayEffectContextHandle;
 struct FWidgetControllerParams;
 class UAuraAttributeMenuWidgetController;
@@ -40,10 +41,14 @@ public:
 	static bool IsCritcialHit(const FGameplayEffectContextHandle& EffectContextHandle);
 	
 	UFUNCTION(BlueprintCallable, Category = "Aura|BPLibrary|GameplayEffects")
-	static void SetIsBlockedHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInIsBlockedHit);
+	static void SetIsBlockedHit(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool bInIsBlockedHit);
 	
 private:
 	template <typename T>
 	static T* GetWidgetController(const UObject* WorldContextObject, 
 								   T* (AAuraHUD::*GetControllerFunc)(const FWidgetControllerParams&));
+	
+	// Helper to get Aura context from handle
+	static FAuraGameplayEffectContext* GetAuraEffectContext(FGameplayEffectContextHandle& EffectContextHandle);
+	static const FAuraGameplayEffectContext* GetAuraEffectContext(const FGameplayEffectContextHandle& EffectContextHandle);
 };
