@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ActiveGameplayEffectHandle.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/Actor.h"
 #include "AuraEffectActor.generated.h"
 
@@ -25,6 +26,21 @@ enum class EEffectRemovalPolicy : uint8
 	DoNotRemove
 };
 
+/**
+ * Struct to hold SetByCaller magnitude data
+ */
+USTRUCT(BlueprintType)
+struct FSetByCallerMagnitude
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Magnitude")
+	FGameplayTag DataTag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Magnitude")
+	float Magnitude { 0.f };
+};
+
 UCLASS()
 class AURA_API AAuraEffectActor : public AActor
 {
@@ -38,7 +54,11 @@ protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UFUNCTION(BlueprintCallable)
-	FActiveGameplayEffectHandle ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> EffectClass);
+	FActiveGameplayEffectHandle ApplyEffectToTarget(
+		AActor* TargetActor, 
+		TSubclassOf<UGameplayEffect> EffectClass,
+		const TArray<FSetByCallerMagnitude>& SetByCallerMagnitudes = TArray<FSetByCallerMagnitude>()
+	);
 
 	UFUNCTION(BlueprintCallable)
 	void OnOverlap(AActor* TargetActor);
@@ -49,24 +69,37 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
 	bool bDestroyOnEffectRemoval { false };
 
+	// Instant Effects
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
 	TArray<TSubclassOf<UGameplayEffect>> InstantGameplayEffects;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectApplicationPolicy InstantEffectApplicationPolicy { EEffectApplicationPolicy::DoNotApply };
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Effects")
+	TArray<FSetByCallerMagnitude> InstantSetByCallerMagnitudes;
+
+	// Duration Effects
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
 	TArray<TSubclassOf<UGameplayEffect>> DurationGameplayEffects;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectApplicationPolicy DurationEffectApplicationPolicy { EEffectApplicationPolicy::DoNotApply };
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Effects")
+	TArray<FSetByCallerMagnitude> DurationSetByCallerMagnitudes;
+
+	// Periodic Effects
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
 	TArray<TSubclassOf<UGameplayEffect>> PeriodicGameplayEffects;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectApplicationPolicy PeriodicEffectApplicationPolicy { EEffectApplicationPolicy::DoNotApply };
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Effects")
+	TArray<FSetByCallerMagnitude> PeriodicSetByCallerMagnitudes;
+
+	// Infinite Effects
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Aura|Effects")
 	TArray<TSubclassOf<UGameplayEffect>> InfiniteGameplayEffects;
 
@@ -75,6 +108,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	EEffectRemovalPolicy InfiniteEffectRemovalPolicy { EEffectRemovalPolicy::RemoveOnEndOverlap };
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Effects")
+	TArray<FSetByCallerMagnitude> InfiniteSetByCallerMagnitudes;
 
 	// Level to apply effects at (for scaling)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Effects", meta = (ClampMin = "1.0"))

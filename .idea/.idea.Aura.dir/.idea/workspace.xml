@@ -9,7 +9,12 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Heal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Heal.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Mana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Potions/Effects/GE_Aura_Potion_Mana.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraExecCalc_Potion.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraExecCalc_Potion.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraEffectActor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Actors/AuraEffectActor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraExecCalc_Potion.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraExecCalc_Potion.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraEffectActor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraEffectActor.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +44,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://22" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://24" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -55,6 +60,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraAttributeInfo.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraCharacterClassInfo.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraDamageCalcConfig.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Data/AuraExecCalc_Potion.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ModMagCalc/AuraMMC_Base.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Tasks/AuraTargetDataUnderMouse.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -93,6 +99,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraAttributeInfo.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraCharacterClassInfo.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraDamageCalcConfig.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraExecCalc_Potion.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ExecCalc/AuraExecCalc_Damage.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/ModMagCalc/AuraMMC_Base.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Tasks/AuraTargetDataUnderMouse.h" root0="FORCE_HIGHLIGHTING" />
@@ -268,15 +275,7 @@
       <workItem from="1763987788042" duration="6304000" />
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
-      <workItem from="1764160983768" duration="20573000" />
-    </task>
-    <task id="LOCAL-00192" summary="Updated `GE_Aura_Test_Damage` asset.">
-      <option name="closed" value="true" />
-      <created>1764076708996</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1764076708996</updated>
+      <workItem from="1764160983768" duration="22612000" />
     </task>
     <task id="LOCAL-00193" summary="Applied scalable damage calculation in `AuraGA_ProjectileSpell`, added `Damage` property to `AuraGameplayAbility`, and removed redundant debug message for player death in `AuraAttributeSet`.">
       <option name="closed" value="true" />
@@ -662,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764201857768</updated>
     </task>
-    <option name="localTasksCounter" value="241" />
+    <task id="LOCAL-00241" summary="Added `UAuraExecCalc_Potion` for handling potion-based health and mana restoration, introduced new gameplay tags (`HealthRestoration`, `ManaRestoration`) in `AuraTags`, and updated `AuraGA_ProjectileSpell` for enhanced effect context handling.">
+      <option name="closed" value="true" />
+      <created>1764202797604</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1764202797604</updated>
+    </task>
+    <option name="localTasksCounter" value="242" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,7 +679,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added gameplay tag support to `UAuraExecCalc_Damage` and refined armor attribute calculation." />
     <MESSAGE value="Updated `.idea/workspace.xml` to reflect changes in project configuration and added breakpoint in `AuraExecCalc_Damage.cpp`." />
     <MESSAGE value="Refactored `UAuraExecCalc_Damage` to use `SetByCallerMagnitude` for damage calculation and removed redundant armor logic." />
     <MESSAGE value="Added `BlockChance` attribute capture to `UAuraExecCalc_Damage` and incorporated block chance logic into damage calculations." />
@@ -697,7 +703,8 @@
     <MESSAGE value="Added `UAuraDamageCalcConfig` to centralize damage calculation parameters in `AuraExecCalc_Damage` and updated logic to use configuration values for block, armor mitigation, and critical hit calculations." />
     <MESSAGE value="Made `UAuraExecCalc_Damage` `Blueprintable` and `BlueprintType`, updated `DamageConfig` to use `TObjectPtr`, and adjusted include order." />
     <MESSAGE value="Added new Blueprint assets for damage calculation, including coefficient data (`CT_Aura_DamageCalcCoefficients`) and configurations (`DA_Aura_Damage_Default`, `DA_Aura_Damage_LuckBuild`), and updated project file references." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new Blueprint assets for damage calculation, including coefficient data (`CT_Aura_DamageCalcCoefficients`) and configurations (`DA_Aura_Damage_Default`, `DA_Aura_Damage_LuckBuild`), and updated project file references." />
+    <MESSAGE value="Added `UAuraExecCalc_Potion` for handling potion-based health and mana restoration, introduced new gameplay tags (`HealthRestoration`, `ManaRestoration`) in `AuraTags`, and updated `AuraGA_ProjectileSpell` for enhanced effect context handling." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `UAuraExecCalc_Potion` for handling potion-based health and mana restoration, introduced new gameplay tags (`HealthRestoration`, `ManaRestoration`) in `AuraTags`, and updated `AuraGA_ProjectileSpell` for enhanced effect context handling." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
