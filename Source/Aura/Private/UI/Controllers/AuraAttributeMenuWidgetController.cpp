@@ -1,7 +1,7 @@
 // Not Sure Yet
 
 #include "UI/Controllers/AuraAttributeMenuWidgetController.h"
-#include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AuraAttributeInfo.h"
 #include "UI/Widgets/AuraUserWidget.h"
 

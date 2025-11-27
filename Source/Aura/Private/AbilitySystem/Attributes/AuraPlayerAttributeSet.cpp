@@ -1,6 +1,6 @@
 // Not Sure Yet
 
-#include "AbilitySystem/AuraPlayerAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraPlayerAttributeSet.h"
 #include "AbilitySystem/AuraAttributeSetMacros.h"
 #include "Net/UnrealNetwork.h"
 

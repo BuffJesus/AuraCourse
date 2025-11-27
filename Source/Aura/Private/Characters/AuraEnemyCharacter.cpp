@@ -4,7 +4,7 @@
 #include "Aura/Aura.h"
 #include "Tags/AuraTags.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
-#include "AbilitySystem/AuraEnemyAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraEnemyAttributeSet.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "UI/Widgets/AuraUserWidget.h"

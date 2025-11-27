@@ -3,7 +3,7 @@
 #include "UI/Controllers/AuraOverlayWidgetController.h"
 #include "Tags/AuraTags.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
-#include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraAttributeSet.h"
 
 void UAuraOverlayWidgetController::BroadcastInitialValues()
 {

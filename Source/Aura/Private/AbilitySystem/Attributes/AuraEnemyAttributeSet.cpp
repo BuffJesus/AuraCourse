@@ -1,6 +1,6 @@
 // Not Sure Yet
 
-#include "AbilitySystem/AuraEnemyAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraEnemyAttributeSet.h"
 #include "AbilitySystem/AuraAttributeSetMacros.h"
 #include "Net/UnrealNetwork.h"
 

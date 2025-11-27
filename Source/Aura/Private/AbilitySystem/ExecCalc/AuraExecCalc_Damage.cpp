@@ -4,7 +4,7 @@
 #include "AbilitySystem/ExecCalc/AuraExecCalc_Damage.h"
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
-#include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AuraCharacterClassInfo.h"
 #include "AbilitySystem/Data/AuraDamageCalcConfig.h"
 #include "Interaction/AuraCombatInterface.h"

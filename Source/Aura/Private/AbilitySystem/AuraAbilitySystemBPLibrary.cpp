@@ -5,7 +5,7 @@
 #include "Game/AuraGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerState.h"
-#include "AbilitySystem/AuraPlayerAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraPlayerAttributeSet.h"
 #include "UI/Controllers/AuraAttributeMenuWidgetController.h"
 #include "UI/Controllers/AuraOverlayWidgetController.h"
 #include "UI/Controllers/AuraWidgetController.h"

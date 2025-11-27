@@ -3,7 +3,7 @@
 
 #include "Player/AuraPlayerState.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
-#include "AbilitySystem/AuraPlayerAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraPlayerAttributeSet.h"
 #include "Net/UnrealNetwork.h"
 
 AAuraPlayerState::AAuraPlayerState()

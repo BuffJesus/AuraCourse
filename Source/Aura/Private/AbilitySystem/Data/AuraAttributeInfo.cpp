@@ -2,7 +2,7 @@
 
 
 #include "AbilitySystem/Data/AuraAttributeInfo.h"
-#include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraAttributeSet.h"
 #include "Tags/AuraTags.h"
 
 #if WITH_EDITOR

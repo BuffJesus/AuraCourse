@@ -3,7 +3,7 @@
 
 #include "UI/Controllers/AuraWidgetController.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
-#include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraAttributeSet.h"
 
 void UAuraWidgetController::SetWidgetControllerParams(const FWidgetControllerParams& Params)
 {
