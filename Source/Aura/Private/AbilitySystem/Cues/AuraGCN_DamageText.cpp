@@ -7,23 +7,24 @@
 bool UAuraGCN_DamageText::OnExecute_Implementation(AActor* Target, const FGameplayCueParameters& Parameters) const
 {
 	if (!DamageTextComponentClass) { return false; }
-	
-	// Use the Location parameter to find the actual damage recipient
-	ACharacter* TargetCharacter { nullptr };
     
-	// If Location is set, trace to find the character at that location
-	if (!Parameters.Location.IsZero()) { TargetCharacter = Cast<ACharacter>(Target); }
-	else { TargetCharacter = Cast<ACharacter>(Target); }
-
+	ACharacter* TargetCharacter = Cast<ACharacter>(Target);
 	if (!TargetCharacter) { return false; }
 
-	const float Damage { Parameters.RawMagnitude };
+	const float Damage = Parameters.RawMagnitude;
+    
+	// Decode hit type from NormalizedMagnitude
+	const float HitTypeEncoded = Parameters.NormalizedMagnitude;
+	const bool bBlocked = (HitTypeEncoded == 1.f || HitTypeEncoded == 3.f);
+	const bool bCritical = (HitTypeEncoded == 2.f || HitTypeEncoded == 3.f);
 
-	UAuraDamageTextComponent* DamageTextComponent { NewObject<UAuraDamageTextComponent>(TargetCharacter, DamageTextComponentClass) };
+	UAuraDamageTextComponent* DamageTextComponent = NewObject<UAuraDamageTextComponent>(
+		TargetCharacter, DamageTextComponentClass);
 	DamageTextComponent->RegisterComponent();
-	DamageTextComponent->AttachToComponent(TargetCharacter->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
+	DamageTextComponent->AttachToComponent(TargetCharacter->GetRootComponent(), 
+		FAttachmentTransformRules::KeepRelativeTransform);
 	DamageTextComponent->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
-	DamageTextComponent->SetDamageText(Damage);
+	DamageTextComponent->SetDamageText(Damage, bBlocked, bCritical);
 
 	return true;
 }

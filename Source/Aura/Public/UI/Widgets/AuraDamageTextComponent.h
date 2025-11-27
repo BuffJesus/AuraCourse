@@ -16,5 +16,5 @@ public:
 	UAuraDamageTextComponent();
 	
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Aura|UI")
-	void SetDamageText(float Damage);
+	void SetDamageText(float Damage, bool bBlocked, bool bCritical);
 };

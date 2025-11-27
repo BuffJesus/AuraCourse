@@ -10,7 +10,8 @@
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_DamageText.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_DamageText.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/UI/Widgets/AuraDamageTextComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/UI/Widgets/AuraDamageTextComponent.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,15 +277,7 @@
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
-      <workItem from="1764209847114" duration="7134000" />
-    </task>
-    <task id="LOCAL-00211" summary="Refactored `UAuraDamageTextComponent` initialization and updated `ShowDamageNumber` to improve component attachment logic. Marked `ShowDamageNumber` as `const`.">
-      <option name="closed" value="true" />
-      <created>1764128785776</created>
-      <option name="number" value="00211" />
-      <option name="presentableId" value="LOCAL-00211" />
-      <option name="project" value="LOCAL" />
-      <updated>1764128785776</updated>
+      <workItem from="1764209847114" duration="8166000" />
     </task>
     <task id="LOCAL-00212" summary="Updated `ShowFloatingText` call in `AuraAttributeSet` to display damage text for all damage instances, not just fatal damage.">
       <option name="closed" value="true" />
@@ -670,7 +663,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764216681933</updated>
     </task>
-    <option name="localTasksCounter" value="260" />
+    <task id="LOCAL-00260" summary="Fixed typo in `IsCriticalHit` method name across `AuraAbilitySystemBPLibrary`. Added usage in critical hit checks and updated blueprint function redirects.">
+      <option name="closed" value="true" />
+      <created>1764217083963</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
+      <option name="project" value="LOCAL" />
+      <updated>1764217083963</updated>
+    </task>
+    <option name="localTasksCounter" value="261" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -680,7 +681,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactored `AuraExecCalc_Damage` to simplify attribute captures with helper lambdas, incorporated `Luck` into critical hit and armor penetration calculations, and streamlined debug logging." />
     <MESSAGE value="Added `Luck`-based attribute modifiers and effects for all character classes. Updated secondary attribute effect assets and UI to reflect changes." />
     <MESSAGE value="Updated `.idea/workspace.xml` to remove outdated change references and synced project files." />
     <MESSAGE value="Added `UAuraDamageCalcConfig` to centralize damage calculation parameters in `AuraExecCalc_Damage` and updated logic to use configuration values for block, armor mitigation, and critical hit calculations." />
@@ -705,7 +705,8 @@
     <MESSAGE value="Added `SetIsBlockedHit` method to `AuraAbilitySystemBPLibrary` for managing blocked hit states in gameplay effects. Updated related blueprint exposure." />
     <MESSAGE value="Refactored `AuraAbilitySystemBPLibrary` to centralize `FAuraGameplayEffectContext` access with helper methods. Simplified critical and blocked hit checks." />
     <MESSAGE value="Added `SetIsCriticalHit` method to `AuraAbilitySystemBPLibrary` for managing critical hit states in gameplay effects. Updated related blueprint exposure." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `SetIsCriticalHit` method to `AuraAbilitySystemBPLibrary` for managing critical hit states in gameplay effects. Updated related blueprint exposure." />
+    <MESSAGE value="Fixed typo in `IsCriticalHit` method name across `AuraAbilitySystemBPLibrary`. Added usage in critical hit checks and updated blueprint function redirects." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed typo in `IsCriticalHit` method name across `AuraAbilitySystemBPLibrary`. Added usage in critical hit checks and updated blueprint function redirects." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

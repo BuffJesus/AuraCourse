@@ -145,35 +145,51 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		ClampCurrentVitalAttributes();
 	}
 	
-	if (Data.EvaluatedData.Attribute == GetIncomingDamageAttribute())
+	if (ModifiedAttribute == GetIncomingDamageAttribute())
 	{
-		const float LocalIncomingDamage { GetIncomingDamage() };
+		const float LocalIncomingDamage = GetIncomingDamage();
 		SetIncomingDamage(0.f);
-		
 		if (LocalIncomingDamage > 0.f)
 		{
-			const float NewHealth { GetHealth() - LocalIncomingDamage };
+			const float NewHealth = GetHealth() - LocalIncomingDamage;
 			SetHealth(FMath::Clamp(NewHealth, 0.f, GetMaxHealth()));
 
-			// Execute gameplay cue to show damage text
-			FGameplayCueParameters CueParams;
-			CueParams.RawMagnitude = LocalIncomingDamage;
-			CueParams.EffectContext = Data.EffectSpec.GetContext();
-			CueParams.SourceObject = Props.SourceAvatarActor;
-			CueParams.TargetAttachComponent = Props.TargetCharacter->GetRootComponent();
-			
-			const bool bBlock { UAuraAbilitySystemBPLibrary::IsBlockedHit(Props.EffectContextHandle) };
-			const bool bCritical { UAuraAbilitySystemBPLibrary::IsCriticalHit(Props.EffectContextHandle) };
-			Props.TargetASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::DamageText, CueParams);
-
-			const bool bFatal { NewHealth <= 0.f };
+			const bool bFatal = NewHealth <= 0.f;
 			if (bFatal)
 			{
-				if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(Props.TargetAvatarActor))
+				IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(Props.TargetAvatarActor);
+				if (CombatInterface)
 				{
 					CombatInterface->Die();
 				}
 			}
+			else
+			{
+				FGameplayTagContainer TagContainer;
+				TagContainer.AddTag(Aura::Effects::HitReact);
+				Props.TargetASC->TryActivateAbilitiesByTag(TagContainer);
+			}
+        
+			// Extract hit type from custom effect context
+			const bool bBlocked = UAuraAbilitySystemBPLibrary::IsBlockedHit(Props.EffectContextHandle);
+			const bool bCriticalHit = UAuraAbilitySystemBPLibrary::IsCriticalHit(Props.EffectContextHandle);
+        
+			// Setup GameplayCue parameters with hit type information
+			FGameplayCueParameters CueParams;
+			CueParams.RawMagnitude = LocalIncomingDamage;
+			CueParams.EffectContext = Props.EffectContextHandle;
+        
+			// Use NormalizedMagnitude and TargetAttachComponent to pass boolean flags
+			// This is a workaround since FGameplayCueParameters doesn't have custom fields
+			// We'll encode: 0 = normal, 1 = blocked, 2 = critical, 3 = blocked+critical
+			float HitTypeEncoded = 0.f;
+			if (bBlocked && bCriticalHit) { HitTypeEncoded = 3.f; }
+			else if (bCriticalHit) { HitTypeEncoded = 2.f; }
+			else if (bBlocked) { HitTypeEncoded = 1.f; }
+        
+			CueParams.NormalizedMagnitude = HitTypeEncoded;
+        
+			Props.TargetASC->ExecuteGameplayCue(Aura::GameplayCue::Aura::DamageText, CueParams);
 		}
 	}
 }
