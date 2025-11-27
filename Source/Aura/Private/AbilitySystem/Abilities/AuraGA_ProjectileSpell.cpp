@@ -22,12 +22,16 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 	IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo());
 	if (CombatInterface)
 	{
+		if (!ProjectileClass || !DamageEffectClass)
+		{
+			UE_LOG(LogTemp, Error, TEXT("ProjectileClass or DamageEffectClass not set on %s"), *GetName());
+			return;
+		}
+		
 		const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
 		const FRotator Rotation = (TargetLocation - SocketLocation).Rotation();
 
-		FTransform SpawnTransform;
-		SpawnTransform.SetLocation(SocketLocation);
-		SpawnTransform.SetRotation(Rotation.Quaternion());
+		FTransform SpawnTransform(Rotation.Quaternion(), SocketLocation);
 		
 		AAuraProjectile* Projectile = GetWorld()->SpawnActorDeferred<AAuraProjectile>(
 			ProjectileClass,
@@ -47,6 +51,7 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 		FHitResult HitResult;
 		HitResult.Location = TargetLocation;
 		EffectContextHandle.AddHitResult(HitResult);
+		
 		const FGameplayEffectSpecHandle SpecHandle { SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), EffectContextHandle) };
 		
 		const float ScaledDamage { Damage.GetValueAtLevel(GetAbilityLevel()) };

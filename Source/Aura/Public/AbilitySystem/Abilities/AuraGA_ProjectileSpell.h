@@ -15,9 +15,6 @@ class AURA_API UAuraGA_ProjectileSpell : public UAuraGameplayAbility
 	GENERATED_BODY()
 
 protected:
-	UPROPERTY(EditDefaultsOnly, Category = "Aura|GAS")
-	int TestLevel { 5 };
-	
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, 
 		const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 
