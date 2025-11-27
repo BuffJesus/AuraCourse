@@ -2,6 +2,8 @@
 
 
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
+
+#include "AuraAbilityTypes.h"
 #include "Game/AuraGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerState.h"
@@ -52,13 +54,13 @@ void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* Wor
 {
 	if (!ASC || !WorldContextObject) { return; }
 	
-	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	const AAuraGameModeBase* AuraGameMode { Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject)) };
 	if (!AuraGameMode) { return; }
 	
-	const UAuraCharacterClassInfo* CharacterClassInfo = AuraGameMode->CharacterClassInfo;
+	const UAuraCharacterClassInfo* CharacterClassInfo { AuraGameMode->CharacterClassInfo };
 	if (!CharacterClassInfo) { return; }
 	
-	const FCharacterClassDefaultInfo ClassDefaultInfo = CharacterClassInfo->GetDefaultInfo(CharacterClass);
+	const FCharacterClassDefaultInfo ClassDefaultInfo { CharacterClassInfo->GetDefaultInfo(CharacterClass) };
 	
 	// Helper lambda to apply gameplay effects
 	auto ApplyGameplayEffect = [&](const TSubclassOf<UGameplayEffect>& EffectClass)
@@ -81,8 +83,26 @@ UAuraCharacterClassInfo* UAuraAbilitySystemBPLibrary::GetCharacterClassInfo(cons
 {
 	if (!WorldContextObject) { return nullptr; }
 	
-	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	const AAuraGameModeBase* AuraGameMode { Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject)) };
 	if (!AuraGameMode) { return nullptr; }
 	
 	return AuraGameMode->CharacterClassInfo;
+}
+
+bool UAuraAbilitySystemBPLibrary::IsBlockedHit(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FAuraGameplayEffectContext* AuraEffectContext { static_cast<const FAuraGameplayEffectContext*>(EffectContextHandle.Get()) })
+	{
+		return AuraEffectContext->IsBlockedHit();
+	}
+	return false;
+}
+
+bool UAuraAbilitySystemBPLibrary::IsCritcialHit(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FAuraGameplayEffectContext* AuraEffectContext { static_cast<const FAuraGameplayEffectContext*>(EffectContextHandle.Get()) })
+	{
+		return AuraEffectContext->IsCriticalHit();
+	}
+	return false;
 }

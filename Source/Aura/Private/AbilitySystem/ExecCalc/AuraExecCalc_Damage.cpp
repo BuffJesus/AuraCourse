@@ -3,6 +3,7 @@
 
 #include "AbilitySystem/ExecCalc/AuraExecCalc_Damage.h"
 #include "AbilitySystemComponent.h"
+#include "AuraAbilityTypes.h"
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "AbilitySystem/Attributes/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AuraCharacterClassInfo.h"
@@ -127,6 +128,11 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	
 	// Block Chance - Using Config
 	const bool bBlocked { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= TargetBlockChance };
+	FGameplayEffectContextHandle EffectContextHandle { Spec.GetContext() };
+	FGameplayEffectContext* Context { EffectContextHandle.Get() };
+	FAuraGameplayEffectContext* AuraContext { static_cast<FAuraGameplayEffectContext*>(Context) };
+	AuraContext->SetIsBlockedHit(bBlocked);
+	
 	Damage = bBlocked ? Damage * Config->BlockDamageReduction : Damage;
 	
 	// Armor Mitigation - Using Config

@@ -1,6 +1,6 @@
 // Not Sure Yet
 
-#include "AbilitySystem/Data/AuraExecCalc_Potion.h"
+#include "AbilitySystem/ExecCalc/AuraExecCalc_Potion.h"
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/Attributes/AuraAttributeSet.h"
 #include "Interaction/AuraCombatInterface.h"

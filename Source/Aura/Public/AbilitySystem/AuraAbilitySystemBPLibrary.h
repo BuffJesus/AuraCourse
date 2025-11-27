@@ -8,6 +8,7 @@
 #include "UI/HUD/AuraHUD.h"
 #include "AuraAbilitySystemBPLibrary.generated.h"
 
+struct FGameplayEffectContextHandle;
 struct FWidgetControllerParams;
 class UAuraAttributeMenuWidgetController;
 class UAuraOverlayWidgetController;
@@ -31,6 +32,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Aura|BPLibrary|CharacterClassDefaults")
 	static UAuraCharacterClassInfo* GetCharacterClassInfo(const UObject* WorldContextObject);
+	
+	UFUNCTION(BlueprintPure, Category = "Aura|BPLibrary|GameplayEffects")
+	static bool IsBlockedHit(const FGameplayEffectContextHandle& EffectContextHandle);
+	
+	UFUNCTION(BlueprintPure, Category = "Aura|BPLibrary|GameplayEffects")
+	static bool IsCritcialHit(const FGameplayEffectContextHandle& EffectContextHandle);
 	
 private:
 	template <typename T>
