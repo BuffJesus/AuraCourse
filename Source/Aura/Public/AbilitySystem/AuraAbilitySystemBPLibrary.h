@@ -39,6 +39,9 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Aura|BPLibrary|GameplayEffects")
 	static bool IsCritcialHit(const FGameplayEffectContextHandle& EffectContextHandle);
 	
+	UFUNCTION(BlueprintCallable, Category = "Aura|BPLibrary|GameplayEffects")
+	static void SetIsBlockedHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInIsBlockedHit);
+	
 private:
 	template <typename T>
 	static T* GetWidgetController(const UObject* WorldContextObject, 

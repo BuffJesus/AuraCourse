@@ -106,3 +106,13 @@ bool UAuraAbilitySystemBPLibrary::IsCritcialHit(const FGameplayEffectContextHand
 	}
 	return false;
 }
+
+void UAuraAbilitySystemBPLibrary::SetIsBlockedHit(FGameplayEffectContextHandle& EffectContextHandle,
+	bool bInIsBlockedHit)
+{
+	FAuraGameplayEffectContext* AuraEffectContext { static_cast<FAuraGameplayEffectContext*>(EffectContextHandle.Get()) };
+	if (AuraEffectContext)
+	{
+		AuraEffectContext->SetIsBlockedHit(bInIsBlockedHit);
+	}
+}
