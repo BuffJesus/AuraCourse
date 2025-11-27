@@ -9,8 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/BP_Aura_DamageTextComponent.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/BP_Aura_DamageTextComponent.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/WBP_Aura_DamageText.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/WBP_Aura_DamageText.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +20,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="39720" />
+    <option name="cachedIndexableFilesCount" value="39722" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -41,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://12" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -277,15 +275,8 @@
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
-      <workItem from="1764209847114" duration="9391000" />
-    </task>
-    <task id="LOCAL-00213" summary="Replaced `ShowFloatingText` with `GameplayCue` for damage text display and removed redundant logic in `AuraAttributeSet` and `AuraPlayerController`. Added `UAuraGCN_DamageText` to manage floating damage text.">
-      <option name="closed" value="true" />
-      <created>1764129898254</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1764129898254</updated>
+      <workItem from="1764209847114" duration="9753000" />
+      <workItem from="1764247000972" duration="1394000" />
     </task>
     <task id="LOCAL-00214" summary="Namespace `GameplayCue` updated to include `GameplayCue.Aura.DamageText` for improved organization and clarity. Adjusted `AuraAttributeSet` references accordingly.">
       <option name="closed" value="true" />
@@ -671,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764218044453</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="Updated `.idea/workspace.xml` and `Aura.uproject.DotSettings.user` with new file references and synced changes for damage text components.">
+      <option name="closed" value="true" />
+      <created>1764219495693</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1764219495693</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,7 +680,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated `.idea/workspace.xml` to remove outdated change references and synced project files." />
     <MESSAGE value="Added `UAuraDamageCalcConfig` to centralize damage calculation parameters in `AuraExecCalc_Damage` and updated logic to use configuration values for block, armor mitigation, and critical hit calculations." />
     <MESSAGE value="Made `UAuraExecCalc_Damage` `Blueprintable` and `BlueprintType`, updated `DamageConfig` to use `TObjectPtr`, and adjusted include order." />
     <MESSAGE value="Added new Blueprint assets for damage calculation, including coefficient data (`CT_Aura_DamageCalcCoefficients`) and configurations (`DA_Aura_Damage_Default`, `DA_Aura_Damage_LuckBuild`), and updated project file references." />
@@ -706,7 +704,8 @@
     <MESSAGE value="Added `SetIsCriticalHit` method to `AuraAbilitySystemBPLibrary` for managing critical hit states in gameplay effects. Updated related blueprint exposure." />
     <MESSAGE value="Fixed typo in `IsCriticalHit` method name across `AuraAbilitySystemBPLibrary`. Added usage in critical hit checks and updated blueprint function redirects." />
     <MESSAGE value="Encoded hit type into `NormalizedMagnitude` in `AuraGCN_DamageText` to account for blocked and critical hits. Updated `SetDamageText` to accept additional hit-type flags. Added fatal damage handling in `AuraAttributeSet`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Encoded hit type into `NormalizedMagnitude` in `AuraGCN_DamageText` to account for blocked and critical hits. Updated `SetDamageText` to accept additional hit-type flags. Added fatal damage handling in `AuraAttributeSet`." />
+    <MESSAGE value="Updated `.idea/workspace.xml` and `Aura.uproject.DotSettings.user` with new file references and synced changes for damage text components." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` and `Aura.uproject.DotSettings.user` with new file references and synced changes for damage text components." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
