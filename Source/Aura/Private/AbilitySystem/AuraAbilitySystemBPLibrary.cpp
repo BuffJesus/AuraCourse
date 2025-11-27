@@ -133,3 +133,54 @@ void UAuraAbilitySystemBPLibrary::SetIsCriticalHit(FGameplayEffectContextHandle&
 		AuraEffectContext->SetIsCriticalHit(bInIsCriticalHit);
 	}
 }
+
+bool UAuraAbilitySystemBPLibrary::IsNiceHit(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
+	{
+		return AuraEffectContext->IsNiceHit();
+	}
+	return false;
+}
+
+bool UAuraAbilitySystemBPLibrary::IsDankHit(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
+	{
+		return AuraEffectContext->IsDankHit();
+	}
+	return false;
+}
+
+bool UAuraAbilitySystemBPLibrary::IsPiHit(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
+	{
+		return AuraEffectContext->IsPiHit();
+	}
+	return false;
+}
+
+void UAuraAbilitySystemBPLibrary::SetIsNiceHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInIsNiceHit)
+{
+	if (FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
+	{
+		AuraEffectContext->SetIsNiceHit(bInIsNiceHit);
+	}
+}
+
+void UAuraAbilitySystemBPLibrary::SetIsDankHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInIsDankHit)
+{
+	if (FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
+	{
+		AuraEffectContext->SetIsDankHit(bInIsDankHit);
+	}
+}
+
+void UAuraAbilitySystemBPLibrary::SetIsPiHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInIsPiHit)
+{
+	if (FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
+	{
+		AuraEffectContext->SetIsPiHit(bInIsPiHit);
+	}
+}

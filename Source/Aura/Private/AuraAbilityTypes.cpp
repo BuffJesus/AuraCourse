@@ -2,8 +2,6 @@
 
 bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* Map, bool& bOutSuccess)
 {
-	// CRITICAL: First, serialize the parent class data
-	// This handles all the standard FGameplayEffectContext data like instigator, ability, etc.
 	uint32 RepBits { 0 };
 	if (Ar.IsSaving())
 	{
@@ -36,18 +34,30 @@ bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* M
 		{
 			RepBits |= 1 << 6;
 		}
-		if (bIsBlockedHit)  // Our custom data
+		if (bIsBlockedHit)
 		{
 			RepBits |= 1 << 7;
 		}
-		if (bIsCriticalHit)  // Our custom data
+		if (bIsCriticalHit)
 		{
 			RepBits |= 1 << 8;
 		}
+		if (bIsNiceHit)  // NEW
+		{
+			RepBits |= 1 << 9;
+		}
+		if (bIsDankHit)  // NEW
+		{
+			RepBits |= 1 << 10;
+		}
+		if (bIsPiHit)  // NEW
+		{
+			RepBits |= 1 << 11;
+		}
 	}
 
-	// Serialize the bit mask
-	Ar.SerializeBits(&RepBits, 9); // 9 bits total (7 base + 2 custom)
+	// Serialize the bit mask - NOW 12 BITS!
+	Ar.SerializeBits(&RepBits, 12);
 
 	// Serialize base class data based on the bit mask
 	if (RepBits & (1 << 0))
@@ -68,12 +78,10 @@ bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* M
 	}
 	if (RepBits & (1 << 4))
 	{
-		// Serialize the actor array
 		SafeNetSerializeTArray_Default<31>(Ar, Actors);
 	}
 	if (RepBits & (1 << 5))
 	{
-		// Serialize hit result if present
 		if (Ar.IsLoading())
 		{
 			if (!HitResult.IsValid())
@@ -102,6 +110,18 @@ bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* M
 	{
 		Ar << bIsCriticalHit;
 	}
+	if (RepBits & (1 << 9))
+	{
+		Ar << bIsNiceHit;
+	}
+	if (RepBits & (1 << 10))
+	{
+		Ar << bIsDankHit;
+	}
+	if (RepBits & (1 << 11))
+	{
+		Ar << bIsPiHit;
+	}
 
 	// If we're loading and the bits weren't set, make sure bools are false
 	if (Ar.IsLoading())
@@ -113,6 +133,18 @@ bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* M
 		if (!(RepBits & (1 << 8)))
 		{
 			bIsCriticalHit = false;
+		}
+		if (!(RepBits & (1 << 9)))
+		{
+			bIsNiceHit = false;
+		}
+		if (!(RepBits & (1 << 10)))
+		{
+			bIsDankHit = false;
+		}
+		if (!(RepBits & (1 << 11)))
+		{
+			bIsPiHit = false;
 		}
 	}
 

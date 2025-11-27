@@ -173,6 +173,26 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			// Extract hit type from custom effect context
 			const bool bBlocked = UAuraAbilitySystemBPLibrary::IsBlockedHit(Props.EffectContextHandle);
 			const bool bCriticalHit = UAuraAbilitySystemBPLibrary::IsCriticalHit(Props.EffectContextHandle);
+			
+			// Check for meme damage values
+			const bool bIsNiceHit = FMath::IsNearlyEqual(LocalIncomingDamage, 69.f, 0.01f);
+			const bool bIsDankHit = FMath::IsNearlyEqual(LocalIncomingDamage, 420.f, 0.01f);
+			const bool bIsPiHit = FMath::IsNearlyEqual(LocalIncomingDamage, 3.14f, 0.01f) || 
+								  FMath::IsNearlyEqual(LocalIncomingDamage, PI, 0.01f);
+
+			// Set the meme flags in the context for replication
+			if (bIsNiceHit)
+			{
+				UAuraAbilitySystemBPLibrary::SetIsNiceHit(Props.EffectContextHandle, true);
+			}
+			if (bIsDankHit)
+			{
+				UAuraAbilitySystemBPLibrary::SetIsDankHit(Props.EffectContextHandle, true);
+			}
+			if (bIsPiHit)
+			{
+				UAuraAbilitySystemBPLibrary::SetIsPiHit(Props.EffectContextHandle, true);
+			}
         
 			// Setup GameplayCue parameters with hit type information
 			FGameplayCueParameters CueParams;

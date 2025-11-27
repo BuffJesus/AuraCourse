@@ -1,6 +1,8 @@
 // Not Sure Yet
 
 #include "AbilitySystem/Cues/AuraGCN_DamageText.h"
+
+#include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "UI/Widgets/AuraDamageTextComponent.h"
 #include "GameFramework/Character.h"
 
@@ -13,10 +15,12 @@ bool UAuraGCN_DamageText::OnExecute_Implementation(AActor* Target, const FGamepl
 
 	const float Damage = Parameters.RawMagnitude;
     
-	// Decode hit type from NormalizedMagnitude
-	const float HitTypeEncoded = Parameters.NormalizedMagnitude;
-	const bool bBlocked = (HitTypeEncoded == 1.f || HitTypeEncoded == 3.f);
-	const bool bCritical = (HitTypeEncoded == 2.f || HitTypeEncoded == 3.f);
+	// Extract ALL hit type information from the custom effect context
+	const bool bBlocked = UAuraAbilitySystemBPLibrary::IsBlockedHit(Parameters.EffectContext);
+	const bool bCritical = UAuraAbilitySystemBPLibrary::IsCriticalHit(Parameters.EffectContext);
+	const bool bNice = UAuraAbilitySystemBPLibrary::IsNiceHit(Parameters.EffectContext);
+	const bool bDank = UAuraAbilitySystemBPLibrary::IsDankHit(Parameters.EffectContext);
+	const bool bPi = UAuraAbilitySystemBPLibrary::IsPiHit(Parameters.EffectContext);
 
 	UAuraDamageTextComponent* DamageTextComponent = NewObject<UAuraDamageTextComponent>(
 		TargetCharacter, DamageTextComponentClass);
@@ -24,7 +28,7 @@ bool UAuraGCN_DamageText::OnExecute_Implementation(AActor* Target, const FGamepl
 	DamageTextComponent->AttachToComponent(TargetCharacter->GetRootComponent(), 
 		FAttachmentTransformRules::KeepRelativeTransform);
 	DamageTextComponent->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
-	DamageTextComponent->SetDamageText(Damage, bBlocked, bCritical);
+	DamageTextComponent->SetDamageText(Damage, bBlocked, bCritical, bNice, bDank, bPi);
 
 	return true;
 }

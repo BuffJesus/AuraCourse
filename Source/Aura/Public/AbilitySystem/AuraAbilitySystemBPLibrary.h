@@ -46,6 +46,24 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Aura|BPLibrary|GameplayEffects")
 	static void SetIsCriticalHit(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool bInIsCriticalHit);
 	
+	UFUNCTION(BlueprintPure, Category = "Aura|BPLibrary|GameplayEffects")
+	static bool IsNiceHit(const FGameplayEffectContextHandle& EffectContextHandle);
+
+	UFUNCTION(BlueprintPure, Category = "Aura|BPLibrary|GameplayEffects")
+	static bool IsDankHit(const FGameplayEffectContextHandle& EffectContextHandle);
+
+	UFUNCTION(BlueprintPure, Category = "Aura|BPLibrary|GameplayEffects")
+	static bool IsPiHit(const FGameplayEffectContextHandle& EffectContextHandle);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura|BPLibrary|GameplayEffects")
+	static void SetIsNiceHit(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool bInIsNiceHit);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura|BPLibrary|GameplayEffects")
+	static void SetIsDankHit(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool bInIsDankHit);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura|BPLibrary|GameplayEffects")
+	static void SetIsPiHit(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool bInIsPiHit);
+	
 private:
 	template <typename T>
 	static T* GetWidgetController(const UObject* WorldContextObject, 
