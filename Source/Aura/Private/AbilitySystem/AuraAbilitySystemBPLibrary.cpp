@@ -75,7 +75,7 @@ void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* Wor
 	
 	// Apply all attribute effects
 	ApplyGameplayEffect(ClassDefaultInfo.PrimaryAttributes);
-	ApplyGameplayEffect(ClassDefaultInfo.SecondaryAttributes);  // Changed from ClassDefaultInfo!
+	ApplyGameplayEffect(ClassDefaultInfo.SecondaryAttributes);  
 	ApplyGameplayEffect(CharacterClassInfo->VitalAttributes);
 }
 
@@ -122,5 +122,14 @@ void UAuraAbilitySystemBPLibrary::SetIsBlockedHit(FGameplayEffectContextHandle& 
 	if (FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
 	{
 		AuraEffectContext->SetIsBlockedHit(bInIsBlockedHit);
+	}
+}
+
+void UAuraAbilitySystemBPLibrary::SetIsCriticalHit(FGameplayEffectContextHandle& EffectContextHandle,
+	bool bInIsCriticalHit)
+{
+	if (FAuraGameplayEffectContext* AuraEffectContext { GetAuraEffectContext(EffectContextHandle) })
+	{
+		AuraEffectContext->SetIsCriticalHit(bInIsCriticalHit);
 	}
 }
