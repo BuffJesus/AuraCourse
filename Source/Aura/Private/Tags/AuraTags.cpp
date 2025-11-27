@@ -106,4 +106,11 @@ namespace Aura
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HealthCrystal, "Aura.Message.HealthCrystal", "Health crystal");
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaCrystal, "Aura.Message.ManaCrystal", "Mana crystal");
 	}
+	namespace Potion
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Potion, "Aura.Potion", "Potion");
+		
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HealthRestoration, "Aura.Potion.HealthRestoration", "Health restoration");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(ManaRestoration, "Aura.Potion.ManaRestoration", "Mana restoration");
+	}
 }

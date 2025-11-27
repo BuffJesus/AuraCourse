@@ -108,4 +108,10 @@ namespace Aura
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HealthCrystal);
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaCrystal);
 	}
+	namespace Potion
+	{
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Potion);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HealthRestoration);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaRestoration);
+	}
 }
