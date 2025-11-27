@@ -8,8 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemGlobals.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemGlobals.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraPlayerAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemGlobals.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAttributeSetMacros.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_DamageText.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileFlight.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -88,6 +89,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Attributes/AuraPlayerAttributeSet.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemComponent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemGlobals.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAttributeSetMacros.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Cues/AuraGCN_DamageText.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Cues/AuraGCN_ProjectileFlight.h" root0="FORCE_HIGHLIGHTING" />
@@ -273,15 +275,7 @@
       <workItem from="1764013609214" duration="21961000" />
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
-      <workItem from="1764209847114" duration="4370000" />
-    </task>
-    <task id="LOCAL-00205" summary="Added dissolve effect implementation to `AuraBaseCharacter` with timeline-driven material updates.">
-      <option name="closed" value="true" />
-      <created>1764124022387</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1764124022387</updated>
+      <workItem from="1764209847114" duration="4670000" />
     </task>
     <task id="LOCAL-00206" summary="Added glow effect support to `AuraBaseCharacter` with timeline-driven material updates and reusable parameter update logic.">
       <option name="closed" value="true" />
@@ -667,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764213589529</updated>
     </task>
-    <option name="localTasksCounter" value="254" />
+    <task id="LOCAL-00254" summary="Added `AuraPlayerAttributeSet` include to `AuraPlayerController` and updated workspace highlighting settings accordingly.">
+      <option name="closed" value="true" />
+      <created>1764214239779</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1764214239779</updated>
+    </task>
+    <option name="localTasksCounter" value="255" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -677,7 +679,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Renamed `GetPlayerLevel` to `GetCharacterLevel` across all classes and interfaces. Enhanced damage calculations with level-based coefficients using `DamageCalcCoefficients` data." />
     <MESSAGE value="Added comprehensive debug logging and null checks to `AuraExecCalc_Damage`. Enhanced armor and damage coefficient validation with detailed logging for level-based calculations." />
     <MESSAGE value="Added critical hit calculations to `AuraExecCalc_Damage`, including support for `CriticalHitChance`, `CriticalHitDamage`, and `CriticalHitResistance`. Enhanced logging for detailed debugging of critical hit outcomes." />
     <MESSAGE value="Refactored `AuraExecCalc_Damage` for improved readability, added block chance and armor mitigation debug sections, and refined critical hit resistance calculations." />
@@ -702,7 +703,8 @@
     <MESSAGE value="Enhanced `FAuraGameplayEffectContext` serialization to include custom fields for critical and blocked hits. Improved bitmask handling for efficient data replication." />
     <MESSAGE value="Added `Duplicate` method to `FAuraGameplayEffectContext` for deep copying, improved serialization setup, and updated bitmask initialization." />
     <MESSAGE value="Broke something. Hopefully figure it out. How dare I try to move a couple of files?" />
-    <option name="LAST_COMMIT_MESSAGE" value="Broke something. Hopefully figure it out. How dare I try to move a couple of files?" />
+    <MESSAGE value="Added `AuraPlayerAttributeSet` include to `AuraPlayerController` and updated workspace highlighting settings accordingly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `AuraPlayerAttributeSet` include to `AuraPlayerController` and updated workspace highlighting settings accordingly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
