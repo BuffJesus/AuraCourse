@@ -57,7 +57,7 @@ protected:
 	FActiveGameplayEffectHandle ApplyEffectToTarget(
 		AActor* TargetActor, 
 		TSubclassOf<UGameplayEffect> EffectClass,
-		const TArray<FSetByCallerMagnitude>& SetByCallerMagnitudes = TArray<FSetByCallerMagnitude>()
+		const TArray<FSetByCallerMagnitude>& SetByCallerMagnitudes  
 	);
 
 	UFUNCTION(BlueprintCallable)
