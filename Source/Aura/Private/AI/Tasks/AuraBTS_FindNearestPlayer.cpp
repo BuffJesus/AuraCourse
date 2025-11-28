@@ -19,6 +19,9 @@ void UAuraBTS_FindNearestPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uin
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 	UBlackboardComponent* Blackboard = OwnerComp.GetBlackboardComponent();
 	if (!Blackboard) { return; }
+	AActor* NearestPlayer { nullptr };
+	float Distance { 0.f };
+	bool bHasNearestPlayer { false };
 	Blackboard->SetValue<UBlackboardKeyType_Float>(TEXT("NearestPlayerDistance"), Distance);
 	Blackboard->SetValue<UBlackboardKeyType_Object>(TEXT("NearestPlayer"), NearestPlayer);
 	Blackboard->SetValue<UBlackboardKeyType_Bool>(TEXT("HasNearestPlayer"), bHasNearestPlayer);
