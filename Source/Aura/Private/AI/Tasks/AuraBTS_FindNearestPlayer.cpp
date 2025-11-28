@@ -34,16 +34,20 @@ void UAuraBTS_FindNearestPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uin
 
 	AActor* NearestPlayer{};
 	float NearestDistance{TNumericLimits<float>::Max()};
-	
-	for (AActor* PlayerActor : PlayerCharacters)
+
+	for (FConstPlayerControllerIterator It { OwningPawn->GetWorld()->GetPlayerControllerIterator() }; It; ++It)
 	{
-		if (!IsValid(PlayerActor)) { continue; }
-		
-		const float Distance{OwningPawn->GetDistanceTo(PlayerActor)};
-		if (Distance < NearestDistance)
+		if (APlayerController* PC{It->Get()})
 		{
-			NearestDistance = Distance;
-			NearestPlayer = PlayerActor;
+			if (APawn* PlayerPawn{PC->GetPawn()})
+			{
+				const float Distance{OwningPawn->GetDistanceTo(PlayerPawn)};
+				if (Distance < NearestDistance)
+				{
+					NearestDistance = Distance;
+					NearestPlayer = PlayerPawn;
+				}
+			}
 		}
 	}
 
