@@ -2,7 +2,7 @@
 
 
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
-
+#include "Tags/AuraTags.h"
 #include "AuraAbilityTypes.h"
 #include "Game/AuraGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
@@ -36,6 +36,25 @@ T* UAuraAbilitySystemBPLibrary::GetWidgetController(const UObject* WorldContextO
 		}
 	}
 	return nullptr;
+}
+
+FGameplayAttribute UAuraAbilitySystemBPLibrary::GetResistanceAttributeForDamageType(const FGameplayTag& DamageType)
+{
+	// Use a macro to create compile-time safe mappings
+#define MAP_DAMAGE_TO_RESISTANCE(Type) \
+if (DamageType.MatchesTagExact(Aura::Damage::Type)) \
+{ \
+return UAuraAttributeSet::Get##Type##ResistanceAttribute(); \
+}
+	
+	MAP_DAMAGE_TO_RESISTANCE(Fire)
+	MAP_DAMAGE_TO_RESISTANCE(Lightning)
+	MAP_DAMAGE_TO_RESISTANCE(Arcane)
+	MAP_DAMAGE_TO_RESISTANCE(Physical)
+	
+	#undef MAP_DAMAGE_TO_RESISTANCE
+	
+	return FGameplayAttribute();
 }
 
 UAuraOverlayWidgetController* UAuraAbilitySystemBPLibrary::GetOverlayWidgetController(const UObject* WorldContextObject)

@@ -3,11 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AttributeSet.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Data/AuraCharacterClassInfo.h"
 #include "UI/HUD/AuraHUD.h"
 #include "AuraAbilitySystemBPLibrary.generated.h"
 
+struct FGameplayTag;
 struct FAuraGameplayEffectContext;
 struct FGameplayEffectContextHandle;
 struct FWidgetControllerParams;
@@ -22,6 +24,8 @@ class AURA_API UAuraAbilitySystemBPLibrary : public UBlueprintFunctionLibrary
 	GENERATED_BODY()
 
 public:
+	static FGameplayAttribute GetResistanceAttributeForDamageType(const FGameplayTag& DamageType);
+	
 	UFUNCTION(BlueprintPure, Category = "Aura|BPLibrary|WidgetController", meta = (HidePin = "WorldContextObject", DefaultToSelf = "WorldContextObject"))
 	static UAuraOverlayWidgetController* GetOverlayWidgetController(const UObject* WorldContextObject);
 

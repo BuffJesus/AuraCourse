@@ -21,6 +21,11 @@ struct AuraDamageStatics
 	DECLARE_ATTRIBUTE_CAPTUREDEF(CriticalHitResistance);
 	DECLARE_ATTRIBUTE_CAPTUREDEF(Luck);
 	
+	DECLARE_ATTRIBUTE_CAPTUREDEF(FireResistance);
+	DECLARE_ATTRIBUTE_CAPTUREDEF(LightningResistance);
+	DECLARE_ATTRIBUTE_CAPTUREDEF(ArcaneResistance);
+	DECLARE_ATTRIBUTE_CAPTUREDEF(PhysicalResistance);
+	
 	AuraDamageStatics()
 	{
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, Armor, Target, false);
@@ -30,6 +35,11 @@ struct AuraDamageStatics
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, CriticalHitDamage, Source, false);
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, CriticalHitResistance, Target, false);
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, Luck, Source, false);
+		
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, FireResistance, Target, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, LightningResistance, Target, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, ArcaneResistance, Target, false);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAuraAttributeSet, PhysicalResistance, Target, false);
 	}
 };
 
@@ -48,6 +58,11 @@ UAuraExecCalc_Damage::UAuraExecCalc_Damage()
 	RelevantAttributesToCapture.Add(DamageStatics().CriticalHitDamageDef);
 	RelevantAttributesToCapture.Add(DamageStatics().CriticalHitResistanceDef);
 	RelevantAttributesToCapture.Add(DamageStatics().LuckDef);
+	
+	RelevantAttributesToCapture.Add(DamageStatics().FireResistanceDef);
+	RelevantAttributesToCapture.Add(DamageStatics().LightningResistanceDef);
+	RelevantAttributesToCapture.Add(DamageStatics().ArcaneResistanceDef);
+	RelevantAttributesToCapture.Add(DamageStatics().PhysicalResistanceDef);
 }
 
 void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams,
@@ -131,6 +146,34 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 		if (TypeDamage > 0.f)
 		{
 			Damage += TypeDamage;
+		}
+	}
+	
+	for (const FGameplayTag& DamageType : AllDamageTypes)
+	{
+		const float TypeDamage { Spec.GetSetByCallerMagnitude(DamageType, false, 0.f) };
+		if (TypeDamage > 0.f)
+		{
+			// Get corresponding resistance attribute
+			FGameplayAttribute ResistanceAttr { UAuraAbilitySystemBPLibrary::GetResistanceAttributeForDamageType(DamageType) };
+		
+			float Resistance { 0.f };
+			if (ResistanceAttr.IsValid())
+			{
+				ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(
+					// You'll need to add resistance capture defs to DamageStatics
+					GetResistanceCaptureDef(ResistanceAttr), 
+					EvalParams, 
+					Resistance
+				);
+			}
+		
+			// Apply resistance (example: 50% resistance = 50% damage reduction)
+			const float MitigatedDamage { TypeDamage * (1.f - FMath::Clamp(Resistance / 100.f, 0.f, 0.75f)) };
+			Damage += MitigatedDamage;
+		
+			UE_LOG(LogTemp, Verbose, TEXT("DamageType: %s | Raw: %.2f | Resistance: %.2f%% | Final: %.2f"), 
+				*DamageType.ToString(), TypeDamage, Resistance, MitigatedDamage);
 		}
 	}
 	

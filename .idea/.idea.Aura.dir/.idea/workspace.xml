@@ -8,8 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Attributes/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Attributes/AuraAttributeSet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/ExecCalc/AuraExecCalc_Damage.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,15 +279,7 @@
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
       <workItem from="1764209847114" duration="9753000" />
-      <workItem from="1764247000972" duration="13523000" />
-    </task>
-    <task id="LOCAL-00227" summary="Added `ArmorPenetration` attribute capture to `UAuraExecCalc_Damage` and incorporated armor penetration into damage calculations.">
-      <option name="closed" value="true" />
-      <created>1764136974947</created>
-      <option name="number" value="00227" />
-      <option name="presentableId" value="LOCAL-00227" />
-      <option name="project" value="LOCAL" />
-      <updated>1764136974947</updated>
+      <workItem from="1764247000972" duration="13828000" />
     </task>
     <task id="LOCAL-00228" summary="Enabled `bUseDebugTargetFromHud` in `DefaultEngine.ini` for debugging ability system targets.">
       <option name="closed" value="true" />
@@ -672,7 +665,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764292090191</updated>
     </task>
-    <option name="localTasksCounter" value="276" />
+    <task id="LOCAL-00276" summary="Added resistance attributes (`Fire`, `Lightning`, `Arcane`, `Physical`) to `UAuraAttributeSet` with replication support and updated `.idea/workspace.xml`.">
+      <option name="closed" value="true" />
+      <created>1764292536833</created>
+      <option name="number" value="00276" />
+      <option name="presentableId" value="LOCAL-00276" />
+      <option name="project" value="LOCAL" />
+      <updated>1764292536833</updated>
+    </task>
+    <option name="localTasksCounter" value="277" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,7 +683,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `Duplicate` method to `FAuraGameplayEffectContext` for deep copying, improved serialization setup, and updated bitmask initialization." />
     <MESSAGE value="Broke something. Hopefully figure it out. How dare I try to move a couple of files?" />
     <MESSAGE value="Added `AuraPlayerAttributeSet` include to `AuraPlayerController` and updated workspace highlighting settings accordingly." />
     <MESSAGE value="Added `AuraAbilitySystemGlobals` with custom effect context allocation and updated project configuration settings." />
@@ -707,7 +707,8 @@
     <MESSAGE value="Removed verbose logging from `AuraExecCalc_Damage`. Cleaned up `.idea/workspace.xml` and deleted unused asset references." />
     <MESSAGE value="Removed `UAuraExecCalc_TestMemeNumbers` and associated header file as part of code cleanup." />
     <MESSAGE value="Added `Resistance` gameplay tag namespace with sub-tags for `Fire`, `Lightning`, `Arcane`, and `Physical` resistances. Cleaned up unused references in `.idea/workspace.xml`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `Resistance` gameplay tag namespace with sub-tags for `Fire`, `Lightning`, `Arcane`, and `Physical` resistances. Cleaned up unused references in `.idea/workspace.xml`." />
+    <MESSAGE value="Added resistance attributes (`Fire`, `Lightning`, `Arcane`, `Physical`) to `UAuraAttributeSet` with replication support and updated `.idea/workspace.xml`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added resistance attributes (`Fire`, `Lightning`, `Arcane`, `Physical`) to `UAuraAttributeSet` with replication support and updated `.idea/workspace.xml`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
