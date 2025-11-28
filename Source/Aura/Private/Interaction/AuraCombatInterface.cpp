@@ -7,11 +7,13 @@
 // Add default functionality here for any IAuraCombatInterface functions that are not pure virtual.
 int32 IAuraCombatInterface::GetCharacterLevel() const
 {
-	return 0;
+	checkf(false, TEXT("GetCharacterLevel must be overridden by classes implementing AuraCombatInterface."));
+	return 1;
 }
 
 FVector IAuraCombatInterface::GetCombatSocketLocation() const
 {
-	return FVector();
+	checkf(false, TEXT("GetCombatSocketLocation must be overridden by classes implementing AuraCombatInterface."));
+	return FVector::ZeroVector;
 }
 
