@@ -32,6 +32,15 @@ namespace Aura
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(MaxMana, "Aura.Attributes.Secondary.MaxMana", "Maximum amount of mana obtainable");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Luck, "Aura.Attributes.Secondary.Luck", "Increases armor penetration, critical hit chance, and block chance");
 		}
+		namespace Resistance
+		{
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Resistance, "Aura.Attributes.Resistance", "Reduces damage taken from specific damage types");
+			
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(FireResistance, "Aura.Attributes.Resistance.Fire", "Reduces fire damage taken");
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(LightningResistance, "Aura.Attributes.Resistance.Lightning", "Reduces lightning damage taken");
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(ArcaneResistance, "Aura.Attributes.Resistance.Arcane", "Reduces arcane damage taken");
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(PhysicalResistance, "Aura.Attributes.Resistance.Physical", "Reduces physical damage taken");
+		}
 		namespace Vital
 		{
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Vital, "Aura.Attributes.Vital", "Vital attribute");
