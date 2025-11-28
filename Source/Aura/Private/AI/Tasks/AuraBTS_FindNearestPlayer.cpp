@@ -6,7 +6,7 @@
 UAuraBTS_FindNearestPlayer::UAuraBTS_FindNearestPlayer()
 {
 	INIT_SERVICE_NODE_NOTIFY_FLAGS();
-	NodeName = TEXT("Find Nearest Player");
+	NodeName = TEXT("FindNearestPlayer");
 	
 	// Set default interval for service tick
 	Interval = 0.5f;
@@ -21,10 +21,10 @@ void UAuraBTS_FindNearestPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uin
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 	
-	APawn* OwningPawn = OwnerComp.GetAIOwner() ? OwnerComp.GetAIOwner()->GetPawn() : nullptr;
+	APawn* OwningPawn { OwnerComp.GetAIOwner() ? OwnerComp.GetAIOwner()->GetPawn() : nullptr };
 	if (!OwningPawn) { return; }
 
-	UBlackboardComponent* BlackboardComp = OwnerComp.GetBlackboardComponent();
+	UBlackboardComponent* BlackboardComp { OwnerComp.GetBlackboardComponent() };
 	if (!BlackboardComp) { return; }
 
 	AActor* NearestPlayer{};
@@ -32,7 +32,7 @@ void UAuraBTS_FindNearestPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uin
 
 	for (FConstPlayerControllerIterator It{OwningPawn->GetWorld()->GetPlayerControllerIterator()}; It; ++It)
 	{
-		if (APlayerController* PC{It->Get()})
+		if (APlayerController* PC { It->Get() })
 		{
 			if (APawn* PlayerPawn{PC->GetPawn()})
 			{
