@@ -131,7 +131,6 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 		if (TypeDamage > 0.f)
 		{
 			Damage += TypeDamage;
-			UE_LOG(LogTemp, Verbose, TEXT("Damage Type %s: %.2f"), *DamageType.ToString(), TypeDamage);
 		}
 	}
 	

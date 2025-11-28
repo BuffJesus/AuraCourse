@@ -7,7 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/BP_Aura_Fire_Bolt.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/CT_Fireball_Damage.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Fire_Bolt.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Bolt/GA_Aura_Spell_Fireball.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/GE_Aura_Test_Damage1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +45,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://4" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://5" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -277,15 +286,7 @@
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
       <workItem from="1764209847114" duration="9753000" />
-      <workItem from="1764247000972" duration="11787000" />
-    </task>
-    <task id="LOCAL-00223" summary="Added projectile Gameplay Cue configuration to `AuraGA_ProjectileSpell` and `AuraProjectile`, allowing customizable flight and impact effects via gameplay tags.">
-      <option name="closed" value="true" />
-      <created>1764135594373</created>
-      <option name="number" value="00223" />
-      <option name="presentableId" value="LOCAL-00223" />
-      <option name="project" value="LOCAL" />
-      <updated>1764135594373</updated>
+      <workItem from="1764247000972" duration="12553000" />
     </task>
     <task id="LOCAL-00224" summary="Renamed a variable in `AuraProjectile` for clarity (`Owner` to `OwnerActor`).">
       <option name="closed" value="true" />
@@ -671,7 +672,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764290611354</updated>
     </task>
-    <option name="localTasksCounter" value="272" />
+    <task id="LOCAL-00272" summary="Refactored `AuraExecCalc_Damage` to use scoped initialization, improved damage type handling, and added early-out for zero damage scenarios. Synced changes in `.idea/workspace.xml`.">
+      <option name="closed" value="true" />
+      <created>1764290834898</created>
+      <option name="number" value="00272" />
+      <option name="presentableId" value="LOCAL-00272" />
+      <option name="project" value="LOCAL" />
+      <updated>1764290834898</updated>
+    </task>
+    <option name="localTasksCounter" value="273" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,7 +690,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Fixed inheritance syntax for `FAuraGameplayEffectContext` by adding `public` to ensure proper access specifier usage." />
     <MESSAGE value="Added `const` qualifiers to `SetIsBlockedHit` and `SetIsCriticalHit` methods in `FAuraGameplayEffectContext` to ensure better type safety." />
     <MESSAGE value="Refactored attribute clamping logic in `UAuraAttributeSet` by introducing reusable lambdas for improved readability and consistency." />
     <MESSAGE value="Enhanced `FAuraGameplayEffectContext` serialization to include custom fields for critical and blocked hits. Improved bitmask handling for efficient data replication." />
@@ -706,7 +714,8 @@
     <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to delegate damage handling to the new `AuraDamageGameplayAbility`. Added support for multiple damage types and updated related tags and blueprints." />
     <MESSAGE value="Initialized default values for `Damage` and `DamageTypes` in `AuraDamageGameplayAbility`. Synced changes in `.idea/workspace.xml`." />
     <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to use scoped initialization and delegate damage type assignment to `AssignDamageTypesToSpec`. Enhanced `UAuraDamageGameplayAbility` with flexible damage type support." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraGA_ProjectileSpell` to use scoped initialization and delegate damage type assignment to `AssignDamageTypesToSpec`. Enhanced `UAuraDamageGameplayAbility` with flexible damage type support." />
+    <MESSAGE value="Refactored `AuraExecCalc_Damage` to use scoped initialization, improved damage type handling, and added early-out for zero damage scenarios. Synced changes in `.idea/workspace.xml`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored `AuraExecCalc_Damage` to use scoped initialization, improved damage type handling, and added early-out for zero damage scenarios. Synced changes in `.idea/workspace.xml`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
