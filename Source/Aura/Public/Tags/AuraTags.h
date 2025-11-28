@@ -37,10 +37,10 @@ namespace Aura
 		{
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Resistance);
 			
-			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Fire);
-			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Lightning);
-			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Arcane);
-			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Physical);
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(FireResistance);
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(LightningResistance);
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(ArcaneResistance);
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(PhysicalResistance);
 		}
 		namespace Vital
 		{

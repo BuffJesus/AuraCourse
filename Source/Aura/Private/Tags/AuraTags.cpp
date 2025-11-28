@@ -36,10 +36,10 @@ namespace Aura
 		{
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Resistance, "Aura.Attributes.Resistance", "Reduces damage taken from specific damage types");
 			
-			UE_DEFINE_GAMEPLAY_TAG_COMMENT(FireResistance, "Aura.Attributes.Resistance.Fire", "Reduces fire damage taken");
-			UE_DEFINE_GAMEPLAY_TAG_COMMENT(LightningResistance, "Aura.Attributes.Resistance.Lightning", "Reduces lightning damage taken");
-			UE_DEFINE_GAMEPLAY_TAG_COMMENT(ArcaneResistance, "Aura.Attributes.Resistance.Arcane", "Reduces arcane damage taken");
-			UE_DEFINE_GAMEPLAY_TAG_COMMENT(PhysicalResistance, "Aura.Attributes.Resistance.Physical", "Reduces physical damage taken");
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(FireResistance, "Aura.Attributes.Resistance.FireResistance", "Reduces fire damage taken");             
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(LightningResistance, "Aura.Attributes.Resistance.LightningResistance", "Reduces lightning damage taken"); 
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(ArcaneResistance, "Aura.Attributes.Resistance.ArcaneResistance", "Reduces arcane damage taken");        
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(PhysicalResistance, "Aura.Attributes.Resistance.PhysicalResistance", "Reduces physical damage taken");  
 		}
 		namespace Vital
 		{
