@@ -6,6 +6,8 @@
 #include "AbilitySystem/Abilities/AuraGameplayAbility.h"
 #include "Tags/AuraTags.h"
 
+#include "Algo/AnyOf.h"
+
 
 void UAuraAbilitySystemComponent::AbilityActorInfoSet()
 {
@@ -14,15 +16,36 @@ void UAuraAbilitySystemComponent::AbilityActorInfoSet()
 
 void UAuraAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities)
 {
+	if (!IsOwnerActorAuthoritative())
+	{
+		return;
+	}
+
 	for (const TSubclassOf<UGameplayAbility> AbilityClass : StartupAbilities)
 	{
+		if (!AbilityClass)
+		{
+			continue;
+		}
+
+		const bool bAbilityAlreadyGranted = Algo::AnyOf(GetActivatableAbilities(), [AbilityClass](const FGameplayAbilitySpec& AbilitySpec)
+		{
+			return AbilitySpec.Ability && AbilitySpec.Ability->GetClass() == AbilityClass;
+		});
+
+		if (bAbilityAlreadyGranted)
+		{
+			continue;
+		}
+
 		FGameplayAbilitySpec AbilitySpec { FGameplayAbilitySpec(AbilityClass, 1) };
 		if ( const UAuraGameplayAbility* AuraAbility = Cast<UAuraGameplayAbility>(AbilitySpec.Ability))
 		{
-			FGameplayTagContainer& DynamicTags = AbilitySpec.GetDynamicSpecSourceTags();  // Reference, not copy!
+			FGameplayTagContainer& DynamicTags = AbilitySpec.GetDynamicSpecSourceTags();	// Reference, not copy!
 			DynamicTags.AddTag(AuraAbility->StartupInputTag);
-			GiveAbility(AbilitySpec);
 		}
+
+		GiveAbility(AbilitySpec);
 	}
 }
 
