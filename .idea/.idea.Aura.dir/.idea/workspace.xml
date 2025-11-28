@@ -7,7 +7,117 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/Effects/GE_Aura_Default_Attributes_Resistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Resistance/MMC_Aura_Default_Resistance_Arcane.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Resistance/MMC_Aura_Default_Resistance_Fire.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Resistance/MMC_Aura_Default_Resistance_Lightning.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Resistance/MMC_Aura_Default_Resistance_Physical.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_Armor.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_ArmorPenetration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_BlockChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_CriticalHitChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_CriticalHitDamage.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_CriticalHitResistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_HealthRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_Luck.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_ManaRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_MaxHealth.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/Secondary/MMC_Aura_Default_MaxMana.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/Effects/GE_Aura_Elementalist_Attributes_Resistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Resistance/MMC_Aura_Elemental_Resistance_Arcane.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Resistance/MMC_Aura_Elemental_Resistance_Fire.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Resistance/MMC_Aura_Elemental_Resistance_Lightning.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Resistance/MMC_Aura_Elemental_Resistance_Physical.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_Armor.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_ArmorPenetration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_BlockChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_CriticalHitChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_CriticalHitDamage.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_CriticalHitResistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_HealthRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_Luck.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_ManaRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_MaxHealth.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/Secondary/MMC_Aura_Elementalist_MaxMana.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/Effects/GE_Aura_Ranger_Attributes_Resistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Resistance/MMC_Aura_Ranger_Resistance_Arcane.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Resistance/MMC_Aura_Ranger_Resistance_Fire.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Resistance/MMC_Aura_Ranger_Resistance_Lightning.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Resistance/MMC_Aura_Ranger_Resistance_Physical.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_Armor.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_ArmorPenetration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_BlockChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_CriticalHitChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_CriticalHitDamage.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_CriticalHitResistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_HealthRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_Luck.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_ManaRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_MaxHealth.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/Secondary/MMC_Aura_Ranger_MaxMana.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/Effects/GE_Aura_Warrior_Attributes_Resistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Resistance/MMC_Aura_Warrior_Resistance_Arcane.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Resistance/MMC_Aura_Warrior_Resistance_Fire.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Resistance/MMC_Aura_Warrior_Resistance_Lightning.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Resistance/MMC_Aura_Warrior_Resistance_Physical.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_Armor.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_ArmorPenetration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_BlockChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_CriticalHitChance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_CriticalHitDamage.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_CriticalHitResistance.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_HealthRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_Luck.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_ManaRegeneration.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_MaxHealth.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/Secondary/MMC_Aura_Warrior_MaxMana.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_Armor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_Armor.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_ArmorPenetration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_ArmorPenetration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_BlockChance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_BlockChance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_CriticalHitChance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_CriticalHitChance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_CriticalHitDamage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_CriticalHitDamage.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_CriticalHitResistance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_CriticalHitResistance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_HealthRegeneration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_HealthRegeneration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_Luck.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_Luck.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_ManaRegeneration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_ManaRegeneration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_MaxHealth.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_MaxHealth.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_MaxMana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Default/MMC/MMC_Aura_Default_MaxMana.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_Armor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_Armor.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_ArmorPenetration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_ArmorPenetration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_BlockChance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_BlockChance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_CriticalHitChance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_CriticalHitChance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_CriticalHitDamage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_CriticalHitDamage.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_CriticalHitResistance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_CriticalHitResistance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_HealthRegeneration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_HealthRegeneration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_Luck.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_Luck.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_ManaRegeneration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_ManaRegeneration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_MaxHealth.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_MaxHealth.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_MaxMana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Elementalist/MMC/MMC_Aura_Elementalist_MaxMana.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_Armor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_Armor.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_ArmorPenetration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_ArmorPenetration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_BlockChance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_BlockChance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_CriticalHitChance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_CriticalHitChance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_CriticalHitDamage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_CriticalHitDamage.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_CriticalHitResistance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_CriticalHitResistance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_HealthRegeneration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_HealthRegeneration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_Luck.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_Luck.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_ManaRegeneration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_ManaRegeneration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_MaxHealth.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_MaxHealth.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_MaxMana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Ranger/MMC/MMC_Aura_Ranger_MaxMana.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_Armor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_Armor.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_ArmorPenetration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_ArmorPenetration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_BlockChance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_BlockChance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_CriticalHitChance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_CriticalHitChance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_CriticalHitDamage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_CriticalHitDamage.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_CriticalHitResistance.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_CriticalHitResistance.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_HealthRegeneration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_HealthRegeneration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_Luck.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_Luck.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_ManaRegeneration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_ManaRegeneration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_MaxHealth.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_MaxHealth.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_MaxMana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/Classes/Warrior/MMC/MMC_Aura_Warrior_MaxMana.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_AttributeMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/AttributesMenu/WBP_Aura_AttributeMenu.uasset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +146,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://7" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -275,15 +385,7 @@
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
       <workItem from="1764209847114" duration="9753000" />
-      <workItem from="1764247000972" duration="15692000" />
-    </task>
-    <task id="LOCAL-00233" summary="Refactored `AuraExecCalc_Damage` for improved readability, added block chance and armor mitigation debug sections, and refined critical hit resistance calculations.">
-      <option name="closed" value="true" />
-      <created>1764173695042</created>
-      <option name="number" value="00233" />
-      <option name="presentableId" value="LOCAL-00233" />
-      <option name="project" value="LOCAL" />
-      <updated>1764173695042</updated>
+      <workItem from="1764247000972" duration="16326000" />
     </task>
     <task id="LOCAL-00234" summary="Replaced `MagicResistance` attribute with `Luck` in `AuraAttributeSet` and updated related gameplay tags, replication logic, and damage calculation methods.">
       <option name="closed" value="true" />
@@ -669,7 +771,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764294434341</updated>
     </task>
-    <option name="localTasksCounter" value="282" />
+    <task id="LOCAL-00282" summary="Updated `.idea/workspace.xml` to remove stale changelist entries and synchronize task metadata.">
+      <option name="closed" value="true" />
+      <created>1764294676761</created>
+      <option name="number" value="00282" />
+      <option name="presentableId" value="LOCAL-00282" />
+      <option name="project" value="LOCAL" />
+      <updated>1764294676761</updated>
+    </task>
+    <option name="localTasksCounter" value="283" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -679,7 +789,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactored `AuraAbilitySystemBPLibrary` to centralize `FAuraGameplayEffectContext` access with helper methods. Simplified critical and blocked hit checks." />
     <MESSAGE value="Added `SetIsCriticalHit` method to `AuraAbilitySystemBPLibrary` for managing critical hit states in gameplay effects. Updated related blueprint exposure." />
     <MESSAGE value="Fixed typo in `IsCriticalHit` method name across `AuraAbilitySystemBPLibrary`. Added usage in critical hit checks and updated blueprint function redirects." />
     <MESSAGE value="Encoded hit type into `NormalizedMagnitude` in `AuraGCN_DamageText` to account for blocked and critical hits. Updated `SetDamageText` to accept additional hit-type flags. Added fatal damage handling in `AuraAttributeSet`." />
@@ -704,7 +813,8 @@
     <MESSAGE value="Added new gameplay tags for `Lightning`, `Arcane`, and `Physical` damage types under the `Aura.Damage` namespace." />
     <MESSAGE value="Added `ResistanceAttributes` to `AuraCharacterClassInfo` with `.idea/workspace.xml` updates." />
     <MESSAGE value="Added `ResistanceAttributes` application in `AuraAbilitySystemBPLibrary` and removed redundant macros from `AuraAttributeSet`. Updated `.idea/workspace.xml`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `ResistanceAttributes` application in `AuraAbilitySystemBPLibrary` and removed redundant macros from `AuraAttributeSet`. Updated `.idea/workspace.xml`." />
+    <MESSAGE value="Updated `.idea/workspace.xml` to remove stale changelist entries and synchronize task metadata." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated `.idea/workspace.xml` to remove stale changelist entries and synchronize task metadata." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

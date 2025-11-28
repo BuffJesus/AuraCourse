@@ -39,19 +39,21 @@ void UAuraAttributeInfo::PopulateDataAsset()
 	// Get parent tags using native gameplay tags
 	const FGameplayTag PrimaryTag { Aura::Attributes::Primary::Primary };
 	const FGameplayTag SecondaryTag { Aura::Attributes::Secondary::Secondary };
+	const FGameplayTag ResistanceTag { Aura::Attributes::Resistance::Resistance }; // ADD THIS
 	const FGameplayTag VitalTag { Aura::Attributes::Vital::Vital };
 	
 	// Get all gameplay tags
 	FGameplayTagContainer AllTags;
 	TagManager.RequestAllGameplayTags(AllTags, true);
 	
-	// Filter to only attribute tags (children of Primary, Secondary, or Vital)
+	// Filter to only attribute tags (children of Primary, Secondary, Resistance, or Vital)
 	TArray<FGameplayTag> AttributeTags;
 	for (const FGameplayTag& Tag : AllTags)
 	{
-		// Check if tag is a child of Primary, Secondary, or Vital (but not the parent tags themselves)
+		// Check if tag is a child of Primary, Secondary, Resistance, or Vital (but not the parent tags themselves)
 		if ((Tag.MatchesTag(PrimaryTag) && Tag != PrimaryTag) ||
 		    (Tag.MatchesTag(SecondaryTag) && Tag != SecondaryTag) ||
+		    (Tag.MatchesTag(ResistanceTag) && Tag != ResistanceTag) || // ADD THIS
 		    (Tag.MatchesTag(VitalTag) && Tag != VitalTag))
 		{
 			AttributeTags.Add(Tag);
@@ -130,7 +132,7 @@ void UAuraAttributeInfo::PopulateDataAsset()
 		UE_LOG(LogTemp, Log, TEXT("Added attribute: %s"), *FormattedName);
 	}
 	
-	// Sort by tag name for consistency (Primary, Secondary, Vital order)
+	// Sort by tag name for consistency (Primary, Secondary, Resistance, Vital order)
 	AttributeInfo.Sort([](const FAttributeInfo& A, const FAttributeInfo& B)
 	{
 		return A.AttributeTag.GetTagName().ToString() < B.AttributeTag.GetTagName().ToString();
