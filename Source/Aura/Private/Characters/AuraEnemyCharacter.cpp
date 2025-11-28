@@ -79,11 +79,14 @@ void AAuraEnemyCharacter::InitializeAbilityActorInfo()
 
 void AAuraEnemyCharacter::HighlightActor()
 {
-	GetMesh()->SetRenderCustomDepth(true);
-	GetMesh()->SetCustomDepthStencilValue(CustomDepthRed);
-	
-	if (Weapon) { Weapon->SetRenderCustomDepth(true); }
-	Weapon->SetCustomDepthStencilValue(CustomDepthRed);
+        GetMesh()->SetRenderCustomDepth(true);
+        GetMesh()->SetCustomDepthStencilValue(CustomDepthRed);
+
+        if (Weapon)
+        {
+                Weapon->SetRenderCustomDepth(true);
+                Weapon->SetCustomDepthStencilValue(CustomDepthRed);
+        }
 }
 
 void AAuraEnemyCharacter::UnHighlightActor()
