@@ -19,8 +19,8 @@ protected:
 	TSubclassOf<UGameplayEffect> DamageEffectClass;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Damage")
-	FScalableFloat Damage;
+	FScalableFloat Damage { 0.f };
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Damage")
-	FGameplayTagContainer DamageTypes;
+	FGameplayTagContainer DamageTypes { FGameplayTagContainer() };
 };
