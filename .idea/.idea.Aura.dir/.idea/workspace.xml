@@ -7,7 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Attributes/AuraAttributeSet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Attributes/AuraAttributeSet.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -275,15 +278,7 @@
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
       <workItem from="1764209847114" duration="9753000" />
-      <workItem from="1764247000972" duration="12864000" />
-    </task>
-    <task id="LOCAL-00226" summary="Updated `.idea/workspace.xml` to include changes for Fireball gameplay cues and adjustments to projectile-related assets.">
-      <option name="closed" value="true" />
-      <created>1764136297975</created>
-      <option name="number" value="00226" />
-      <option name="presentableId" value="LOCAL-00226" />
-      <option name="project" value="LOCAL" />
-      <updated>1764136297975</updated>
+      <workItem from="1764247000972" duration="13523000" />
     </task>
     <task id="LOCAL-00227" summary="Added `ArmorPenetration` attribute capture to `UAuraExecCalc_Damage` and incorporated armor penetration into damage calculations.">
       <option name="closed" value="true" />
@@ -669,7 +664,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764291575292</updated>
     </task>
-    <option name="localTasksCounter" value="275" />
+    <task id="LOCAL-00275" summary="Added `Resistance` gameplay tag namespace with sub-tags for `Fire`, `Lightning`, `Arcane`, and `Physical` resistances. Cleaned up unused references in `.idea/workspace.xml`.">
+      <option name="closed" value="true" />
+      <created>1764292090191</created>
+      <option name="number" value="00275" />
+      <option name="presentableId" value="LOCAL-00275" />
+      <option name="project" value="LOCAL" />
+      <updated>1764292090191</updated>
+    </task>
+    <option name="localTasksCounter" value="276" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -679,7 +682,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Enhanced `FAuraGameplayEffectContext` serialization to include custom fields for critical and blocked hits. Improved bitmask handling for efficient data replication." />
     <MESSAGE value="Added `Duplicate` method to `FAuraGameplayEffectContext` for deep copying, improved serialization setup, and updated bitmask initialization." />
     <MESSAGE value="Broke something. Hopefully figure it out. How dare I try to move a couple of files?" />
     <MESSAGE value="Added `AuraPlayerAttributeSet` include to `AuraPlayerController` and updated workspace highlighting settings accordingly." />
@@ -704,7 +706,8 @@
     <MESSAGE value="Refactored `AuraExecCalc_Damage` to use scoped initialization, improved damage type handling, and added early-out for zero damage scenarios. Synced changes in `.idea/workspace.xml`." />
     <MESSAGE value="Removed verbose logging from `AuraExecCalc_Damage`. Cleaned up `.idea/workspace.xml` and deleted unused asset references." />
     <MESSAGE value="Removed `UAuraExecCalc_TestMemeNumbers` and associated header file as part of code cleanup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed `UAuraExecCalc_TestMemeNumbers` and associated header file as part of code cleanup." />
+    <MESSAGE value="Added `Resistance` gameplay tag namespace with sub-tags for `Fire`, `Lightning`, `Arcane`, and `Physical` resistances. Cleaned up unused references in `.idea/workspace.xml`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `Resistance` gameplay tag namespace with sub-tags for `Fire`, `Lightning`, `Arcane`, and `Physical` resistances. Cleaned up unused references in `.idea/workspace.xml`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

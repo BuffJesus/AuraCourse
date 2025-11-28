@@ -116,6 +116,24 @@ public:
 	FGameplayAttributeData Luck;
 	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, Luck);
 #pragma endregion
+	
+#pragma region Resistance Attribute Declaration
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_FireResistance, Category = "Aura|Attributes|Resistance")
+	FGameplayAttributeData FireResistance;
+	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, FireResistance);
+
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_LightningResistance, Category = "Aura|Attributes|Resistance")
+	FGameplayAttributeData LightningResistance;
+	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, LightningResistance);
+
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_ArcaneResistance, Category = "Aura|Attributes|Resistance")
+	FGameplayAttributeData ArcaneResistance;
+	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, ArcaneResistance);
+
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_PhysicalResistance, Category = "Aura|Attributes|Resistance")
+	FGameplayAttributeData PhysicalResistance;
+	ATTRIBUTE_ACCESSORS_BASIC(UAuraAttributeSet, PhysicalResistance);
+#pragma endregion
 
 #pragma region Vital Attribute Declaration
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Aura|Attributes|Vital")
@@ -152,6 +170,13 @@ public:
 	UFUNCTION() void OnRep_MaxHealth(const FGameplayAttributeData& Old) const;
 	UFUNCTION() void OnRep_MaxMana(const FGameplayAttributeData& Old) const;
 	UFUNCTION() void OnRep_Luck(const FGameplayAttributeData& Old) const;
+#pragma endregion
+	
+#pragma region Resistance Attribute Replication
+	UFUNCTION() void OnRep_FireResistance(const FGameplayAttributeData& Old) const;
+	UFUNCTION() void OnRep_LightningResistance(const FGameplayAttributeData& Old) const;
+	UFUNCTION() void OnRep_ArcaneResistance(const FGameplayAttributeData& Old) const;
+	UFUNCTION() void OnRep_PhysicalResistance(const FGameplayAttributeData& Old) const;
 #pragma endregion
 
 #pragma region Vital Attribute Replication

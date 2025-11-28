@@ -45,6 +45,11 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, MaxMana);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Luck);
 	
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, FireResistance);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, LightningResistance);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, ArcaneResistance);
+	REPLICATE_ATTRIBUTE(UAuraAttributeSet, PhysicalResistance);
+	
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Health);
 	REPLICATE_ATTRIBUTE(UAuraAttributeSet, Mana);
 }
@@ -252,6 +257,11 @@ IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, ManaRegeneration)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, MaxHealth)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, MaxMana)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Luck)
+
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, FireResistance)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, LightningResistance)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, ArcaneResistance)
+IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, PhysicalResistance)
 
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Health)
 IMPLEMENT_ATTRIBUTE_ONREP(UAuraAttributeSet, Mana)
