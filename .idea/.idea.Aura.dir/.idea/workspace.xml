@@ -8,8 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/CT_Fireball_Damage_Max.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/CT_Fireball_Damage_Min.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball1.uasset" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +21,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="39722" />
+    <option name="cachedIndexableFilesCount" value="39724" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -39,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://11" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://12" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -278,15 +279,7 @@
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
       <workItem from="1764209847114" duration="9753000" />
-      <workItem from="1764247000972" duration="18825000" />
-    </task>
-    <task id="LOCAL-00238" summary="Added `UAuraDamageCalcConfig` to centralize damage calculation parameters in `AuraExecCalc_Damage` and updated logic to use configuration values for block, armor mitigation, and critical hit calculations.">
-      <option name="closed" value="true" />
-      <created>1764201042410</created>
-      <option name="number" value="00238" />
-      <option name="presentableId" value="LOCAL-00238" />
-      <option name="project" value="LOCAL" />
-      <updated>1764201042410</updated>
+      <workItem from="1764247000972" duration="19591000" />
     </task>
     <task id="LOCAL-00239" summary="Made `UAuraExecCalc_Damage` `Blueprintable` and `BlueprintType`, updated `DamageConfig` to use `TObjectPtr`, and adjusted include order.">
       <option name="closed" value="true" />
@@ -672,7 +665,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764298491288</updated>
     </task>
-    <option name="localTasksCounter" value="287" />
+    <task id="LOCAL-00287" summary="Synced `.idea/workspace.xml` with updated file references and removed outdated entries for `GA_Aura_Spell_Fireball` assets.">
+      <option name="closed" value="true" />
+      <created>1764298965502</created>
+      <option name="number" value="00287" />
+      <option name="presentableId" value="LOCAL-00287" />
+      <option name="project" value="LOCAL" />
+      <updated>1764298965502</updated>
+    </task>
+    <option name="localTasksCounter" value="288" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,7 +683,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Removed outdated change references and synced `.idea/workspace.xml` with updated file paths and project settings." />
     <MESSAGE value="Added support for meme damage values (Nice, Dank, Pi) in `AuraGCN_DamageText` and `AuraAbilitySystemBPLibrary`. Updated hit type serialization, `SetDamageText`, and gameplay effect context replication." />
     <MESSAGE value="Cleaned up unused hit type encoding logic in `AuraAttributeSet`. Removed redundant comments and excessive whitespace for improved readability. Synced `.idea/workspace.xml` with updated file references." />
     <MESSAGE value="Added `EAuraHitType` enum and helper methods to `AuraDamageTextComponent` for determining and displaying hit types, including new meme damage values (Nice, Dank, Pi)." />
@@ -707,7 +707,8 @@
     <MESSAGE value="Renamed resistance gameplay tags for clarity and updated corresponding comments." />
     <MESSAGE value="Updated `.idea/workspace.xml` to clean up stale changelist entries and synchronize with updated asset references." />
     <MESSAGE value="Added randomized damage ranges for specific damage types in `AuraDamageGameplayAbility`. Refactored logic to support `TMap&lt;FGameplayTag, FDamageRange&gt;` for more flexibility." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added randomized damage ranges for specific damage types in `AuraDamageGameplayAbility`. Refactored logic to support `TMap&lt;FGameplayTag, FDamageRange&gt;` for more flexibility." />
+    <MESSAGE value="Synced `.idea/workspace.xml` with updated file references and removed outdated entries for `GA_Aura_Spell_Fireball` assets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Synced `.idea/workspace.xml` with updated file references and removed outdated entries for `GA_Aura_Spell_Fireball` assets." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
