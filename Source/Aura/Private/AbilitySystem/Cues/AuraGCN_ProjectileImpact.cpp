@@ -30,7 +30,8 @@ bool UAuraGCN_ProjectileImpact::OnExecute_Implementation(AActor* Target, const F
 			World,
 			ImpactSound,
 			ImpactLocation,
-			FRotator::ZeroRotator
+			FRotator::ZeroRotator,
+			0.8f
 		);
 	}
 

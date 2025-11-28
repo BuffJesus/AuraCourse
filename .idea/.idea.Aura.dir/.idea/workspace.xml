@@ -9,7 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileFlight.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileFlight.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileImpact.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileImpact.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,16 +40,21 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraEnemyAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraPlayerAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/AuraAbilitySystemComponent.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -67,6 +73,8 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Tasks/AuraTargetDataUnderMouse.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Actors/AuraEffectActor.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Actors/AuraProjectile.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/Actors/AuraProjectile.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/Actors/AuraProjectile.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AuraAbilityTypes.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AuraCollisionChannels.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -289,15 +297,7 @@
       <workItem from="1764160983768" duration="26338000" />
       <workItem from="1764209847114" duration="9753000" />
       <workItem from="1764247000972" duration="20599000" />
-      <workItem from="1764304300968" duration="1915000" />
-    </task>
-    <task id="LOCAL-00243" summary="Removed default value assignment for `SetByCallerMagnitudes` parameter in `ApplyEffectToTarget` for better compliance with usage patterns.">
-      <option name="closed" value="true" />
-      <created>1764205017992</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
-      <option name="project" value="LOCAL" />
-      <updated>1764205017992</updated>
+      <workItem from="1764304300968" duration="2766000" />
     </task>
     <task id="LOCAL-00244" summary="Expanded potion scaling in `UAuraExecCalc_Potion` with level, Vigor, and Intelligence bonuses. Added configuration properties for scaling customization and debug logging for restoration details.">
       <option name="closed" value="true" />
@@ -683,7 +683,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764305311830</updated>
     </task>
-    <option name="localTasksCounter" value="292" />
+    <task id="LOCAL-00292" summary="Remove redundant includes in `AuraAbilitySystemComponent.cpp` and update `.idea/workspace.xml` with new file highlighting policies">
+      <option name="closed" value="true" />
+      <created>1764306280539</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
+      <option name="project" value="LOCAL" />
+      <updated>1764306280539</updated>
+    </task>
+    <option name="localTasksCounter" value="293" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,7 +701,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `GA_Aura_Spell_Fireball1` and `GE_Aura_Test_Damage1` assets. Updated `BP_Aura_DamageTextComponent` to support new effects." />
     <MESSAGE value="Refactored damage handling by introducing `UAuraDamageGameplayAbility` base class. Updated `UAuraGA_ProjectileSpell` to inherit and use new damage types (`Fire`, `Ice`). Added corresponding gameplay tags and updated Blueprint assets for display support." />
     <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to delegate damage handling to the new `AuraDamageGameplayAbility`. Added support for multiple damage types and updated related tags and blueprints." />
     <MESSAGE value="Initialized default values for `Damage` and `DamageTypes` in `AuraDamageGameplayAbility`. Synced changes in `.idea/workspace.xml`." />
@@ -718,7 +725,8 @@
     <MESSAGE value="Adjusted `AuraGCN_ProjectileFlight` sound volume and updated `.DotSettings.user` with new file exclusions." />
     <MESSAGE value="Delayed `AuraGCN_ProjectileFlight` destruction to next frame to prevent crashes and improved `IsValid` checks in `AuraProjectile`." />
     <MESSAGE value="Cleaned up `.idea/workspace.xml` by removing outdated entries and added new file highlighting policies for `AuraAbilitySystemComponent`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up `.idea/workspace.xml` by removing outdated entries and added new file highlighting policies for `AuraAbilitySystemComponent`." />
+    <MESSAGE value="Remove redundant includes in `AuraAbilitySystemComponent.cpp` and update `.idea/workspace.xml` with new file highlighting policies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove redundant includes in `AuraAbilitySystemComponent.cpp` and update `.idea/workspace.xml` with new file highlighting policies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
