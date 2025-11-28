@@ -28,16 +28,20 @@ void AAuraPlayerCharacter::PossessedBy(AController* NewController)
 	// Init ability actor info for the Server
 	InitializeAbilityActorInfo();
 	
-	// Defer to next frame to ensure ASC is fully initialized
+	// FIXED: Use weak pointer in lambda to prevent accessing destroyed actor
 	if (GetWorld())
 	{
-		GetWorld()->GetTimerManager().SetTimerForNextTick([this]()
+		TWeakObjectPtr<AAuraPlayerCharacter> WeakThis(this);
+		GetWorld()->GetTimerManager().SetTimerForNextTick([WeakThis]()
 		{
-			// Server only: Initialize default attributes (these will replicate to clients)
-			InitializeDefaultAttributes();
-			
-			// Init abilities on server
-			AddCharacterAbilities();
+			if (WeakThis.IsValid())
+			{
+				// Server only: Initialize default attributes (these will replicate to clients)
+				WeakThis->InitializeDefaultAttributes();
+				
+				// Init abilities on server
+				WeakThis->AddCharacterAbilities();
+			}
 		});
 	}
 }

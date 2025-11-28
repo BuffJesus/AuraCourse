@@ -173,8 +173,16 @@ void AAuraEffectActor::CleanupInvalidHandles()
 {
 	if (!HasAuthority()) { return; }
 
+	// FIXED: Clean up invalid entries
 	for (auto It = ActiveInfiniteEffectHandles.CreateIterator(); It; ++It)
 	{
 		if (!It->Key.IsValid()) { It.RemoveCurrent(); }
+	}
+	
+	// FIXED: Stop timer if nothing left to clean - prevents unnecessary timer ticks
+	if (ActiveInfiniteEffectHandles.Num() == 0)
+	{
+		GetWorld()->GetTimerManager().ClearTimer(CleanupTimerHandle);
+		UE_LOG(LogTemp, Verbose, TEXT("AuraEffectActor: Cleanup timer stopped (no active effects)"));
 	}
 }

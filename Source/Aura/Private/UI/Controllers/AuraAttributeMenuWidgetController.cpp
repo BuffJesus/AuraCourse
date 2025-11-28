@@ -7,8 +7,12 @@
 
 void UAuraAttributeMenuWidgetController::BroadcastInitialValues()
 {
-	// Use typed getter - no cast needed!
-	check(AttributeInfo);
+	// FIXED: Use runtime validation instead of check() for shipping build safety
+	if (!AttributeInfo)
+	{
+		UE_LOG(LogTemp, Error, TEXT("AttributeInfo is null in BroadcastInitialValues!"));
+		return;
+	}
 	
 	// Loop through all attributes in the DataAsset and broadcast initial values
 	for (const FAttributeInfo& Info : AttributeInfo->AttributeInfo)
@@ -19,8 +23,12 @@ void UAuraAttributeMenuWidgetController::BroadcastInitialValues()
 
 void UAuraAttributeMenuWidgetController::BindCallbacksToDependencies()
 {
-	// Use typed getter - no cast needed!
-	check(AttributeInfo);
+	// FIXED: Use runtime validation instead of check() for shipping build safety
+	if (!AttributeInfo)
+	{
+		UE_LOG(LogTemp, Error, TEXT("AttributeInfo is null in BindCallbacksToDependencies!"));
+		return;
+	}
 	
 	// Bind to attribute change delegates for all attributes
 	for (const FAttributeInfo& Info : AttributeInfo->AttributeInfo)
@@ -41,7 +49,12 @@ void UAuraAttributeMenuWidgetController::SetAttributeTagsOnExistingRows(UAuraUse
 		return;
 	}
 	
-	check(AttributeInfo);
+	// FIXED: Use runtime validation instead of check() for shipping build safety
+	if (!AttributeInfo)
+	{
+		UE_LOG(LogTemp, Error, TEXT("AttributeInfo is null in SetAttributeTagsOnExistingRows!"));
+		return;
+	}
 	
 	int32 TagsSet { 0 };
 	
@@ -111,6 +124,13 @@ void UAuraAttributeMenuWidgetController::BroadcastAttributeInfo(const FAttribute
 {
 	// Use typed getter - no cast needed!
 	const UAuraAttributeSet* AS { GetAuraAttributeSet() };
+	
+	// FIXED: Validate attribute set before accessing
+	if (!AS)
+	{
+		UE_LOG(LogTemp, Error, TEXT("AttributeSet is null in BroadcastAttributeInfo!"));
+		return;
+	}
 	
 	// Create a copy of Info and update the AttributeValue
 	FAttributeInfo NewInfo { Info };

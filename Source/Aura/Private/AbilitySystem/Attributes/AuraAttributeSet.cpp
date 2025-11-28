@@ -44,22 +44,29 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 
 void UAuraAttributeSet::ClampVitalAttribute(const FGameplayAttribute& VitalAttribute, float& NewValue) const
 {
-	// Lambda to clamp a vital attribute to its max value
-	auto ClampToMax = [&NewValue](const float MaxValue)
+	// FIXED: Lambda to clamp a vital attribute to its max value with better validation
+	auto ClampToMax = [&NewValue](const float MaxValue, const FString& AttributeName)
 	{
 		if (MaxValue > 0.f)
 		{
 			NewValue = FMath::Clamp(NewValue, 0.f, MaxValue);
 		}
+		else
+		{
+			// At least prevent negative values even if max is invalid
+			NewValue = FMath::Max(NewValue, 0.f);
+			UE_LOG(LogTemp, Warning, TEXT("MaxValue for %s is %.2f (invalid), clamping %s to non-negative only"), 
+				*AttributeName, MaxValue, *AttributeName);
+		}
 	};
 	
 	if (VitalAttribute == GetHealthAttribute())
 	{
-		ClampToMax(GetMaxHealth());
+		ClampToMax(GetMaxHealth(), TEXT("Health"));
 	}
 	else if (VitalAttribute == GetManaAttribute())
 	{
-		ClampToMax(GetMaxMana());
+		ClampToMax(GetMaxMana(), TEXT("Mana"));
 	}
 }
 
@@ -67,26 +74,39 @@ void UAuraAttributeSet::ClampMaxAttribute(const FGameplayAttribute& MaxAttribute
 {
 	if (MaxAttribute == GetMaxHealthAttribute() || MaxAttribute == GetMaxManaAttribute())
 	{
+		// FIXED: Provide better logging for invalid max values
+		if (NewValue < 0.f)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Attempted to set %s to negative value %.2f, clamping to 0"), 
+				MaxAttribute == GetMaxHealthAttribute() ? TEXT("MaxHealth") : TEXT("MaxMana"), NewValue);
+		}
 		NewValue = FMath::Max(NewValue, 0.f);
 	}
 }
 
 void UAuraAttributeSet::ClampCurrentVitalAttributes()
 {
-	// Lambda to clamp a vital stat to its max
-	auto ClampVital = [](float& CurrentValue, const float MaxValue)
+	// FIXED: Lambda to clamp a vital stat to its max with better validation
+	auto ClampVital = [](float& CurrentValue, const float MaxValue, const FString& VitalName)
 	{
 		if (MaxValue > 0.f)
 		{
 			CurrentValue = FMath::Clamp(CurrentValue, 0.f, MaxValue);
+		}
+		else
+		{
+			// At least prevent negative values
+			CurrentValue = FMath::Max(CurrentValue, 0.f);
+			UE_LOG(LogTemp, Warning, TEXT("Max%s is %.2f (invalid), clamping %s to non-negative only"), 
+				*VitalName, MaxValue, *VitalName);
 		}
 	};
 	
 	float CurrentHealth { GetHealth() };
 	float CurrentMana { GetMana() };
 	
-	ClampVital(CurrentHealth, GetMaxHealth());
-	ClampVital(CurrentMana, GetMaxMana());
+	ClampVital(CurrentHealth, GetMaxHealth(), TEXT("Health"));
+	ClampVital(CurrentMana, GetMaxMana(), TEXT("Mana"));
 	
 	SetHealth(CurrentHealth);
 	SetMana(CurrentMana);
@@ -119,6 +139,14 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		{
 			const float ClampedValue { FMath::Clamp(CurrentValue, 0.f, MaxValue) };
 			bIsHealth ? SetHealth(ClampedValue) : SetMana(ClampedValue);
+		}
+		else
+		{
+			// FIXED: At least prevent negatives even if max is invalid
+			const float ClampedValue { FMath::Max(CurrentValue, 0.f) };
+			bIsHealth ? SetHealth(ClampedValue) : SetMana(ClampedValue);
+			UE_LOG(LogTemp, Warning, TEXT("Max%s is %.2f (invalid), clamping %s to non-negative only"),
+				bIsHealth ? TEXT("Health") : TEXT("Mana"), MaxValue, bIsHealth ? TEXT("Health") : TEXT("Mana"));
 		}
 	};
 	

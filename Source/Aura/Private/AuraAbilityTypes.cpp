@@ -1,5 +1,11 @@
 #include "AuraAbilityTypes.h"
 
+// FIXED: Use constant for bit count to prevent future network desync issues
+namespace AuraGameplayEffectContextBits
+{
+	constexpr uint32 NUM_SERIALIZED_BITS = 12;
+}
+
 bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* Map, bool& bOutSuccess)
 {
 	uint32 RepBits { 0 };
@@ -42,22 +48,23 @@ bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* M
 		{
 			RepBits |= 1 << 8;
 		}
-		if (bIsNiceHit)  // NEW
+		if (bIsNiceHit)
 		{
 			RepBits |= 1 << 9;
 		}
-		if (bIsDankHit)  // NEW
+		if (bIsDankHit)
 		{
 			RepBits |= 1 << 10;
 		}
-		if (bIsPiHit)  // NEW
+		if (bIsPiHit)
 		{
 			RepBits |= 1 << 11;
 		}
 	}
 
-	// Serialize the bit mask - NOW 12 BITS!
-	Ar.SerializeBits(&RepBits, 12);
+	// FIXED: Serialize the bit mask using constant
+	// When adding new boolean flags, increment NUM_SERIALIZED_BITS
+	Ar.SerializeBits(&RepBits, AuraGameplayEffectContextBits::NUM_SERIALIZED_BITS);
 
 	// Serialize base class data based on the bit mask
 	if (RepBits & (1 << 0))

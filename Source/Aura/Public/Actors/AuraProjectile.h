@@ -48,7 +48,6 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> Sphere;
 
-	/** Cached source ASC for executing gameplay cues */
-	UPROPERTY()
-	TObjectPtr<UAbilitySystemComponent> SourceASC;
+	/** FIXED: Use weak pointer for cached source ASC to prevent dangling pointer issues */
+	TWeakObjectPtr<UAbilitySystemComponent> SourceASC;
 };
