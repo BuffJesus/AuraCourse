@@ -27,6 +27,9 @@ struct FCharacterClassDefaultInfo
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Aura|ClassDefaults")
 	TSubclassOf<UGameplayEffect> SecondaryAttributes;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Aura|ClassDefaults")
+	TSubclassOf<UGameplayEffect> ResistanceAttributes;
 };
 
 /**
