@@ -94,7 +94,8 @@ void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* Wor
 	
 	// Apply all attribute effects
 	ApplyGameplayEffect(ClassDefaultInfo.PrimaryAttributes);
-	ApplyGameplayEffect(ClassDefaultInfo.SecondaryAttributes);  
+	ApplyGameplayEffect(ClassDefaultInfo.SecondaryAttributes);
+	ApplyGameplayEffect(ClassDefaultInfo.ResistanceAttributes);
 	ApplyGameplayEffect(CharacterClassInfo->VitalAttributes);
 }
 

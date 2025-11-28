@@ -2,11 +2,6 @@
 
 #pragma once
 
-/**
- * Shared macros for AttributeSet implementations
- * These macros reduce boilerplate when creating attributes with replication
- */
-
 // Implements the OnRep function for an attribute
 #define IMPLEMENT_ATTRIBUTE_ONREP(ClassName, AttributeName) \
 void ClassName::OnRep_##AttributeName(const FGameplayAttributeData& Old##AttributeName) const \

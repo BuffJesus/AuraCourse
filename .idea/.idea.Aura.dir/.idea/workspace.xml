@@ -7,7 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -275,15 +279,7 @@
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
       <workItem from="1764209847114" duration="9753000" />
-      <workItem from="1764247000972" duration="14501000" />
-    </task>
-    <task id="LOCAL-00231" summary="Added comprehensive debug logging and null checks to `AuraExecCalc_Damage`. Enhanced armor and damage coefficient validation with detailed logging for level-based calculations.">
-      <option name="closed" value="true" />
-      <created>1764167990047</created>
-      <option name="number" value="00231" />
-      <option name="presentableId" value="LOCAL-00231" />
-      <option name="project" value="LOCAL" />
-      <updated>1764167990047</updated>
+      <workItem from="1764247000972" duration="15266000" />
     </task>
     <task id="LOCAL-00232" summary="Added critical hit calculations to `AuraExecCalc_Damage`, including support for `CriticalHitChance`, `CriticalHitDamage`, and `CriticalHitResistance`. Enhanced logging for detailed debugging of critical hit outcomes.">
       <option name="closed" value="true" />
@@ -669,7 +665,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764293426730</updated>
     </task>
-    <option name="localTasksCounter" value="280" />
+    <task id="LOCAL-00280" summary="Added `ResistanceAttributes` to `AuraCharacterClassInfo` with `.idea/workspace.xml` updates.">
+      <option name="closed" value="true" />
+      <created>1764293569931</created>
+      <option name="number" value="00280" />
+      <option name="presentableId" value="LOCAL-00280" />
+      <option name="project" value="LOCAL" />
+      <updated>1764293569931</updated>
+    </task>
+    <option name="localTasksCounter" value="281" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -679,7 +683,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added critical and blocked hit checks to `AuraAbilitySystemBPLibrary`. Refactored `AuraExecCalc_Potion` paths and updated damage calculations in `AuraExecCalc_Damage` for blocked hit handling." />
     <MESSAGE value="Added `SetIsBlockedHit` method to `AuraAbilitySystemBPLibrary` for managing blocked hit states in gameplay effects. Updated related blueprint exposure." />
     <MESSAGE value="Refactored `AuraAbilitySystemBPLibrary` to centralize `FAuraGameplayEffectContext` access with helper methods. Simplified critical and blocked hit checks." />
     <MESSAGE value="Added `SetIsCriticalHit` method to `AuraAbilitySystemBPLibrary` for managing critical hit states in gameplay effects. Updated related blueprint exposure." />
@@ -704,7 +707,8 @@
     <MESSAGE value="Added `GetResistanceAttributeForDamageType` utility to map damage types to resistance attributes. Updated `AuraExecCalc_Damage` to factor resistances into damage calculations." />
     <MESSAGE value="Refactored `AuraExecCalc_Damage` to simplify resistance calculations using macro-based mapping. Updated logging format and removed redundant loops." />
     <MESSAGE value="Added new gameplay tags for `Lightning`, `Arcane`, and `Physical` damage types under the `Aura.Damage` namespace." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new gameplay tags for `Lightning`, `Arcane`, and `Physical` damage types under the `Aura.Damage` namespace." />
+    <MESSAGE value="Added `ResistanceAttributes` to `AuraCharacterClassInfo` with `.idea/workspace.xml` updates." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `ResistanceAttributes` to `AuraCharacterClassInfo` with `.idea/workspace.xml` updates." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
