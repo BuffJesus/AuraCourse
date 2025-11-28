@@ -8,15 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraDamageGameplayAbility.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/BP_Aura_DamageTextComponent.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/BP_Aura_DamageTextComponent.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/WBP_Aura_DamageText.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/UI/FloatingText/WBP_Aura_DamageText.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGameplayAbility.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGameplayAbility.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraDamageGameplayAbility.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraDamageGameplayAbility.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,23 +281,7 @@
       <workItem from="1764074021602" duration="36150000" />
       <workItem from="1764160983768" duration="26338000" />
       <workItem from="1764209847114" duration="9753000" />
-      <workItem from="1764247000972" duration="10834000" />
-    </task>
-    <task id="LOCAL-00220" summary="Added `BlockChance` attribute capture to `UAuraExecCalc_Damage` and incorporated block chance logic into damage calculations.">
-      <option name="closed" value="true" />
-      <created>1764134058465</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
-      <option name="project" value="LOCAL" />
-      <updated>1764134058465</updated>
-    </task>
-    <task id="LOCAL-00221" summary="Refactored `UAuraGCN_DamageText` to improve target character resolution using `FGameplayCueParameters.Location` and simplified validation checks.">
-      <option name="closed" value="true" />
-      <created>1764134304587</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
-      <option name="project" value="LOCAL" />
-      <updated>1764134304587</updated>
+      <workItem from="1764247000972" duration="11388000" />
     </task>
     <task id="LOCAL-00222" summary="Added `AuraGCN_ProjectileFlight` and `AuraGCN_ProjectileImpact` gameplay cues for managing projectile flight audio and impact effects. Refactored `AuraProjectile` to use these cues, improving sound and effect handling.">
       <option name="closed" value="true" />
@@ -681,7 +659,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764281211729</updated>
     </task>
-    <option name="localTasksCounter" value="269" />
+    <task id="LOCAL-00269" summary="Refactored `AuraGA_ProjectileSpell` to delegate damage handling to the new `AuraDamageGameplayAbility`. Added support for multiple damage types and updated related tags and blueprints.">
+      <option name="closed" value="true" />
+      <created>1764289850439</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1764289850439</updated>
+    </task>
+    <task id="LOCAL-00270" summary="Initialized default values for `Damage` and `DamageTypes` in `AuraDamageGameplayAbility`. Synced changes in `.idea/workspace.xml`.">
+      <option name="closed" value="true" />
+      <created>1764289919897</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1764289919897</updated>
+    </task>
+    <option name="localTasksCounter" value="271" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,9 +685,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Expanded potion scaling in `UAuraExecCalc_Potion` with level, Vigor, and Intelligence bonuses. Added configuration properties for scaling customization and debug logging for restoration details." />
-    <MESSAGE value="Enhanced effect context in `AuraGA_ProjectileSpell` by associating abilities, projectiles, actors, and hit results. Fixed ability level usage in damage scaling." />
-    <MESSAGE value="Added validation for `ProjectileClass` and `DamageEffectClass` in `AuraGA_ProjectileSpell` to prevent invalid instantiation. Simplified `FTransform` initialization and removed unused variable `TestLevel`." />
     <MESSAGE value="Added `FAuraGameplayEffectContext` with serialization support and helper methods for critical and blocked hit tracking." />
     <MESSAGE value="Fixed inheritance syntax for `FAuraGameplayEffectContext` by adding `public` to ensure proper access specifier usage." />
     <MESSAGE value="Added `const` qualifiers to `SetIsBlockedHit` and `SetIsCriticalHit` methods in `FAuraGameplayEffectContext` to ensure better type safety." />
@@ -716,7 +707,10 @@
     <MESSAGE value="Added `EAuraHitType` enum and helper methods to `AuraDamageTextComponent` for determining and displaying hit types, including new meme damage values (Nice, Dank, Pi)." />
     <MESSAGE value="Added `UAuraExecCalc_TestMemeNumbers` for testing hit types and meme damage values (Nice, Dank, Pi). Synced `.idea/workspace.xml` with new file references." />
     <MESSAGE value="Added `GA_Aura_Spell_Fireball1` and `GE_Aura_Test_Damage1` assets. Updated `BP_Aura_DamageTextComponent` to support new effects." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added `GA_Aura_Spell_Fireball1` and `GE_Aura_Test_Damage1` assets. Updated `BP_Aura_DamageTextComponent` to support new effects." />
+    <MESSAGE value="Refactored damage handling by introducing `UAuraDamageGameplayAbility` base class. Updated `UAuraGA_ProjectileSpell` to inherit and use new damage types (`Fire`, `Ice`). Added corresponding gameplay tags and updated Blueprint assets for display support." />
+    <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to delegate damage handling to the new `AuraDamageGameplayAbility`. Added support for multiple damage types and updated related tags and blueprints." />
+    <MESSAGE value="Initialized default values for `Damage` and `DamageTypes` in `AuraDamageGameplayAbility`. Synced changes in `.idea/workspace.xml`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initialized default values for `Damage` and `DamageTypes` in `AuraDamageGameplayAbility`. Synced changes in `.idea/workspace.xml`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

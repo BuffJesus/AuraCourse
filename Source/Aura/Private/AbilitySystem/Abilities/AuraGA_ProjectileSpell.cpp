@@ -16,10 +16,10 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 
 void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 {
-	const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
+	const bool bIsServer { GetAvatarActorFromActorInfo()->HasAuthority() };
 	if (!bIsServer) return;
 
-	IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo());
+	IAuraCombatInterface* CombatInterface { Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo()) };
 	if (CombatInterface)
 	{
 		if (!ProjectileClass || !DamageEffectClass)
@@ -28,17 +28,17 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 			return;
 		}
 		
-		const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
-		const FRotator Rotation = (TargetLocation - SocketLocation).Rotation();
+		const FVector SocketLocation { CombatInterface->GetCombatSocketLocation() };
+		const FRotator Rotation { (TargetLocation - SocketLocation).Rotation() };
 
 		FTransform SpawnTransform(Rotation.Quaternion(), SocketLocation);
 		
-		AAuraProjectile* Projectile = GetWorld()->SpawnActorDeferred<AAuraProjectile>(
+		AAuraProjectile* Projectile { GetWorld()->SpawnActorDeferred<AAuraProjectile>(
 			ProjectileClass,
 			SpawnTransform,
 			GetOwningActorFromActorInfo(),
 			Cast<APawn>(GetOwningActorFromActorInfo()),
-			ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
+			ESpawnActorCollisionHandlingMethod::AlwaysSpawn) };
 
 		// Set up damage effect
 		const UAbilitySystemComponent* SourceASC { UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo()) };
@@ -54,25 +54,15 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 		
 		const FGameplayEffectSpecHandle SpecHandle { SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), EffectContextHandle) };
 		
-		DamageTypes = UGameplayTagsManager::Get().RequestGameplayTagChildren(Aura::Damage::Damage);
-		for (const FGameplayTag& DamageType : DamageTypes)
-		{
-			UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, DamageType, ScaledDamage);
-		}
+		// Assign damage to appropriate damage type tags
+		AssignDamageTypesToSpec(SpecHandle);
 		
 		Projectile->DamageEffectSpecHandle = SpecHandle;
 		
 		// Only override cue tags if ability has them configured
 		// Otherwise, projectile keeps its Blueprint defaults
-		if (ProjectileFlightCue.IsValid())
-		{
-			Projectile->FlightCueTag = ProjectileFlightCue;
-		}
-		
-		if (ProjectileImpactCue.IsValid())
-		{
-			Projectile->ImpactCueTag = ProjectileImpactCue;
-		}
+		if (ProjectileFlightCue.IsValid()) { Projectile->FlightCueTag = ProjectileFlightCue; }
+		if (ProjectileImpactCue.IsValid()) { Projectile->ImpactCueTag = ProjectileImpactCue; }
 		
 		Projectile->FinishSpawning(SpawnTransform);
 	}
