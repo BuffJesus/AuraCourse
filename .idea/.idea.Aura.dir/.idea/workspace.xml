@@ -8,7 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/Tasks/BTS_Aura_FindNearestPlayer.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AI/Tasks/AuraBTS_FindNearestPlayer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AI/Tasks/AuraBTS_FindNearestPlayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BT_Aura_Enemy_BehaviorTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BT_Aura_Enemy_BehaviorTree.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +42,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://1" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/Tasks/AuraBTS_FindNearestPlayer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -83,6 +88,7 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/Widgets/AuraDamageTextComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/UI/Widgets/AuraUserWidget.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AI/AuraAIController.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AI/Tasks/AuraBTS_FindNearestPlayer.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraDamageGameplayAbility.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_HitReact.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" root0="FORCE_HIGHLIGHTING" />
@@ -127,6 +133,12 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/UI/Widgets/AuraUserWidget.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Plugins/Marketplace/NinjaGAS389eae05c463V5/Source/NinjaGAS/Public/AbilitySystem/NinjaGASAbilitySystemComponent.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Plugins/Marketplace/NinjaGAS389eae05c463V5/Source/NinjaGAS/Public/AbilitySystem/NinjaGASAttributeSet.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Editor/EditorWidgets/Private/SDropTarget.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Editor/UMGEditor/Private/WidgetBlueprintCompiler.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/BehaviorTree/BTService.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/BehaviorTree/Services/BTService_BlueprintBase.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Private/BehaviorTree/Services/BTService_DefaultFocus.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/Core/Private/Android/AndroidPlatformMisc.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/CoreUObject/Public/UObject/UObjectGlobals.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/Engine/Classes/Components/PrimitiveComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
@@ -281,15 +293,7 @@
       <workItem from="1764209847114" duration="9753000" />
       <workItem from="1764247000972" duration="20599000" />
       <workItem from="1764304300968" duration="3714000" />
-      <workItem from="1764337202426" duration="6830000" />
-    </task>
-    <task id="LOCAL-00247" summary="Added `FAuraGameplayEffectContext` with serialization support and helper methods for critical and blocked hit tracking.">
-      <option name="closed" value="true" />
-      <created>1764208138608</created>
-      <option name="number" value="00247" />
-      <option name="presentableId" value="LOCAL-00247" />
-      <option name="project" value="LOCAL" />
-      <updated>1764208138608</updated>
+      <workItem from="1764337202426" duration="8157000" />
     </task>
     <task id="LOCAL-00248" summary="Fixed inheritance syntax for `FAuraGameplayEffectContext` by adding `public` to ensure proper access specifier usage.">
       <option name="closed" value="true" />
@@ -675,7 +679,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764370240308</updated>
     </task>
-    <option name="localTasksCounter" value="296" />
+    <task id="LOCAL-00296" summary="Refactor AI controller integration and initialize blackboard and behavior tree assets for enemy characters.">
+      <option name="closed" value="true" />
+      <created>1764370625865</created>
+      <option name="number" value="00296" />
+      <option name="presentableId" value="LOCAL-00296" />
+      <option name="project" value="LOCAL" />
+      <updated>1764370625865</updated>
+    </task>
+    <option name="localTasksCounter" value="297" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,7 +697,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to use scoped initialization and delegate damage type assignment to `AssignDamageTypesToSpec`. Enhanced `UAuraDamageGameplayAbility` with flexible damage type support." />
     <MESSAGE value="Refactored `AuraExecCalc_Damage` to use scoped initialization, improved damage type handling, and added early-out for zero damage scenarios. Synced changes in `.idea/workspace.xml`." />
     <MESSAGE value="Removed verbose logging from `AuraExecCalc_Damage`. Cleaned up `.idea/workspace.xml` and deleted unused asset references." />
     <MESSAGE value="Removed `UAuraExecCalc_TestMemeNumbers` and associated header file as part of code cleanup." />
@@ -710,7 +721,8 @@
     <MESSAGE value="Adjust projectile impact sound pitch and flight sound volume. Update `.idea/workspace.xml` with new file tracking and highlighting policies." />
     <MESSAGE value="Integrate AI controller and behavior tree support for enemy characters. Update build dependencies and configuration redirections." />
     <MESSAGE value="Update `.idea/workspace.xml` to track new AI-related blueprints and behavior tree assets." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea/workspace.xml` to track new AI-related blueprints and behavior tree assets." />
+    <MESSAGE value="Refactor AI controller integration and initialize blackboard and behavior tree assets for enemy characters." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor AI controller integration and initialize blackboard and behavior tree assets for enemy characters." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
