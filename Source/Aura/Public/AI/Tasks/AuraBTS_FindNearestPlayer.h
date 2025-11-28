@@ -24,4 +24,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AI")
 	FBlackboardKeySelector HasNearestPlayerSelector { FBlackboardKeySelector() };
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AI", meta = (ClampMin = "0.0"))
+	float MaxSearchDistance { 2000.f };
 };

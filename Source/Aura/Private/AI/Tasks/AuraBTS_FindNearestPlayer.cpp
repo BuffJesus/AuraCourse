@@ -2,7 +2,6 @@
 #include "AI/Tasks/AuraBTS_FindNearestPlayer.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Kismet/GameplayStatics.h"
 
 UAuraBTS_FindNearestPlayer::UAuraBTS_FindNearestPlayer()
 {
@@ -28,21 +27,17 @@ void UAuraBTS_FindNearestPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uin
 	UBlackboardComponent* BlackboardComp = OwnerComp.GetBlackboardComponent();
 	if (!BlackboardComp) { return; }
 
-	// Find all player controllers in the world
-	TArray<AActor*> PlayerCharacters{};
-	UGameplayStatics::GetAllActorsWithTag(OwningPawn->GetWorld(), FName("Player"), PlayerCharacters);
-
 	AActor* NearestPlayer{};
 	float NearestDistance{TNumericLimits<float>::Max()};
 
-	for (FConstPlayerControllerIterator It { OwningPawn->GetWorld()->GetPlayerControllerIterator() }; It; ++It)
+	for (FConstPlayerControllerIterator It{OwningPawn->GetWorld()->GetPlayerControllerIterator()}; It; ++It)
 	{
 		if (APlayerController* PC{It->Get()})
 		{
 			if (APawn* PlayerPawn{PC->GetPawn()})
 			{
 				const float Distance{OwningPawn->GetDistanceTo(PlayerPawn)};
-				if (Distance < NearestDistance)
+				if (Distance < NearestDistance && Distance <= MaxSearchDistance)  // Add max distance check
 				{
 					NearestDistance = Distance;
 					NearestPlayer = PlayerPawn;
@@ -52,7 +47,7 @@ void UAuraBTS_FindNearestPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uin
 	}
 
 	const bool bHasNearestPlayer{IsValid(NearestPlayer)};
-	
+
 	BlackboardComp->SetValueAsObject(NearestPlayerSelector.SelectedKeyName, NearestPlayer);
 	BlackboardComp->SetValueAsFloat(NearestPlayerDistanceSelector.SelectedKeyName, bHasNearestPlayer ? NearestDistance : 0.f);
 	BlackboardComp->SetValueAsBool(HasNearestPlayerSelector.SelectedKeyName, bHasNearestPlayer);
