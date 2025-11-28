@@ -10,8 +10,10 @@
 #include "GameplayTagsManager.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
+#include "Async/ParallelFor.h"
+#include "Misc/ScopeLock.h"
 
-// FIXED: Default config values as fallback
+// Default config values as fallback
 namespace DamageCalcDefaults
 {
 	constexpr float BlockDamageReduction = 0.5f;
@@ -22,6 +24,44 @@ namespace DamageCalcDefaults
 	const FName EffectiveArmorCurveName("EffectiveArmor");
 	const FName CriticalHitResistanceCurveName("CriticalHitResistance");
 }
+
+// PARALLEL DAMAGE CALCULATION STRUCTURES
+struct FDamageTypeResult
+{
+	FGameplayTag DamageType;
+	float RawDamage;
+	float Resistance;
+	float MitigatedDamage;
+	
+	FDamageTypeResult()
+		: RawDamage(0.f)
+		, Resistance(0.f)
+		, MitigatedDamage(0.f)
+	{}
+};
+
+// Thread-safe accumulator for parallel damage calculation
+class FParallelDamageAccumulator
+{
+public:
+	FParallelDamageAccumulator() : TotalDamage(0.f) {}
+	
+	void AddDamage(float Damage)
+	{
+		FScopeLock Lock(&CriticalSection);
+		TotalDamage += Damage;
+	}
+	
+	float GetTotalDamage() const
+	{
+		FScopeLock Lock(&CriticalSection);
+		return TotalDamage;
+	}
+	
+private:
+	mutable FCriticalSection CriticalSection;
+	float TotalDamage;
+};
 
 struct AuraDamageStatics
 {
@@ -80,7 +120,7 @@ UAuraExecCalc_Damage::UAuraExecCalc_Damage()
 void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams,
 	FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
-	// FIXED: Use config if available, otherwise fallback to defaults
+	// Use config if available, otherwise fallback to defaults
 	const UAuraDamageCalcConfig* Config { GetDamageConfig() };
 	const bool bHasConfig = (Config != nullptr);
 	
@@ -110,14 +150,12 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	{
 		if (!CurveTable)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("CurveTable is NULL for curve: %s, using default: %f"), *CurveName.ToString(), DefaultValue);
 			return DefaultValue;
 		}
 		
 		const FRealCurve* Curve { CurveTable->FindCurve(CurveName, FString()) };
 		if (!Curve)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Curve not found: %s, using default: %f"), *CurveName.ToString(), DefaultValue);
 			return DefaultValue;
 		}
 		
@@ -149,38 +187,116 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	const int32 SourceLevel { SourceCombatInterface->GetCharacterLevel() };
 	const int32 TargetLevel { TargetCombatInterface->GetCharacterLevel() };
 	
-	// === Calculate damage with resistance mitigation ===
+	// PARALLEL DAMAGE TYPE PROCESSING
 	float Damage { 0.f };
 	const FGameplayTagContainer AllDamageTypes { UGameplayTagsManager::Get().RequestGameplayTagChildren(Aura::Damage::Damage) };
 	
-	for (const FGameplayTag& DamageType : AllDamageTypes)
+	// Convert to array for parallel processing
+	TArray<FGameplayTag> DamageTypeArray;
+	AllDamageTypes.GetGameplayTagArray(DamageTypeArray);
+	
+	const int32 NumDamageTypes = DamageTypeArray.Num();
+	
+	// Only use parallel if beneficial (3+ damage types)
+	const bool bUseParallel = (NumDamageTypes >= 3);
+	
+	// Pre-allocate results array
+	TArray<FDamageTypeResult> DamageResults;
+	DamageResults.SetNum(NumDamageTypes);
+	
+	if (bUseParallel)
 	{
-		const float TypeDamage { Spec.GetSetByCallerMagnitude(DamageType, false, 0.f) };
-		if (TypeDamage <= 0.f) { continue; }
+		// PARALLEL VERSION: Process damage types on multiple threads
+		TRACE_CPUPROFILER_EVENT_SCOPE(ParallelDamageCalculation);
 		
-		// Get resistance value using macro-based mapping
-		float Resistance { 0.f };
+		FParallelDamageAccumulator DamageAccumulator;
 		
-		#define CAPTURE_RESISTANCE(Type) \
-			if (DamageType.MatchesTagExact(Aura::Damage::Type)) \
-			{ \
-				Resistance = CaptureAttribute(DamageStatics().Type##ResistanceDef, EvalParams); \
+		ParallelFor(NumDamageTypes, [&](int32 Index)
+		{
+			const FGameplayTag& DamageType = DamageTypeArray[Index];
+			FDamageTypeResult& Result = DamageResults[Index];
+			Result.DamageType = DamageType;
+			
+			Result.RawDamage = Spec.GetSetByCallerMagnitude(DamageType, false, 0.f);
+			
+			if (Result.RawDamage <= 0.f)
+			{
+				return;
 			}
+			
+			// Get resistance value
+			float Resistance { 0.f };
+			
+			#define CAPTURE_RESISTANCE(Type) \
+				if (DamageType.MatchesTagExact(Aura::Damage::Type)) \
+				{ \
+					Resistance = CaptureAttribute(DamageStatics().Type##ResistanceDef, EvalParams); \
+				}
+			
+			CAPTURE_RESISTANCE(Fire)
+			CAPTURE_RESISTANCE(Lightning)
+			CAPTURE_RESISTANCE(Arcane)
+			CAPTURE_RESISTANCE(Physical)
+			
+			#undef CAPTURE_RESISTANCE
+			
+			Result.Resistance = Resistance;
+			
+			// Apply resistance (clamped to 75% max reduction)
+			const float ResistanceMultiplier { 1.f - FMath::Clamp(Resistance / 100.f, 0.f, 0.75f) };
+			Result.MitigatedDamage = Result.RawDamage * ResistanceMultiplier;
+			
+			// Thread-safe accumulation
+			DamageAccumulator.AddDamage(Result.MitigatedDamage);
+		});
 		
-		CAPTURE_RESISTANCE(Fire)
-		CAPTURE_RESISTANCE(Lightning)
-		CAPTURE_RESISTANCE(Arcane)
-		CAPTURE_RESISTANCE(Physical)
+		Damage = DamageAccumulator.GetTotalDamage();
+	}
+	else
+	{
+		// SEQUENTIAL VERSION: Use for small number of damage types
+		TRACE_CPUPROFILER_EVENT_SCOPE(SequentialDamageCalculation);
 		
-		#undef CAPTURE_RESISTANCE
-		
-		// Apply resistance (clamped to 75% max reduction)
-		const float ResistanceMultiplier { 1.f - FMath::Clamp(Resistance / 100.f, 0.f, 0.75f) };
-		const float MitigatedDamage { TypeDamage * ResistanceMultiplier };
-		Damage += MitigatedDamage;
-		
-		UE_LOG(LogTemp, Verbose, TEXT("DamageType: %s | Raw: %.2f | Resistance: %.2f%% | Mitigated: %.2f"), 
-			*DamageType.ToString(), TypeDamage, Resistance, MitigatedDamage);
+		for (int32 Index = 0; Index < NumDamageTypes; ++Index)
+		{
+			const FGameplayTag& DamageType = DamageTypeArray[Index];
+			FDamageTypeResult& Result = DamageResults[Index];
+			Result.DamageType = DamageType;
+			
+			Result.RawDamage = Spec.GetSetByCallerMagnitude(DamageType, false, 0.f);
+			if (Result.RawDamage <= 0.f) { continue; }
+			
+			float Resistance { 0.f };
+			
+			#define CAPTURE_RESISTANCE(Type) \
+				if (DamageType.MatchesTagExact(Aura::Damage::Type)) \
+				{ \
+					Resistance = CaptureAttribute(DamageStatics().Type##ResistanceDef, EvalParams); \
+				}
+			
+			CAPTURE_RESISTANCE(Fire)
+			CAPTURE_RESISTANCE(Lightning)
+			CAPTURE_RESISTANCE(Arcane)
+			CAPTURE_RESISTANCE(Physical)
+			
+			#undef CAPTURE_RESISTANCE
+			
+			Result.Resistance = Resistance;
+			
+			const float ResistanceMultiplier { 1.f - FMath::Clamp(Resistance / 100.f, 0.f, 0.75f) };
+			Result.MitigatedDamage = Result.RawDamage * ResistanceMultiplier;
+			Damage += Result.MitigatedDamage;
+		}
+	}
+	
+	// Log damage type results
+	for (const FDamageTypeResult& Result : DamageResults)
+	{
+		if (Result.RawDamage > 0.f)
+		{
+			UE_LOG(LogTemp, Verbose, TEXT("DamageType: %s | Raw: %.2f | Resistance: %.2f%% | Mitigated: %.2f"), 
+				*Result.DamageType.ToString(), Result.RawDamage, Result.Resistance, Result.MitigatedDamage);
+		}
 	}
 	
 	// Early out if no damage
@@ -196,21 +312,19 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	const float SourceLuck { CaptureAttribute(DamageStatics().LuckDef, EvalParams) };
 	const float TargetBlockChance { CaptureAttribute(DamageStatics().BlockChanceDef, EvalParams) };
 	
-	// Block Chance - Using Config or Default
+	// Block Chance
 	const bool bBlocked { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= TargetBlockChance };
 	
 	FGameplayEffectContextHandle EffectContextHandle { Spec.GetContext() };
 	UAuraAbilitySystemBPLibrary::SetIsBlockedHit(EffectContextHandle, bBlocked);
 	
-	// FIXED: Use config value if available, otherwise use default
 	const float BlockReduction = bHasConfig ? Config->BlockDamageReduction : DamageCalcDefaults::BlockDamageReduction;
 	Damage = bBlocked ? Damage * BlockReduction : Damage;
 	
-	// Armor Mitigation - Using Config or Defaults
+	// Armor Mitigation
 	const float TargetArmor { CaptureAttribute(DamageStatics().ArmorDef, EvalParams) };
 	float SourceArmorPenetration { CaptureAttribute(DamageStatics().ArmorPenetrationDef, EvalParams) };
 	
-	// Apply Luck to Armor Penetration - Using Config or Default
 	const bool bLuckAffectsArmorPen = bHasConfig ? Config->bLuckAffectsArmorPenetration : true;
 	const float LuckToArmorPenRatio = bHasConfig ? Config->LuckToArmorPenetrationRatio : DamageCalcDefaults::LuckToArmorPenetrationRatio;
 	
@@ -230,10 +344,9 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	
 	Damage *= (100.f - EffectiveArmor * EffectiveArmorCoefficient) / 100.f;
 	
-	// Critical Hit - Using Config or Defaults
+	// Critical Hit
 	float SourceCriticalHitChance { CaptureAttribute(DamageStatics().CriticalHitChanceDef, EvalParams) };
 	
-	// Apply Luck to Critical Hit Chance - Using Config or Default
 	const bool bLuckAffectsCritChance = bHasConfig ? Config->bLuckAffectsCriticalHitChance : true;
 	const float LuckToCritChanceRatio = bHasConfig ? Config->LuckToCriticalHitChanceRatio : DamageCalcDefaults::LuckToCriticalHitChanceRatio;
 	
@@ -256,7 +369,6 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 		UAuraAbilitySystemBPLibrary::SetIsCriticalHit(EffectContextHandle, true);
 		
 		const float SourceCriticalHitDamage { CaptureAttribute(DamageStatics().CriticalHitDamageDef, EvalParams) };
-		// Using Config for Crit Multiplier or Default
 		const float CritMultiplier = bHasConfig ? Config->CriticalHitMultiplier : DamageCalcDefaults::CriticalHitMultiplier;
 		Damage = Damage * CritMultiplier + SourceCriticalHitDamage;
 		
@@ -265,11 +377,13 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	
 	// Debug Logging
 	UE_LOG(LogTemp, Warning, TEXT("=== DAMAGE CALC DEBUG ==="));
-	UE_LOG(LogTemp, Warning, TEXT("Config Status: %s"), bHasConfig ? TEXT("Valid") : TEXT("Using Defaults"));
+	UE_LOG(LogTemp, Warning, TEXT("Config: %s | Parallel: %s"), 
+		bHasConfig ? TEXT("Valid") : TEXT("Defaults"),
+		bUseParallel ? TEXT("Yes") : TEXT("No"));
 	UE_LOG(LogTemp, Warning, TEXT("Source Level: %d | Target Level: %d | Luck: %.2f"), SourceLevel, TargetLevel, SourceLuck);
 	UE_LOG(LogTemp, Warning, TEXT("Initial Damage: %.2f | Blocked: %s"), InitialDamage, bBlocked ? TEXT("Yes") : TEXT("No"));
-	UE_LOG(LogTemp, Warning, TEXT("Armor: %.2f | ArmorPen: %.2f (+ Luck) | Effective: %.2f"), TargetArmor, SourceArmorPenetration, EffectiveArmor);
-	UE_LOG(LogTemp, Warning, TEXT("CritChance: %.2f%% (+ Luck) | CritResist: %.2f | Effective: %.2f%%"), SourceCriticalHitChance, TargetCriticalHitResistance, EffectiveCriticalHitChance);
+	UE_LOG(LogTemp, Warning, TEXT("Armor: %.2f | ArmorPen: %.2f | Effective: %.2f"), TargetArmor, SourceArmorPenetration, EffectiveArmor);
+	UE_LOG(LogTemp, Warning, TEXT("CritChance: %.2f%% | CritResist: %.2f | Effective: %.2f%%"), SourceCriticalHitChance, TargetCriticalHitResistance, EffectiveCriticalHitChance);
 	UE_LOG(LogTemp, Warning, TEXT("Final Damage: %.2f"), Damage);
 	UE_LOG(LogTemp, Warning, TEXT("========================="));
 	
