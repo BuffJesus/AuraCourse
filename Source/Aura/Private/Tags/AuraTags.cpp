@@ -43,6 +43,9 @@ namespace Aura
 	namespace Damage
 	{
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Damage, "Aura.Damage", "Damage");
+		
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Fire, "Aura.Damage.Fire", "Fire damage");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ice, "Aura.Damage.Ice", "Ice damage");
 	}
 	namespace Effects
 	{

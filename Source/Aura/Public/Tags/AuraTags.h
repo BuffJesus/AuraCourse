@@ -44,6 +44,9 @@ namespace Aura
 	namespace Damage
 	{
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage);
+		
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Fire);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ice);
 	}
 	namespace Effects
 	{

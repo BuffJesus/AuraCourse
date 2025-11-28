@@ -54,8 +54,12 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 		
 		const FGameplayEffectSpecHandle SpecHandle { SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), EffectContextHandle) };
 		
-		const float ScaledDamage { Damage.GetValueAtLevel(GetAbilityLevel()) };
-		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Aura::Damage::Damage, ScaledDamage);
+		DamageTypes = UGameplayTagsManager::Get().RequestGameplayTagChildren(Aura::Damage::Damage);
+		for (const FGameplayTag& DamageType : DamageTypes)
+		{
+			UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, DamageType, ScaledDamage);
+		}
+		
 		Projectile->DamageEffectSpecHandle = SpecHandle;
 		
 		// Only override cue tags if ability has them configured

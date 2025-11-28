@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AbilitySystem/Abilities/AuraGameplayAbility.h"
+#include "AuraDamageGameplayAbility.h"
 #include "GameplayTagContainer.h"
 #include "AuraGA_ProjectileSpell.generated.h"
 
 class AAuraProjectile;
 
 UCLASS()
-class AURA_API UAuraGA_ProjectileSpell : public UAuraGameplayAbility
+class AURA_API UAuraGA_ProjectileSpell : public UAuraDamageGameplayAbility
 {
 	GENERATED_BODY()
 
@@ -23,9 +23,6 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Projectile")
 	TSubclassOf<AAuraProjectile> ProjectileClass;
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GAS")
-	TSubclassOf<UGameplayEffect> DamageEffectClass;
 
 	/** Gameplay Cue for projectile flight sound/effects */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GameplayCue", meta = (Categories = "GameplayCue"))

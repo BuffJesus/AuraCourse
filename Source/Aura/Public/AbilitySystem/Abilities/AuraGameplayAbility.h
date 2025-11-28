@@ -18,6 +18,4 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Aura|Input", meta = (Categories = "Aura.Input"))
 	FGameplayTag StartupInputTag;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Damage")
-	FScalableFloat Damage;
 };
