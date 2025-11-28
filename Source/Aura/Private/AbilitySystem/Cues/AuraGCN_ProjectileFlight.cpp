@@ -49,7 +49,8 @@ bool AAuraGCN_ProjectileFlight::OnRemove_Implementation(AActor* Target, const FG
 		AudioComponent->FadeOut(0.1f, 0.0f); // Quick fade out for smooth stop
 	}
 	
-	Destroy();
+	// Delay destruction to next frame to avoid crash from immediate destruction
+	SetLifeSpan(0.1f);
 	
 	return true;
 }

@@ -39,33 +39,33 @@ AAuraProjectile::AAuraProjectile()
 }
 
 void AAuraProjectile::BeginPlay()
-{
-	Super::BeginPlay();
-	
-	SetLifeSpan(LifeSpan);
-	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap);
-
-	// Cache the source ASC from the owner
-	if (AActor* OwnerActor = GetOwner())
-	{
-		SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OwnerActor);
-	}
-
-	// Start flight cue if configured (Add = start looping)
-	if (SourceASC && FlightCueTag.IsValid())
-	{
-		FGameplayCueParameters CueParams;
-		CueParams.SourceObject = this;
-		CueParams.Location = GetActorLocation();
-		
-		SourceASC->AddGameplayCue(FlightCueTag, CueParams);
-	}
-}
+ {
+ 	Super::BeginPlay();
+ 	
+ 	SetLifeSpan(LifeSpan);
+ 	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap);
+ 
+ 	// Cache the source ASC from the owner
+ 	if (AActor* OwnerActor = GetOwner())
+ 	{
+ 		SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OwnerActor);
+ 	}
+ 
+ 	// Start flight cue if configured (Add = start looping)
+ 	if (SourceASC && FlightCueTag.IsValid())
+ 	{
+ 		FGameplayCueParameters CueParams;
+ 		CueParams.Location = GetActorLocation();
+ 		// Target is the projectile so the GC actor can attach to it
+ 		
+ 		SourceASC->AddGameplayCue(FlightCueTag, CueParams);
+ 	}
+ }
 
 void AAuraProjectile::Destroyed()
 {
 	// Stop flight cue if we're being destroyed without hitting (e.g., timed out)
-	if (!bHit && SourceASC && FlightCueTag.IsValid())
+	if (!bHit && IsValid(SourceASC) && FlightCueTag.IsValid())
 	{
 		SourceASC->RemoveGameplayCue(FlightCueTag);
 		
@@ -100,13 +100,11 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 		}
 
 		// Stop flight cue (Remove = stop looping)
-		if (SourceASC && FlightCueTag.IsValid())
-		{
+		if (IsValid(SourceASC) && FlightCueTag.IsValid())
 			SourceASC->RemoveGameplayCue(FlightCueTag);
-		}
 		
 		// Play impact cue
-		if (SourceASC && ImpactCueTag.IsValid())
+		if (IsValid(SourceASC) && ImpactCueTag.IsValid())
 		{
 			FGameplayCueParameters CueParams;
 			CueParams.Location = GetActorLocation();
