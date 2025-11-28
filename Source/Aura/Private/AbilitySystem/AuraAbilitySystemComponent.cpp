@@ -10,6 +10,8 @@
 
 #include "Algo/AnyOf.h"
 
+#include "Algo/AnyOf.h"
+
 
 void UAuraAbilitySystemComponent::AbilityActorInfoSet()
 {
@@ -41,7 +43,7 @@ void UAuraAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf
 		}
 
 		FGameplayAbilitySpec AbilitySpec { FGameplayAbilitySpec(AbilityClass, 1) };
-		if ( const UAuraGameplayAbility* AuraAbility = Cast<UAuraGameplayAbility>(AbilitySpec.Ability))
+		if (const UAuraGameplayAbility* AuraAbility = AbilityClass->GetDefaultObject<UAuraGameplayAbility>())
 		{
 			FGameplayTagContainer& DynamicTags = AbilitySpec.GetDynamicSpecSourceTags();	// Reference, not copy!
 			DynamicTags.AddTag(AuraAbility->StartupInputTag);
