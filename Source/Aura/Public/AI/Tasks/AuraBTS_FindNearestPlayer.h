@@ -16,15 +16,15 @@ public:
 protected:
 	virtual void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AI")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|AI")
 	FBlackboardKeySelector NearestPlayerSelector { FBlackboardKeySelector() };
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AI")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|AI")
 	FBlackboardKeySelector NearestPlayerDistanceSelector { FBlackboardKeySelector() };
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AI")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|AI")
 	FBlackboardKeySelector HasNearestPlayerSelector { FBlackboardKeySelector() };
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AI", meta = (ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|AI", meta = (ClampMin = "0.0"))
 	float MaxSearchDistance { 2000.f };
 };
