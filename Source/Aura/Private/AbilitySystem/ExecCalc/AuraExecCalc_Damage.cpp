@@ -1,6 +1,5 @@
 // Not Sure Yet
 
-
 #include "AbilitySystem/ExecCalc/AuraExecCalc_Damage.h"
 #include "AbilitySystemComponent.h"
 #include "AuraAbilityTypes.h"
@@ -8,6 +7,7 @@
 #include "AbilitySystem/Attributes/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AuraCharacterClassInfo.h"
 #include "AbilitySystem/Data/AuraDamageCalcConfig.h"
+#include "GameplayTagsManager.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
 
@@ -54,7 +54,7 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
 	// Validate DamageConfig
-	const UAuraDamageCalcConfig* Config = GetDamageConfig();
+	const UAuraDamageCalcConfig* Config { GetDamageConfig() };
 	if (!Config)
 	{
 		UE_LOG(LogTemp, Error, TEXT("DamageConfig is NULL! Cannot execute damage calculation."));
@@ -86,7 +86,7 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 			return DefaultValue;
 		}
 		
-		const FRealCurve* Curve = CurveTable->FindCurve(CurveName, FString());
+		const FRealCurve* Curve { CurveTable->FindCurve(CurveName, FString()) };
 		if (!Curve)
 		{
 			UE_LOG(LogTemp, Error, TEXT("Curve not found: %s"), *CurveName.ToString());
@@ -98,8 +98,8 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 
 	const AActor* SourceAvatar { GetAvatarFromASC(ExecutionParams.GetSourceAbilitySystemComponent()) };
 	const AActor* TargetAvatar { GetAvatarFromASC(ExecutionParams.GetTargetAbilitySystemComponent()) };
-	const IAuraCombatInterface* SourceCombatInterface = Cast<IAuraCombatInterface>(SourceAvatar);
-	const IAuraCombatInterface* TargetCombatInterface = Cast<IAuraCombatInterface>(TargetAvatar);
+	const IAuraCombatInterface* SourceCombatInterface { Cast<IAuraCombatInterface>(SourceAvatar) };
+	const IAuraCombatInterface* TargetCombatInterface { Cast<IAuraCombatInterface>(TargetAvatar) };
 	
 	if (!SourceCombatInterface || !TargetCombatInterface) { return; }
 	
@@ -111,18 +111,40 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	EvalParams.SourceTags = SourceTags;
 	EvalParams.TargetTags = TargetTags;
 	
-	const UAuraCharacterClassInfo* CharacterClassInfo = UAuraAbilitySystemBPLibrary::GetCharacterClassInfo(SourceAvatar);
+	const UAuraCharacterClassInfo* CharacterClassInfo { UAuraAbilitySystemBPLibrary::GetCharacterClassInfo(SourceAvatar) };
 	if (!CharacterClassInfo || !CharacterClassInfo->DamageCalcCoefficients)
 	{
-		UE_LOG(LogTemp, Error, TEXT("CharacterClassInfo or DamageCalcCoefficients is NULL!"));
+		UE_LOG(LogTemp, Error, TEXT("CharacterClassInfo or DamageCalcCoefficients is NULL! Cannot execute damage calculation."));
 		return;
 	}
 	
-	const int32 SourceLevel = SourceCombatInterface->GetCharacterLevel();
-	const int32 TargetLevel = TargetCombatInterface->GetCharacterLevel();
+	const int32 SourceLevel { SourceCombatInterface->GetCharacterLevel() };
+	const int32 TargetLevel { TargetCombatInterface->GetCharacterLevel() };
 	
-	// Attribute Capture
-	float Damage { Spec.GetSetByCallerMagnitude(Aura::Damage::Damage) };
+	// === Sum all damage types ===
+	float Damage { 0.f };
+	const FGameplayTagContainer AllDamageTypes { UGameplayTagsManager::Get().RequestGameplayTagChildren(Aura::Damage::Damage) };
+	
+	for (const FGameplayTag& DamageType : AllDamageTypes)
+	{
+		const float TypeDamage { Spec.GetSetByCallerMagnitude(DamageType, false, 0.f) };
+		if (TypeDamage > 0.f)
+		{
+			Damage += TypeDamage;
+			UE_LOG(LogTemp, Verbose, TEXT("Damage Type %s: %.2f"), *DamageType.ToString(), TypeDamage);
+		}
+	}
+	
+	// Early out if no damage
+	if (Damage <= 0.f)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No damage set via SetByCaller! Aborting damage calculation."));
+		return;
+	}
+	
+	// Store initial damage for logging
+	const float InitialDamage { Damage };
+	
 	const float SourceLuck { CaptureAttribute(DamageStatics().LuckDef, EvalParams) };
 	const float TargetBlockChance { CaptureAttribute(DamageStatics().BlockChanceDef, EvalParams) };
 	
@@ -184,7 +206,7 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	// Debug Logging
 	UE_LOG(LogTemp, Warning, TEXT("=== DAMAGE CALC DEBUG ==="));
 	UE_LOG(LogTemp, Warning, TEXT("Source Level: %d | Target Level: %d | Luck: %.2f"), SourceLevel, TargetLevel, SourceLuck);
-	UE_LOG(LogTemp, Warning, TEXT("Initial Damage: %.2f | Blocked: %s"), Spec.GetSetByCallerMagnitude(Aura::Damage::Damage), bBlocked ? TEXT("Yes") : TEXT("No"));
+	UE_LOG(LogTemp, Warning, TEXT("Initial Damage: %.2f | Blocked: %s"), InitialDamage, bBlocked ? TEXT("Yes") : TEXT("No"));
 	UE_LOG(LogTemp, Warning, TEXT("Armor: %.2f | ArmorPen: %.2f (+ Luck) | Effective: %.2f"), TargetArmor, SourceArmorPenetration, EffectiveArmor);
 	UE_LOG(LogTemp, Warning, TEXT("CritChance: %.2f%% (+ Luck) | CritResist: %.2f | Effective: %.2f%%"), SourceCriticalHitChance, TargetCriticalHitResistance, EffectiveCriticalHitChance);
 	UE_LOG(LogTemp, Warning, TEXT("Final Damage: %.2f"), Damage);
