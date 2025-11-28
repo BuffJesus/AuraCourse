@@ -136,45 +136,38 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	const int32 SourceLevel { SourceCombatInterface->GetCharacterLevel() };
 	const int32 TargetLevel { TargetCombatInterface->GetCharacterLevel() };
 	
-	// === Sum all damage types ===
+	// === Calculate damage with resistance mitigation ===
 	float Damage { 0.f };
 	const FGameplayTagContainer AllDamageTypes { UGameplayTagsManager::Get().RequestGameplayTagChildren(Aura::Damage::Damage) };
 	
 	for (const FGameplayTag& DamageType : AllDamageTypes)
 	{
 		const float TypeDamage { Spec.GetSetByCallerMagnitude(DamageType, false, 0.f) };
-		if (TypeDamage > 0.f)
-		{
-			Damage += TypeDamage;
-		}
-	}
-	
-	for (const FGameplayTag& DamageType : AllDamageTypes)
-	{
-		const float TypeDamage { Spec.GetSetByCallerMagnitude(DamageType, false, 0.f) };
-		if (TypeDamage > 0.f)
-		{
-			// Get corresponding resistance attribute
-			FGameplayAttribute ResistanceAttr { UAuraAbilitySystemBPLibrary::GetResistanceAttributeForDamageType(DamageType) };
+		if (TypeDamage <= 0.f) { continue; }
 		
-			float Resistance { 0.f };
-			if (ResistanceAttr.IsValid())
-			{
-				ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(
-					// You'll need to add resistance capture defs to DamageStatics
-					GetResistanceCaptureDef(ResistanceAttr), 
-					EvalParams, 
-					Resistance
-				);
+		// Get resistance value using macro-based mapping
+		float Resistance { 0.f };
+		
+		#define CAPTURE_RESISTANCE(Type) \
+			if (DamageType.MatchesTagExact(Aura::Damage::Type)) \
+			{ \
+				Resistance = CaptureAttribute(DamageStatics().Type##ResistanceDef, EvalParams); \
 			}
 		
-			// Apply resistance (example: 50% resistance = 50% damage reduction)
-			const float MitigatedDamage { TypeDamage * (1.f - FMath::Clamp(Resistance / 100.f, 0.f, 0.75f)) };
-			Damage += MitigatedDamage;
+		CAPTURE_RESISTANCE(Fire)
+		CAPTURE_RESISTANCE(Lightning)
+		CAPTURE_RESISTANCE(Arcane)
+		CAPTURE_RESISTANCE(Physical)
 		
-			UE_LOG(LogTemp, Verbose, TEXT("DamageType: %s | Raw: %.2f | Resistance: %.2f%% | Final: %.2f"), 
-				*DamageType.ToString(), TypeDamage, Resistance, MitigatedDamage);
-		}
+		#undef CAPTURE_RESISTANCE
+		
+		// Apply resistance (clamped to 75% max reduction)
+		const float ResistanceMultiplier { 1.f - FMath::Clamp(Resistance / 100.f, 0.f, 0.75f) };
+		const float MitigatedDamage { TypeDamage * ResistanceMultiplier };
+		Damage += MitigatedDamage;
+		
+		UE_LOG(LogTemp, Verbose, TEXT("DamageType: %s | Raw: %.2f | Resistance: %.2f%% | Mitigated: %.2f"), 
+			*DamageType.ToString(), TypeDamage, Resistance, MitigatedDamage);
 	}
 	
 	// Early out if no damage
