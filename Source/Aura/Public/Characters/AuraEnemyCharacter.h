@@ -10,6 +10,8 @@
 #include "AuraEnemyCharacter.generated.h"
 
 class UWidgetComponent;
+class UBehaviorTree;
+class AAuraAIController;
 
 UCLASS()
 class AURA_API AAuraEnemyCharacter : public AAuraBaseCharacter, public IAuraEnemyInterface
@@ -18,6 +20,7 @@ class AURA_API AAuraEnemyCharacter : public AAuraBaseCharacter, public IAuraEnem
 
 public:
 	AAuraEnemyCharacter();
+	virtual void PossessedBy(AController* NewController) override;
 	
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
@@ -61,5 +64,11 @@ protected:
 	ECharacterClass CharacterClass { ECharacterClass::Warrior };
 	
 	virtual ECharacterClass GetCharacterClass() const override { return CharacterClass; }
+	
+	UPROPERTY(EditAnywhere, Category = "Aura|AI")
+	TObjectPtr<UBehaviorTree> BehaviorTree;
+	
+	UPROPERTY()
+	TObjectPtr<AAuraAIController> AuraAIController;
 	
 };
