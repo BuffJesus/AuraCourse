@@ -5,6 +5,10 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "GameplayTagContainer.h"
+#include "NavigationSystem.h"
+#include "NavigationPath.h"
+#include "Async/AsyncWork.h"
+#include "NavFilters/NavigationQueryFilter.h"
 #include "AuraPlayerController.generated.h"
 
 class UAuraDamageTextComponent;
@@ -17,8 +21,83 @@ class UAuraAbilitySystemComponent;
 class USplineComponent;
 class AAuraHUD;
 
+// ============================================================================
+// ASYNC PATHFINDING TASK
+// ============================================================================
+
+class FAsyncPathfindingTask : public FNonAbandonableTask
+{
+	friend class FAsyncTask<FAsyncPathfindingTask>;
+
+public:
+	FAsyncPathfindingTask(
+		UWorld* InWorld,
+		const FVector& InStartLocation,
+		const FVector& InEndLocation,
+		const FNavAgentProperties& InNavAgentProps)
+		: World(InWorld)
+		, StartLocation(InStartLocation)
+		, EndLocation(InEndLocation)
+		, NavAgentProps(InNavAgentProps)
+		, bPathFound(false)
+	{
+	}
+
+	// Called on worker thread
+	void DoWork()
+	{
+		TRACE_CPUPROFILER_EVENT_SCOPE(AsyncPathfinding);
+		
+		if (!World.IsValid())
+		{
+			return;
+		}
+
+		UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetCurrent(World.Get());
+		if (!NavSystem)
+		{
+			return;
+		}
+
+		// This expensive operation now happens off the game thread
+		UNavigationPath* Path = UNavigationSystemV1::FindPathToLocationSynchronously(
+			World.Get(),
+			StartLocation,
+			EndLocation,
+			nullptr,
+			UNavigationQueryFilter::StaticClass()
+		);
+
+		if (Path && Path->IsValid())
+		{
+			bPathFound = true;
+			PathPoints = Path->PathPoints;
+		}
+	}
+
+	FORCEINLINE TStatId GetStatId() const
+	{
+		RETURN_QUICK_DECLARE_CYCLE_STAT(FAsyncPathfindingTask, STATGROUP_ThreadPoolAsyncTasks);
+	}
+
+	// Results (read on game thread after completion)
+	bool IsPathFound() const { return bPathFound; }
+	const TArray<FVector>& GetPathPoints() const { return PathPoints; }
+
+private:
+	TWeakObjectPtr<UWorld> World;
+	FVector StartLocation;
+	FVector EndLocation;
+	FNavAgentProperties NavAgentProps;
+	
+	// Results
+	bool bPathFound;
+	TArray<FVector> PathPoints;
+};
+
 /**
  * Player controller handling input, cursor interaction, and click-to-move navigation
+ * NOW WITH ASYNC PATHFINDING for smooth performance
  */
 UCLASS()
 class AURA_API AAuraPlayerController : public APlayerController
@@ -103,4 +182,24 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Aura|DamageText")
 	TSubclassOf<UAuraDamageTextComponent> DamageTextComponentClass;
+
+	// ========================================================================
+	// ASYNC PATHFINDING MEMBERS
+	// ========================================================================
+	
+	/** Active async pathfinding task */
+	TSharedPtr<FAsyncTask<FAsyncPathfindingTask>> ActivePathfindingTask;
+	
+	/** Timer for polling pathfinding completion */
+	FTimerHandle PathfindingPollTimer;
+	
+	/** Called when async pathfinding completes */
+	void OnPathfindingComplete(const TArray<FVector>& PathPoints);
+	
+	/** Cancel any active pathfinding request */
+	void CancelActivePathfinding();
+	
+	/** Whether to use async pathfinding (auto-detected based on core count) */
+	UPROPERTY(Config, EditAnywhere, Category = "Aura|Performance")
+	bool bUseAsyncPathfinding = true;
 };

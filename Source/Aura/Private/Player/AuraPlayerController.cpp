@@ -15,6 +15,7 @@
 #include "Tags/AuraTags.h"
 #include "UI/HUD/AuraHUD.h"
 #include "UI/Widgets/AuraDamageTextComponent.h"
+#include "HAL/PlatformMisc.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
@@ -46,6 +47,19 @@ void AAuraPlayerController::BeginPlay()
 	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 	InputModeData.SetHideCursorDuringCapture(false);
 	SetInputMode(InputModeData);
+	
+	// Auto-detect whether to use async pathfinding based on CPU core count
+	const int32 NumCores = FPlatformMisc::NumberOfCores();
+	if (NumCores >= 4)
+	{
+		bUseAsyncPathfinding = true;
+		UE_LOG(LogTemp, Log, TEXT("Async pathfinding ENABLED (CPU has %d cores)"), NumCores);
+	}
+	else
+	{
+		bUseAsyncPathfinding = false;
+		UE_LOG(LogTemp, Log, TEXT("Async pathfinding DISABLED (CPU has only %d cores, using synchronous)"), NumCores);
+	}
 }
 
 void AAuraPlayerController::SetupInputComponent()
@@ -112,6 +126,43 @@ void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 	}
 }
 
+void AAuraPlayerController::CancelActivePathfinding()
+{
+	if (ActivePathfindingTask.IsValid())
+	{
+		// Task will complete but we'll ignore the result
+		ActivePathfindingTask.Reset();
+	}
+	
+	// Clear the polling timer
+	if (GetWorld() && PathfindingPollTimer.IsValid())
+	{
+		GetWorld()->GetTimerManager().ClearTimer(PathfindingPollTimer);
+	}
+}
+
+void AAuraPlayerController::OnPathfindingComplete(const TArray<FVector>& PathPoints)
+{
+	if (PathPoints.Num() < 2)
+	{
+		// Invalid path or no path found
+		UE_LOG(LogTemp, Verbose, TEXT("Pathfinding failed - no valid path found"));
+		return;
+	}
+
+	// Update spline with path points on game thread (safe)
+	Spline->ClearSplinePoints();
+	for (const FVector& Point : PathPoints)
+	{
+		Spline->AddSplinePoint(Point, ESplineCoordinateSpace::World);
+	}
+
+	CachedDestination = PathPoints.Last();
+	bAutoRunning = true;
+	
+	UE_LOG(LogTemp, Verbose, TEXT("Pathfinding complete - %d points, starting auto-run"), PathPoints.Num());
+}
+
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 {
 	// Non-LMB inputs go straight to ability system
@@ -134,7 +185,6 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 			if (GetHitResultUnderCursor(ECC_Navigation, false, NavChannelHit) && NavChannelHit.bBlockingHit)
 			{
 				// Project the impact point onto the NavMesh with a custom query extent
-				// This ensures we find a valid navmesh point even if the hit is slightly off the mesh
 				UNavigationSystemV1* NavSystem { UNavigationSystemV1::GetCurrent(GetWorld()) };
 				if (NavSystem)
 				{
@@ -149,16 +199,72 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 					
 					if (bNavLocationFound)
 					{
-						if (UNavigationPath* NavPath { UNavigationSystemV1::FindPathToLocationSynchronously(
-							this, ControlledPawn->GetActorLocation(), ImpactPointNavLocation.Location) })
+						// ASYNC PATHFINDING: Offload to worker thread
+						if (bUseAsyncPathfinding)
 						{
-							Spline->ClearSplinePoints();
-							for (const FVector& PointLoc : NavPath->PathPoints)
+							TRACE_CPUPROFILER_EVENT_SCOPE(AsyncPathfindingRequest);
+							
+							// Cancel any in-flight pathfinding request
+							CancelActivePathfinding();
+							
+							// Create async task
+							ActivePathfindingTask = MakeShared<FAsyncTask<FAsyncPathfindingTask>>(
+								GetWorld(),
+								ControlledPawn->GetActorLocation(),
+								ImpactPointNavLocation.Location,
+								NavAgentProps
+							);
+							
+							// Start task on thread pool
+							ActivePathfindingTask->StartBackgroundTask();
+							
+							// Poll for completion on game thread
+							TWeakPtr<FAsyncTask<FAsyncPathfindingTask>> WeakTask = ActivePathfindingTask;
+							GetWorld()->GetTimerManager().SetTimer(
+								PathfindingPollTimer,
+								[this, WeakTask]()
+								{
+									TSharedPtr<FAsyncTask<FAsyncPathfindingTask>> Task = WeakTask.Pin();
+									if (!Task.IsValid())
+									{
+										// Task was cancelled
+										GetWorld()->GetTimerManager().ClearTimer(PathfindingPollTimer);
+										return;
+									}
+									
+									if (Task->IsDone())
+									{
+										// Pathfinding complete!
+										const FAsyncPathfindingTask& Result = Task->GetTask();
+										if (Result.IsPathFound())
+										{
+											OnPathfindingComplete(Result.GetPathPoints());
+										}
+										
+										GetWorld()->GetTimerManager().ClearTimer(PathfindingPollTimer);
+										ActivePathfindingTask.Reset();
+									}
+								},
+								0.016f,  // Poll every ~16ms (60fps)
+								true     // Loop until done
+							);
+						}
+						else
+						{
+							// SYNCHRONOUS PATHFINDING: Fallback for low-core systems
+							TRACE_CPUPROFILER_EVENT_SCOPE(SyncPathfindingRequest);
+							
+							if (UNavigationPath* NavPath { UNavigationSystemV1::FindPathToLocationSynchronously(
+								this, ControlledPawn->GetActorLocation(), ImpactPointNavLocation.Location) })
 							{
-								Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
+								Spline->ClearSplinePoints();
+								for (const FVector& PointLoc : NavPath->PathPoints)
+								{
+									Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
+								}
+								CachedDestination = NavPath->PathPoints.Last();
+								bAutoRunning = true;
 							}
-							CachedDestination = NavPath->PathPoints.Last();
-							bAutoRunning = true;
 						}
 					}
 				}
