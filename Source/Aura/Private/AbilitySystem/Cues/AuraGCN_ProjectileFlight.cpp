@@ -28,7 +28,7 @@ bool AAuraGCN_ProjectileFlight::OnActive_Implementation(AActor* Target, const FG
 		FVector::ZeroVector,
 		EAttachLocation::KeepRelativeOffset,
 		true, // Stop when attached actor is destroyed
-		1.0f, // Volume
+		0.5f, // Volume
 		1.0f, // Pitch
 		0.0f, // Start time
 		nullptr,
