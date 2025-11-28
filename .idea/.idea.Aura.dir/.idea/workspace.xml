@@ -8,11 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BB_Aura_Enemy_Blackboard.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BP_Aura_Enemy_AIController.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BT_Aura_Enemy_BehaviorTree.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/BP_Enemy_Base.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +19,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="39728" />
+    <option name="cachedIndexableFilesCount" value="39729" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -285,15 +281,7 @@
       <workItem from="1764209847114" duration="9753000" />
       <workItem from="1764247000972" duration="20599000" />
       <workItem from="1764304300968" duration="3714000" />
-      <workItem from="1764337202426" duration="6529000" />
-    </task>
-    <task id="LOCAL-00246" summary="Added validation for `ProjectileClass` and `DamageEffectClass` in `AuraGA_ProjectileSpell` to prevent invalid instantiation. Simplified `FTransform` initialization and removed unused variable `TestLevel`.">
-      <option name="closed" value="true" />
-      <created>1764207176922</created>
-      <option name="number" value="00246" />
-      <option name="presentableId" value="LOCAL-00246" />
-      <option name="project" value="LOCAL" />
-      <updated>1764207176922</updated>
+      <workItem from="1764337202426" duration="6830000" />
     </task>
     <task id="LOCAL-00247" summary="Added `FAuraGameplayEffectContext` with serialization support and helper methods for critical and blocked hit tracking.">
       <option name="closed" value="true" />
@@ -679,7 +667,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764345742119</updated>
     </task>
-    <option name="localTasksCounter" value="295" />
+    <task id="LOCAL-00295" summary="Update `.idea/workspace.xml` to track new AI-related blueprints and behavior tree assets.">
+      <option name="closed" value="true" />
+      <created>1764370240308</created>
+      <option name="number" value="00295" />
+      <option name="presentableId" value="LOCAL-00295" />
+      <option name="project" value="LOCAL" />
+      <updated>1764370240308</updated>
+    </task>
+    <option name="localTasksCounter" value="296" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,7 +685,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Initialized default values for `Damage` and `DamageTypes` in `AuraDamageGameplayAbility`. Synced changes in `.idea/workspace.xml`." />
     <MESSAGE value="Refactored `AuraGA_ProjectileSpell` to use scoped initialization and delegate damage type assignment to `AssignDamageTypesToSpec`. Enhanced `UAuraDamageGameplayAbility` with flexible damage type support." />
     <MESSAGE value="Refactored `AuraExecCalc_Damage` to use scoped initialization, improved damage type handling, and added early-out for zero damage scenarios. Synced changes in `.idea/workspace.xml`." />
     <MESSAGE value="Removed verbose logging from `AuraExecCalc_Damage`. Cleaned up `.idea/workspace.xml` and deleted unused asset references." />
@@ -714,7 +709,8 @@
     <MESSAGE value="Remove redundant includes in `AuraAbilitySystemComponent.cpp` and update `.idea/workspace.xml` with new file highlighting policies" />
     <MESSAGE value="Adjust projectile impact sound pitch and flight sound volume. Update `.idea/workspace.xml` with new file tracking and highlighting policies." />
     <MESSAGE value="Integrate AI controller and behavior tree support for enemy characters. Update build dependencies and configuration redirections." />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrate AI controller and behavior tree support for enemy characters. Update build dependencies and configuration redirections." />
+    <MESSAGE value="Update `.idea/workspace.xml` to track new AI-related blueprints and behavior tree assets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea/workspace.xml` to track new AI-related blueprints and behavior tree assets." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

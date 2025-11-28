@@ -6,6 +6,8 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/Attributes/AuraEnemyAttributeSet.h"
 #include "AI/AuraAIController.h"
+#include "BehaviorTree/BehaviorTree.h"
+#include "BehaviorTree/BlackboardComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "UI/Widgets/AuraUserWidget.h"
@@ -31,6 +33,13 @@ void AAuraEnemyCharacter::PossessedBy(AController* NewController)
 	Super::PossessedBy(NewController);
 	
 	AuraAIController = Cast<AAuraAIController>(NewController);
+	if (!AuraAIController) { UE_LOG(LogTemp, Error, TEXT("AuraAIController not found!")); return; }
+	if (!BehaviorTree) { UE_LOG(LogTemp, Error, TEXT("BehaviorTree not found!")); return; }
+	if (!BehaviorTree->BlackboardAsset) { UE_LOG(LogTemp, Error, TEXT("BehaviorTree BlackboardAsset not found!")); return; }
+	if (!HealthBar) { UE_LOG(LogTemp, Error, TEXT("HealthBar not found!")); return; }
+	
+	AuraAIController->GetBlackboardComponent()->InitializeBlackboard(*BehaviorTree->BlackboardAsset);
+	AuraAIController->RunBehaviorTree(BehaviorTree);
 }
 
 void AAuraEnemyCharacter::BeginPlay()
