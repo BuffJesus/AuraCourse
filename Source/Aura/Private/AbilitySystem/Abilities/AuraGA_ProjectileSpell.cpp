@@ -27,12 +27,12 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 			UE_LOG(LogTemp, Error, TEXT("ProjectileClass or DamageEffectClass not set on %s"), *GetName());
 			return;
 		}
-		
+
 		const FVector SocketLocation { CombatInterface->GetCombatSocketLocation() };
 		const FRotator Rotation { (TargetLocation - SocketLocation).Rotation() };
 
 		FTransform SpawnTransform(Rotation.Quaternion(), SocketLocation);
-		
+
 		AAuraProjectile* Projectile { GetWorld()->SpawnActorDeferred<AAuraProjectile>(
 			ProjectileClass,
 			SpawnTransform,
@@ -42,6 +42,13 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 
 		// Set up damage effect
 		const UAbilitySystemComponent* SourceASC { UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo()) };
+		if (!IsValid(SourceASC))
+		{
+			UE_LOG(LogTemp, Error, TEXT("No AbilitySystemComponent found for %s when spawning projectile"), *GetName());
+			Projectile->Destroy();
+			return;
+		}
+
 		FGameplayEffectContextHandle EffectContextHandle { SourceASC->MakeEffectContext() };
 		EffectContextHandle.SetAbility(this);
 		EffectContextHandle.AddSourceObject(Projectile);
@@ -51,19 +58,19 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 		FHitResult HitResult;
 		HitResult.Location = TargetLocation;
 		EffectContextHandle.AddHitResult(HitResult);
-		
+
 		const FGameplayEffectSpecHandle SpecHandle { SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), EffectContextHandle) };
-		
+
 		// Assign damage to appropriate damage type tags
 		AssignDamageTypesToSpec(SpecHandle);
-		
+
 		Projectile->DamageEffectSpecHandle = SpecHandle;
-		
+
 		// Only override cue tags if ability has them configured
 		// Otherwise, projectile keeps its Blueprint defaults
 		if (ProjectileFlightCue.IsValid()) { Projectile->FlightCueTag = ProjectileFlightCue; }
 		if (ProjectileImpactCue.IsValid()) { Projectile->ImpactCueTag = ProjectileImpactCue; }
-		
+
 		Projectile->FinishSpawning(SpawnTransform);
 	}
 }
