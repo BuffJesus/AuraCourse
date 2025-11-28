@@ -1,7 +1,22 @@
+// Not Sure Yet
+
 #pragma once
 
 #include "GameplayEffectTypes.h"
+#include "ScalableFloat.h"
 #include "AuraAbilityTypes.generated.h"
+
+USTRUCT(BlueprintType)
+struct FDamageRange
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Damage")
+	FScalableFloat DamageMin { 0.f };
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Damage")
+	FScalableFloat DamageMax { 0.f };
+};
 
 USTRUCT(BlueprintType)
 struct FAuraGameplayEffectContext : public FGameplayEffectContext

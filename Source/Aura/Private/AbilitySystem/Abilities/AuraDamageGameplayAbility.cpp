@@ -7,12 +7,12 @@
 
 void UAuraDamageGameplayAbility::AssignDamageTypesToSpec(const FGameplayEffectSpecHandle& SpecHandle) const
 {
-	const float ScaledDamageValue { GetScaledDamage() };
-	
-	// If DamageTypes is empty, use all children of Aura.Damage
+	// If DamageTypes map is empty, use legacy behavior with all damage types
 	if (DamageTypes.IsEmpty())
 	{
+		const float ScaledDamageValue { GetScaledDamage() };
 		const FGameplayTagContainer AllDamageTypes { UGameplayTagsManager::Get().RequestGameplayTagChildren(Aura::Damage::Damage) };
+		
 		for (const FGameplayTag& DamageType : AllDamageTypes)
 		{
 			UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, DamageType, ScaledDamageValue);
@@ -20,10 +20,16 @@ void UAuraDamageGameplayAbility::AssignDamageTypesToSpec(const FGameplayEffectSp
 	}
 	else
 	{
-		// Use specified damage types
-		for (const FGameplayTag& DamageType : DamageTypes)
+		// Use randomized damage ranges for each specified damage type
+		for (const TTuple<FGameplayTag, FDamageRange>& Pair : DamageTypes)
 		{
-			UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, DamageType, ScaledDamageValue);
+			const float ScaledMagnitudeMin { Pair.Value.DamageMin.GetValueAtLevel(GetAbilityLevel()) };
+			const float ScaledMagnitudeMax { Pair.Value.DamageMax.GetValueAtLevel(GetAbilityLevel()) };
+			
+			// Roll random damage between min and max
+			const float Magnitude { FMath::RandRange(ScaledMagnitudeMin, ScaledMagnitudeMax) };
+			
+			UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Pair.Key, Magnitude);
 		}
 	}
 }

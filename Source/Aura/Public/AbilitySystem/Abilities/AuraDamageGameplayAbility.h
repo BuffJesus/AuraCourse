@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "AuraGameplayAbility.h"
 #include "GameplayEffectTypes.h"
+#include "AuraAbilityTypes.h"
 #include "AuraDamageGameplayAbility.generated.h"
 
 UCLASS()
@@ -19,12 +20,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Damage")
 	FScalableFloat Damage { 0.f };
 	
-	/** 
-	 * Damage types to apply. If empty, will apply damage to ALL damage type tags.
-	 * Specify specific types (e.g., only Fire) to restrict damage types.
-	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Damage")
-	FGameplayTagContainer DamageTypes { FGameplayTagContainer() };
+	TMap<FGameplayTag, FDamageRange> DamageTypes { TMap<FGameplayTag, FDamageRange>() };
 	
 	/** Helper function to get scaled damage at current ability level */
 	UFUNCTION(BlueprintCallable, Category = "Aura|Damage")
@@ -33,7 +30,7 @@ protected:
 		return Damage.GetValueAtLevel(GetAbilityLevel());
 	}
 	
-	/** Assigns damage values to all appropriate damage type tags on the spec */
+	/** Assigns randomized damage values to all appropriate damage type tags on the spec */
 	UFUNCTION(BlueprintCallable, Category = "Aura|Damage")
 	void AssignDamageTypesToSpec(const FGameplayEffectSpecHandle& SpecHandle) const;
 };
