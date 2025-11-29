@@ -12,6 +12,20 @@ AAuraEffectActor::AAuraEffectActor()
 	SetRootComponent(CreateDefaultSubobject<USceneComponent>("RootComponent"));
 }
 
+bool AAuraEffectActor::CanAffectActor(const AActor* TargetActor) const
+{
+	// If no tags specified, affect all actors
+	if (AffectedEntitiesTags.IsEmpty()) { return true; }
+	
+	const IGameplayTagAssetInterface* TagInterface { Cast<IGameplayTagAssetInterface>(TargetActor) };
+	if (!TagInterface) { return false; }
+ 
+	FGameplayTagContainer TargetTags;
+	TagInterface->GetOwnedGameplayTags(TargetTags);
+ 
+	return TargetTags.HasAny(AffectedEntitiesTags);
+}
+
 void AAuraEffectActor::BeginPlay()
 {
 	Super::BeginPlay();

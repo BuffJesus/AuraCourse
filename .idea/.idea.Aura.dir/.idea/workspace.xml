@@ -7,12 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Instant.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Instant.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Hazards/BP_Aura_Hazard_Fire.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Hazards/BP_Aura_Hazard_Fire.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraEffectActor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraEffectActor.h" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -298,15 +293,7 @@
       <workItem from="1764304300968" duration="3714000" />
       <workItem from="1764337202426" duration="9381000" />
       <workItem from="1764373057559" duration="3709000" />
-      <workItem from="1764376837141" duration="876000" />
-    </task>
-    <task id="LOCAL-00263" summary="Removed outdated change references and synced `.idea/workspace.xml` with updated file paths and project settings.">
-      <option name="closed" value="true" />
-      <created>1764257392223</created>
-      <option name="number" value="00263" />
-      <option name="presentableId" value="LOCAL-00263" />
-      <option name="project" value="LOCAL" />
-      <updated>1764257392223</updated>
+      <workItem from="1764376837141" duration="1202000" />
     </task>
     <task id="LOCAL-00264" summary="Added support for meme damage values (Nice, Dank, Pi) in `AuraGCN_DamageText` and `AuraAbilitySystemBPLibrary`. Updated hit type serialization, `SetDamageText`, and gameplay effect context replication.">
       <option name="closed" value="true" />
@@ -692,7 +679,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764377167099</updated>
     </task>
-    <option name="localTasksCounter" value="312" />
+    <task id="LOCAL-00312" summary="Fix `CanAffectActor` method declaration in `AuraEffectActor` to remove redundant class qualifier.">
+      <option name="closed" value="true" />
+      <created>1764377733008</created>
+      <option name="number" value="00312" />
+      <option name="presentableId" value="LOCAL-00312" />
+      <option name="project" value="LOCAL" />
+      <updated>1764377733008</updated>
+    </task>
+    <option name="localTasksCounter" value="313" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +697,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Synced `.idea/workspace.xml` with updated file references and removed outdated entries for `GA_Aura_Spell_Fireball` assets." />
     <MESSAGE value="Added `Destroy()` call to clean up `AuraGCN_ProjectileFlight` and synced `.idea/workspace.xml` with updated file references and new Fireball asset changes." />
     <MESSAGE value="Adjusted `AuraGCN_ProjectileFlight` sound volume and updated `.DotSettings.user` with new file exclusions." />
     <MESSAGE value="Delayed `AuraGCN_ProjectileFlight` destruction to next frame to prevent crashes and improved `IsValid` checks in `AuraProjectile`." />
@@ -727,7 +721,8 @@
     <MESSAGE value="Rename `bDestroyOnEffectRemoval` to `bDestroyOnEffectApplication` and add `bApplyEffectsToEnemies` property in `AuraEffectActor`. Update redirects in `DefaultEngine.ini`." />
     <MESSAGE value="Implement `IGameplayTagAssetInterface` in `AuraBaseCharacter` and add support for `CharacterTags` for better gameplay tag management. Introduce `Player` and `Enemy` entity tags in `AuraTags`." />
     <MESSAGE value="Add `AffectedEntitiesTags` and `CanAffectActor` logic to `AuraEffectActor` for tag-based actor filtering." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `AffectedEntitiesTags` and `CanAffectActor` logic to `AuraEffectActor` for tag-based actor filtering." />
+    <MESSAGE value="Fix `CanAffectActor` method declaration in `AuraEffectActor` to remove redundant class qualifier." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix `CanAffectActor` method declaration in `AuraEffectActor` to remove redundant class qualifier." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

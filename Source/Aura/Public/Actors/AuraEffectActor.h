@@ -49,6 +49,10 @@ class AURA_API AAuraEffectActor : public AActor
 
 public:
 	AAuraEffectActor();
+	
+	// Check if this actor can affect the target actor based on gameplay tags
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Aura|Tags")
+	bool CanAffectActor(const AActor* TargetActor) const;
 
 protected:
 	virtual void BeginPlay() override;
@@ -132,14 +136,4 @@ private:
 	// Remove invalid actor entries from the map
 	void CleanupInvalidHandles();
 	
-	FORCEINLINE bool CanAffectActor(const AActor* TargetActor) const
-	{
-		const IGameplayTagAssetInterface* TagInterface { Cast<IGameplayTagAssetInterface>(TargetActor) };
-		if (!TagInterface) { return false; }
- 
-		FGameplayTagContainer TargetTags;
-		TagInterface->GetOwnedGameplayTags(TargetTags);
- 
-		return TargetTags.HasAny(AffectedEntitiesTags);
-	}
 };
