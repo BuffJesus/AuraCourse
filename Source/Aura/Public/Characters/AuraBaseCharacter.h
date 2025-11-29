@@ -133,7 +133,7 @@ protected:
 
 	/** Name of the warp target used for motion warping */
 	UPROPERTY(EditDefaultsOnly, Category = "Aura|Combat")
-	FName FacingTargetWarpName = "FacingTarget";
+	FName FacingTargetWarpName { "FacingTarget" };
 
 private:
 	void ApplyGameplayEffectClassToSelf(TSubclassOf<UGameplayEffect> EffectClass, float Level = 1.f) const;

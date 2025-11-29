@@ -27,7 +27,7 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 	if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
 	{
 		// Get target from TriggerEventData if available (passed from ability activation)
-		AActor* TargetActor = TriggerEventData ? Cast<AActor>(TriggerEventData->Target) : nullptr;
+		AActor* TargetActor = TriggerEventData ? const_cast<AActor*>(Cast<AActor>(TriggerEventData->Target)) : nullptr;
 		
 		if (TargetActor)
 		{
