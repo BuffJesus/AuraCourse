@@ -6,6 +6,18 @@
 
 namespace Aura
 {
+	namespace Ability
+	{
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability);
+		
+		namespace Attack
+		{
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attack);
+			
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Melee);
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ranged);
+		}
+	}	
 	namespace Attributes
 	{
 		namespace Primary
@@ -132,6 +144,7 @@ namespace Aura
 	namespace Potion
 	{
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Potion);
+		
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HealthRestoration);
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(ManaRestoration);
 	}

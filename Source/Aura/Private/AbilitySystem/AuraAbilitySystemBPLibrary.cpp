@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerState.h"
 #include "AbilitySystem/Attributes/AuraPlayerAttributeSet.h"
+#include "Interaction/AuraCombatInterface.h"
 #include "UI/Controllers/AuraAttributeMenuWidgetController.h"
 #include "UI/Controllers/AuraOverlayWidgetController.h"
 #include "UI/Controllers/AuraWidgetController.h"
@@ -97,6 +98,26 @@ void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* Wor
 	ApplyGameplayEffect(ClassDefaultInfo.SecondaryAttributes);
 	ApplyGameplayEffect(ClassDefaultInfo.ResistanceAttributes);
 	ApplyGameplayEffect(CharacterClassInfo->VitalAttributes);
+}
+
+void UAuraAbilitySystemBPLibrary::GiveStartupAbilities(const UObject* WorldContextObject, UAbilitySystemComponent* ASC, ECharacterClass CharacterClass)
+{
+	UAuraCharacterClassInfo* CharacterClassInfo { GetCharacterClassInfo(WorldContextObject) };
+	if (!CharacterClassInfo) { return; }
+	for (TSubclassOf<UGameplayAbility> AbilityClass : CharacterClassInfo->CommonAbilities)
+	{
+		FGameplayAbilitySpec AbilitySpec { FGameplayAbilitySpec(AbilityClass, 1.) };
+		ASC->GiveAbility(AbilitySpec);
+	}
+	for (const FCharacterClassDefaultInfo& DefaultInfo {CharacterClassInfo->GetDefaultInfo(CharacterClass) }; 
+		TSubclassOf<UGameplayAbility> AbilityClass : DefaultInfo.ClassAbilities)
+	{
+		if (IAuraCombatInterface* CombatInterface { Cast<IAuraCombatInterface>(ASC->GetAvatarActor()) })
+		{
+			FGameplayAbilitySpec AbilitySpec { FGameplayAbilitySpec(AbilityClass, CombatInterface->GetCharacterLevel()) };
+			ASC->GiveAbility(AbilitySpec);
+		}
+	}
 }
 
 UAuraCharacterClassInfo* UAuraAbilitySystemBPLibrary::GetCharacterClassInfo(const UObject* WorldContextObject)

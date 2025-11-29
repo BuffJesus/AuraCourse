@@ -5,6 +5,18 @@
 
 namespace Aura
 {
+	namespace Ability
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability, "Aura.Ability", "Ability");
+		
+		namespace Attack
+		{
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Attack, "Aura.Ability.Attack", "Attack ability");
+			
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Melee, "Aura.Ability.Attack.Melee", "Melee attack ability");
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ranged, "Aura.Ability.Attack.Ranged", "Ranged attack ability");
+		}
+	}
 	namespace Attributes
 	{
 		namespace Primary
