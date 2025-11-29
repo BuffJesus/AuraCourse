@@ -108,9 +108,9 @@ void AAuraBaseCharacter::InitializeDefaultAttributes() const
 
 void AAuraBaseCharacter::AddCharacterAbilities()
 {
-	// No cast needed! Already have UAuraAbilitySystemComponent*
 	if (!HasAuthority()) { return; }
-	AbilitySystemComponent->AddCharacterAbilities(StartupAbilities);
+	
+	UAuraAbilitySystemBPLibrary::GiveStartupAbilities(this, AbilitySystemComponent, GetCharacterClass());
 }
 
 void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target)

@@ -7,17 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_MeleeAttack.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/EQS/DA_Aura_EQS_FindRangedAttackPosition.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/EQS/DA_Aura_EQS_FindRangedAttackPosition.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/AuraAbilitySystemBPLibrary.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/AuraAbilitySystemBPLibrary.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraCharacterClassInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Data/AuraCharacterClassInfo.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -334,15 +324,7 @@
       <workItem from="1764376837141" duration="2501000" />
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
-      <workItem from="1764443395410" duration="9376000" />
-    </task>
-    <task id="LOCAL-00276" summary="Added resistance attributes (`Fire`, `Lightning`, `Arcane`, `Physical`) to `UAuraAttributeSet` with replication support and updated `.idea/workspace.xml`.">
-      <option name="closed" value="true" />
-      <created>1764292536833</created>
-      <option name="number" value="00276" />
-      <option name="presentableId" value="LOCAL-00276" />
-      <option name="project" value="LOCAL" />
-      <updated>1764292536833</updated>
+      <workItem from="1764443395410" duration="9751000" />
     </task>
     <task id="LOCAL-00277" summary="Added `GetResistanceAttributeForDamageType` utility to map damage types to resistance attributes. Updated `AuraExecCalc_Damage` to factor resistances into damage calculations.">
       <option name="closed" value="true" />
@@ -728,7 +710,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764453295658</updated>
     </task>
-    <option name="localTasksCounter" value="325" />
+    <task id="LOCAL-00325" summary="Add melee attack ability and initialize support for class-specific abilities&#10;&#10;- Introduced `UAuraGA_MeleeAttack` class.&#10;- Added `CommonAbilities` and `ClassAbilities` to `UAuraCharacterClassInfo` for ability management.&#10;- Implemented `GiveStartupAbilities` in `UAuraAbilitySystemBPLibrary` to assign abilities based on character class.&#10;- Updated `.idea/workspace.xml` and gameplay tags for ability categorization.">
+      <option name="closed" value="true" />
+      <created>1764455368120</created>
+      <option name="number" value="00325" />
+      <option name="presentableId" value="LOCAL-00325" />
+      <option name="project" value="LOCAL" />
+      <updated>1764455368120</updated>
+    </task>
+    <option name="localTasksCounter" value="326" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -738,7 +728,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor `AuraBTS_FindNearestPlayer` to iterate over player controllers for improved reliability and accuracy." />
     <MESSAGE value="Add `MaxSearchDistance` to `AuraBTS_FindNearestPlayer` and refine player detection logic&#10;&#10;- Introduced `MaxSearchDistance` property to limit detection radius.&#10;- Updated `TickNode` logic to include max distance checks.&#10;- Synced changes with `BT_Aura_Enemy_BehaviorTree` and `.idea/workspace.xml`." />
     <MESSAGE value="Update `.idea/workspace.xml` and refine `AuraBTS_FindNearestPlayer` formatting&#10;&#10;- Adjusted `.idea/workspace.xml` configurations.&#10;- Updated variable initialization and formatting in `AuraBTS_FindNearestPlayer`." />
     <MESSAGE value="Update blackboard and behavior tree assets, refine `AuraBTS_FindNearestPlayer`, and adjust workspace configuration&#10;&#10;- Added an additional blackboard key to `.uproject.DotSettings.user`.&#10;- Refined variable formatting in `AuraBTS_FindNearestPlayer`.&#10;- Updated `.idea/workspace.xml` to track changes in AI-related assets." />
@@ -763,7 +752,8 @@
     <MESSAGE value="Mark `UAuraEQS_FindRangedAttackPosition` as `BlueprintType` and expose `UAuraEQSQuery` in `AAuraEQSTestingPawn`. Add related blueprint asset." />
     <MESSAGE value="Refactor `UAuraEQS_FindRangedAttackPosition` constructor to include instanced subobjects for query option and generator. Adjust generator configuration and update `.idea/workspace.xml`." />
     <MESSAGE value="Refactor `UAuraEQS_FindRangedAttackPosition` to adjust pathing grid generator instantiation and update `.idea/workspace.xml`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `UAuraEQS_FindRangedAttackPosition` to adjust pathing grid generator instantiation and update `.idea/workspace.xml`." />
+    <MESSAGE value="Add melee attack ability and initialize support for class-specific abilities&#10;&#10;- Introduced `UAuraGA_MeleeAttack` class.&#10;- Added `CommonAbilities` and `ClassAbilities` to `UAuraCharacterClassInfo` for ability management.&#10;- Implemented `GiveStartupAbilities` in `UAuraAbilitySystemBPLibrary` to assign abilities based on character class.&#10;- Updated `.idea/workspace.xml` and gameplay tags for ability categorization." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add melee attack ability and initialize support for class-specific abilities&#10;&#10;- Introduced `UAuraGA_MeleeAttack` class.&#10;- Added `CommonAbilities` and `ClassAbilities` to `UAuraCharacterClassInfo` for ability management.&#10;- Implemented `GiveStartupAbilities` in `UAuraAbilitySystemBPLibrary` to assign abilities based on character class.&#10;- Updated `.idea/workspace.xml` and gameplay tags for ability categorization." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

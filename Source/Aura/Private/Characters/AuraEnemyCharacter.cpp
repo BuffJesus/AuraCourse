@@ -40,6 +40,8 @@ void AAuraEnemyCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 	
+	if (!HasAuthority()) { return; }
+	
 	AuraAIController = Cast<AAuraAIController>(NewController);
 	if (!AuraAIController) { UE_LOG(LogTemp, Error, TEXT("AuraAIController not found!")); return; }
 	if (!BehaviorTree) { UE_LOG(LogTemp, Error, TEXT("BehaviorTree not found!")); return; }
@@ -49,15 +51,16 @@ void AAuraEnemyCharacter::PossessedBy(AController* NewController)
 	AuraAIController->RunBehaviorTree(BehaviorTree);
 	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), false);
 	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("RangedAttacker"), CharacterClass != ECharacterClass::Warrior);
+	
+	// Initialize abilities after ASC is ready
+	InitializeAbilityActorInfo();
+	AddCharacterAbilities();
 }
 
 void AAuraEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
-	InitializeAbilityActorInfo();
-	
-	if (HasAuthority()) { AddCharacterAbilities(); }
 	
 	if (UAuraUserWidget* AuraUserWidget { Cast<UAuraUserWidget>(HealthBar->GetUserWidgetObject()) })
 	{
@@ -93,7 +96,7 @@ void AAuraEnemyCharacter::HitReactTagChanged(const FGameplayTag CallbackTag, int
 	bHitReacting = NewCount > 0;
 	GetCharacterMovement()->MaxWalkSpeed = bHitReacting ? 0.f : BaseWalkSpeed;
  
-	if (!HasAuthority()) return; // Add this line
+	if (!HasAuthority()) return;
 	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), bHitReacting);
 }
 
