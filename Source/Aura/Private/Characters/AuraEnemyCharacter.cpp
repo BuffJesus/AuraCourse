@@ -44,10 +44,10 @@ void AAuraEnemyCharacter::PossessedBy(AController* NewController)
 	if (!AuraAIController) { UE_LOG(LogTemp, Error, TEXT("AuraAIController not found!")); return; }
 	if (!BehaviorTree) { UE_LOG(LogTemp, Error, TEXT("BehaviorTree not found!")); return; }
 	if (!BehaviorTree->BlackboardAsset) { UE_LOG(LogTemp, Error, TEXT("BehaviorTree BlackboardAsset not found!")); return; }
-	if (!HealthBar) { UE_LOG(LogTemp, Error, TEXT("HealthBar not found!")); return; }
 	
 	AuraAIController->GetBlackboardComponent()->InitializeBlackboard(*BehaviorTree->BlackboardAsset);
 	AuraAIController->RunBehaviorTree(BehaviorTree);
+	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), false);
 }
 
 void AAuraEnemyCharacter::BeginPlay()
@@ -89,8 +89,11 @@ void AAuraEnemyCharacter::BeginPlay()
 
 void AAuraEnemyCharacter::HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
 {
-	bHasHitReactTag = NewCount > 0;
-	GetCharacterMovement()->MaxWalkSpeed = bHasHitReactTag ? 0.f : BaseWalkSpeed;
+	bHitReacting = NewCount > 0;
+	GetCharacterMovement()->MaxWalkSpeed = bHitReacting ? 0.f : BaseWalkSpeed;
+ 
+	if (!HasAuthority()) return; // Add this line
+	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), bHitReacting);
 }
 
 void AAuraEnemyCharacter::InitializeAbilityActorInfo()

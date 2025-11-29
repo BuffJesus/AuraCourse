@@ -39,7 +39,7 @@ public:
 	void HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
 	
 	UPROPERTY(BlueprintReadOnly, Category = "Aura|Combat")
-	bool bHasHitReactTag { false };
+	bool bHitReacting { false };
 	
 	UPROPERTY(BlueprintReadOnly, Category = "Aura|Combat")
 	float BaseWalkSpeed { 250.f };

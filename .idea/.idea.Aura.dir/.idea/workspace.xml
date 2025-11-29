@@ -7,7 +7,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BB_Aura_Enemy_Blackboard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BB_Aura_Enemy_Blackboard.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BT_Aura_Enemy_BehaviorTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BT_Aura_Enemy_BehaviorTree.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Duration.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Duration.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Infinite.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Infinite.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Instant.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Instant.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Periodic.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Base/BP_Aura_EffectActor_Periodic.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/BP_Aura_Crystal_Heal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/BP_Aura_Crystal_Heal.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/BP_Aura_Crystal_Mana.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Actors/Crystals/BP_Aura_Crystal_Mana.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +49,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://1" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/Tasks/AuraBTS_FindNearestPlayer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -293,15 +306,7 @@
       <workItem from="1764304300968" duration="3714000" />
       <workItem from="1764337202426" duration="9381000" />
       <workItem from="1764373057559" duration="3709000" />
-      <workItem from="1764376837141" duration="1202000" />
-    </task>
-    <task id="LOCAL-00264" summary="Added support for meme damage values (Nice, Dank, Pi) in `AuraGCN_DamageText` and `AuraAbilitySystemBPLibrary`. Updated hit type serialization, `SetDamageText`, and gameplay effect context replication.">
-      <option name="closed" value="true" />
-      <created>1764258798583</created>
-      <option name="number" value="00264" />
-      <option name="presentableId" value="LOCAL-00264" />
-      <option name="project" value="LOCAL" />
-      <updated>1764258798583</updated>
+      <workItem from="1764376837141" duration="2214000" />
     </task>
     <task id="LOCAL-00265" summary="Cleaned up unused hit type encoding logic in `AuraAttributeSet`. Removed redundant comments and excessive whitespace for improved readability. Synced `.idea/workspace.xml` with updated file references.">
       <option name="closed" value="true" />
@@ -687,7 +692,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764377733008</updated>
     </task>
-    <option name="localTasksCounter" value="313" />
+    <task id="LOCAL-00313" summary="Refactor `CanAffectActor` in `AuraEffectActor` to improve readability and move implementation to `.cpp` file.">
+      <option name="closed" value="true" />
+      <created>1764378119783</created>
+      <option name="number" value="00313" />
+      <option name="presentableId" value="LOCAL-00313" />
+      <option name="project" value="LOCAL" />
+      <updated>1764378119783</updated>
+    </task>
+    <option name="localTasksCounter" value="314" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,7 +710,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added `Destroy()` call to clean up `AuraGCN_ProjectileFlight` and synced `.idea/workspace.xml` with updated file references and new Fireball asset changes." />
     <MESSAGE value="Adjusted `AuraGCN_ProjectileFlight` sound volume and updated `.DotSettings.user` with new file exclusions." />
     <MESSAGE value="Delayed `AuraGCN_ProjectileFlight` destruction to next frame to prevent crashes and improved `IsValid` checks in `AuraProjectile`." />
     <MESSAGE value="Cleaned up `.idea/workspace.xml` by removing outdated entries and added new file highlighting policies for `AuraAbilitySystemComponent`." />
@@ -722,7 +734,8 @@
     <MESSAGE value="Implement `IGameplayTagAssetInterface` in `AuraBaseCharacter` and add support for `CharacterTags` for better gameplay tag management. Introduce `Player` and `Enemy` entity tags in `AuraTags`." />
     <MESSAGE value="Add `AffectedEntitiesTags` and `CanAffectActor` logic to `AuraEffectActor` for tag-based actor filtering." />
     <MESSAGE value="Fix `CanAffectActor` method declaration in `AuraEffectActor` to remove redundant class qualifier." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix `CanAffectActor` method declaration in `AuraEffectActor` to remove redundant class qualifier." />
+    <MESSAGE value="Refactor `CanAffectActor` in `AuraEffectActor` to improve readability and move implementation to `.cpp` file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `CanAffectActor` in `AuraEffectActor` to improve readability and move implementation to `.cpp` file." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
