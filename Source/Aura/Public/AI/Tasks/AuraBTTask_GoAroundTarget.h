@@ -20,4 +20,10 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|AI")
 	FBlackboardKeySelector NewLocation { FBlackboardKeySelector() };
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|AI")
+	FBlackboardKeySelector Target { FBlackboardKeySelector() };
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|AI")
+	float SearchRadius { 500.f };
 };
