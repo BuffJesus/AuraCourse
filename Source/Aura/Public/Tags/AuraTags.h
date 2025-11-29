@@ -65,6 +65,13 @@ namespace Aura
 		
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(HitReact);
 	}
+	namespace Entities
+	{
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Entities);
+		
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player);
+		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy);
+	}
 	namespace Event
 	{
 		UE_DECLARE_GAMEPLAY_TAG_EXTERN(Event);

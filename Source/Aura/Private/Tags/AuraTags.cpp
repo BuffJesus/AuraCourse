@@ -64,6 +64,13 @@ namespace Aura
 		
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HitReact, "Aura.Effects.HitReact", "Hit reaction");
 	}
+	namespace Entities
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Entities, "Aura.Entities", "Entities");
+		
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Player, "Aura.Entities.Player", "Player entity");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Enemy, "Aura.Entities.Enemy", "Enemy entity");
+	}
 	namespace Event
 	{
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event, "Aura.Event", "Event");

@@ -6,10 +6,13 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/Attributes/AuraAttributeSet.h"
 #include "Player/AuraPlayerController.h"
+#include "Tags/AuraTags.h"
 #include "UI/HUD/AuraHUD.h"
 
 AAuraPlayerCharacter::AAuraPlayerCharacter()
 {
+	CharacterTags.AddTag(Aura::Entities::Player);
+	
 	// Configure character movement for top-down gameplay
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.f, RotationRate, 0.f);

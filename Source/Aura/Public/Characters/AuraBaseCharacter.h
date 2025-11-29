@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "AuraCollisionChannels.h"
+#include "GameplayTagAssetInterface.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "AbilitySystem/Data/AuraCharacterClassInfo.h"
 #include "Components/TimelineComponent.h"
@@ -19,7 +20,7 @@ class UAuraAttributeSet;
 class UMotionWarpingComponent;
 
 UCLASS(Abstract)
-class AURA_API AAuraBaseCharacter : public ACharacter, public IAbilitySystemInterface, public IAuraCombatInterface
+class AURA_API AAuraBaseCharacter : public ACharacter, public IAbilitySystemInterface, public IAuraCombatInterface, public IGameplayTagAssetInterface
 {
 	GENERATED_BODY()
 
@@ -53,6 +54,14 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Combat")
 	TObjectPtr<UAnimMontage> HitReactMontage;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Tags")
+	FGameplayTagContainer CharacterTags;
+	
+	FORCEINLINE virtual void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const override
+	{
+		TagContainer = CharacterTags;
+	};
 	
 protected:
 	virtual void BeginPlay() override;

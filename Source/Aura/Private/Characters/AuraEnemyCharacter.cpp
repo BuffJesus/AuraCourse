@@ -14,6 +14,8 @@
 
 AAuraEnemyCharacter::AAuraEnemyCharacter()
 {
+    CharacterTags.AddTag(Aura::Entities::Enemy);
+
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 
 	// Enemy owns its own ASC
