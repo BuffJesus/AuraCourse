@@ -8,8 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BehaviorTree/BT_Aura_Enemy_BehaviorTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BehaviorTree/BT_Aura_Enemy_BehaviorTree.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,15 +327,7 @@
       <workItem from="1764376837141" duration="2501000" />
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
-      <workItem from="1764443395410" duration="13898000" />
-    </task>
-    <task id="LOCAL-00285" summary="Updated `.idea/workspace.xml` to clean up stale changelist entries and synchronize with updated asset references.">
-      <option name="closed" value="true" />
-      <created>1764297681812</created>
-      <option name="number" value="00285" />
-      <option name="presentableId" value="LOCAL-00285" />
-      <option name="project" value="LOCAL" />
-      <updated>1764297681812</updated>
+      <workItem from="1764443395410" duration="14565000" />
     </task>
     <task id="LOCAL-00286" summary="Added randomized damage ranges for specific damage types in `AuraDamageGameplayAbility`. Refactored logic to support `TMap&lt;FGameplayTag, FDamageRange&gt;` for more flexibility.">
       <option name="closed" value="true" />
@@ -721,7 +713,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764458945877</updated>
     </task>
-    <option name="localTasksCounter" value="334" />
+    <task id="LOCAL-00334" summary="Clean up `.idea/workspace.xml` to remove stale changelist entries and synchronize with updated asset references in Behavior Tree and TestMap.">
+      <option name="closed" value="true" />
+      <created>1764459928291</created>
+      <option name="number" value="00334" />
+      <option name="presentableId" value="LOCAL-00334" />
+      <option name="project" value="LOCAL" />
+      <updated>1764459928291</updated>
+    </task>
+    <option name="localTasksCounter" value="335" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -731,7 +731,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Rename `bDestroyOnEffectRemoval` to `bDestroyOnEffectApplication` and add `bApplyEffectsToEnemies` property in `AuraEffectActor`. Update redirects in `DefaultEngine.ini`." />
     <MESSAGE value="Implement `IGameplayTagAssetInterface` in `AuraBaseCharacter` and add support for `CharacterTags` for better gameplay tag management. Introduce `Player` and `Enemy` entity tags in `AuraTags`." />
     <MESSAGE value="Add `AffectedEntitiesTags` and `CanAffectActor` logic to `AuraEffectActor` for tag-based actor filtering." />
     <MESSAGE value="Fix `CanAffectActor` method declaration in `AuraEffectActor` to remove redundant class qualifier." />
@@ -756,7 +755,8 @@
     <MESSAGE value="Refactor melee attack ability cleanup logic and adjust montage properties&#10;&#10;- Updated `EndAbility` calls in `UAuraGA_MeleeAttack` to include additional parameters for improved cleanup handling.&#10;- Moved `AttackMontage` property from `AuraBaseCharacter` to `AuraEnemyCharacter` for better character-specific management." />
     <MESSAGE value="Update `UAuraGA_MeleeAttack` to use `GetAttackMontage` instead of `GetHitReactMontage` for animation handling" />
     <MESSAGE value="Update `AuraEnemyCharacter` with `GetAttackMontage_Implementation` and refine logging in `AuraGA_MeleeAttack`" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `AuraEnemyCharacter` with `GetAttackMontage_Implementation` and refine logging in `AuraGA_MeleeAttack`" />
+    <MESSAGE value="Clean up `.idea/workspace.xml` to remove stale changelist entries and synchronize with updated asset references in Behavior Tree and TestMap." />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up `.idea/workspace.xml` to remove stale changelist entries and synchronize with updated asset references in Behavior Tree and TestMap." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

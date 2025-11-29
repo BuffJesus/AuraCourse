@@ -26,22 +26,18 @@ EBTNodeResult::Type UAuraBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& Owne
  
 	APawn* AIPawn = OwnerComp.GetAIOwner()->GetPawn();
 	
-	// Get the ability system component from the AI pawn
-	UAbilitySystemComponent* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(AIPawn);
-	if (!ASC)
-	{
-		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
-		return EBTNodeResult::Failed;
-	}
+	// Get the target actor from blackboard
+	AActor* TargetActor = Cast<AActor>(OwnerComp.GetBlackboardComponent()->GetValueAsObject("TargetToFollow"));
 	
-	// Create a tag container with the abilities you want to activate
+	// Create event data with target
+	FGameplayEventData EventData;
+	EventData.Target = TargetActor;
+	
+	// Activate abilities with event data
 	FGameplayTagContainer AbilityTags;
 	AbilityTags.AddTag(Aura::Ability::Attack::Attack);
-	// Add your attack ability tag(s) here, for example:
-	// AbilityTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Abilities.Attack")));
 	
-	// Try to activate abilities by tag
-	ASC->TryActivateAbilitiesByTag(AbilityTags);
+	ASC->TryActivateAbilitiesByTag(AbilityTags, true); 
  
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;

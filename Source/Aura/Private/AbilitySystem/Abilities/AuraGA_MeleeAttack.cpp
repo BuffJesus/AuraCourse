@@ -23,6 +23,18 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 		return;
 	}
 	
+	// Update facing target using motion warping - same pattern as projectile spells
+	if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+	{
+		// Get target from TriggerEventData if available (passed from ability activation)
+		AActor* TargetActor = TriggerEventData ? Cast<AActor>(TriggerEventData->Target) : nullptr;
+		
+		if (TargetActor)
+		{
+			CombatInterface->Execute_UpdateFacingTarget(AvatarActor, TargetActor->GetActorLocation());
+		}
+	}
+	
 	// Get AttackMontage from the Combat Interface
 	UAnimMontage* MontageToPlay = nullptr;
 	if (const IAuraCombatInterface* CombatInterface { Cast<IAuraCombatInterface>(AvatarActor) })
