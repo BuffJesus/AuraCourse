@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ActiveGameplayEffectHandle.h"
+#include "GameplayTagAssetInterface.h"
 #include "GameplayTagContainer.h"
 #include "GameFramework/Actor.h"
 #include "AuraEffectActor.generated.h"
@@ -121,10 +122,24 @@ protected:
 
 	// Track infinite effect handles per overlapping actor
 	TMap<TWeakObjectPtr<AActor>, TArray<FActiveGameplayEffectHandle>> ActiveInfiniteEffectHandles;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Tags")
+	FGameplayTagContainer AffectedEntitiesTags;
 
 private:
 	FTimerHandle CleanupTimerHandle;
 
 	// Remove invalid actor entries from the map
 	void CleanupInvalidHandles();
+	
+	FORCEINLINE bool AAuraEffectActor::CanAffectActor(const AActor* TargetActor) const
+	{
+		const IGameplayTagAssetInterface* TagInterface { Cast<IGameplayTagAssetInterface>(TargetActor) };
+		if (!TagInterface) { return false; }
+ 
+		FGameplayTagContainer TargetTags;
+		TagInterface->GetOwnedGameplayTags(TargetTags);
+ 
+		return TargetTags.HasAny(AffectedEntitiesTags);
+	}
 };
