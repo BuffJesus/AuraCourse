@@ -54,6 +54,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Combat")
 	TObjectPtr<UAnimMontage> AttackMontage;
 	
+	FORCEINLINE virtual UAnimMontage* GetAttackMontage_Implementation() const override
+	{
+		return AttackMontage;
+	}
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Aura|UI")
 	TObjectPtr<UWidgetComponent> HealthBar;
 	

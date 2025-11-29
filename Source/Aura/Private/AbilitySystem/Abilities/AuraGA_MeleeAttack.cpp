@@ -33,7 +33,7 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 	// Play the montage and wait for it to complete
 	if (MontageToPlay)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Playing HitReact montage: %s"), *MontageToPlay->GetName());
+		UE_LOG(LogTemp, Warning, TEXT("Playing Attack montage: %s"), *MontageToPlay->GetName());
 		
 		UAbilityTask_PlayMontageAndWait* PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
 			this,
