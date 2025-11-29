@@ -8,5 +8,4 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 	const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, FString::Printf(TEXT("Melee Attack Activated")));
 }
