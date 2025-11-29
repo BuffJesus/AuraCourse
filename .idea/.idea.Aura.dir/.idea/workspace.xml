@@ -8,8 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileImpact.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Cues/AuraGCN_ProjectileImpact.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://3" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/Tasks/AuraBTS_FindNearestPlayer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -303,23 +302,7 @@
       <workItem from="1764247000972" duration="20599000" />
       <workItem from="1764304300968" duration="3714000" />
       <workItem from="1764337202426" duration="9381000" />
-      <workItem from="1764373057559" duration="1473000" />
-    </task>
-    <task id="LOCAL-00255" summary="Added `AuraAbilitySystemGlobals` with custom effect context allocation and updated project configuration settings.">
-      <option name="closed" value="true" />
-      <created>1764214733472</created>
-      <option name="number" value="00255" />
-      <option name="presentableId" value="LOCAL-00255" />
-      <option name="project" value="LOCAL" />
-      <updated>1764214733472</updated>
-    </task>
-    <task id="LOCAL-00256" summary="Added critical and blocked hit checks to `AuraAbilitySystemBPLibrary`. Refactored `AuraExecCalc_Potion` paths and updated damage calculations in `AuraExecCalc_Damage` for blocked hit handling.">
-      <option name="closed" value="true" />
-      <created>1764215912194</created>
-      <option name="number" value="00256" />
-      <option name="presentableId" value="LOCAL-00256" />
-      <option name="project" value="LOCAL" />
-      <updated>1764215912194</updated>
+      <workItem from="1764373057559" duration="2008000" />
     </task>
     <task id="LOCAL-00257" summary="Added `SetIsBlockedHit` method to `AuraAbilitySystemBPLibrary` for managing blocked hit states in gameplay effects. Updated related blueprint exposure.">
       <option name="closed" value="true" />
@@ -697,7 +680,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764374019869</updated>
     </task>
-    <option name="localTasksCounter" value="304" />
+    <task id="LOCAL-00304" summary="Enable `ControllerDesiredRotation` for enemy characters in `AuraEnemyCharacter.cpp` and update `.idea/workspace.xml` configuration.">
+      <option name="closed" value="true" />
+      <created>1764374541625</created>
+      <option name="number" value="00304" />
+      <option name="presentableId" value="LOCAL-00304" />
+      <option name="project" value="LOCAL" />
+      <updated>1764374541625</updated>
+    </task>
+    <task id="LOCAL-00305" summary="Disable controller rotation axes and adjust movement rotation rate for `AuraEnemyCharacter`.">
+      <option name="closed" value="true" />
+      <created>1764374780722</created>
+      <option name="number" value="00305" />
+      <option name="presentableId" value="LOCAL-00305" />
+      <option name="project" value="LOCAL" />
+      <updated>1764374780722</updated>
+    </task>
+    <option name="localTasksCounter" value="306" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -707,8 +706,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added new gameplay tags for `Lightning`, `Arcane`, and `Physical` damage types under the `Aura.Damage` namespace." />
-    <MESSAGE value="Added `ResistanceAttributes` to `AuraCharacterClassInfo` with `.idea/workspace.xml` updates." />
     <MESSAGE value="Added `ResistanceAttributes` application in `AuraAbilitySystemBPLibrary` and removed redundant macros from `AuraAttributeSet`. Updated `.idea/workspace.xml`." />
     <MESSAGE value="Updated `.idea/workspace.xml` to remove stale changelist entries and synchronize task metadata." />
     <MESSAGE value="Added `Resistance` gameplay tag support to attribute filtering in `AuraAttributeInfo` and updated `.idea/workspace.xml` with Resistance-related assets." />
@@ -732,7 +729,9 @@
     <MESSAGE value="Add `MaxSearchDistance` to `AuraBTS_FindNearestPlayer` and refine player detection logic&#10;&#10;- Introduced `MaxSearchDistance` property to limit detection radius.&#10;- Updated `TickNode` logic to include max distance checks.&#10;- Synced changes with `BT_Aura_Enemy_BehaviorTree` and `.idea/workspace.xml`." />
     <MESSAGE value="Update `.idea/workspace.xml` and refine `AuraBTS_FindNearestPlayer` formatting&#10;&#10;- Adjusted `.idea/workspace.xml` configurations.&#10;- Updated variable initialization and formatting in `AuraBTS_FindNearestPlayer`." />
     <MESSAGE value="Update blackboard and behavior tree assets, refine `AuraBTS_FindNearestPlayer`, and adjust workspace configuration&#10;&#10;- Added an additional blackboard key to `.uproject.DotSettings.user`.&#10;- Refined variable formatting in `AuraBTS_FindNearestPlayer`.&#10;- Updated `.idea/workspace.xml` to track changes in AI-related assets." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update blackboard and behavior tree assets, refine `AuraBTS_FindNearestPlayer`, and adjust workspace configuration&#10;&#10;- Added an additional blackboard key to `.uproject.DotSettings.user`.&#10;- Refined variable formatting in `AuraBTS_FindNearestPlayer`.&#10;- Updated `.idea/workspace.xml` to track changes in AI-related assets." />
+    <MESSAGE value="Enable `ControllerDesiredRotation` for enemy characters in `AuraEnemyCharacter.cpp` and update `.idea/workspace.xml` configuration." />
+    <MESSAGE value="Disable controller rotation axes and adjust movement rotation rate for `AuraEnemyCharacter`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Disable controller rotation axes and adjust movement rotation rate for `AuraEnemyCharacter`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

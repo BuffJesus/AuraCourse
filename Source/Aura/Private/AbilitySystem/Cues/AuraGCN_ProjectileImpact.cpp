@@ -31,7 +31,8 @@ bool UAuraGCN_ProjectileImpact::OnExecute_Implementation(AActor* Target, const F
 			ImpactSound,
 			ImpactLocation,
 			FRotator::ZeroRotator,
-			0.8f
+			0.8f,
+			FMath::RandRange(0.8f, 1.2f)
 		);
 	}
 
