@@ -4,6 +4,8 @@
 #include "EnvironmentQuery/Contexts/EnvQueryContext_Querier.h"
 #include "EnvironmentQuery/Generators/EnvQueryGenerator_PathingGrid.h"
 
+class UEnvQueryTest_Distance;
+
 UAuraEQS_FindRangedAttackPosition::UAuraEQS_FindRangedAttackPosition(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
@@ -11,7 +13,7 @@ UAuraEQS_FindRangedAttackPosition::UAuraEQS_FindRangedAttackPosition(const FObje
 	UEnvQueryOption* Option = CreateDefaultSubobject<UEnvQueryOption>(TEXT("Option0"));
 	
 	// Create the generator as an instanced subobject of the option
-	UEnvQueryGenerator_PathingGrid* PathingGrid = CreateOptionalDefaultSubobject<UEnvQueryGenerator_PathingGrid>(TEXT("PathingGrid"), Option);
+	UEnvQueryGenerator_PathingGrid* PathingGrid = CreateOptionalDefaultSubobject<UEnvQueryGenerator_PathingGrid>(TEXT("PathingGrid"));
 	
 	if (PathingGrid)
 	{
@@ -20,7 +22,6 @@ UAuraEQS_FindRangedAttackPosition::UAuraEQS_FindRangedAttackPosition(const FObje
 		PathingGrid->SpaceBetween.DefaultValue = 100.f;
 		PathingGrid->GenerateAround = UEnvQueryContext_Querier::StaticClass();
 		PathingGrid->ProjectionData.SetNavmeshOnly();
-		
 		Option->Generator = PathingGrid;
 	}
 	

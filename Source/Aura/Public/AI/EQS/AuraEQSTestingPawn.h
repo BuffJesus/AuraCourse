@@ -13,6 +13,4 @@ class AURA_API AAuraEQSTestingPawn : public AEQSTestingPawn
 {
 	GENERATED_BODY()
 	
-public:
-	
 };
