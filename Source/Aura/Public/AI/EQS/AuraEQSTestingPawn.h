@@ -6,9 +6,13 @@
 #include "EnvironmentQuery/EQSTestingPawn.h"
 #include "AuraEQSTestingPawn.generated.h"
 
+class UAuraEQSQuery;
+
 UCLASS()
 class AURA_API AAuraEQSTestingPawn : public AEQSTestingPawn
 {
 	GENERATED_BODY()
-
+	
+public:
+	
 };

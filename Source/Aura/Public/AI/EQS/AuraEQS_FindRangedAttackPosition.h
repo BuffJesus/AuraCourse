@@ -9,12 +9,11 @@
 /**
  * 
  */
-UCLASS(Blueprintable)
+UCLASS(BlueprintType)
 class AURA_API UAuraEQS_FindRangedAttackPosition : public UEnvQuery
 {
 	GENERATED_BODY()
 	
 public:
 	UAuraEQS_FindRangedAttackPosition();
-
 };
