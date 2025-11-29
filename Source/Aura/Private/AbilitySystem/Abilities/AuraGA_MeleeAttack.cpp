@@ -57,15 +57,15 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 
 void UAuraGA_MeleeAttack::OnMontageCompleted()
 {
-	EndAbility();
+	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
 }
 
 void UAuraGA_MeleeAttack::OnMontageCancelled()
 {
-	EndAbility();
+	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
 }
 
 void UAuraGA_MeleeAttack::OnMontageInterrupted()
 {
-	EndAbility();
+	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
 }

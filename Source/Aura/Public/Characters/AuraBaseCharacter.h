@@ -55,9 +55,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Combat")
 	TObjectPtr<UAnimMontage> HitReactMontage;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Combat")
-	TObjectPtr<UAnimMontage> AttackMontage;
-	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Tags")
 	FGameplayTagContainer CharacterTags;
 	
