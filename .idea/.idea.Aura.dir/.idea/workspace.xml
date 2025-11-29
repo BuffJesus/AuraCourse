@@ -8,7 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraEffectActor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Actors/AuraEffectActor.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +38,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://7" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://8" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/Tasks/AuraBTS_FindNearestPlayer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -302,23 +302,7 @@
       <workItem from="1764247000972" duration="20599000" />
       <workItem from="1764304300968" duration="3714000" />
       <workItem from="1764337202426" duration="9381000" />
-      <workItem from="1764373057559" duration="2502000" />
-    </task>
-    <task id="LOCAL-00258" summary="Refactored `AuraAbilitySystemBPLibrary` to centralize `FAuraGameplayEffectContext` access with helper methods. Simplified critical and blocked hit checks.">
-      <option name="closed" value="true" />
-      <created>1764216550995</created>
-      <option name="number" value="00258" />
-      <option name="presentableId" value="LOCAL-00258" />
-      <option name="project" value="LOCAL" />
-      <updated>1764216550995</updated>
-    </task>
-    <task id="LOCAL-00259" summary="Added `SetIsCriticalHit` method to `AuraAbilitySystemBPLibrary` for managing critical hit states in gameplay effects. Updated related blueprint exposure.">
-      <option name="closed" value="true" />
-      <created>1764216681933</created>
-      <option name="number" value="00259" />
-      <option name="presentableId" value="LOCAL-00259" />
-      <option name="project" value="LOCAL" />
-      <updated>1764216681933</updated>
+      <workItem from="1764373057559" duration="3067000" />
     </task>
     <task id="LOCAL-00260" summary="Fixed typo in `IsCriticalHit` method name across `AuraAbilitySystemBPLibrary`. Added usage in critical hit checks and updated blueprint function redirects.">
       <option name="closed" value="true" />
@@ -696,7 +680,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764375345989</updated>
     </task>
-    <option name="localTasksCounter" value="307" />
+    <task id="LOCAL-00307" summary="Add `RandomPitchMultiplier` to manage pitch variation in flight and impact sounds">
+      <option name="closed" value="true" />
+      <created>1764375839291</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
+      <option name="project" value="LOCAL" />
+      <updated>1764375839291</updated>
+    </task>
+    <task id="LOCAL-00308" summary="Update `GE_Aura_Hazards_Fire.uasset` asset">
+      <option name="closed" value="true" />
+      <created>1764376076859</created>
+      <option name="number" value="00308" />
+      <option name="presentableId" value="LOCAL-00308" />
+      <option name="project" value="LOCAL" />
+      <updated>1764376076859</updated>
+    </task>
+    <option name="localTasksCounter" value="309" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -706,8 +706,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated `.idea/workspace.xml` to remove stale changelist entries and synchronize task metadata." />
-    <MESSAGE value="Added `Resistance` gameplay tag support to attribute filtering in `AuraAttributeInfo` and updated `.idea/workspace.xml` with Resistance-related assets." />
     <MESSAGE value="Renamed resistance gameplay tags for clarity and updated corresponding comments." />
     <MESSAGE value="Updated `.idea/workspace.xml` to clean up stale changelist entries and synchronize with updated asset references." />
     <MESSAGE value="Added randomized damage ranges for specific damage types in `AuraDamageGameplayAbility`. Refactored logic to support `TMap&lt;FGameplayTag, FDamageRange&gt;` for more flexibility." />
@@ -731,7 +729,9 @@
     <MESSAGE value="Enable `ControllerDesiredRotation` for enemy characters in `AuraEnemyCharacter.cpp` and update `.idea/workspace.xml` configuration." />
     <MESSAGE value="Disable controller rotation axes and adjust movement rotation rate for `AuraEnemyCharacter`." />
     <MESSAGE value="Randomize pitch variation for projectile flight and impact sounds." />
-    <option name="LAST_COMMIT_MESSAGE" value="Randomize pitch variation for projectile flight and impact sounds." />
+    <MESSAGE value="Add `RandomPitchMultiplier` to manage pitch variation in flight and impact sounds" />
+    <MESSAGE value="Update `GE_Aura_Hazards_Fire.uasset` asset" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `GE_Aura_Hazards_Fire.uasset` asset" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -165,7 +165,7 @@ void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 			ActiveInfiniteEffectHandles.Remove(TargetActor);
 		}
 
-		if (bDestroyOnEffectRemoval) { Destroy(); }
+		if (bDestroyOnEffectApplication) { Destroy(); }
 	}
 }
 
