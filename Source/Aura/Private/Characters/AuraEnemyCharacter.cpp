@@ -27,7 +27,11 @@ AAuraEnemyCharacter::AAuraEnemyCharacter()
 	HealthBar->SetupAttachment(GetRootComponent());
 	HealthBar->SetWidgetSpace(EWidgetSpace::Screen);
 	
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationRoll = false;
 	GetCharacterMovement()->bUseControllerDesiredRotation = true;
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 360.f, 0.f);
 }
 
 void AAuraEnemyCharacter::PossessedBy(AController* NewController)
