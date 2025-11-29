@@ -132,7 +132,7 @@ private:
 	// Remove invalid actor entries from the map
 	void CleanupInvalidHandles();
 	
-	FORCEINLINE bool AAuraEffectActor::CanAffectActor(const AActor* TargetActor) const
+	FORCEINLINE bool CanAffectActor(const AActor* TargetActor) const
 	{
 		const IGameplayTagAssetInterface* TagInterface { Cast<IGameplayTagAssetInterface>(TargetActor) };
 		if (!TagInterface) { return false; }
