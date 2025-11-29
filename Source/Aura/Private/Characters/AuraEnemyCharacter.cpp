@@ -26,6 +26,8 @@ AAuraEnemyCharacter::AAuraEnemyCharacter()
 	HealthBar = CreateDefaultSubobject<UWidgetComponent>("HealthBar");
 	HealthBar->SetupAttachment(GetRootComponent());
 	HealthBar->SetWidgetSpace(EWidgetSpace::Screen);
+	
+	GetCharacterMovement()->bUseControllerDesiredRotation = true;
 }
 
 void AAuraEnemyCharacter::PossessedBy(AController* NewController)
