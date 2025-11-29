@@ -20,20 +20,23 @@ bool AAuraGCN_ProjectileFlight::OnActive_Implementation(AActor* Target, const FG
 		return false;
 	}
 
+	// Generate random pitch once per projectile instance
+	RandomPitchMultiplier = FMath::RandRange(0.8f, 1.2f);
+
 	// Spawn looping audio at the projectile's location, attached to it
 	AudioComponent = UGameplayStatics::SpawnSoundAttached(
-		FlightSound,
-		Target->GetRootComponent(),
-		NAME_None,
-		FVector::ZeroVector,
-		EAttachLocation::KeepRelativeOffset,
-		true, // Stop when attached actor is destroyed
-		0.25f, // Volume
-		FMath::RandRange(0.8f, 1.2f), // Pitch
-		0.0f, // Start time
-		nullptr,
-		nullptr,
-		true // Auto destroy when sound finishes
+	   FlightSound,
+	   Target->GetRootComponent(),
+	   NAME_None,
+	   FVector::ZeroVector,
+	   EAttachLocation::KeepRelativeOffset,
+	   true, // Stop when attached actor is destroyed
+	   0.25f, // Volume
+	   RandomPitchMultiplier, // Use stored random pitch
+	   0.0f, // Start time
+	   nullptr,
+	   nullptr,
+	   true // Auto destroy when sound finishes
 	);
 
 	return AudioComponent != nullptr;

@@ -24,6 +24,9 @@ public:
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Aura|Audio")
 	TObjectPtr<USoundBase> FlightSound;
+	
+	UPROPERTY()
+	float RandomPitchMultiplier;
 
 private:
 	UPROPERTY()

@@ -30,9 +30,12 @@ bool UAuraGCN_ProjectileImpact::OnExecute_Implementation(AActor* Target, const F
 			World,
 			ImpactSound,
 			ImpactLocation,
-			FRotator::ZeroRotator,
-			0.8f,
-			FMath::RandRange(0.8f, 1.2f)
+			1.0f,                              // VolumeMultiplier
+			FMath::RandRange(0.8f, 1.2f),     // PitchMultiplier (this is what you want to randomize)
+			0.0f,                              // StartTime
+			nullptr,                           // AttenuationSettings
+			nullptr,                           // ConcurrencySettings
+			nullptr                            // Owner
 		);
 	}
 
