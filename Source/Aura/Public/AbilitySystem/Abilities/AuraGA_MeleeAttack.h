@@ -17,4 +17,16 @@ class AURA_API UAuraGA_MeleeAttack : public UAuraDamageGameplayAbility
 public:
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, 
 		const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
+	
+private:
+	UFUNCTION()
+	void OnMontageCompleted();
+	
+	UFUNCTION()
+	void OnMontageCancelled();
+	
+	UFUNCTION()
+	void OnMontageInterrupted();
+	
+	void CleanupAndEndAbility(bool bWasCancelled = true);
 };
