@@ -8,10 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Montages/Spear/AM_Aura_Goblin_Spear_Attack.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Goblins/BP_Goblin_Spear.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Goblins/BP_Goblin_Spear.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_MeleeAttack.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_MeleeAttack.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://14" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://16" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -329,23 +328,7 @@
       <workItem from="1764376837141" duration="2501000" />
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
-      <workItem from="1764443395410" duration="12683000" />
-    </task>
-    <task id="LOCAL-00281" summary="Added `ResistanceAttributes` application in `AuraAbilitySystemBPLibrary` and removed redundant macros from `AuraAttributeSet`. Updated `.idea/workspace.xml`.">
-      <option name="closed" value="true" />
-      <created>1764294434341</created>
-      <option name="number" value="00281" />
-      <option name="presentableId" value="LOCAL-00281" />
-      <option name="project" value="LOCAL" />
-      <updated>1764294434341</updated>
-    </task>
-    <task id="LOCAL-00282" summary="Updated `.idea/workspace.xml` to remove stale changelist entries and synchronize task metadata.">
-      <option name="closed" value="true" />
-      <created>1764294676761</created>
-      <option name="number" value="00282" />
-      <option name="presentableId" value="LOCAL-00282" />
-      <option name="project" value="LOCAL" />
-      <updated>1764294676761</updated>
+      <workItem from="1764443395410" duration="12988000" />
     </task>
     <task id="LOCAL-00283" summary="Added `Resistance` gameplay tag support to attribute filtering in `AuraAttributeInfo` and updated `.idea/workspace.xml` with Resistance-related assets.">
       <option name="closed" value="true" />
@@ -723,7 +706,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764457920457</updated>
     </task>
-    <option name="localTasksCounter" value="330" />
+    <task id="LOCAL-00330" summary="Add hit react montage handling to `UAuraGA_MeleeAttack`&#10;&#10;- Integrated `PlayMontageAndWait` task to play hit react montages in melee attack ability.&#10;- Added helper functions for montage completion, interruption, and cancellation.&#10;- Updated `AuraBaseCharacter` and `AuraCombatInterface` to support attack montage references.">
+      <option name="closed" value="true" />
+      <created>1764458478267</created>
+      <option name="number" value="00330" />
+      <option name="presentableId" value="LOCAL-00330" />
+      <option name="project" value="LOCAL" />
+      <updated>1764458478267</updated>
+    </task>
+    <task id="LOCAL-00331" summary="Refactor melee attack ability cleanup logic and adjust montage properties&#10;&#10;- Updated `EndAbility` calls in `UAuraGA_MeleeAttack` to include additional parameters for improved cleanup handling.&#10;- Moved `AttackMontage` property from `AuraBaseCharacter` to `AuraEnemyCharacter` for better character-specific management.">
+      <option name="closed" value="true" />
+      <created>1764458569881</created>
+      <option name="number" value="00331" />
+      <option name="presentableId" value="LOCAL-00331" />
+      <option name="project" value="LOCAL" />
+      <updated>1764458569881</updated>
+    </task>
+    <option name="localTasksCounter" value="332" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,8 +732,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Disable controller rotation axes and adjust movement rotation rate for `AuraEnemyCharacter`." />
-    <MESSAGE value="Randomize pitch variation for projectile flight and impact sounds." />
     <MESSAGE value="Add `RandomPitchMultiplier` to manage pitch variation in flight and impact sounds" />
     <MESSAGE value="Update `GE_Aura_Hazards_Fire.uasset` asset" />
     <MESSAGE value="Rename `bDestroyOnEffectRemoval` to `bDestroyOnEffectApplication` and add `bApplyEffectsToEnemies` property in `AuraEffectActor`. Update redirects in `DefaultEngine.ini`." />
@@ -758,7 +755,9 @@
     <MESSAGE value="Set input tags for abilities and enhance AI attack task logic&#10;&#10;- Updated `UAuraAbilitySystemBPLibrary` to assign input tags dynamically from `UAuraGameplayAbility` during ability initialization.&#10;- Enhanced `AuraBTTask_Attack` to activate AI abilities based on gameplay tags. Added tag container setup for attack abilities.&#10;- Minor improvements and fixes in `.idea/workspace.xml` configuration files." />
     <MESSAGE value="Add activation logic to `UAuraGA_MeleeAttack` and update AI attack task to use `AuraTags` &#10;&#10;- Implemented `ActivateAbility` in `UAuraGA_MeleeAttack` with debug messaging.&#10;- Updated `AuraBTTask_Attack` to include `AuraTags` for managing ability activation." />
     <MESSAGE value="Remove debug message from `UAuraGA_MeleeAttack::ActivateAbility` and update `.idea/workspace.xml`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove debug message from `UAuraGA_MeleeAttack::ActivateAbility` and update `.idea/workspace.xml`." />
+    <MESSAGE value="Add hit react montage handling to `UAuraGA_MeleeAttack`&#10;&#10;- Integrated `PlayMontageAndWait` task to play hit react montages in melee attack ability.&#10;- Added helper functions for montage completion, interruption, and cancellation.&#10;- Updated `AuraBaseCharacter` and `AuraCombatInterface` to support attack montage references." />
+    <MESSAGE value="Refactor melee attack ability cleanup logic and adjust montage properties&#10;&#10;- Updated `EndAbility` calls in `UAuraGA_MeleeAttack` to include additional parameters for improved cleanup handling.&#10;- Moved `AttackMontage` property from `AuraBaseCharacter` to `AuraEnemyCharacter` for better character-specific management." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor melee attack ability cleanup logic and adjust montage properties&#10;&#10;- Updated `EndAbility` calls in `UAuraGA_MeleeAttack` to include additional parameters for improved cleanup handling.&#10;- Moved `AttackMontage` property from `AuraBaseCharacter` to `AuraEnemyCharacter` for better character-specific management." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

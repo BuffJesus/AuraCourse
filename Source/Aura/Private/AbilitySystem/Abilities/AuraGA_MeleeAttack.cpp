@@ -23,11 +23,11 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 		return;
 	}
 	
-	// Get HitReactMontage from the Combat Interface
+	// Get AttackMontage from the Combat Interface
 	UAnimMontage* MontageToPlay = nullptr;
-	if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+	if (const IAuraCombatInterface* CombatInterface { Cast<IAuraCombatInterface>(AvatarActor) })
 	{
-		MontageToPlay = CombatInterface->Execute_GetHitReactMontage(AvatarActor);
+		MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor);
 	}
 	
 	// Play the montage and wait for it to complete
