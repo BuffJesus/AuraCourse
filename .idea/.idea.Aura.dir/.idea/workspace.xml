@@ -40,7 +40,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://5" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -151,11 +151,16 @@
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/BehaviorTree/Services/BTService_BlueprintBase.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/BehaviorTree/Tasks/BTTask_BlackboardBase.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/BehaviorTree/Tasks/BTTask_RunEQSQuery.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/EnvironmentQuery/EQSTestingPawn.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/EnvironmentQuery/EnvQuery.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/EnvironmentQuery/Generators/EnvQueryGenerator_PathingGrid.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/EnvironmentQuery/Generators/EnvQueryGenerator_SimpleGrid.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Classes/Tasks/AITask_RunEQS.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Private/BehaviorTree/BTTaskNode.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Private/BehaviorTree/BehaviorTreeTypes.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Private/BehaviorTree/Services/BTService_DefaultFocus.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Private/EnvironmentQuery/EnvQuery.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/AIModule/Private/EnvironmentQuery/Generators/EnvQueryGenerator_PathingGrid.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/Core/Private/Android/AndroidPlatformMisc.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/Core/Public/UObject/UE5SpecialProjectStreamObjectVersion.inl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/CoreUObject/Public/UObject/UObjectGlobals.h" root0="FORCE_HIGHLIGHTING" />
@@ -317,23 +322,7 @@
       <workItem from="1764376837141" duration="2501000" />
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
-      <workItem from="1764443395410" duration="3034000" />
-    </task>
-    <task id="LOCAL-00272" summary="Refactored `AuraExecCalc_Damage` to use scoped initialization, improved damage type handling, and added early-out for zero damage scenarios. Synced changes in `.idea/workspace.xml`.">
-      <option name="closed" value="true" />
-      <created>1764290834898</created>
-      <option name="number" value="00272" />
-      <option name="presentableId" value="LOCAL-00272" />
-      <option name="project" value="LOCAL" />
-      <updated>1764290834898</updated>
-    </task>
-    <task id="LOCAL-00273" summary="Removed verbose logging from `AuraExecCalc_Damage`. Cleaned up `.idea/workspace.xml` and deleted unused asset references.">
-      <option name="closed" value="true" />
-      <created>1764291549164</created>
-      <option name="number" value="00273" />
-      <option name="presentableId" value="LOCAL-00273" />
-      <option name="project" value="LOCAL" />
-      <updated>1764291549164</updated>
+      <workItem from="1764443395410" duration="4068000" />
     </task>
     <task id="LOCAL-00274" summary="Removed `UAuraExecCalc_TestMemeNumbers` and associated header file as part of code cleanup.">
       <option name="closed" value="true" />
@@ -711,7 +700,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764447961963</updated>
     </task>
-    <option name="localTasksCounter" value="321" />
+    <task id="LOCAL-00321" summary="Initialize `UAuraEQS_FindRangedAttackPosition` with default pathing grid generator and configure query options. Sync `.idea/workspace.xml` changes.">
+      <option name="closed" value="true" />
+      <created>1764448833649</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
+      <option name="project" value="LOCAL" />
+      <updated>1764448833649</updated>
+    </task>
+    <task id="LOCAL-00322" summary="Mark `UAuraEQS_FindRangedAttackPosition` as `BlueprintType` and expose `UAuraEQSQuery` in `AAuraEQSTestingPawn`. Add related blueprint asset.">
+      <option name="closed" value="true" />
+      <created>1764449345988</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
+      <option name="project" value="LOCAL" />
+      <updated>1764449345988</updated>
+    </task>
+    <option name="localTasksCounter" value="323" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -721,8 +726,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor AI controller integration and initialize blackboard and behavior tree assets for enemy characters." />
-    <MESSAGE value="Add `AuraBTS_FindNearestPlayer` service node and integrate with AI behavior tree&#10;&#10;- Added `UAuraBTS_FindNearestPlayer` class to locate the nearest player.&#10;- Updated `BT_Aura_Enemy_BehaviorTree` to include the new service node.&#10;- Reflected changes in `.idea/workspace.xml` for file tracking." />
     <MESSAGE value="Update `.idea/workspace.xml` to reflect changes in AI behavior tree and service node files" />
     <MESSAGE value="Enhance `AuraBTS_FindNearestPlayer` functionality&#10;&#10;- Added blackboard key selectors for nearest player, distance, and validity.&#10;- Implemented player detection and distance calculation in `TickNode`.&#10;- Updated `BT_Aura_Enemy_BehaviorTree` and `.idea/workspace.xml` for sync." />
     <MESSAGE value="Refactor `AuraBTS_FindNearestPlayer` to iterate over player controllers for improved reliability and accuracy." />
@@ -746,7 +749,9 @@
     <MESSAGE value="Add `AuraBTTask_GoAroundTarget` for AI navigation and update related assets" />
     <MESSAGE value="Add `AuraEQSTestingPawn` and `AuraEQS_FindRangedAttackPosition` classes to support AI EQS testing and ranged attack position queries. Update `AuraBTTask_GoAroundTarget` with navigation enhancements and include new blackboard keys." />
     <MESSAGE value="Mark `UAuraEQS_FindRangedAttackPosition` class as `Blueprintable` to enable blueprint integration. Sync `.idea/workspace.xml` with updated changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Mark `UAuraEQS_FindRangedAttackPosition` class as `Blueprintable` to enable blueprint integration. Sync `.idea/workspace.xml` with updated changes." />
+    <MESSAGE value="Initialize `UAuraEQS_FindRangedAttackPosition` with default pathing grid generator and configure query options. Sync `.idea/workspace.xml` changes." />
+    <MESSAGE value="Mark `UAuraEQS_FindRangedAttackPosition` as `BlueprintType` and expose `UAuraEQSQuery` in `AAuraEQSTestingPawn`. Add related blueprint asset." />
+    <option name="LAST_COMMIT_MESSAGE" value="Mark `UAuraEQS_FindRangedAttackPosition` as `BlueprintType` and expose `UAuraEQSQuery` in `AAuraEQSTestingPawn`. Add related blueprint asset." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
