@@ -7,6 +7,7 @@
 #include "AbilitySystemComponent.h"
 #include "AI/AuraAIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Tags/AuraTags.h"
 
 UAuraBTTask_Attack::UAuraBTTask_Attack(FObjectInitializer const& ObjectInitializer)
 {
@@ -35,6 +36,7 @@ EBTNodeResult::Type UAuraBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& Owne
 	
 	// Create a tag container with the abilities you want to activate
 	FGameplayTagContainer AbilityTags;
+	AbilityTags.AddTag(Aura::Ability::Attack::Attack);
 	// Add your attack ability tag(s) here, for example:
 	// AbilityTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Abilities.Attack")));
 	
