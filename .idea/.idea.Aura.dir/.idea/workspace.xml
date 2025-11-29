@@ -8,9 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Montages/Spear/AM_Aura_Goblin_Spear_Attack.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Goblins/BP_Goblin_Spear.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Goblins/BP_Goblin_Spear.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BehaviorTree/BT_Aura_Enemy_BehaviorTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BehaviorTree/BT_Aura_Enemy_BehaviorTree.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Maps/TestMap.umap" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://16" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://18" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -328,23 +327,7 @@
       <workItem from="1764376837141" duration="2501000" />
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
-      <workItem from="1764443395410" duration="12988000" />
-    </task>
-    <task id="LOCAL-00283" summary="Added `Resistance` gameplay tag support to attribute filtering in `AuraAttributeInfo` and updated `.idea/workspace.xml` with Resistance-related assets.">
-      <option name="closed" value="true" />
-      <created>1764296348134</created>
-      <option name="number" value="00283" />
-      <option name="presentableId" value="LOCAL-00283" />
-      <option name="project" value="LOCAL" />
-      <updated>1764296348134</updated>
-    </task>
-    <task id="LOCAL-00284" summary="Renamed resistance gameplay tags for clarity and updated corresponding comments.">
-      <option name="closed" value="true" />
-      <created>1764296651403</created>
-      <option name="number" value="00284" />
-      <option name="presentableId" value="LOCAL-00284" />
-      <option name="project" value="LOCAL" />
-      <updated>1764296651403</updated>
+      <workItem from="1764443395410" duration="13898000" />
     </task>
     <task id="LOCAL-00285" summary="Updated `.idea/workspace.xml` to clean up stale changelist entries and synchronize with updated asset references.">
       <option name="closed" value="true" />
@@ -722,7 +705,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764458569881</updated>
     </task>
-    <option name="localTasksCounter" value="332" />
+    <task id="LOCAL-00332" summary="Update `UAuraGA_MeleeAttack` to use `GetAttackMontage` instead of `GetHitReactMontage` for animation handling">
+      <option name="closed" value="true" />
+      <created>1764458834936</created>
+      <option name="number" value="00332" />
+      <option name="presentableId" value="LOCAL-00332" />
+      <option name="project" value="LOCAL" />
+      <updated>1764458834937</updated>
+    </task>
+    <task id="LOCAL-00333" summary="Update `AuraEnemyCharacter` with `GetAttackMontage_Implementation` and refine logging in `AuraGA_MeleeAttack`">
+      <option name="closed" value="true" />
+      <created>1764458945877</created>
+      <option name="number" value="00333" />
+      <option name="presentableId" value="LOCAL-00333" />
+      <option name="project" value="LOCAL" />
+      <updated>1764458945877</updated>
+    </task>
+    <option name="localTasksCounter" value="334" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,8 +731,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Add `RandomPitchMultiplier` to manage pitch variation in flight and impact sounds" />
-    <MESSAGE value="Update `GE_Aura_Hazards_Fire.uasset` asset" />
     <MESSAGE value="Rename `bDestroyOnEffectRemoval` to `bDestroyOnEffectApplication` and add `bApplyEffectsToEnemies` property in `AuraEffectActor`. Update redirects in `DefaultEngine.ini`." />
     <MESSAGE value="Implement `IGameplayTagAssetInterface` in `AuraBaseCharacter` and add support for `CharacterTags` for better gameplay tag management. Introduce `Player` and `Enemy` entity tags in `AuraTags`." />
     <MESSAGE value="Add `AffectedEntitiesTags` and `CanAffectActor` logic to `AuraEffectActor` for tag-based actor filtering." />
@@ -757,7 +754,9 @@
     <MESSAGE value="Remove debug message from `UAuraGA_MeleeAttack::ActivateAbility` and update `.idea/workspace.xml`." />
     <MESSAGE value="Add hit react montage handling to `UAuraGA_MeleeAttack`&#10;&#10;- Integrated `PlayMontageAndWait` task to play hit react montages in melee attack ability.&#10;- Added helper functions for montage completion, interruption, and cancellation.&#10;- Updated `AuraBaseCharacter` and `AuraCombatInterface` to support attack montage references." />
     <MESSAGE value="Refactor melee attack ability cleanup logic and adjust montage properties&#10;&#10;- Updated `EndAbility` calls in `UAuraGA_MeleeAttack` to include additional parameters for improved cleanup handling.&#10;- Moved `AttackMontage` property from `AuraBaseCharacter` to `AuraEnemyCharacter` for better character-specific management." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor melee attack ability cleanup logic and adjust montage properties&#10;&#10;- Updated `EndAbility` calls in `UAuraGA_MeleeAttack` to include additional parameters for improved cleanup handling.&#10;- Moved `AttackMontage` property from `AuraBaseCharacter` to `AuraEnemyCharacter` for better character-specific management." />
+    <MESSAGE value="Update `UAuraGA_MeleeAttack` to use `GetAttackMontage` instead of `GetHitReactMontage` for animation handling" />
+    <MESSAGE value="Update `AuraEnemyCharacter` with `GetAttackMontage_Implementation` and refine logging in `AuraGA_MeleeAttack`" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `AuraEnemyCharacter` with `GetAttackMontage_Implementation` and refine logging in `AuraGA_MeleeAttack`" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
