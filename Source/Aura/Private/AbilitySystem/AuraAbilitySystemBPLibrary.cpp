@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerState.h"
 #include "AbilitySystem/Attributes/AuraPlayerAttributeSet.h"
+#include "AbilitySystem/Abilities/AuraGameplayAbility.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "UI/Controllers/AuraAttributeMenuWidgetController.h"
 #include "UI/Controllers/AuraOverlayWidgetController.h"
@@ -103,20 +104,44 @@ void UAuraAbilitySystemBPLibrary::InitializeDefaultAttributes(const UObject* Wor
 void UAuraAbilitySystemBPLibrary::GiveStartupAbilities(const UObject* WorldContextObject, UAbilitySystemComponent* ASC, ECharacterClass CharacterClass)
 {
 	UAuraCharacterClassInfo* CharacterClassInfo { GetCharacterClassInfo(WorldContextObject) };
-	if (!CharacterClassInfo) { return; }
+	if (!CharacterClassInfo || !ASC) { return; }
+	
+	// Grant common abilities
 	for (TSubclassOf<UGameplayAbility> AbilityClass : CharacterClassInfo->CommonAbilities)
 	{
-		FGameplayAbilitySpec AbilitySpec { FGameplayAbilitySpec(AbilityClass, 1.) };
+		if (!AbilityClass) { continue; }
+		
+		FGameplayAbilitySpec AbilitySpec { AbilityClass, 1 };
+		
+		// CRITICAL FIX: Set the input tag from the ability's default object
+		if (const UAuraGameplayAbility* AuraAbility = AbilityClass->GetDefaultObject<UAuraGameplayAbility>())
+		{
+			FGameplayTagContainer& DynamicTags = AbilitySpec.GetDynamicSpecSourceTags();
+			DynamicTags.AddTag(AuraAbility->StartupInputTag);
+		}
+		
 		ASC->GiveAbility(AbilitySpec);
 	}
-	for (const FCharacterClassDefaultInfo& DefaultInfo {CharacterClassInfo->GetDefaultInfo(CharacterClass) }; 
-		TSubclassOf<UGameplayAbility> AbilityClass : DefaultInfo.ClassAbilities)
+	
+	// Grant class-specific abilities
+	const FCharacterClassDefaultInfo& DefaultInfo { CharacterClassInfo->GetDefaultInfo(CharacterClass) };
+	for (TSubclassOf<UGameplayAbility> AbilityClass : DefaultInfo.ClassAbilities)
 	{
-		if (IAuraCombatInterface* CombatInterface { Cast<IAuraCombatInterface>(ASC->GetAvatarActor()) })
+		if (!AbilityClass) { continue; }
+		
+		IAuraCombatInterface* CombatInterface { Cast<IAuraCombatInterface>(ASC->GetAvatarActor()) };
+		if (!CombatInterface) { continue; }
+		
+		FGameplayAbilitySpec AbilitySpec { AbilityClass, CombatInterface->GetCharacterLevel() };
+		
+		// CRITICAL FIX: Set the input tag from the ability's default object
+		if (const UAuraGameplayAbility* AuraAbility = AbilityClass->GetDefaultObject<UAuraGameplayAbility>())
 		{
-			FGameplayAbilitySpec AbilitySpec { FGameplayAbilitySpec(AbilityClass, CombatInterface->GetCharacterLevel()) };
-			ASC->GiveAbility(AbilitySpec);
+			FGameplayTagContainer& DynamicTags = AbilitySpec.GetDynamicSpecSourceTags();
+			DynamicTags.AddTag(AuraAbility->StartupInputTag);
 		}
+		
+		ASC->GiveAbility(AbilitySpec);
 	}
 }
 

@@ -2,6 +2,9 @@
 
 
 #include "AI/Tasks/AuraBTTask_Attack.h"
+
+#include "AbilitySystemBlueprintLibrary.h"
+#include "AbilitySystemComponent.h"
 #include "AI/AuraAIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
@@ -20,8 +23,23 @@ EBTNodeResult::Type UAuraBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& Owne
 		return EBTNodeResult::Failed;
 	}
  
-	const FVector ActorLocation = OwnerComp.GetAIOwner()->GetPawn()->GetActorLocation();
-	DrawDebugSphere(OwnerComp.GetBlackboardComponent()->GetOwner()->GetWorld(), ActorLocation, 40.f, 12.f, FColor::Red, false, 3.f);
+	APawn* AIPawn = OwnerComp.GetAIOwner()->GetPawn();
+	
+	// Get the ability system component from the AI pawn
+	UAbilitySystemComponent* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(AIPawn);
+	if (!ASC)
+	{
+		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
+		return EBTNodeResult::Failed;
+	}
+	
+	// Create a tag container with the abilities you want to activate
+	FGameplayTagContainer AbilityTags;
+	// Add your attack ability tag(s) here, for example:
+	// AbilityTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Abilities.Attack")));
+	
+	// Try to activate abilities by tag
+	ASC->TryActivateAbilitiesByTag(AbilityTags);
  
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;
