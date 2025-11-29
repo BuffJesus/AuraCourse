@@ -1,5 +1,5 @@
 // AuraBTS_FindNearestPlayer.cpp
-#include "AI/Tasks/AuraBTS_FindNearestPlayer.h"
+#include "AI/Services/AuraBTS_FindNearestPlayer.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
