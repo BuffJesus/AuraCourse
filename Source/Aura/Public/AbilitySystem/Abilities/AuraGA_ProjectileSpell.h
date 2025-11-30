@@ -8,6 +8,7 @@
 #include "AuraGA_ProjectileSpell.generated.h"
 
 class AAuraProjectile;
+class UAbilityTask_PlayMontageAndWait;
 
 UCLASS()
 class AURA_API UAuraGA_ProjectileSpell : public UAuraDamageGameplayAbility
@@ -40,6 +41,10 @@ protected:
 	FGameplayTag ProjectileFlightCue;
 
 	/** Gameplay Cue for projectile impact effects */
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GameplayCue", meta = (Categories = "GameplayCue"))
-	FGameplayTag ProjectileImpactCue;
+        UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GameplayCue", meta = (Categories = "GameplayCue"))
+        FGameplayTag ProjectileImpactCue;
+
+        /** Stored montage task to keep it alive for callbacks */
+        UPROPERTY()
+        TObjectPtr<UAbilityTask_PlayMontageAndWait> PlayMontageTask;
 };

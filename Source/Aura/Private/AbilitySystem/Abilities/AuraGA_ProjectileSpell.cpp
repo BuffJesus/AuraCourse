@@ -26,10 +26,17 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
                 return;
         }
 
+        if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
+        {
+                EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                return;
+        }
+
         if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
         {
                 if (UAnimMontage* MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor))
                 {
+                        PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
                         UAbilityTask_PlayMontageAndWait* PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
                                 this,
                                 NAME_None,
@@ -37,6 +44,19 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
                                 1.0f
                         );
 
+                        if (PlayMontageTask)
+                        {
+                                PlayMontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+                                PlayMontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+                                PlayMontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+                                PlayMontageTask->OnBlendOut.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+
+                                PlayMontageTask->ReadyForActivation();
+                        }
+                        else
+                        {
+                                EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                        }
                         PlayMontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
                         PlayMontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
                         PlayMontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
