@@ -8,8 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Montages/Spear/AM_Aura_Goblin_Spear_Attack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Montages/Spear/AM_Aura_Goblin_Spear_Attack.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://18" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://19" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -327,23 +326,7 @@
       <workItem from="1764376837141" duration="2501000" />
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
-      <workItem from="1764443395410" duration="14565000" />
-    </task>
-    <task id="LOCAL-00286" summary="Added randomized damage ranges for specific damage types in `AuraDamageGameplayAbility`. Refactored logic to support `TMap&lt;FGameplayTag, FDamageRange&gt;` for more flexibility.">
-      <option name="closed" value="true" />
-      <created>1764298491288</created>
-      <option name="number" value="00286" />
-      <option name="presentableId" value="LOCAL-00286" />
-      <option name="project" value="LOCAL" />
-      <updated>1764298491288</updated>
-    </task>
-    <task id="LOCAL-00287" summary="Synced `.idea/workspace.xml` with updated file references and removed outdated entries for `GA_Aura_Spell_Fireball` assets.">
-      <option name="closed" value="true" />
-      <created>1764298965502</created>
-      <option name="number" value="00287" />
-      <option name="presentableId" value="LOCAL-00287" />
-      <option name="project" value="LOCAL" />
-      <updated>1764298965502</updated>
+      <workItem from="1764443395410" duration="15110000" />
     </task>
     <task id="LOCAL-00288" summary="Added `Destroy()` call to clean up `AuraGCN_ProjectileFlight` and synced `.idea/workspace.xml` with updated file references and new Fireball asset changes.">
       <option name="closed" value="true" />
@@ -721,7 +704,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764459928291</updated>
     </task>
-    <option name="localTasksCounter" value="335" />
+    <task id="LOCAL-00335" summary="Update `AuraGA_MeleeAttack` to use motion warping for facing target and refine AI attack task with event data integration">
+      <option name="closed" value="true" />
+      <created>1764460555249</created>
+      <option name="number" value="00335" />
+      <option name="presentableId" value="LOCAL-00335" />
+      <option name="project" value="LOCAL" />
+      <updated>1764460555249</updated>
+    </task>
+    <task id="LOCAL-00336" summary="Refine melee attack ability to use const-cast for target acquisition, update default property initialization, and improve AI attack task with ability system checks.">
+      <option name="closed" value="true" />
+      <created>1764460780102</created>
+      <option name="number" value="00336" />
+      <option name="presentableId" value="LOCAL-00336" />
+      <option name="project" value="LOCAL" />
+      <updated>1764460780102</updated>
+    </task>
+    <option name="localTasksCounter" value="337" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -731,8 +730,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Implement `IGameplayTagAssetInterface` in `AuraBaseCharacter` and add support for `CharacterTags` for better gameplay tag management. Introduce `Player` and `Enemy` entity tags in `AuraTags`." />
-    <MESSAGE value="Add `AffectedEntitiesTags` and `CanAffectActor` logic to `AuraEffectActor` for tag-based actor filtering." />
     <MESSAGE value="Fix `CanAffectActor` method declaration in `AuraEffectActor` to remove redundant class qualifier." />
     <MESSAGE value="Refactor `CanAffectActor` in `AuraEffectActor` to improve readability and move implementation to `.cpp` file." />
     <MESSAGE value="Rename `bHasHitReactTag` to `bHitReacting` in `AuraEnemyCharacter` and update related logic to manage AI blackboard synchronization." />
@@ -756,7 +753,9 @@
     <MESSAGE value="Update `UAuraGA_MeleeAttack` to use `GetAttackMontage` instead of `GetHitReactMontage` for animation handling" />
     <MESSAGE value="Update `AuraEnemyCharacter` with `GetAttackMontage_Implementation` and refine logging in `AuraGA_MeleeAttack`" />
     <MESSAGE value="Clean up `.idea/workspace.xml` to remove stale changelist entries and synchronize with updated asset references in Behavior Tree and TestMap." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up `.idea/workspace.xml` to remove stale changelist entries and synchronize with updated asset references in Behavior Tree and TestMap." />
+    <MESSAGE value="Update `AuraGA_MeleeAttack` to use motion warping for facing target and refine AI attack task with event data integration" />
+    <MESSAGE value="Refine melee attack ability to use const-cast for target acquisition, update default property initialization, and improve AI attack task with ability system checks." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refine melee attack ability to use const-cast for target acquisition, update default property initialization, and improve AI attack task with ability system checks." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
