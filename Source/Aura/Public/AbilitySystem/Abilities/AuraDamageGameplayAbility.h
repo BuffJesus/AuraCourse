@@ -45,7 +45,7 @@ protected:
 
         /** Builds a damage effect spec using a caller-provided effect context */
         UFUNCTION(BlueprintCallable, Category = "Aura|Damage")
-        FGameplayEffectSpecHandle MakeDamageEffectSpecHandleWithContext(const FGameplayEffectContextHandle& EffectContextHandle) const;
+        FGameplayEffectSpecHandle MakeDamageEffectSpecHandle(const FGameplayEffectContextHandle& EffectContextHandle) const;
 
         /** Applies a pre-built damage spec to a target actor if it has an ASC */
         UFUNCTION(BlueprintCallable, Category = "Aura|Damage")
