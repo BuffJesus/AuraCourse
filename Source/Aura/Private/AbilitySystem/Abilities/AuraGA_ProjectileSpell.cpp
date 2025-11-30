@@ -42,7 +42,7 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
                                 NAME_None,
                                 MontageToPlay,
                                 1.0f
-                        );
+                        ));
 
                         if (PlayMontageTask)
                         {
