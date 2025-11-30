@@ -37,6 +37,7 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
                 if (UAnimMontage* MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor))
                 {
                         PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
+                        UAbilityTask_PlayMontageAndWait* PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
                                 this,
                                 NAME_None,
                                 MontageToPlay,
@@ -56,6 +57,11 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
                         {
                                 EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
                         }
+                        PlayMontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+                        PlayMontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+                        PlayMontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+
+                        PlayMontageTask->ReadyForActivation();
                         return;
                 }
         }
