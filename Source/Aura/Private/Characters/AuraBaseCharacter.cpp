@@ -32,6 +32,7 @@ for (const auto& [Channel, Response] : MeshCollisionResponses)
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), WeaponSocketName);
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GetMesh()->SetGenerateOverlapEvents(true);
 }
 
 void AAuraBaseCharacter::BeginPlay()

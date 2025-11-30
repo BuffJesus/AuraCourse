@@ -7,7 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Ghoul/Animations/Attack_L.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Ghoul/Animations/Attack_L.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Ghoul/Animations/Attack_R.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Ghoul/Animations/Attack_R.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +41,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://11" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://13" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -333,15 +338,7 @@
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
       <workItem from="1764443395410" duration="19175000" />
-      <workItem from="1764469867606" duration="6769000" />
-    </task>
-    <task id="LOCAL-00302" summary="Update `.idea/workspace.xml` and refine `AuraBTS_FindNearestPlayer` formatting&#10;&#10;- Adjusted `.idea/workspace.xml` configurations.&#10;- Updated variable initialization and formatting in `AuraBTS_FindNearestPlayer`.">
-      <option name="closed" value="true" />
-      <created>1764373213353</created>
-      <option name="number" value="00302" />
-      <option name="presentableId" value="LOCAL-00302" />
-      <option name="project" value="LOCAL" />
-      <updated>1764373213353</updated>
+      <workItem from="1764469867606" duration="7809000" />
     </task>
     <task id="LOCAL-00303" summary="Update blackboard and behavior tree assets, refine `AuraBTS_FindNearestPlayer`, and adjust workspace configuration&#10;&#10;- Added an additional blackboard key to `.uproject.DotSettings.user`.&#10;- Refined variable formatting in `AuraBTS_FindNearestPlayer`.&#10;- Updated `.idea/workspace.xml` to track changes in AI-related assets.">
       <option name="closed" value="true" />
@@ -727,7 +724,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764478405004</updated>
     </task>
-    <option name="localTasksCounter" value="351" />
+    <task id="LOCAL-00351" summary="Clean up `.idea/workspace.xml` by removing redundant metadata and synchronizing configurations.">
+      <option name="closed" value="true" />
+      <created>1764479180773</created>
+      <option name="number" value="00351" />
+      <option name="presentableId" value="LOCAL-00351" />
+      <option name="project" value="LOCAL" />
+      <updated>1764479180773</updated>
+    </task>
+    <option name="localTasksCounter" value="352" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -737,7 +742,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor ability initialization for `AuraBaseCharacter` and `AuraEnemyCharacter`&#10;&#10;- Replaced direct `StartupAbilities` assignment with `GiveStartupAbilities` for clarity and scalability.&#10;- Adjusted `BeginPlay` and `PossessedBy` logic in `AuraEnemyCharacter` to streamline ability initialization.&#10;- Minor cleanup and formatting fixes." />
     <MESSAGE value="Set input tags for abilities and enhance AI attack task logic&#10;&#10;- Updated `UAuraAbilitySystemBPLibrary` to assign input tags dynamically from `UAuraGameplayAbility` during ability initialization.&#10;- Enhanced `AuraBTTask_Attack` to activate AI abilities based on gameplay tags. Added tag container setup for attack abilities.&#10;- Minor improvements and fixes in `.idea/workspace.xml` configuration files." />
     <MESSAGE value="Add activation logic to `UAuraGA_MeleeAttack` and update AI attack task to use `AuraTags` &#10;&#10;- Implemented `ActivateAbility` in `UAuraGA_MeleeAttack` with debug messaging.&#10;- Updated `AuraBTTask_Attack` to include `AuraTags` for managing ability activation." />
     <MESSAGE value="Remove debug message from `UAuraGA_MeleeAttack::ActivateAbility` and update `.idea/workspace.xml`." />
@@ -762,7 +766,8 @@
     <MESSAGE value="Clean up `.idea/workspace.xml` by removing stale metadata and synchronizing task configurations." />
     <MESSAGE value="Fix formatting inconsistencies in `AuraBaseCharacter` header file and update `.idea/workspace.xml` for metadata synchronization." />
     <MESSAGE value="Update `BaseWalkSpeed` property in `AuraEnemyCharacter` to `EditAnywhere` and sync `.idea/workspace.xml` with new assets for enemy ghouls" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `BaseWalkSpeed` property in `AuraEnemyCharacter` to `EditAnywhere` and sync `.idea/workspace.xml` with new assets for enemy ghouls" />
+    <MESSAGE value="Clean up `.idea/workspace.xml` by removing redundant metadata and synchronizing configurations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up `.idea/workspace.xml` by removing redundant metadata and synchronizing configurations." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
