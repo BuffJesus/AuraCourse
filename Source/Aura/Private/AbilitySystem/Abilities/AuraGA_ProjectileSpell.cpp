@@ -3,6 +3,7 @@
 #include "AbilitySystem/Abilities/AuraGA_ProjectileSpell.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
+#include "Abilities/GameplayAbilityTargetTypes.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Abilities/Tasks/AbilityTask_WaitGameplayEvent.h"
 #include "AbilitySystem/Tasks/AuraTargetDataUnderMouse.h"
@@ -12,15 +13,21 @@
 
 UAuraGA_ProjectileSpell::UAuraGA_ProjectileSpell()
 {
-	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
 
-	// This ability runs on both client and server
-	// Client predicts the cast, server spawns the projectile
-	NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
+// This ability runs on both client and server
+// Client predicts the cast, server spawns the projectile
+NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
 
-	// Block re-activation while this ability is active (prevents machine-gun casting)
-	ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
-	ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
+// Allow AI to trigger this ability from gameplay events (e.g., AuraBTTask_Attack)
+FAbilityTriggerData TriggerData;
+TriggerData.TriggerTag = Aura::Ability::Attack::Attack;
+TriggerData.TriggerSource = EGameplayAbilityTriggerSource::GameplayEvent;
+AbilityTriggers.Add(TriggerData);
+
+// Block re-activation while this ability is active (prevents machine-gun casting)
+ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
+ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
 }
 
 void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
@@ -44,35 +51,67 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 		return;
 	}
 
-	// Step 1: Get target data (mouse cursor location)
-	// This works on both client and server
-	TargetDataTask = UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse(this);
-	if (!TargetDataTask)
-	{
-		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-		return;
-	}
-	
-	TargetDataTask->ValidData.AddDynamic(this, &UAuraGA_ProjectileSpell::OnTargetDataReceived);
-	TargetDataTask->ReadyForActivation();
+    // Step 1: Get target data (mouse cursor location for players, combat target for AI)
+    if (ActorInfo && ActorInfo->PlayerController.IsValid())
+    {
+        TargetDataTask = UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse(this);
+        if (!TargetDataTask)
+        {
+            EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+            return;
+        }
+
+        TargetDataTask->ValidData.AddDynamic(this, &UAuraGA_ProjectileSpell::OnTargetDataReceived);
+        TargetDataTask->ReadyForActivation();
+    }
+    else
+    {
+        // AI characters don't have mouse input; use their combat target instead
+        if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+        {
+            if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
+            {
+                FGameplayAbilityTargetDataHandle DataHandle;
+                FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
+                TargetData->HitResult.Location = CombatTarget->GetActorLocation();
+                DataHandle.Add(TargetData);
+
+                OnTargetDataReceived(DataHandle);
+                return;
+            }
+        }
+
+        EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+    }
 }
 
 void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetDataHandle& DataHandle)
 {
 	// Extract target location from data handle
 	CachedTargetLocation = FVector::ZeroVector;
-	if (DataHandle.Data.Num() > 0)
-	{
-		const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
-		if (TargetData)
-		{
-			const FHitResult* HitResult = TargetData->GetHitResult();
-			if (HitResult)
-			{
-				CachedTargetLocation = HitResult->Location;
-			}
-		}
-	}
+        if (DataHandle.Data.Num() > 0)
+        {
+                const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
+                if (TargetData)
+                {
+                        const FHitResult* HitResult = TargetData->GetHitResult();
+                        if (HitResult)
+                        {
+                                CachedTargetLocation = HitResult->Location;
+                        }
+                }
+        }
+
+        if (CachedTargetLocation.IsNearlyZero())
+        {
+                if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo()))
+                {
+                        if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
+                        {
+                                CachedTargetLocation = CombatTarget->GetActorLocation();
+                        }
+                }
+        }
 
 	// Step 2: Play montage (on both client and server for prediction)
 	AActor* AvatarActor = GetAvatarActorFromActorInfo();
