@@ -7,9 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -331,15 +329,7 @@
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
       <workItem from="1764443395410" duration="19175000" />
-      <workItem from="1764469867606" duration="4585000" />
-    </task>
-    <task id="LOCAL-00298" summary="Update `.idea/workspace.xml` to reflect changes in AI behavior tree and service node files">
-      <option name="closed" value="true" />
-      <created>1764372190283</created>
-      <option name="number" value="00298" />
-      <option name="presentableId" value="LOCAL-00298" />
-      <option name="project" value="LOCAL" />
-      <updated>1764372190283</updated>
+      <workItem from="1764469867606" duration="4939000" />
     </task>
     <task id="LOCAL-00299" summary="Enhance `AuraBTS_FindNearestPlayer` functionality&#10;&#10;- Added blackboard key selectors for nearest player, distance, and validity.&#10;- Implemented player detection and distance calculation in `TickNode`.&#10;- Updated `BT_Aura_Enemy_BehaviorTree` and `.idea/workspace.xml` for sync.">
       <option name="closed" value="true" />
@@ -725,7 +715,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764472871776</updated>
     </task>
-    <option name="localTasksCounter" value="347" />
+    <task id="LOCAL-00347" summary="Add additional combat socket configurations and integrate tagged attack montages.&#10;&#10;- Introduced LeftHandSocket and RightHandSocket for enhanced combat flexibility.&#10;- Added support for tagged attack montages to simplify multi-attack configurations.&#10;- Refactored dissolve logic and implemented IsDead state tracking.">
+      <option name="closed" value="true" />
+      <created>1764475767521</created>
+      <option name="number" value="00347" />
+      <option name="presentableId" value="LOCAL-00347" />
+      <option name="project" value="LOCAL" />
+      <updated>1764475767521</updated>
+    </task>
+    <option name="localTasksCounter" value="348" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,7 +733,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Mark `UAuraEQS_FindRangedAttackPosition` as `BlueprintType` and expose `UAuraEQSQuery` in `AAuraEQSTestingPawn`. Add related blueprint asset." />
     <MESSAGE value="Refactor `UAuraEQS_FindRangedAttackPosition` constructor to include instanced subobjects for query option and generator. Adjust generator configuration and update `.idea/workspace.xml`." />
     <MESSAGE value="Refactor `UAuraEQS_FindRangedAttackPosition` to adjust pathing grid generator instantiation and update `.idea/workspace.xml`." />
     <MESSAGE value="Add melee attack ability and initialize support for class-specific abilities&#10;&#10;- Introduced `UAuraGA_MeleeAttack` class.&#10;- Added `CommonAbilities` and `ClassAbilities` to `UAuraCharacterClassInfo` for ability management.&#10;- Implemented `GiveStartupAbilities` in `UAuraAbilitySystemBPLibrary` to assign abilities based on character class.&#10;- Updated `.idea/workspace.xml` and gameplay tags for ability categorization." />
@@ -760,7 +757,8 @@
     <MESSAGE value="Prevent self-hits and friendly fire in `UAuraGA_MeleeAttack` by adding checks for actor tags and relationships." />
     <MESSAGE value="Improve `UAuraGA_MeleeAttack` by adding direct interface-based ASC retrieval and refining combat target checks to prevent accidental hits." />
     <MESSAGE value="Update `.idea/workspace.xml` to remove stale file references and sync task metadata." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea/workspace.xml` to remove stale file references and sync task metadata." />
+    <MESSAGE value="Add additional combat socket configurations and integrate tagged attack montages.&#10;&#10;- Introduced LeftHandSocket and RightHandSocket for enhanced combat flexibility.&#10;- Added support for tagged attack montages to simplify multi-attack configurations.&#10;- Refactored dissolve logic and implemented IsDead state tracking." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add additional combat socket configurations and integrate tagged attack montages.&#10;&#10;- Introduced LeftHandSocket and RightHandSocket for enhanced combat flexibility.&#10;- Added support for tagged attack montages to simplify multi-attack configurations.&#10;- Refactored dissolve logic and implemented IsDead state tracking." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
