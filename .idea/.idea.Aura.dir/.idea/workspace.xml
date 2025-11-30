@@ -8,11 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Enemy/Ranged/BP_Aura_Enemy_SlingshotRock.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Enemy/Ranged/GA_Aura_Enemy_Ranged.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Ghoul/BP_Aura_Enemy_Ghoul.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Ghoul/BP_Aura_Enemy_Ghoul.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +42,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://3" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://12" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -332,23 +332,7 @@
       <workItem from="1764432380898" duration="1959000" />
       <workItem from="1764443395410" duration="19175000" />
       <workItem from="1764469867606" duration="11385000" />
-      <workItem from="1764518098996" duration="1250000" />
-    </task>
-    <task id="LOCAL-00310" summary="Implement `IGameplayTagAssetInterface` in `AuraBaseCharacter` and add support for `CharacterTags` for better gameplay tag management. Introduce `Player` and `Enemy` entity tags in `AuraTags`.">
-      <option name="closed" value="true" />
-      <created>1764376948831</created>
-      <option name="number" value="00310" />
-      <option name="presentableId" value="LOCAL-00310" />
-      <option name="project" value="LOCAL" />
-      <updated>1764376948831</updated>
-    </task>
-    <task id="LOCAL-00311" summary="Add `AffectedEntitiesTags` and `CanAffectActor` logic to `AuraEffectActor` for tag-based actor filtering.">
-      <option name="closed" value="true" />
-      <created>1764377167099</created>
-      <option name="number" value="00311" />
-      <option name="presentableId" value="LOCAL-00311" />
-      <option name="project" value="LOCAL" />
-      <updated>1764377167099</updated>
+      <workItem from="1764518098996" duration="6439000" />
     </task>
     <task id="LOCAL-00312" summary="Fix `CanAffectActor` method declaration in `AuraEffectActor` to remove redundant class qualifier.">
       <option name="closed" value="true" />
@@ -726,7 +710,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764483128406</updated>
     </task>
-    <option name="localTasksCounter" value="359" />
+    <task id="LOCAL-00359" summary="Update `.idea/workspace.xml` and asset references to include new ability system files (`BP_Aura_Enemy_SlingshotRock`, `GA_Aura_Enemy_Ranged`) and synchronize changes in existing assets (`BP_Aura_Enemy_Ghoul`, `GA_Aura_Spell_Fireball`).">
+      <option name="closed" value="true" />
+      <created>1764519584550</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
+      <option name="project" value="LOCAL" />
+      <updated>1764519584551</updated>
+    </task>
+    <task id="LOCAL-00360" summary="Fix ability replication and client-side handling for mixed mode ASC  &#10;&#10;- Adjusted `NetExecutionPolicy` for projectile abilities to support local prediction.&#10;- Ensured projectile spawn logic is server-authoritative.&#10;- Added validation for `Weapon` in `GetCombatSocketLocation`.&#10;- Fixed ability granting for both server and client in mixed replication mode.&#10;- Ensured `AddCharacterAbilities` runs on client-side for autonomous proxies.">
+      <option name="closed" value="true" />
+      <created>1764521244807</created>
+      <option name="number" value="00360" />
+      <option name="presentableId" value="LOCAL-00360" />
+      <option name="project" value="LOCAL" />
+      <updated>1764521244807</updated>
+    </task>
+    <option name="localTasksCounter" value="361" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -736,8 +736,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Clean up `.idea/workspace.xml` to remove stale changelist entries and synchronize with updated asset references in Behavior Tree and TestMap." />
-    <MESSAGE value="Update `AuraGA_MeleeAttack` to use motion warping for facing target and refine AI attack task with event data integration" />
     <MESSAGE value="Refine melee attack ability to use const-cast for target acquisition, update default property initialization, and improve AI attack task with ability system checks." />
     <MESSAGE value="Sync `.idea/workspace.xml` with updated file references and include new Goblin Spear attack asset." />
     <MESSAGE value="Enhance `UAuraGA_MeleeAttack` initialization and logging, refine AI task execution for target handling and ability activation." />
@@ -761,7 +759,9 @@
     <MESSAGE value="Add debug message to `AuraGA_ProjectileSpell` for projectile activation tracing" />
     <MESSAGE value="Refactor `AuraGA_ProjectileSpell` and `AuraBaseCharacter` for improved readability and functionality, and add new `Casting` tags to ability states." />
     <MESSAGE value="Prevent early ability termination by avoiding `OnBlendOut` binding in `AuraGA_ProjectileSpell`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Prevent early ability termination by avoiding `OnBlendOut` binding in `AuraGA_ProjectileSpell`." />
+    <MESSAGE value="Update `.idea/workspace.xml` and asset references to include new ability system files (`BP_Aura_Enemy_SlingshotRock`, `GA_Aura_Enemy_Ranged`) and synchronize changes in existing assets (`BP_Aura_Enemy_Ghoul`, `GA_Aura_Spell_Fireball`)." />
+    <MESSAGE value="Fix ability replication and client-side handling for mixed mode ASC  &#10;&#10;- Adjusted `NetExecutionPolicy` for projectile abilities to support local prediction.&#10;- Ensured projectile spawn logic is server-authoritative.&#10;- Added validation for `Weapon` in `GetCombatSocketLocation`.&#10;- Fixed ability granting for both server and client in mixed replication mode.&#10;- Ensured `AddCharacterAbilities` runs on client-side for autonomous proxies." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix ability replication and client-side handling for mixed mode ASC  &#10;&#10;- Adjusted `NetExecutionPolicy` for projectile abilities to support local prediction.&#10;- Ensured projectile spawn logic is server-authoritative.&#10;- Added validation for `Weapon` in `GetCombatSocketLocation`.&#10;- Fixed ability granting for both server and client in mixed replication mode.&#10;- Ensured `AddCharacterAbilities` runs on client-side for autonomous proxies." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
