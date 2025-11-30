@@ -50,10 +50,17 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 
 			if (MontageTask)
 			{
+				// OnCompleted: Montage finished playing successfully
 				MontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+				
+				// OnInterrupted: Another montage interrupted this one
 				MontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+				
+				// OnCancelled: Montage was explicitly cancelled
 				MontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
-				MontageTask->OnBlendOut.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+				
+				// NOTE: Do NOT bind OnBlendOut - it fires when blend out STARTS, not when montage ends
+				// This was causing the ability to end early, allowing rapid re-activation
 
 				MontageTask->ReadyForActivation();
 				return;
