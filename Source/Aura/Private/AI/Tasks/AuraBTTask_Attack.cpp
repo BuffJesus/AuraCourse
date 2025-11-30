@@ -12,6 +12,9 @@
 UAuraBTTask_Attack::UAuraBTTask_Attack(FObjectInitializer const& ObjectInitializer)
 {
 	NodeName = TEXT("Attack");
+	
+	// Set up the blackboard key selector to accept Actor types
+	TargetActorSelector.AddObjectFilter(this, GET_MEMBER_NAME_CHECKED(UAuraBTTask_Attack, TargetActorSelector), AActor::StaticClass());
 }
 
 EBTNodeResult::Type UAuraBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
@@ -41,12 +44,13 @@ EBTNodeResult::Type UAuraBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& Owne
 	
 	UE_LOG(LogTemp, Log, TEXT("AuraBTTask_Attack - ASC found"));
 	
-	// Get the target actor from blackboard
-	AActor* TargetActor = Cast<AActor>(OwnerComp.GetBlackboardComponent()->GetValueAsObject("TargetToFollow"));
+	// Get the target actor from blackboard using the selector
+	AActor* TargetActor = Cast<AActor>(OwnerComp.GetBlackboardComponent()->GetValueAsObject(TargetActorSelector.SelectedKeyName));
 	
 	if (!TargetActor)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("AuraBTTask_Attack - No target in blackboard"));
+		UE_LOG(LogTemp, Warning, TEXT("AuraBTTask_Attack - No target actor found in blackboard key: %s"), 
+			*TargetActorSelector.SelectedKeyName.ToString());
 	}
 	else
 	{
@@ -60,7 +64,7 @@ EBTNodeResult::Type UAuraBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& Owne
 	EventData.Target = TargetActor;
 	
 	UE_LOG(LogTemp, Log, TEXT("AuraBTTask_Attack - Sending HandleGameplayEvent with tag: %s"), 
-	*FGameplayTag(Aura::Ability::Attack::Attack).ToString());
+		*FGameplayTag(Aura::Ability::Attack::Attack).ToString());
 	
 	// Send a gameplay event with the attack tag and target data
 	ASC->HandleGameplayEvent(Aura::Ability::Attack::Attack, &EventData);
