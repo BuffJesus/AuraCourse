@@ -220,4 +220,3 @@ void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target
 		}
 	}
 }
-}
