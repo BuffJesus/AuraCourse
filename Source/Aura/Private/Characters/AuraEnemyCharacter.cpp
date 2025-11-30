@@ -38,7 +38,7 @@ AAuraEnemyCharacter::AAuraEnemyCharacter()
 
 void AAuraEnemyCharacter::PossessedBy(AController* NewController)
 {
-	Super::PossessedBy(NewController);
+        Super::PossessedBy(NewController);
 	
 	if (!HasAuthority()) { return; }
 	
@@ -59,8 +59,8 @@ void AAuraEnemyCharacter::PossessedBy(AController* NewController)
 
 void AAuraEnemyCharacter::BeginPlay()
 {
-	Super::BeginPlay();
-	GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
+        Super::BeginPlay();
+        GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
 	
 	if (UAuraUserWidget* AuraUserWidget { Cast<UAuraUserWidget>(HealthBar->GetUserWidgetObject()) })
 	{
@@ -93,8 +93,8 @@ void AAuraEnemyCharacter::BeginPlay()
 
 void AAuraEnemyCharacter::HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
 {
-	bHitReacting = NewCount > 0;
-	GetCharacterMovement()->MaxWalkSpeed = bHitReacting ? 0.f : BaseWalkSpeed;
+        bHitReacting = NewCount > 0;
+        GetCharacterMovement()->MaxWalkSpeed = bHitReacting ? 0.f : BaseWalkSpeed;
  
 	if (!HasAuthority()) return;
 	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), bHitReacting);
@@ -102,8 +102,8 @@ void AAuraEnemyCharacter::HitReactTagChanged(const FGameplayTag CallbackTag, int
 
 void AAuraEnemyCharacter::InitializeAbilityActorInfo()
 {
-	AbilitySystemComponent->InitAbilityActorInfo(this, this);
-	AbilitySystemComponent->AbilityActorInfoSet();
+        AbilitySystemComponent->InitAbilityActorInfo(this, this);
+        AbilitySystemComponent->AbilityActorInfoSet();
 	
 	// Only initialize attributes on the server
 	if (HasAuthority()) { InitializeDefaultAttributes(); }
@@ -135,13 +135,26 @@ int32 AAuraEnemyCharacter::GetCharacterLevel() const
 
 void AAuraEnemyCharacter::Die()
 {
-	Super::Die();
-	SetLifeSpan(LifeSpan);
+        Super::Die();
+        SetLifeSpan(LifeSpan);
+}
+
+UAnimMontage* AAuraEnemyCharacter::GetAttackMontage_Implementation() const
+{
+        // Prefer the attack montage array if it has entries.
+        if (!AttackMontages.IsEmpty())
+        {
+                const int32 MontageIndex = FMath::RandRange(0, AttackMontages.Num() - 1);
+                return AttackMontages[MontageIndex].Montage;
+        }
+
+        // Fallback to the single montage property for backwards compatibility.
+        return AttackMontage;
 }
 
 void AAuraEnemyCharacter::MulticastHandleDeath_Implementation()
 {
-	Super::MulticastHandleDeath_Implementation();
+        Super::MulticastHandleDeath_Implementation();
 	
 	// Destroy health bar on all clients
 	if (HealthBar) { HealthBar->DestroyComponent(); }
