@@ -95,6 +95,7 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage);
 			
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(FireBolt);
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(MeleeAttack);
 		}
 	}
 	namespace GameplayCue

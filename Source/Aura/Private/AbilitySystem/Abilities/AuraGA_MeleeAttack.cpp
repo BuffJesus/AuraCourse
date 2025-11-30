@@ -1,35 +1,18 @@
-// Not Sure Yet
-
 #include "AbilitySystem/Abilities/AuraGA_MeleeAttack.h"
 
+#include "AbilitySystemComponent.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
-
-class UAbilityTask_PlayMontageAndWait;
-
-UAuraGA_MeleeAttack::UAuraGA_MeleeAttack()
-{
-	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
-	
-	// Set up the ability to trigger on gameplay event
-	FAbilityTriggerData TriggerData;
-	TriggerData.TriggerTag = Aura::Ability::Attack::Attack;
-	TriggerData.TriggerSource = EGameplayAbilityTriggerSource::GameplayEvent;
-	AbilityTriggers.Add(TriggerData);
-	
-	UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack::Constructor - Ability triggers configured for tag: %s"), 
-		*FGameplayTag(Aura::Ability::Attack::Attack).ToString());
-}
 
 void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                           const FGameplayAbilityActorInfo* ActorInfo, 
                                           const FGameplayAbilityActivationInfo ActivationInfo,
                                           const FGameplayEventData* TriggerEventData)
 {
-	UE_LOG(LogTemp, Warning, TEXT("=== UAuraGA_MeleeAttack::ActivateAbility START ==="));
-	
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+	
+	UE_LOG(LogTemp, Warning, TEXT("=== UAuraGA_MeleeAttack::ActivateAbility START ==="));
 	
 	// Get the avatar actor
 	AActor* AvatarActor = GetAvatarActorFromActorInfo();
@@ -40,54 +23,40 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 		return;
 	}
 	
-	UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack - AvatarActor: %s"), *AvatarActor->GetName());
+	// Cache the target
+	CachedTargetActor = TriggerEventData ? const_cast<AActor*>(Cast<AActor>(TriggerEventData->Target)) : nullptr;
 	
-	// Debug: Check if TriggerEventData exists
-	if (!TriggerEventData)
+	UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack - AvatarActor: %s, Target: %s"), 
+		*AvatarActor->GetName(),
+		CachedTargetActor ? *CachedTargetActor->GetName() : TEXT("NULL"));
+	
+	// Set up event listener for montage event
+	UAbilitySystemComponent* ASC = GetAbilitySystemComponentFromActorInfo();
+	if (ASC)
 	{
-		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack - TriggerEventData is NULL! Motion warping will not work."));
+		FGameplayEventMulticastDelegate& EventDelegate = ASC->GenericGameplayEventCallbacks.FindOrAdd(Aura::Event::Montage::MeleeAttack);
+		EventDelegate.AddUObject(this, &UAuraGA_MeleeAttack::OnMeleeAttackEvent);
 	}
-	else
+	
+	// Motion warping
+	if (CachedTargetActor)
 	{
-		UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack - TriggerEventData exists"));
-		
-		// Get target from TriggerEventData
-		AActor* TargetActor = const_cast<AActor*>(Cast<AActor>(TriggerEventData->Target));
-		
-		if (!TargetActor)
+		if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack - No target in TriggerEventData!"));
-		}
-		else
-		{
-			UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack - Target found: %s at location: %s"), 
-				*TargetActor->GetName(), 
-				*TargetActor->GetActorLocation().ToString());
-			
-			// Update facing target using motion warping
-			if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
-			{
-				UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack - Calling UpdateFacingTarget for motion warping"));
-				CombatInterface->Execute_UpdateFacingTarget(AvatarActor, TargetActor->GetActorLocation());
-			}
-			else
-			{
-				UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack - AvatarActor does not implement IAuraCombatInterface!"));
-			}
+			CombatInterface->Execute_UpdateFacingTarget(AvatarActor, CachedTargetActor->GetActorLocation());
 		}
 	}
 	
-	// Get AttackMontage from the Combat Interface
+	// Get and play montage
 	UAnimMontage* MontageToPlay = nullptr;
 	if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
 	{
 		MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor);
 	}
 	
-	// Play the montage and wait for it to complete
 	if (MontageToPlay)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack - Playing Attack montage: %s"), *MontageToPlay->GetName());
+		UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack - Playing montage: %s"), *MontageToPlay->GetName());
 		
 		UAbilityTask_PlayMontageAndWait* PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
 			this,
@@ -104,27 +73,53 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack - No Attack montage found, ending ability"));
+		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack - No Attack montage found!"));
 		EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
 	}
-	
-	UE_LOG(LogTemp, Warning, TEXT("=== UAuraGA_MeleeAttack::ActivateAbility END ==="));
+}
+
+void UAuraGA_MeleeAttack::OnMeleeAttackEvent(const FGameplayEventData* Payload)
+{
+	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::OnMeleeAttackEvent - MONTAGE EVENT FIRED!"));
+	PerformMeleeAttack();
+}
+
+void UAuraGA_MeleeAttack::PerformMeleeAttack()
+{
+	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Dealing damage!"));
+	// TODO: Implement damage logic
 }
 
 void UAuraGA_MeleeAttack::OnMontageCompleted()
 {
 	UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack - Montage completed"));
+	CleanupEventListener();
 	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
 }
 
 void UAuraGA_MeleeAttack::OnMontageCancelled()
 {
 	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack - Montage cancelled"));
+	CleanupEventListener();
 	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
 }
 
 void UAuraGA_MeleeAttack::OnMontageInterrupted()
 {
 	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack - Montage interrupted"));
+	CleanupEventListener();
 	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
+}
+
+void UAuraGA_MeleeAttack::CleanupEventListener()
+{
+	UAbilitySystemComponent* ASC = GetAbilitySystemComponentFromActorInfo();
+	if (ASC)
+	{
+		FGameplayEventMulticastDelegate* EventDelegate = ASC->GenericGameplayEventCallbacks.Find(Aura::Event::Montage::MeleeAttack);
+		if (EventDelegate)
+		{
+			EventDelegate->RemoveAll(this);
+		}
+	}
 }
