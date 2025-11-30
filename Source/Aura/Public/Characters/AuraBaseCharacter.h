@@ -53,8 +53,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	FName RightHandSocketName { "RightHandSocket" };
 
-	virtual FVector GetCombatSocketLocation() const override;
-	virtual FVector GetCombatSocketLocationByTag(const FGameplayTag& SocketTag) const override;
+        virtual FVector GetCombatSocketLocation() const override;
+        virtual FVector GetCombatSocketLocationByTag(const FGameplayTag& SocketTag) const override;
 
 	/** Optional mapping of Gameplay Tags to specific combat sockets (e.g., left/right hands) */
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
@@ -81,10 +81,11 @@ public:
 	virtual ECharacterClass GetCharacterClass() const { return ECharacterClass::DefaultClass; }
 
 	/** Combat Interface Implementations */
-	virtual UAnimMontage* GetHitReactMontage_Implementation() const override;
-	virtual bool IsDead_Implementation() const override;
-	virtual AActor* GetAvatar_Implementation() override;
-	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() const override;
+        virtual UAnimMontage* GetHitReactMontage_Implementation() const override;
+        virtual bool IsDead_Implementation() const override;
+        virtual AActor* GetAvatar_Implementation() override;
+        virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() const override;
+        virtual void UpdateFacingTarget_Implementation(const FVector& Target) override;
 	
 protected:
 	virtual void BeginPlay() override;
