@@ -9,7 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://7" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -328,15 +327,7 @@
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
       <workItem from="1764443395410" duration="19175000" />
-      <workItem from="1764469867606" duration="2075000" />
-    </task>
-    <task id="LOCAL-00296" summary="Refactor AI controller integration and initialize blackboard and behavior tree assets for enemy characters.">
-      <option name="closed" value="true" />
-      <created>1764370625865</created>
-      <option name="number" value="00296" />
-      <option name="presentableId" value="LOCAL-00296" />
-      <option name="project" value="LOCAL" />
-      <updated>1764370625865</updated>
+      <workItem from="1764469867606" duration="2996000" />
     </task>
     <task id="LOCAL-00297" summary="Add `AuraBTS_FindNearestPlayer` service node and integrate with AI behavior tree&#10;&#10;- Added `UAuraBTS_FindNearestPlayer` class to locate the nearest player.&#10;- Updated `BT_Aura_Enemy_BehaviorTree` to include the new service node.&#10;- Reflected changes in `.idea/workspace.xml` for file tracking.">
       <option name="closed" value="true" />
@@ -722,7 +713,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764471406282</updated>
     </task>
-    <option name="localTasksCounter" value="345" />
+    <task id="LOCAL-00345" summary="Improve `UAuraGA_MeleeAttack` by adding direct interface-based ASC retrieval and refining combat target checks to prevent accidental hits.">
+      <option name="closed" value="true" />
+      <created>1764472020749</created>
+      <option name="number" value="00345" />
+      <option name="presentableId" value="LOCAL-00345" />
+      <option name="project" value="LOCAL" />
+      <updated>1764472020749</updated>
+    </task>
+    <option name="localTasksCounter" value="346" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,7 +731,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Mark `UAuraEQS_FindRangedAttackPosition` class as `Blueprintable` to enable blueprint integration. Sync `.idea/workspace.xml` with updated changes." />
     <MESSAGE value="Initialize `UAuraEQS_FindRangedAttackPosition` with default pathing grid generator and configure query options. Sync `.idea/workspace.xml` changes." />
     <MESSAGE value="Mark `UAuraEQS_FindRangedAttackPosition` as `BlueprintType` and expose `UAuraEQSQuery` in `AAuraEQSTestingPawn`. Add related blueprint asset." />
     <MESSAGE value="Refactor `UAuraEQS_FindRangedAttackPosition` constructor to include instanced subobjects for query option and generator. Adjust generator configuration and update `.idea/workspace.xml`." />
@@ -757,7 +755,8 @@
     <MESSAGE value="Add sphere trace and damage logic to `UAuraGA_MeleeAttack`, initialize triggers, and expose effect handle." />
     <MESSAGE value="Refactor `UAuraGA_MeleeAttack` to create damage specs dynamically, improve error handling, and update logging for damage application." />
     <MESSAGE value="Prevent self-hits and friendly fire in `UAuraGA_MeleeAttack` by adding checks for actor tags and relationships." />
-    <option name="LAST_COMMIT_MESSAGE" value="Prevent self-hits and friendly fire in `UAuraGA_MeleeAttack` by adding checks for actor tags and relationships." />
+    <MESSAGE value="Improve `UAuraGA_MeleeAttack` by adding direct interface-based ASC retrieval and refining combat target checks to prevent accidental hits." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve `UAuraGA_MeleeAttack` by adding direct interface-based ASC retrieval and refining combat target checks to prevent accidental hits." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
