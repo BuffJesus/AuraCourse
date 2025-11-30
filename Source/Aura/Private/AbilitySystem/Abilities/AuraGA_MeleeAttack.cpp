@@ -51,17 +51,9 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 		*AvatarActor->GetName(),
 		CachedTargetActor ? *CachedTargetActor->GetName() : TEXT("NULL"));
 	
-	// Set up event listener for montage event
-	UAbilitySystemComponent* ASC = GetAbilitySystemComponentFromActorInfo();
-	if (ASC)
-	{
-		FGameplayEventMulticastDelegate& EventDelegate = ASC->GenericGameplayEventCallbacks.FindOrAdd(Aura::Event::Montage::MeleeAttack);
-		EventDelegate.AddUObject(this, &UAuraGA_MeleeAttack::OnMeleeAttackEvent);
-	}
-	
-	// Motion warping
-	if (CachedTargetActor)
-	{
+        // Motion warping
+        if (CachedTargetActor)
+        {
 		if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
 		{
 			CombatInterface->Execute_UpdateFacingTarget(AvatarActor, CachedTargetActor->GetActorLocation());
@@ -75,9 +67,25 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
 		MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor);
 	}
 	
-	if (MontageToPlay)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack - Playing montage: %s"), *MontageToPlay->GetName());
+        if (MontageToPlay)
+        {
+                // Commit the ability so the server owns the activation and replicates it to clients
+                if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
+                {
+                        UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack - CommitAbility failed"));
+                        EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                        return;
+                }
+
+                // Set up event listener for montage event
+                UAbilitySystemComponent* ASC = GetAbilitySystemComponentFromActorInfo();
+                if (ASC)
+                {
+                        FGameplayEventMulticastDelegate& EventDelegate = ASC->GenericGameplayEventCallbacks.FindOrAdd(Aura::Event::Montage::MeleeAttack);
+                        EventDelegate.AddUObject(this, &UAuraGA_MeleeAttack::OnMeleeAttackEvent);
+                }
+
+                UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack - Playing montage: %s"), *MontageToPlay->GetName());
 		
 		UAbilityTask_PlayMontageAndWait* PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
 			this,
