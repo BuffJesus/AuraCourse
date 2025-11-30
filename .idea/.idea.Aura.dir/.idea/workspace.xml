@@ -8,7 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Enemy/Ranged/BP_Aura_Enemy_SlingshotRock.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Enemy/Ranged/GA_Aura_Enemy_Ranged.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/Fire/Ball/GA_Aura_Spell_Fireball.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Ghoul/BP_Aura_Enemy_Ghoul.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Enemy/Ghoul/BP_Aura_Enemy_Ghoul.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,20 +42,16 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://21" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://3" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/Services/AuraBTS_FindNearestPlayer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/Tasks/AuraBTTask_Attack.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/Tasks/AuraBTTask_GoAroundTarget.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/Abilities/AuraDamageGameplayAbility.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_HitReact.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGameplayAbility.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Attributes/AuraAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -125,8 +125,6 @@
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AuraAbilityTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/AuraCollisionChannels.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Public/Characters/AuraBaseCharacter.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Documents/UnrealEngine/Projects/Aura/Source/Aura/Public/Characters/AuraBaseCharacter.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Public/Game/AuraGameModeBase.h" root0="FORCE_HIGHLIGHTING" />
@@ -176,8 +174,6 @@
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/CoreUObject/Public/UObject/UObjectGlobals.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/Engine/Classes/Components/PrimitiveComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://diff.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -335,15 +331,8 @@
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
       <workItem from="1764443395410" duration="19175000" />
-      <workItem from="1764469867606" duration="11271000" />
-    </task>
-    <task id="LOCAL-00309" summary="Rename `bDestroyOnEffectRemoval` to `bDestroyOnEffectApplication` and add `bApplyEffectsToEnemies` property in `AuraEffectActor`. Update redirects in `DefaultEngine.ini`.">
-      <option name="closed" value="true" />
-      <created>1764376193364</created>
-      <option name="number" value="00309" />
-      <option name="presentableId" value="LOCAL-00309" />
-      <option name="project" value="LOCAL" />
-      <updated>1764376193364</updated>
+      <workItem from="1764469867606" duration="11385000" />
+      <workItem from="1764518098996" duration="1250000" />
     </task>
     <task id="LOCAL-00310" summary="Implement `IGameplayTagAssetInterface` in `AuraBaseCharacter` and add support for `CharacterTags` for better gameplay tag management. Introduce `Player` and `Enemy` entity tags in `AuraTags`.">
       <option name="closed" value="true" />
@@ -729,7 +718,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764482778252</updated>
     </task>
-    <option name="localTasksCounter" value="358" />
+    <task id="LOCAL-00358" summary="Prevent early ability termination by avoiding `OnBlendOut` binding in `AuraGA_ProjectileSpell`.">
+      <option name="closed" value="true" />
+      <created>1764483128406</created>
+      <option name="number" value="00358" />
+      <option name="presentableId" value="LOCAL-00358" />
+      <option name="project" value="LOCAL" />
+      <updated>1764483128406</updated>
+    </task>
+    <option name="localTasksCounter" value="359" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,7 +736,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Update `AuraEnemyCharacter` with `GetAttackMontage_Implementation` and refine logging in `AuraGA_MeleeAttack`" />
     <MESSAGE value="Clean up `.idea/workspace.xml` to remove stale changelist entries and synchronize with updated asset references in Behavior Tree and TestMap." />
     <MESSAGE value="Update `AuraGA_MeleeAttack` to use motion warping for facing target and refine AI attack task with event data integration" />
     <MESSAGE value="Refine melee attack ability to use const-cast for target acquisition, update default property initialization, and improve AI attack task with ability system checks." />
@@ -764,7 +760,8 @@
     <MESSAGE value="Refactor montage task initialization in `AuraGA_ProjectileSpell.cpp` for clarity and consistency" />
     <MESSAGE value="Add debug message to `AuraGA_ProjectileSpell` for projectile activation tracing" />
     <MESSAGE value="Refactor `AuraGA_ProjectileSpell` and `AuraBaseCharacter` for improved readability and functionality, and add new `Casting` tags to ability states." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `AuraGA_ProjectileSpell` and `AuraBaseCharacter` for improved readability and functionality, and add new `Casting` tags to ability states." />
+    <MESSAGE value="Prevent early ability termination by avoiding `OnBlendOut` binding in `AuraGA_ProjectileSpell`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Prevent early ability termination by avoiding `OnBlendOut` binding in `AuraGA_ProjectileSpell`." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
