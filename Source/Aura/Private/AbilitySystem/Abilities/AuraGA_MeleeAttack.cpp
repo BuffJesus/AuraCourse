@@ -152,6 +152,14 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 	
 	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Hit %d targets!"), HitResults.Num());
 	
+	// Get source ASC for creating damage specs
+	UAbilitySystemComponent* SourceASC = GetAbilitySystemComponentFromActorInfo();
+	if (!SourceASC)
+	{
+		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - No source ASC!"));
+		return;
+	}
+	
 	// Process each hit
 	for (const FHitResult& Hit : HitResults)
 	{
@@ -171,10 +179,16 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 			continue;
 		}
 		
+		// Create damage effect spec for this target
+		const FGameplayEffectSpecHandle SpecHandle = MakeOutgoingGameplayEffectSpec(DamageEffectClass, GetAbilityLevel());
+		
+		// Assign damage values to the spec
+		AssignDamageTypesToSpec(SpecHandle);
+		
 		// Apply damage effect
-		if (DamageEffectSpecHandle.IsValid())
+		if (SpecHandle.IsValid())
 		{
-			TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get());
+			TargetASC->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 			
 			// Trigger HitReact ability
 			FGameplayEventData EventData;
@@ -186,7 +200,7 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - No valid damage spec!"));
+			UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Failed to create damage spec for: %s"), *HitActor->GetName());
 		}
 	}
 }

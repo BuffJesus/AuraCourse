@@ -19,9 +19,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Aura|MeleeAttack")
 	void PerformMeleeAttack();
 	
-	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = true))
-	FGameplayEffectSpecHandle DamageEffectSpecHandle;
-	
 protected:
 	/** Radius for the sphere trace around the weapon socket */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|MeleeAttack")

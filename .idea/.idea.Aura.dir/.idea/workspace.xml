@@ -8,10 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_Player_HitReact.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Spear/SKM_Spear_Skeleton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Spear/SKM_Spear_Skeleton.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/GA_Aura_Ability_Melee.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Abilities/GA_Aura_Ability_Melee.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/GE_Aura_Test_Damage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AbilitySystem/Effects/GE_Aura_Test_Damage.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_MeleeAttack.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_MeleeAttack.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +43,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://1" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -330,15 +332,7 @@
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
       <workItem from="1764443395410" duration="19175000" />
-      <workItem from="1764469867606" duration="701000" />
-    </task>
-    <task id="LOCAL-00293" summary="Adjust projectile impact sound pitch and flight sound volume. Update `.idea/workspace.xml` with new file tracking and highlighting policies.">
-      <option name="closed" value="true" />
-      <created>1764307084496</created>
-      <option name="number" value="00293" />
-      <option name="presentableId" value="LOCAL-00293" />
-      <option name="project" value="LOCAL" />
-      <updated>1764307084496</updated>
+      <workItem from="1764469867606" duration="1107000" />
     </task>
     <task id="LOCAL-00294" summary="Integrate AI controller and behavior tree support for enemy characters. Update build dependencies and configuration redirections.">
       <option name="closed" value="true" />
@@ -724,7 +718,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764464138710</updated>
     </task>
-    <option name="localTasksCounter" value="342" />
+    <task id="LOCAL-00342" summary="Add sphere trace and damage logic to `UAuraGA_MeleeAttack`, initialize triggers, and expose effect handle.">
+      <option name="closed" value="true" />
+      <created>1764470577023</created>
+      <option name="number" value="00342" />
+      <option name="presentableId" value="LOCAL-00342" />
+      <option name="project" value="LOCAL" />
+      <updated>1764470577024</updated>
+    </task>
+    <option name="localTasksCounter" value="343" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,7 +736,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Fix incorrect include path in `AuraBTS_FindNearestPlayer` and update Goblin AI assets" />
     <MESSAGE value="Add `AuraBTTask_GoAroundTarget` for AI navigation and update related assets" />
     <MESSAGE value="Add `AuraEQSTestingPawn` and `AuraEQS_FindRangedAttackPosition` classes to support AI EQS testing and ranged attack position queries. Update `AuraBTTask_GoAroundTarget` with navigation enhancements and include new blackboard keys." />
     <MESSAGE value="Mark `UAuraEQS_FindRangedAttackPosition` class as `Blueprintable` to enable blueprint integration. Sync `.idea/workspace.xml` with updated changes." />
@@ -759,7 +760,8 @@
     <MESSAGE value="Improve `UAuraBTTask_Attack` by adding target actor blackboard key selector and enhancing logging." />
     <MESSAGE value="Remove unused `CleanupAndEndAbility` method from `UAuraGA_MeleeAttack` and sync project settings with updated file references." />
     <MESSAGE value="Refactor `UAuraGA_MeleeAttack` to use cached target, add event handling for montage, and improve logging." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `UAuraGA_MeleeAttack` to use cached target, add event handling for montage, and improve logging." />
+    <MESSAGE value="Add sphere trace and damage logic to `UAuraGA_MeleeAttack`, initialize triggers, and expose effect handle." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add sphere trace and damage logic to `UAuraGA_MeleeAttack`, initialize triggers, and expose effect handle." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
