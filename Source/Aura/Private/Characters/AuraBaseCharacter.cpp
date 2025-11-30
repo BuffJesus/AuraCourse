@@ -197,5 +197,24 @@ void AAuraBaseCharacter::UpdateDissolveMaterial(float DissolveValue)
 
 void AAuraBaseCharacter::UpdateGlowMaterial(float GlowValue)
 {
-	// Override or bind in Blueprint
+        // Override or bind in Blueprint
+}
+
+void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target)
+{
+        const FVector ActorLocation { GetActorLocation() };
+        FVector DirectionToTarget { Target - ActorLocation };
+        DirectionToTarget.Z = 0.f;
+
+        if (!DirectionToTarget.IsNearlyZero())
+        {
+                const FRotator LookRotation { DirectionToTarget.Rotation() };
+                SetActorRotation(FRotator(0.f, LookRotation.Yaw, 0.f));
+
+                if (IsValid(MotionWarpingComponent))
+                {
+                        const FTransform WarpTransform { LookRotation, Target };
+                        MotionWarpingComponent->AddOrUpdateWarpTarget(FName("FacingTarget"), WarpTransform);
+                }
+        }
 }

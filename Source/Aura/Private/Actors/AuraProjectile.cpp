@@ -46,11 +46,16 @@ void AAuraProjectile::BeginPlay()
 	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraProjectile::OnSphereOverlap);
 
 	// Cache the source ASC from the owner using weak pointer for safety
-	if (AActor* OwnerActor = GetOwner())
-	{
-		SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OwnerActor);
-		Sphere->IgnoreActorWhenMoving(OwnerActor, true);
-	}
+        if (AActor* OwnerActor = GetOwner())
+        {
+                SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OwnerActor);
+                Sphere->IgnoreActorWhenMoving(OwnerActor, true);
+        }
+
+        if (APawn* InstigatorPawn = GetInstigator())
+        {
+                Sphere->IgnoreActorWhenMoving(InstigatorPawn, true);
+        }
  
  	// Start flight cue if configured (Add = start looping)
  	if (SourceASC.IsValid() && FlightCueTag.IsValid())
@@ -86,10 +91,10 @@ void AAuraProjectile::Destroyed()
 void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 										UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (!IsValid(OtherActor) || OtherActor == this || OtherActor == GetOwner())
-	{
-		return;
-	}
+        if (!IsValid(OtherActor) || OtherActor == this || OtherActor == GetOwner() || OtherActor == GetInstigator())
+        {
+                return;
+        }
 
 	if (HasAuthority())
 	{

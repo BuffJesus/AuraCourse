@@ -42,11 +42,13 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 
         FTransform SpawnTransform(Rotation.Quaternion(), SocketLocation);
 
+        AActor* AvatarActor { GetAvatarActorFromActorInfo() };
+
         AAuraProjectile* Projectile { GetWorld()->SpawnActorDeferred<AAuraProjectile>(
                 ProjectileClass,
                 SpawnTransform,
-                GetOwningActorFromActorInfo(),
-                Cast<APawn>(GetOwningActorFromActorInfo()),
+                AvatarActor,
+                Cast<APawn>(AvatarActor),
                 ESpawnActorCollisionHandlingMethod::AlwaysSpawn) };
 
         FGameplayEffectContextHandle EffectContextHandle { SourceASC->MakeEffectContext() };
