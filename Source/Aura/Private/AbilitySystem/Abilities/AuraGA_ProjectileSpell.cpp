@@ -11,11 +11,9 @@
 UAuraGA_ProjectileSpell::UAuraGA_ProjectileSpell()
 {
 	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
-
-	// Execute this ability only on the server so the authoritative instance handles spawning and replication
-	NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::ServerOnly;
-
-	// Block re-activation while this ability is active (prevents machine-gun casting)
+	NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
+	ReplicationPolicy = EGameplayAbilityReplicationPolicy::ReplicateYes;
+	
 	ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
 	ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
 }
@@ -77,6 +75,9 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 
 void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 {
+	// Authority check ensures projectile only spawns on server
+	// With LocalPredicted execution, this function is called on both client and server,
+	// but only the server will pass this check and spawn the projectile
 	const bool bIsServer { GetAvatarActorFromActorInfo()->HasAuthority() };
 	if (!bIsServer) return;
 

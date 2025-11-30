@@ -5,6 +5,7 @@
 #include "Player/AuraPlayerState.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/Attributes/AuraAttributeSet.h"
+#include "AbilitySystem/Attributes/AuraPlayerAttributeSet.h"
 #include "Player/AuraPlayerController.h"
 #include "Tags/AuraTags.h"
 #include "UI/HUD/AuraHUD.h"
@@ -42,7 +43,9 @@ void AAuraPlayerCharacter::PossessedBy(AController* NewController)
 				// Server only: Initialize default attributes (these will replicate to clients)
 				WeakThis->InitializeDefaultAttributes();
 				
-				// Init abilities on server
+				// CRITICAL: Grant abilities on server
+				// With Mixed replication mode, abilities don't auto-replicate, 
+				// so we must grant them on both server and client
 				WeakThis->AddCharacterAbilities();
 			}
 		});
@@ -55,6 +58,22 @@ void AAuraPlayerCharacter::OnRep_PlayerState()
 
 	// Init ability actor info for the Client
 	InitializeAbilityActorInfo();
+	
+	// CRITICAL FIX: Grant abilities on client as well!
+	// The ASC uses Mixed replication mode which replicates effects but NOT abilities
+	// Abilities must be explicitly granted on both server and client
+	// This is why the client couldn't activate the ability - it didn't have it!
+	if (GetWorld())
+	{
+		TWeakObjectPtr<AAuraPlayerCharacter> WeakThis(this);
+		GetWorld()->GetTimerManager().SetTimerForNextTick([WeakThis]()
+		{
+			if (WeakThis.IsValid())
+			{
+				WeakThis->AddCharacterAbilities();
+			}
+		});
+	}
 }
 
 int32 AAuraPlayerCharacter::GetCharacterLevel() const
@@ -80,6 +99,8 @@ void AAuraPlayerCharacter::InitializeAbilityActorInfo()
 	AbilitySystemComponent->InitAbilityActorInfo(AuraPlayerState, this);
 	AbilitySystemComponent->AbilityActorInfoSet();
 	
+	// GetAuraAttributeSet() returns UAuraPlayerAttributeSet*, cast to base UAuraAttributeSet*
+	// The typed getter avoids casting internally, but we still need to cast to the base type here
 	AttributeSet = Cast<UAuraAttributeSet>(AuraPlayerState->GetAuraAttributeSet());
 
 	// Cache controller on first access - cast happens once

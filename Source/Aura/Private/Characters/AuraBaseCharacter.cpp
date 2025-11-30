@@ -90,7 +90,11 @@ UAbilitySystemComponent* AAuraBaseCharacter::GetAbilitySystemComponent() const
 
 FVector AAuraBaseCharacter::GetCombatSocketLocation() const
 {
-	check(Weapon);
+	if (!IsValid(Weapon))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Weapon not valid, using actor location"));
+		return GetActorLocation();
+	}
 	return Weapon->GetSocketLocation(WeaponTipSocketName);
 }
 

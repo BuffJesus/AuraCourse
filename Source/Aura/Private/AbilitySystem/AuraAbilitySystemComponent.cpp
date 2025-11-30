@@ -1,6 +1,5 @@
 ﻿// Not Sure Yet
 
-
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/Abilities/AuraGameplayAbility.h"
 #include "Tags/AuraTags.h"
@@ -14,7 +13,16 @@ void UAuraAbilitySystemComponent::AbilityActorInfoSet()
 
 void UAuraAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities)
 {
-	if (!IsOwnerActorAuthoritative())
+	// CRITICAL FIX: With Mixed replication mode, abilities must be granted on both server AND client
+	// Previously this had: if (!IsOwnerActorAuthoritative()) return;
+	// This blocked clients from ever receiving abilities!
+	
+	// Server should grant abilities authoritatively
+	// Clients should grant abilities locally for prediction/execution
+	// Mixed mode doesn't replicate ability specs, only effects
+	
+	// Only the owner should grant abilities (server for all, autonomous proxy for self)
+	if (!IsOwnerActorAuthoritative() && GetOwnerRole() != ROLE_AutonomousProxy)
 	{
 		return;
 	}
