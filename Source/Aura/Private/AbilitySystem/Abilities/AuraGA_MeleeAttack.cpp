@@ -2,6 +2,7 @@
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
+#include "AbilitySystemInterface.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
@@ -177,23 +178,40 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 		
 		UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Processing hit on: %s"), *HitActor->GetName());
 		
-		// Get target ASC
-		UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(HitActor);
+		// Get target ASC - try multiple methods
+		UAbilitySystemComponent* TargetASC = nullptr;
+		
+		// Method 1: Blueprint library (checks actor and playerstate)
+		TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(HitActor);
+		
+		// Method 2: Direct interface cast if method 1 failed
 		if (!TargetASC)
 		{
-			UE_LOG(LogTemp, Verbose, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Target %s has no ASC"), *HitActor->GetName());
+			if (IAbilitySystemInterface* ASI = Cast<IAbilitySystemInterface>(HitActor))
+			{
+				TargetASC = ASI->GetAbilitySystemComponent();
+			}
+		}
+		
+		if (!TargetASC)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Target %s has no ASC!"), *HitActor->GetName());
 			continue;
 		}
 		
-		// Prevent friendly fire - both actors must have Enemy tag to damage each other
-		// Player doesn't have Enemy tag, enemies do
-		const bool bInstigatorIsEnemy = AvatarActor->ActorHasTag(FName("Enemy"));
-		const bool bTargetIsEnemy = HitActor->ActorHasTag(FName("Enemy"));
-		
-		// Skip if both are enemies (friendly fire) or both are players/allies
-		if (bInstigatorIsEnemy == bTargetIsEnemy)
+		// Prevent friendly fire - only hit our current combat target
+		// Get the combat target from our combat interface
+		AActor* CombatTarget = nullptr;
+		if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
 		{
-			UE_LOG(LogTemp, Verbose, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Skipping friendly target: %s"), *HitActor->GetName());
+			CombatTarget = CombatInterface->GetCombatTarget();
+		}
+		
+		// Skip if this isn't our combat target (prevents hitting other enemies)
+		if (CombatTarget && HitActor != CombatTarget)
+		{
+			UE_LOG(LogTemp, Verbose, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Skipping non-target: %s (Target is: %s)"), 
+				*HitActor->GetName(), *CombatTarget->GetName());
 			continue;
 		}
 		
