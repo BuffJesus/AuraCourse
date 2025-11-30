@@ -29,6 +29,4 @@ private:
 	
 	UFUNCTION()
 	void OnMontageInterrupted();
-	
-	void CleanupAndEndAbility(bool bWasCancelled = true);
 };

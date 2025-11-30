@@ -8,8 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AI/Tasks/AuraBTTask_Attack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AI/Tasks/AuraBTTask_Attack.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_MeleeAttack.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Aura/Animations/Abilities/Montages/AM_Aura_FireBolt.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Montages/Spear/AM_Aura_Goblin_Spear_Attack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Montages/Spear/AM_Aura_Goblin_Spear_Attack.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BehaviorTree/BT_Aura_Enemy_BehaviorTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BehaviorTree/BT_Aura_Enemy_BehaviorTree.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_MeleeAttack.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_MeleeAttack.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +43,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://20" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://23" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://24" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -328,23 +332,7 @@
       <workItem from="1764376837141" duration="2501000" />
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
-      <workItem from="1764443395410" duration="15509000" />
-    </task>
-    <task id="LOCAL-00289" summary="Adjusted `AuraGCN_ProjectileFlight` sound volume and updated `.DotSettings.user` with new file exclusions.">
-      <option name="closed" value="true" />
-      <created>1764300171577</created>
-      <option name="number" value="00289" />
-      <option name="presentableId" value="LOCAL-00289" />
-      <option name="project" value="LOCAL" />
-      <updated>1764300171577</updated>
-    </task>
-    <task id="LOCAL-00290" summary="Delayed `AuraGCN_ProjectileFlight` destruction to next frame to prevent crashes and improved `IsValid` checks in `AuraProjectile`.">
-      <option name="closed" value="true" />
-      <created>1764300630597</created>
-      <option name="number" value="00290" />
-      <option name="presentableId" value="LOCAL-00290" />
-      <option name="project" value="LOCAL" />
-      <updated>1764300630597</updated>
+      <workItem from="1764443395410" duration="16919000" />
     </task>
     <task id="LOCAL-00291" summary="Cleaned up `.idea/workspace.xml` by removing outdated entries and added new file highlighting policies for `AuraAbilitySystemComponent`.">
       <option name="closed" value="true" />
@@ -722,7 +710,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764461103226</updated>
     </task>
-    <option name="localTasksCounter" value="338" />
+    <task id="LOCAL-00338" summary="Enhance `UAuraGA_MeleeAttack` initialization and logging, refine AI task execution for target handling and ability activation.">
+      <option name="closed" value="true" />
+      <created>1764461599531</created>
+      <option name="number" value="00338" />
+      <option name="presentableId" value="LOCAL-00338" />
+      <option name="project" value="LOCAL" />
+      <updated>1764461599531</updated>
+    </task>
+    <task id="LOCAL-00339" summary="Improve `UAuraBTTask_Attack` by adding target actor blackboard key selector and enhancing logging.">
+      <option name="closed" value="true" />
+      <created>1764461756235</created>
+      <option name="number" value="00339" />
+      <option name="presentableId" value="LOCAL-00339" />
+      <option name="project" value="LOCAL" />
+      <updated>1764461756235</updated>
+    </task>
+    <option name="localTasksCounter" value="340" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,8 +736,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Refactor `CanAffectActor` in `AuraEffectActor` to improve readability and move implementation to `.cpp` file." />
-    <MESSAGE value="Rename `bHasHitReactTag` to `bHitReacting` in `AuraEnemyCharacter` and update related logic to manage AI blackboard synchronization." />
     <MESSAGE value="Update AI Blackboard and Behavior Tree assets for Aura Enemy" />
     <MESSAGE value="Add `AuraBTTask_Attack` for AI attack handling and update blackboard logic" />
     <MESSAGE value="Fix incorrect include path in `AuraBTS_FindNearestPlayer` and update Goblin AI assets" />
@@ -757,7 +759,9 @@
     <MESSAGE value="Update `AuraGA_MeleeAttack` to use motion warping for facing target and refine AI attack task with event data integration" />
     <MESSAGE value="Refine melee attack ability to use const-cast for target acquisition, update default property initialization, and improve AI attack task with ability system checks." />
     <MESSAGE value="Sync `.idea/workspace.xml` with updated file references and include new Goblin Spear attack asset." />
-    <option name="LAST_COMMIT_MESSAGE" value="Sync `.idea/workspace.xml` with updated file references and include new Goblin Spear attack asset." />
+    <MESSAGE value="Enhance `UAuraGA_MeleeAttack` initialization and logging, refine AI task execution for target handling and ability activation." />
+    <MESSAGE value="Improve `UAuraBTTask_Attack` by adding target actor blackboard key selector and enhancing logging." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve `UAuraBTTask_Attack` by adding target actor blackboard key selector and enhancing logging." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
