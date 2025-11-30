@@ -9,9 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Ghoul/Animations/Attack_L.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Ghoul/Animations/Attack_L.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Ghoul/Animations/Attack_R.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Ghoul/Animations/Attack_R.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +38,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://13" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://15" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -338,23 +335,7 @@
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
       <workItem from="1764443395410" duration="19175000" />
-      <workItem from="1764469867606" duration="7809000" />
-    </task>
-    <task id="LOCAL-00303" summary="Update blackboard and behavior tree assets, refine `AuraBTS_FindNearestPlayer`, and adjust workspace configuration&#10;&#10;- Added an additional blackboard key to `.uproject.DotSettings.user`.&#10;- Refined variable formatting in `AuraBTS_FindNearestPlayer`.&#10;- Updated `.idea/workspace.xml` to track changes in AI-related assets.">
-      <option name="closed" value="true" />
-      <created>1764374019869</created>
-      <option name="number" value="00303" />
-      <option name="presentableId" value="LOCAL-00303" />
-      <option name="project" value="LOCAL" />
-      <updated>1764374019869</updated>
-    </task>
-    <task id="LOCAL-00304" summary="Enable `ControllerDesiredRotation` for enemy characters in `AuraEnemyCharacter.cpp` and update `.idea/workspace.xml` configuration.">
-      <option name="closed" value="true" />
-      <created>1764374541625</created>
-      <option name="number" value="00304" />
-      <option name="presentableId" value="LOCAL-00304" />
-      <option name="project" value="LOCAL" />
-      <updated>1764374541625</updated>
+      <workItem from="1764469867606" duration="8769000" />
     </task>
     <task id="LOCAL-00305" summary="Disable controller rotation axes and adjust movement rotation rate for `AuraEnemyCharacter`.">
       <option name="closed" value="true" />
@@ -732,7 +713,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764479180773</updated>
     </task>
-    <option name="localTasksCounter" value="352" />
+    <task id="LOCAL-00352" summary="Enable overlap events for `AuraBaseCharacter` mesh and update animations and workspace metadata.">
+      <option name="closed" value="true" />
+      <created>1764479600039</created>
+      <option name="number" value="00352" />
+      <option name="presentableId" value="LOCAL-00352" />
+      <option name="project" value="LOCAL" />
+      <updated>1764479600039</updated>
+    </task>
+    <task id="LOCAL-00353" summary="Remove extraneous newline from `AuraBaseCharacter.cpp` and update `BP_Enemy_Base` asset">
+      <option name="closed" value="true" />
+      <created>1764480057546</created>
+      <option name="number" value="00353" />
+      <option name="presentableId" value="LOCAL-00353" />
+      <option name="project" value="LOCAL" />
+      <updated>1764480057546</updated>
+    </task>
+    <option name="localTasksCounter" value="354" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -742,8 +739,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Set input tags for abilities and enhance AI attack task logic&#10;&#10;- Updated `UAuraAbilitySystemBPLibrary` to assign input tags dynamically from `UAuraGameplayAbility` during ability initialization.&#10;- Enhanced `AuraBTTask_Attack` to activate AI abilities based on gameplay tags. Added tag container setup for attack abilities.&#10;- Minor improvements and fixes in `.idea/workspace.xml` configuration files." />
-    <MESSAGE value="Add activation logic to `UAuraGA_MeleeAttack` and update AI attack task to use `AuraTags` &#10;&#10;- Implemented `ActivateAbility` in `UAuraGA_MeleeAttack` with debug messaging.&#10;- Updated `AuraBTTask_Attack` to include `AuraTags` for managing ability activation." />
     <MESSAGE value="Remove debug message from `UAuraGA_MeleeAttack::ActivateAbility` and update `.idea/workspace.xml`." />
     <MESSAGE value="Add hit react montage handling to `UAuraGA_MeleeAttack`&#10;&#10;- Integrated `PlayMontageAndWait` task to play hit react montages in melee attack ability.&#10;- Added helper functions for montage completion, interruption, and cancellation.&#10;- Updated `AuraBaseCharacter` and `AuraCombatInterface` to support attack montage references." />
     <MESSAGE value="Refactor melee attack ability cleanup logic and adjust montage properties&#10;&#10;- Updated `EndAbility` calls in `UAuraGA_MeleeAttack` to include additional parameters for improved cleanup handling.&#10;- Moved `AttackMontage` property from `AuraBaseCharacter` to `AuraEnemyCharacter` for better character-specific management." />
@@ -767,7 +762,9 @@
     <MESSAGE value="Fix formatting inconsistencies in `AuraBaseCharacter` header file and update `.idea/workspace.xml` for metadata synchronization." />
     <MESSAGE value="Update `BaseWalkSpeed` property in `AuraEnemyCharacter` to `EditAnywhere` and sync `.idea/workspace.xml` with new assets for enemy ghouls" />
     <MESSAGE value="Clean up `.idea/workspace.xml` by removing redundant metadata and synchronizing configurations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up `.idea/workspace.xml` by removing redundant metadata and synchronizing configurations." />
+    <MESSAGE value="Enable overlap events for `AuraBaseCharacter` mesh and update animations and workspace metadata." />
+    <MESSAGE value="Remove extraneous newline from `AuraBaseCharacter.cpp` and update `BP_Enemy_Base` asset" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove extraneous newline from `AuraBaseCharacter.cpp` and update `BP_Enemy_Base` asset" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -5,7 +5,6 @@
 #include "AbilitySystemComponent.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Actors/AuraProjectile.h"
-#include "Animation/AnimInstance.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
 
@@ -18,74 +17,56 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
                                                                                            const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
                                                                                            const FGameplayEventData* TriggerEventData)
 {
-Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+        Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
-AActor* AvatarActor = GetAvatarActorFromActorInfo();
-if (!AvatarActor)
-{
-EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-return;
-}
+        AActor* AvatarActor = GetAvatarActorFromActorInfo();
+        if (!AvatarActor)
+        {
+                EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                return;
+        }
 
-if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
-{
-EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-return;
-}
+        if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
+        {
+                EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                return;
+        }
 
-UAbilitySystemComponent* ASC = GetAbilitySystemComponentFromActorInfo();
-if (!ASC)
-{
-UE_LOG(LogTemp, Error, TEXT("%s: No ASC on AvatarActor when activating projectile spell"), *GetName());
-EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-return;
-}
+        if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+        {
+                if (UAnimMontage* MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor))
+                {
+                        UAbilityTask_PlayMontageAndWait* MontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
+                                this,
+                                NAME_None,
+                                MontageToPlay,
+                                1.0f
+                        );
 
-if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
-{
-if (UAnimMontage* MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor))
-{
-PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
-this,
-NAME_None,
-MontageToPlay,
-1.0f
-);
+                        if (MontageTask)
+                        {
+                                MontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+                                MontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+                                MontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+                                MontageTask->OnBlendOut.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
 
-if (PlayMontageTask)
-{
-PlayMontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
-PlayMontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
-PlayMontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
-PlayMontageTask->OnBlendOut.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+                                MontageTask->ReadyForActivation();
+                        }
+                        else
+                        {
+                                EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                        }
+                        MontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+                        MontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+                        MontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
 
-PlayMontageTask->ReadyForActivation();
-return;
-}
+                        MontageTask->ReadyForActivation();
+                        return;
+                }
+        }
 
-UE_LOG(LogTemp, Warning, TEXT("%s: Montage task failed, falling back to direct montage play"), *GetName());
-
-FallbackAnimInstance = ActorInfo->GetAnimInstance();
-if (FallbackAnimInstance.IsValid())
-{
-FallbackMontageDelegate.Unbind();
-FallbackMontageDelegate.BindUObject(this, &UAuraGA_ProjectileSpell::OnFallbackMontageEnded);
-FallbackAnimInstance->Montage_SetEndDelegate(FallbackMontageDelegate, MontageToPlay);
-
-if (FallbackAnimInstance->Montage_Play(MontageToPlay, 1.f) > 0.f)
-{
-return;
-}
-}
-
-UE_LOG(LogTemp, Error, TEXT("%s: Unable to play attack montage"), *GetName());
-EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-return;
-}
-}
-
-// If no montage is available, end immediately to avoid getting stuck in an active state
-EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
+        // If no montage is available, end immediately to avoid getting stuck in an active state
+        EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
 }
 
 void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
@@ -156,33 +137,10 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 
 void UAuraGA_ProjectileSpell::OnMontageCompleted()
 {
-ClearFallbackMontageDelegate();
-EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
+        EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
 }
 
 void UAuraGA_ProjectileSpell::OnMontageCancelled()
 {
-ClearFallbackMontageDelegate();
-EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
-}
-
-void UAuraGA_ProjectileSpell::OnFallbackMontageEnded(UAnimMontage* Montage, bool bInterrupted)
-{
-ClearFallbackMontageDelegate();
-
-if (bInterrupted)
-{
-OnMontageCancelled();
-return;
-}
-
-OnMontageCompleted();
-}
-
-void UAuraGA_ProjectileSpell::ClearFallbackMontageDelegate()
-{
-if (FallbackAnimInstance.IsValid())
-{
-FallbackAnimInstance->Montage_SetEndDelegate(FOnMontageEnded(), nullptr);
-}
+        EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
 }
