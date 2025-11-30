@@ -13,15 +13,21 @@
 
 UAuraGA_ProjectileSpell::UAuraGA_ProjectileSpell()
 {
-	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
 
-	// This ability runs on both client and server
-	// Client predicts the cast, server spawns the projectile
-	NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
+// This ability runs on both client and server
+// Client predicts the cast, server spawns the projectile
+NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
 
-	// Block re-activation while this ability is active (prevents machine-gun casting)
-	ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
-	ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
+// Allow AI to trigger this ability from gameplay events (e.g., AuraBTTask_Attack)
+FAbilityTriggerData TriggerData;
+TriggerData.TriggerTag = Aura::Ability::Attack::Attack;
+TriggerData.TriggerSource = EGameplayAbilityTriggerSource::GameplayEvent;
+AbilityTriggers.Add(TriggerData);
+
+// Block re-activation while this ability is active (prevents machine-gun casting)
+ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
+ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
 }
 
 void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
