@@ -36,8 +36,16 @@ void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handl
                 return;
         }
 
-        // Cache the target
-        CachedTargetActor = TriggerEventData ? const_cast<AActor*>(Cast<AActor>(TriggerEventData->Target)) : nullptr;
+        // Commit the ability so the server owns the activation and replicates it to clients
+        if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
+        {
+                UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack - CommitAbility failed"));
+                EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                return;
+        }
+	
+	// Cache the target
+	CachedTargetActor = TriggerEventData ? const_cast<AActor*>(Cast<AActor>(TriggerEventData->Target)) : nullptr;
 	
 	UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack - AvatarActor: %s, Target: %s"), 
 		*AvatarActor->GetName(),
