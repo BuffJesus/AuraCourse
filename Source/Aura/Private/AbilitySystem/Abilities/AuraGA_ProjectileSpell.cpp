@@ -3,14 +3,65 @@
 #include "AbilitySystem/Abilities/AuraGA_ProjectileSpell.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
+#include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Actors/AuraProjectile.h"
+#include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
 
-void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
-											   const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
-											   const FGameplayEventData* TriggerEventData)
+UAuraGA_ProjectileSpell::UAuraGA_ProjectileSpell()
 {
-	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+        InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+}
+
+void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
+                                                                                           const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
+                                                                                           const FGameplayEventData* TriggerEventData)
+{
+        Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+
+        AActor* AvatarActor = GetAvatarActorFromActorInfo();
+        if (!AvatarActor)
+        {
+                EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                return;
+        }
+
+        if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
+        {
+                EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                return;
+        }
+
+        if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+        {
+                if (UAnimMontage* MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor))
+                {
+                        PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
+                                this,
+                                NAME_None,
+                                MontageToPlay,
+                                1.0f
+                        );
+
+                        if (PlayMontageTask)
+                        {
+                                PlayMontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+                                PlayMontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+                                PlayMontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+                                PlayMontageTask->OnBlendOut.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+
+                                PlayMontageTask->ReadyForActivation();
+                        }
+                        else
+                        {
+                                EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+                        }
+                        return;
+                }
+        }
+
+        // If no montage is available, end immediately to avoid getting stuck in an active state
+        EndAbility(Handle, ActorInfo, ActivationInfo, true, false);
 }
 
 void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
@@ -77,4 +128,14 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
         if (ProjectileImpactCue.IsValid()) { Projectile->ImpactCueTag = ProjectileImpactCue; }
 
         Projectile->FinishSpawning(SpawnTransform);
+}
+
+void UAuraGA_ProjectileSpell::OnMontageCompleted()
+{
+        EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
+}
+
+void UAuraGA_ProjectileSpell::OnMontageCancelled()
+{
+        EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
 }

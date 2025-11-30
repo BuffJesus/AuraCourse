@@ -8,18 +8,30 @@
 #include "AuraGA_ProjectileSpell.generated.h"
 
 class AAuraProjectile;
+class UAbilityTask_PlayMontageAndWait;
 
 UCLASS()
 class AURA_API UAuraGA_ProjectileSpell : public UAuraDamageGameplayAbility
 {
-	GENERATED_BODY()
+        GENERATED_BODY()
+
+public:
+        UAuraGA_ProjectileSpell();
 
 protected:
-	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, 
-		const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
+        virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,
+                const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 
-	UFUNCTION(BlueprintCallable, Category = "Aura|Projectile")
-	void SpawnProjectile(const FVector& TargetLocation);
+        UFUNCTION(BlueprintCallable, Category = "Aura|Projectile")
+        void SpawnProjectile(const FVector& TargetLocation);
+
+        /** Ends the ability when the casting montage finishes successfully */
+        UFUNCTION()
+        void OnMontageCompleted();
+
+        /** Ends the ability when the casting montage is cancelled or interrupted */
+        UFUNCTION()
+        void OnMontageCancelled();
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Projectile")
 	TSubclassOf<AAuraProjectile> ProjectileClass;
@@ -29,6 +41,10 @@ protected:
 	FGameplayTag ProjectileFlightCue;
 
 	/** Gameplay Cue for projectile impact effects */
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GameplayCue", meta = (Categories = "GameplayCue"))
-	FGameplayTag ProjectileImpactCue;
+        UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GameplayCue", meta = (Categories = "GameplayCue"))
+        FGameplayTag ProjectileImpactCue;
+
+        /** Stored montage task to keep it alive for callbacks */
+        UPROPERTY()
+        TObjectPtr<UAbilityTask_PlayMontageAndWait> PlayMontageTask;
 };
