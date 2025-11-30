@@ -4,6 +4,8 @@
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemInterface.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
+#include "GameplayTagAssetInterface.h"
+#include "GameplayTagContainer.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
 
@@ -99,8 +101,8 @@ void UAuraGA_MeleeAttack::OnMeleeAttackEvent(const FGameplayEventData* Payload)
 
 void UAuraGA_MeleeAttack::PerformMeleeAttack()
 {
-	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Starting sphere trace!"));
-	
+        UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Starting sphere trace!"));
+
 	// Get the avatar actor
 	AActor* AvatarActor = GetAvatarActorFromActorInfo();
 	if (!AvatarActor)
@@ -159,13 +161,19 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 	{
 		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - No source ASC!"));
 		return;
-	}
-	
-	// Process each hit
-	for (const FHitResult& Hit : HitResults)
-	{
-		AActor* HitActor = Hit.GetActor();
-		if (!IsValid(HitActor))
+        }
+
+        FGameplayTagContainer SourceTags;
+        if (const IGameplayTagAssetInterface* SourceTagInterface = Cast<IGameplayTagAssetInterface>(AvatarActor))
+        {
+                SourceTagInterface->GetOwnedGameplayTags(SourceTags);
+        }
+
+        // Process each hit
+        for (const FHitResult& Hit : HitResults)
+        {
+                AActor* HitActor = Hit.GetActor();
+                if (!IsValid(HitActor))
 		{
 			continue;
 		}
@@ -173,10 +181,28 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 		// Don't hit yourself
 		if (HitActor == AvatarActor)
 		{
-			continue;
-		}
-		
-		UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Processing hit on: %s"), *HitActor->GetName());
+                        continue;
+                }
+
+                // Skip friendlies based on entity gameplay tags
+                if (const IGameplayTagAssetInterface* TargetTagInterface = Cast<IGameplayTagAssetInterface>(HitActor))
+                {
+                        FGameplayTagContainer TargetTags;
+                        TargetTagInterface->GetOwnedGameplayTags(TargetTags);
+
+                        const bool bSourceIsPlayer = SourceTags.HasTagExact(Aura::Entities::Player);
+                        const bool bSourceIsEnemy = SourceTags.HasTagExact(Aura::Entities::Enemy);
+                        const bool bTargetIsPlayer = TargetTags.HasTagExact(Aura::Entities::Player);
+                        const bool bTargetIsEnemy = TargetTags.HasTagExact(Aura::Entities::Enemy);
+
+                        if ((bSourceIsPlayer && bTargetIsPlayer) || (bSourceIsEnemy && bTargetIsEnemy))
+                        {
+                                UE_LOG(LogTemp, Verbose, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Skipping friendly: %s"), *HitActor->GetName());
+                                continue;
+                        }
+                }
+
+                UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Processing hit on: %s"), *HitActor->GetName());
 		
 		// Get target ASC - try multiple methods
 		UAbilitySystemComponent* TargetASC = nullptr;

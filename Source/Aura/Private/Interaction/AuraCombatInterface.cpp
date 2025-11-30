@@ -13,7 +13,12 @@ int32 IAuraCombatInterface::GetCharacterLevel() const
 
 FVector IAuraCombatInterface::GetCombatSocketLocation() const
 {
-	checkf(false, TEXT("GetCombatSocketLocation must be overridden by classes implementing AuraCombatInterface."));
-	return FVector::ZeroVector;
+        checkf(false, TEXT("GetCombatSocketLocation must be overridden by classes implementing AuraCombatInterface."));
+        return FVector::ZeroVector;
+}
+
+AActor* IAuraCombatInterface::GetCombatTarget() const
+{
+        return nullptr;
 }
 
