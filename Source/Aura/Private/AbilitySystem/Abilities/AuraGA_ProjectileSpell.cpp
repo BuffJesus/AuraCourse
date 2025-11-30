@@ -3,6 +3,7 @@
 #include "AbilitySystem/Abilities/AuraGA_ProjectileSpell.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
+#include "Abilities/GameplayAbilityTargetTypes.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Abilities/Tasks/AbilityTask_WaitGameplayEvent.h"
 #include "AbilitySystem/Tasks/AuraTargetDataUnderMouse.h"
@@ -12,130 +13,215 @@
 
 UAuraGA_ProjectileSpell::UAuraGA_ProjectileSpell()
 {
-	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
 
-	// This ability runs on both client and server
-	// Client predicts the cast, server spawns the projectile
-	NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
+// This ability runs on both client and server
+// Client predicts the cast, server spawns the projectile
+NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
 
-	// Block re-activation while this ability is active (prevents machine-gun casting)
-	ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
-	ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
+// Allow AI to trigger this ability from gameplay events (e.g., AuraBTTask_Attack)
+FAbilityTriggerData TriggerData;
+TriggerData.TriggerTag = Aura::Ability::Attack::Attack;
+TriggerData.TriggerSource = EGameplayAbilityTriggerSource::GameplayEvent;
+AbilityTriggers.Add(TriggerData);
+
+// Block re-activation while this ability is active (prevents machine-gun casting)
+ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
+ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
 }
 
 void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
-                                               const FGameplayAbilityActorInfo* ActorInfo, 
+                                               const FGameplayAbilityActorInfo* ActorInfo,
                                                const FGameplayAbilityActivationInfo ActivationInfo,
                                                const FGameplayEventData* TriggerEventData)
 {
-	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
-	AActor* AvatarActor = GetAvatarActorFromActorInfo();
-	if (!AvatarActor)
-	{
-		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-		return;
-	}
+AActor* AvatarActor = GetAvatarActorFromActorInfo();
+AActor* EventTargetActor = TriggerEventData ? const_cast<AActor*>(TriggerEventData->Target.Get()) : nullptr;
+UE_LOG(LogTemp, Log, TEXT("ProjectileSpell ActivateAbility | Avatar: %s | Owner: %s | TriggerEventTag: %s | EventTarget: %s"),
+AvatarActor ? *AvatarActor->GetName() : TEXT("None"),
+ActorInfo && ActorInfo->OwnerActor.IsValid() ? *ActorInfo->OwnerActor->GetName() : TEXT("None"),
+TriggerEventData ? *TriggerEventData->EventTag.ToString() : TEXT("None"),
+EventTargetActor ? *EventTargetActor->GetName() : TEXT("None"));
 
-	// Commit ability (checks cost and cooldown)
-	if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
-	{
-		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-		return;
-	}
+if (!AvatarActor)
+{
+EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+return;
+}
 
-	// Step 1: Get target data (mouse cursor location)
-	// This works on both client and server
-	TargetDataTask = UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse(this);
-	if (!TargetDataTask)
-	{
-		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-		return;
-	}
-	
-	TargetDataTask->ValidData.AddDynamic(this, &UAuraGA_ProjectileSpell::OnTargetDataReceived);
-	TargetDataTask->ReadyForActivation();
+// Commit ability (checks cost and cooldown)
+if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
+{
+EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+return;
+}
+
+// Step 1: Get target data (mouse cursor location for players, combat target for AI)
+if (ActorInfo && ActorInfo->PlayerController.IsValid())
+{
+    TargetDataTask = UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse(this);
+    if (!TargetDataTask)
+    {
+        EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+        return;
+    }
+
+    TargetDataTask->ValidData.AddDynamic(this, &UAuraGA_ProjectileSpell::OnTargetDataReceived);
+    TargetDataTask->ReadyForActivation();
+}
+else
+{
+    // AI characters don't have mouse input; use their combat target instead
+    if (EventTargetActor)
+    {
+        UE_LOG(LogTemp, Log, TEXT("ProjectileSpell using TriggerEvent target: %s"), *EventTargetActor->GetName());
+
+        FGameplayAbilityTargetDataHandle DataHandle;
+        FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
+        TargetData->HitResult.Location = EventTargetActor->GetActorLocation();
+        TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
+        TargetData->HitResult.Actor = EventTargetActor;
+        TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(EventTargetActor);
+        CachedTargetActor = EventTargetActor;
+        DataHandle.Add(TargetData);
+
+        OnTargetDataReceived(DataHandle);
+        return;
+    }
+
+    if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+    {
+        if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
+        {
+            UE_LOG(LogTemp, Log, TEXT("ProjectileSpell AI target acquired: %s"), *CombatTarget->GetName());
+
+            FGameplayAbilityTargetDataHandle DataHandle;
+            FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
+            TargetData->HitResult.Location = CombatTarget->GetActorLocation();
+            TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
+            TargetData->HitResult.Actor = CombatTarget;
+            TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(CombatTarget);
+            CachedTargetActor = CombatTarget;
+            DataHandle.Add(TargetData);
+
+            OnTargetDataReceived(DataHandle);
+            return;
+        }
+
+        UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell AI has no CombatTarget on %s"), *AvatarActor->GetName());
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell ending due to missing target data for %s"), *AvatarActor->GetName());
+    EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+}
 }
 
 void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetDataHandle& DataHandle)
 {
-	// Extract target location from data handle
-	CachedTargetLocation = FVector::ZeroVector;
-	if (DataHandle.Data.Num() > 0)
-	{
-		const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
-		if (TargetData)
-		{
-			const FHitResult* HitResult = TargetData->GetHitResult();
-			if (HitResult)
-			{
-				CachedTargetLocation = HitResult->Location;
-			}
-		}
-	}
+// Extract target location from data handle
+    CachedTargetLocation = FVector::ZeroVector;
+    CachedTargetActor = nullptr;
 
-	// Step 2: Play montage (on both client and server for prediction)
-	AActor* AvatarActor = GetAvatarActorFromActorInfo();
-	if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
-	{
-		if (UAnimMontage* MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor))
-		{
-			// Update facing target before playing montage
-			CombatInterface->Execute_UpdateFacingTarget(AvatarActor, CachedTargetLocation);
-			
-			PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
-				this,
-				NAME_None,
-				MontageToPlay,
-				1.0f
-			);
+    if (DataHandle.Data.Num() > 0)
+    {
+        const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
+        if (TargetData)
+        {
+            const FHitResult* HitResult = TargetData->GetHitResult();
+            if (HitResult)
+            {
+                CachedTargetLocation = HitResult->Location;
+                CachedTargetActor = HitResult->GetActor();
+            }
+        }
+    }
 
-			if (PlayMontageTask)
-			{
-				// OnCompleted: Montage finished playing successfully
-				PlayMontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
-				
-				// OnInterrupted: Another montage interrupted this one
-				PlayMontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
-				
-				// OnCancelled: Montage was explicitly cancelled
-				PlayMontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
-				
-				// NOTE: Do NOT bind OnBlendOut - it fires when blend out STARTS, not when montage ends
-				// This was causing the ability to end early, allowing rapid re-activation
+    if (CachedTargetLocation.IsNearlyZero())
+    {
+        if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo()))
+        {
+            if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
+            {
+                CachedTargetLocation = CombatTarget->GetActorLocation();
+                CachedTargetActor = CombatTarget;
+                UE_LOG(LogTemp, Log, TEXT("ProjectileSpell fallback target location from combat target: %s"), *CachedTargetLocation.ToString());
+            }
+        }
+    }
 
-				PlayMontageTask->ReadyForActivation();
-				
-				// Step 3: Wait for gameplay event from AnimNotify
-				// The AnimNotify in the montage will send the event tag (configured in MontageEventTag)
-				if (MontageEventTag.IsValid())
-				{
-					EventWaitTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(
-						this,
-						MontageEventTag,  // Use the configurable tag
-						nullptr,          // Optional source (nullptr = any source)
-						false,            // Only trigger once
-						false             // Only match exact tag
-					);
+    UE_LOG(
+        LogTemp,
+        Log,
+        TEXT("ProjectileSpell OnTargetDataReceived | CachedTargetLocation: %s | CachedTargetActor: %s | HasData: %s"),
+        *CachedTargetLocation.ToString(),
+        CachedTargetActor.IsValid() ? *CachedTargetActor->GetName() : TEXT("None"),
+        DataHandle.Data.Num() > 0 ? TEXT("true") : TEXT("false")
+    );
 
-					if (EventWaitTask)
-					{
-						EventWaitTask->EventReceived.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageEventReceived);
-						EventWaitTask->ReadyForActivation();
-					}
-				}
-				else
-				{
-					UE_LOG(LogTemp, Warning, TEXT("MontageEventTag is not set for %s. Projectile will not spawn."), *GetName());
-				}
-				
-				return;
-			}
-		}
-	}
+    // Step 2: Play montage (on both client and server for prediction)
+    AActor* AvatarActor = GetAvatarActorFromActorInfo();
+    if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+    {
+        if (UAnimMontage* MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor))
+        {
+            // Update facing target before playing montage
+            CombatInterface->Execute_UpdateFacingTarget(AvatarActor, CachedTargetLocation);
 
-	// If we couldn't play montage, end immediately
-	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
+            PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
+                this,
+                NAME_None,
+                MontageToPlay,
+                1.0f
+            );
+
+            if (PlayMontageTask)
+            {
+                // OnCompleted: Montage finished playing successfully
+                PlayMontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+
+                // OnInterrupted: Another montage interrupted this one
+                PlayMontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+
+                // OnCancelled: Montage was explicitly cancelled
+                PlayMontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+
+                // NOTE: Do NOT bind OnBlendOut - it fires when blend out STARTS, not when montage ends
+                // This was causing the ability to end early, allowing rapid re-activation
+
+                PlayMontageTask->ReadyForActivation();
+
+                // Step 3: Wait for gameplay event from AnimNotify
+                // The AnimNotify in the montage will send the event tag (configured in MontageEventTag)
+                if (MontageEventTag.IsValid())
+                {
+                    EventWaitTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(
+                        this,
+                        MontageEventTag,  // Use the configurable tag
+                        nullptr,          // Optional source (nullptr = any source)
+                        false,            // Only trigger once
+                        false             // Only match exact tag
+                    );
+
+                    if (EventWaitTask)
+                    {
+                        EventWaitTask->EventReceived.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageEventReceived);
+                        EventWaitTask->ReadyForActivation();
+                    }
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Warning, TEXT("MontageEventTag is not set for %s. Projectile will not spawn."), *GetName());
+                }
+
+                return;
+            }
+        }
+    }
+
+    // If we couldn't play montage, end immediately
+    EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
 }
 
 void UAuraGA_ProjectileSpell::OnMontageEventReceived(FGameplayEventData Payload)
