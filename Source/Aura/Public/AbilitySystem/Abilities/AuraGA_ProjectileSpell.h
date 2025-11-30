@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "AuraDamageGameplayAbility.h"
 #include "GameplayTagContainer.h"
+#include "Animation/AnimInstance.h"
 #include "AuraGA_ProjectileSpell.generated.h"
 
 class AAuraProjectile;
