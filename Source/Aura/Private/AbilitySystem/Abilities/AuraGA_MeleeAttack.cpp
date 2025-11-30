@@ -169,6 +169,12 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 			continue;
 		}
 		
+		// Don't hit yourself
+		if (HitActor == AvatarActor)
+		{
+			continue;
+		}
+		
 		UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Processing hit on: %s"), *HitActor->GetName());
 		
 		// Get target ASC
@@ -176,6 +182,18 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 		if (!TargetASC)
 		{
 			UE_LOG(LogTemp, Verbose, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Target %s has no ASC"), *HitActor->GetName());
+			continue;
+		}
+		
+		// Prevent friendly fire - both actors must have Enemy tag to damage each other
+		// Player doesn't have Enemy tag, enemies do
+		const bool bInstigatorIsEnemy = AvatarActor->ActorHasTag(FName("Enemy"));
+		const bool bTargetIsEnemy = HitActor->ActorHasTag(FName("Enemy"));
+		
+		// Skip if both are enemies (friendly fire) or both are players/allies
+		if (bInstigatorIsEnemy == bTargetIsEnemy)
+		{
+			UE_LOG(LogTemp, Verbose, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Skipping friendly target: %s"), *HitActor->GetName());
 			continue;
 		}
 		
