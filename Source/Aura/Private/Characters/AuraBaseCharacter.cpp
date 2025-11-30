@@ -1,6 +1,5 @@
 ﻿// Not Sure Yet
 
-
 #include "Characters/AuraBaseCharacter.h"
 #include "AbilitySystemComponent.h"
 #include "AuraCollisionChannels.h"
@@ -8,6 +7,7 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "Components/CapsuleComponent.h"
+#include "Tags/AuraTags.h"
 
 namespace 
 {
@@ -72,8 +72,8 @@ void AAuraBaseCharacter::MulticastHandleDeath_Implementation()
 	
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	Dissolve();
+	bDead = true;
 }
-
 
 void AAuraBaseCharacter::Die()
 {
@@ -88,31 +88,70 @@ UAbilitySystemComponent* AAuraBaseCharacter::GetAbilitySystemComponent() const
 
 FVector AAuraBaseCharacter::GetCombatSocketLocation() const
 {
-        check(Weapon);
-        return Weapon->GetSocketLocation(WeaponTipSocketName);
+	check(Weapon);
+	return Weapon->GetSocketLocation(WeaponTipSocketName);
 }
 
 FVector AAuraBaseCharacter::GetCombatSocketLocationByTag(const FGameplayTag& SocketTag) const
 {
-        check(Weapon);
+	// First check the TaggedCombatSockets map for custom mappings
+	if (SocketTag.IsValid())
+	{
+		if (const FName* SocketName = TaggedCombatSockets.Find(SocketTag))
+		{
+			// Check weapon first, then character mesh
+			if (Weapon && Weapon->DoesSocketExist(*SocketName))
+			{
+				return Weapon->GetSocketLocation(*SocketName);
+			}
+			if (GetMesh()->DoesSocketExist(*SocketName))
+			{
+				return GetMesh()->GetSocketLocation(*SocketName);
+			}
+		}
 
-        if (SocketTag.IsValid())
-        {
-                if (const FName* SocketName = TaggedCombatSockets.Find(SocketTag))
-                {
-                        if (Weapon->DoesSocketExist(*SocketName))
-                        {
-                                return Weapon->GetSocketLocation(*SocketName);
-                        }
-                }
-        }
+		// Handle standard combat socket tags using built-in socket names
+		if (SocketTag.MatchesTagExact(Aura::CombatSocket::Weapon) && IsValid(Weapon))
+		{
+			return Weapon->GetSocketLocation(WeaponTipSocketName);
+		}
+		if (SocketTag.MatchesTagExact(Aura::CombatSocket::LeftHand))
+		{
+			return GetMesh()->GetSocketLocation(LeftHandSocketName);
+		}
+		if (SocketTag.MatchesTagExact(Aura::CombatSocket::RightHand))
+		{
+			return GetMesh()->GetSocketLocation(RightHandSocketName);
+		}
+	}
 
-        return GetCombatSocketLocation();
+	// Fallback to default weapon socket
+	return GetCombatSocketLocation();
+}
+
+UAnimMontage* AAuraBaseCharacter::GetHitReactMontage_Implementation() const
+{
+	return HitReactMontage;
+}
+
+bool AAuraBaseCharacter::IsDead_Implementation() const
+{
+	return bDead;
+}
+
+AActor* AAuraBaseCharacter::GetAvatar_Implementation()
+{
+	return this;
+}
+
+TArray<FTaggedMontage> AAuraBaseCharacter::GetAttackMontages_Implementation() const
+{
+	return AttackMontages;
 }
 
 void AAuraBaseCharacter::InitializeAbilityActorInfo()
 {
-        // override in children
+	// Override in children
 }
 
 void AAuraBaseCharacter::InitializeDefaultAttributes() const
@@ -131,63 +170,31 @@ void AAuraBaseCharacter::AddCharacterAbilities()
 	UAuraAbilitySystemBPLibrary::GiveStartupAbilities(this, AbilitySystemComponent, GetCharacterClass());
 }
 
-void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target)
-{
-	if (MotionWarpingComponent)
-	{
-		MotionWarpingComponent->AddOrUpdateWarpTargetFromLocation(FacingTargetWarpName, Target);
-	}
-}
-
 void AAuraBaseCharacter::Dissolve()
 {
-	DissolveMaterialInstances.Empty();
-
-	// Lambda to apply dissolve material to a mesh component
-	// Captures 'this' to add MIDs to the instance array
-	auto ApplyDissolve = [this](const int32 MaterialIndex, UMaterialInstance* MaterialInstance, USkeletalMeshComponent* MeshComponent)
+	if (IsValid(DissolveMaterialInstance))
 	{
-		if (IsValid(MaterialInstance))
-		{
-			UMaterialInstanceDynamic* MIDynamic = UMaterialInstanceDynamic::Create(MaterialInstance, this);
-			MeshComponent->SetMaterial(MaterialIndex, MIDynamic);
-			DissolveMaterialInstances.Add(MIDynamic);
-		}
-	};
-
-	ApplyDissolve(0, DissolveMaterialInstance, GetMesh());
-	ApplyDissolve(0, WeaponDissolveMaterialInstance, Weapon);
-
-	if (DissolveCurve || GlowCurve) { DissolveTimeline->PlayFromStart(); }
+		UMaterialInstanceDynamic* DynamicMatInst = UMaterialInstanceDynamic::Create(DissolveMaterialInstance, this);
+		GetMesh()->SetMaterial(0, DynamicMatInst);
+	}
+	if (IsValid(WeaponDissolveMaterialInstance))
+	{
+		UMaterialInstanceDynamic* DynamicMatInst = UMaterialInstanceDynamic::Create(WeaponDissolveMaterialInstance, this);
+		Weapon->SetMaterial(0, DynamicMatInst);
+	}
+	
+	if (DissolveTimeline)
+	{
+		DissolveTimeline->PlayFromStart();
+	}
 }
 
 void AAuraBaseCharacter::UpdateDissolveMaterial(float DissolveValue)
 {
-	UpdateMaterialParameter(DissolveParameterName, DissolveValue);
+	// Override or bind in Blueprint
 }
 
 void AAuraBaseCharacter::UpdateGlowMaterial(float GlowValue)
 {
-	UpdateMaterialParameter(GlowParameterName, GlowValue);
-}
-
-void AAuraBaseCharacter::UpdateMaterialParameter(const FName& ParameterName, float Value)
-{
-	for (auto& MID : DissolveMaterialInstances)
-	{
-		if (MID)
-		{
-			MID->SetScalarParameterValue(ParameterName, Value);
-		}
-	}
-}
-
-void AAuraBaseCharacter::ApplyGameplayEffectClassToSelf(const TSubclassOf<UGameplayEffect> EffectClass, const float Level) const
-{
-	check(IsValid(AbilitySystemComponent));
-	check(EffectClass);
-	FGameplayEffectContextHandle EffectContext { AbilitySystemComponent->MakeEffectContext() };
-	EffectContext.AddSourceObject(this);
-	const FGameplayEffectSpecHandle SpecHandle { AbilitySystemComponent->MakeOutgoingSpec(EffectClass, Level, EffectContext) };
-	AbilitySystemComponent->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), AbilitySystemComponent);
+	// Override or bind in Blueprint
 }

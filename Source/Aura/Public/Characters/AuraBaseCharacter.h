@@ -1,4 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Not Sure Yet
 
 #pragma once
 
@@ -44,15 +44,25 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	FName WeaponSocketName { "WeaponHandSocket" };
 	
-        UPROPERTY(EditAnywhere, Category = "Aura|Combat")
-        FName WeaponTipSocketName { "WeaponTipSocket" };
+	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
+	FName WeaponTipSocketName { "WeaponTipSocket" };
 
-        virtual FVector GetCombatSocketLocation() const override;
-        virtual FVector GetCombatSocketLocationByTag(const FGameplayTag& SocketTag) const override;
+	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
+	FName LeftHandSocketName { "LeftHandSocket" };
 
-        /** Optional mapping of Gameplay Tags to specific combat sockets (e.g., left/right hands) */
-        UPROPERTY(EditAnywhere, Category = "Aura|Combat")
-        TMap<FGameplayTag, FName> TaggedCombatSockets;
+	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
+	FName RightHandSocketName { "RightHandSocket" };
+
+	virtual FVector GetCombatSocketLocation() const override;
+	virtual FVector GetCombatSocketLocationByTag(const FGameplayTag& SocketTag) const override;
+
+	/** Optional mapping of Gameplay Tags to specific combat sockets (e.g., left/right hands) */
+	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
+	TMap<FGameplayTag, FName> TaggedCombatSockets;
+
+	/** Array of attack montages with their associated socket tags for multi-attack characters */
+	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
+	TArray<FTaggedMontage> AttackMontages;
 	
 	UFUNCTION(BlueprintCallable, Category = "Aura|Combat")
 	FORCEINLINE UMotionWarpingComponent* GetMotionWarpingComponent() const { return MotionWarpingComponent; }
@@ -67,6 +77,12 @@ public:
 	{
 		TagContainer = CharacterTags;
 	};
+
+	/** Combat Interface Implementations */
+	virtual UAnimMontage* GetHitReactMontage_Implementation() const override;
+	virtual bool IsDead_Implementation() const override;
+	virtual AActor* GetAvatar_Implementation() override;
+	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() const override;
 	
 protected:
 	virtual void BeginPlay() override;
@@ -74,78 +90,47 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 
-	// Store as typed pointer - no casting needed when accessing!
-	UPROPERTY(VisibleAnywhere, Category = "Aura|GAS")
-	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
-	
-	UPROPERTY(VisibleAnywhere, Category = "Aura|Combat")
-	TObjectPtr<UMotionWarpingComponent> MotionWarpingComponent;
+	bool bDead = false;
 
 	// Store as typed pointer - no casting needed when accessing!
 	UPROPERTY()
+	TObjectPtr<UAuraAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY()
 	TObjectPtr<UAuraAttributeSet> AttributeSet;
 
+	UPROPERTY(VisibleAnywhere, Category = "Aura|Combat")
+	TObjectPtr<UMotionWarpingComponent> MotionWarpingComponent;
+
 	virtual void InitializeAbilityActorInfo();
-
-	void InitializeDefaultAttributes() const;
-	
-	// Pure virtual function - child classes must provide their CharacterClass
-	virtual ECharacterClass GetCharacterClass() const { return ECharacterClass::DefaultClass; }
+	virtual void InitializeDefaultAttributes() const;
 	void AddCharacterAbilities();
-	virtual void UpdateFacingTarget_Implementation(const FVector& Target) override;
-	void Dissolve();
 
-	UFUNCTION(BlueprintImplementableEvent)
-	void StartDissolveTimeline(UMaterialInstanceDynamic* MaterialInstanceDynamic);
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Combat")
-	TObjectPtr<UMaterialInstance> DissolveMaterialInstance;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Combat")
-	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
-
-	// #region Dissolve Timeline
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	/* Dissolve Effects */
+	UPROPERTY(VisibleAnywhere, Category = "Aura|Effects")
 	TObjectPtr<UTimelineComponent> DissolveTimeline;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Dissolve")
+	UPROPERTY(EditDefaultsOnly, Category = "Aura|Effects")
 	TObjectPtr<UCurveFloat> DissolveCurve;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Dissolve")
+	UPROPERTY(EditDefaultsOnly, Category = "Aura|Effects")
 	TObjectPtr<UCurveFloat> GlowCurve;
 
-	// Timeline callbacks - must be UFUNCTIONs
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
+	TObjectPtr<UMaterialInstance> DissolveMaterialInstance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
+	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
+
+	void Dissolve();
+
 	UFUNCTION()
 	void UpdateDissolveMaterial(float DissolveValue);
 
 	UFUNCTION()
 	void UpdateGlowMaterial(float GlowValue);
 
-	// Storage for MIDs so the timeline can update them
-	UPROPERTY(VisibleAnywhere, Category = "Aura|Combat")
-	TArray<TObjectPtr<UMaterialInstanceDynamic>> DissolveMaterialInstances;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Dissolve")
-	FName DissolveParameterName { "Dissolve" };
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Dissolve")
-	FName GlowParameterName { "Glow" };
-	
-	FORCEINLINE virtual UAnimMontage* GetHitReactMontage_Implementation() const override
-	{
-		return HitReactMontage;
-	}
-
-	/** Name of the warp target used for motion warping */
-	UPROPERTY(EditDefaultsOnly, Category = "Aura|Combat")
-	FName FacingTargetWarpName { "FacingTarget" };
-
 private:
-	void ApplyGameplayEffectClassToSelf(TSubclassOf<UGameplayEffect> EffectClass, float Level = 1.f) const;
-
 	UPROPERTY(EditAnywhere, Category = "Aura|Abilities")
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
-
-	/** Generic helper to update a material parameter on all dissolve MIDs */
-	void UpdateMaterialParameter(const FName& ParameterName, float Value);
 };
