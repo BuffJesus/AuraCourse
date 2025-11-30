@@ -80,9 +80,9 @@ protected:
 	float PitchOverride = 0.f;
 
 private:
-	/** Stored montage task to keep it alive for callbacks */
-	UPROPERTY()
-	TObjectPtr<UAbilityTask_PlayMontageAndWait> PlayMontageTask;
+        /** Stored montage task to keep it alive for callbacks */
+        UPROPERTY()
+        TObjectPtr<UAbilityTask_PlayMontageAndWait> PlayMontageTask;
 
 	/** Stored target data task */
 	UPROPERTY()
@@ -92,6 +92,9 @@ private:
 	UPROPERTY()
 	TObjectPtr<UAbilityTask_WaitGameplayEvent> EventWaitTask;
 
-	/** Cached target location from mouse cursor */
-	FVector CachedTargetLocation;
+        /** Cached target location from mouse cursor */
+        FVector CachedTargetLocation;
+
+        /** Cached target actor resolved from trigger or target data */
+        TWeakObjectPtr<const AActor> CachedTargetActor;
 };
