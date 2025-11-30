@@ -38,7 +38,7 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
 AActor* AvatarActor = GetAvatarActorFromActorInfo();
-AActor* EventTargetActor = TriggerEventData ? TriggerEventData->Target.Get() : nullptr;
+const AActor* EventTargetActor = TriggerEventData ? TriggerEventData->Target.Get() : nullptr;
 UE_LOG(LogTemp, Log, TEXT("ProjectileSpell ActivateAbility | Avatar: %s | Owner: %s | TriggerEventTag: %s | EventTarget: %s"),
 AvatarActor ? *AvatarActor->GetName() : TEXT("None"),
 ActorInfo && ActorInfo->OwnerActor.IsValid() ? *ActorInfo->OwnerActor->GetName() : TEXT("None"),
@@ -82,7 +82,7 @@ FGameplayAbilityTargetDataHandle DataHandle;
 FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
 TargetData->HitResult.Location = EventTargetActor->GetActorLocation();
 TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
-TargetData->HitResult.SetActor(EventTargetActor);
+TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(EventTargetActor);
 CachedTargetActor = EventTargetActor;
 DataHandle.Add(TargetData);
 
@@ -100,7 +100,7 @@ FGameplayAbilityTargetDataHandle DataHandle;
 FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
 TargetData->HitResult.Location = CombatTarget->GetActorLocation();
 TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
-TargetData->HitResult.SetActor(CombatTarget);
+TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(CombatTarget);
 CachedTargetActor = CombatTarget;
 DataHandle.Add(TargetData);
 
