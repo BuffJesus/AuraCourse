@@ -38,10 +38,12 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
 AActor* AvatarActor = GetAvatarActorFromActorInfo();
-UE_LOG(LogTemp, Log, TEXT("ProjectileSpell ActivateAbility | Avatar: %s | Owner: %s | TriggerEventTag: %s"),
+AActor* EventTargetActor = TriggerEventData ? TriggerEventData->Target.Get() : nullptr;
+UE_LOG(LogTemp, Log, TEXT("ProjectileSpell ActivateAbility | Avatar: %s | Owner: %s | TriggerEventTag: %s | EventTarget: %s"),
 AvatarActor ? *AvatarActor->GetName() : TEXT("None"),
 ActorInfo && ActorInfo->OwnerActor.IsValid() ? *ActorInfo->OwnerActor->GetName() : TEXT("None"),
-TriggerEventData ? *TriggerEventData->EventTag.ToString() : TEXT("None"));
+TriggerEventData ? *TriggerEventData->EventTag.ToString() : TEXT("None"),
+EventTargetActor ? *EventTargetActor->GetName() : TEXT("None"));
 
 if (!AvatarActor)
 {
@@ -72,6 +74,22 @@ TargetDataTask->ReadyForActivation();
 else
 {
 // AI characters don't have mouse input; use their combat target instead
+if (EventTargetActor)
+{
+UE_LOG(LogTemp, Log, TEXT("ProjectileSpell using TriggerEvent target: %s"), *EventTargetActor->GetName());
+
+FGameplayAbilityTargetDataHandle DataHandle;
+FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
+TargetData->HitResult.Location = EventTargetActor->GetActorLocation();
+TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
+TargetData->HitResult.SetActor(EventTargetActor);
+CachedTargetActor = EventTargetActor;
+DataHandle.Add(TargetData);
+
+OnTargetDataReceived(DataHandle);
+return;
+}
+
 if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
 {
 if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
@@ -81,6 +99,9 @@ UE_LOG(LogTemp, Log, TEXT("ProjectileSpell AI target acquired: %s"), *CombatTarg
 FGameplayAbilityTargetDataHandle DataHandle;
 FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
 TargetData->HitResult.Location = CombatTarget->GetActorLocation();
+TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
+TargetData->HitResult.SetActor(CombatTarget);
+CachedTargetActor = CombatTarget;
 DataHandle.Add(TargetData);
 
 OnTargetDataReceived(DataHandle);
@@ -99,6 +120,7 @@ void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetD
 {
 // Extract target location from data handle
 CachedTargetLocation = FVector::ZeroVector;
+CachedTargetActor = nullptr;
 if (DataHandle.Data.Num() > 0)
 {
 const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
@@ -108,6 +130,7 @@ const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
                         if (HitResult)
                         {
                                 CachedTargetLocation = HitResult->Location;
+                                CachedTargetActor = HitResult->GetActor();
                         }
                 }
 }
@@ -119,13 +142,14 @@ if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(Get
 if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
 {
 CachedTargetLocation = CombatTarget->GetActorLocation();
+    CachedTargetActor = CombatTarget;
 UE_LOG(LogTemp, Log, TEXT("ProjectileSpell fallback target location from combat target: %s"), *CachedTargetLocation.ToString());
 }
 }
 }
 
-UE_LOG(LogTemp, Log, TEXT("ProjectileSpell OnTargetDataReceived | CachedTargetLocation: %s | HasData: %s"),
-*CachedTargetLocation.ToString(), DataHandle.Data.Num() > 0 ? TEXT("true") : TEXT("false"));
+UE_LOG(LogTemp, Log, TEXT("ProjectileSpell OnTargetDataReceived | CachedTargetLocation: %s | CachedTargetActor: %s | HasData: %s"),
+*CachedTargetLocation.ToString(), CachedTargetActor.IsValid() ? *CachedTargetActor->GetName() : TEXT("None"), DataHandle.Data.Num() > 0 ? TEXT("true") : TEXT("false"));
 
 	// Step 2: Play montage (on both client and server for prediction)
 	AActor* AvatarActor = GetAvatarActorFromActorInfo();
