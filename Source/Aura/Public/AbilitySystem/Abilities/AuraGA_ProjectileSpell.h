@@ -96,5 +96,5 @@ private:
         FVector CachedTargetLocation;
 
         /** Cached target actor resolved from trigger or target data */
-        TWeakObjectPtr<const AActor> CachedTargetActor;
+        TWeakObjectPtr<AActor> CachedTargetActor;
 };

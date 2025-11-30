@@ -38,7 +38,7 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
 AActor* AvatarActor = GetAvatarActorFromActorInfo();
-const AActor* EventTargetActor = TriggerEventData ? TriggerEventData->Target.Get() : nullptr;
+AActor* EventTargetActor = TriggerEventData ? const_cast<AActor*>(TriggerEventData->Target.Get()) : nullptr;
 UE_LOG(LogTemp, Log, TEXT("ProjectileSpell ActivateAbility | Avatar: %s | Owner: %s | TriggerEventTag: %s | EventTarget: %s"),
 AvatarActor ? *AvatarActor->GetName() : TEXT("None"),
 ActorInfo && ActorInfo->OwnerActor.IsValid() ? *ActorInfo->OwnerActor->GetName() : TEXT("None"),
