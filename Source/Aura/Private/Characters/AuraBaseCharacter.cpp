@@ -17,16 +17,17 @@ namespace
 
 AAuraBaseCharacter::AAuraBaseCharacter()
 {
-	PrimaryActorTick.bCanEverTick = false;
+PrimaryActorTick.bCanEverTick = false;
 
-	DissolveTimeline = CreateDefaultSubobject<UTimelineComponent>("DissolveTimeline");
+DissolveTimeline = CreateDefaultSubobject<UTimelineComponent>("DissolveTimeline");
 
-	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>("MotionWarpingComponent");
-	
-	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
-	
-	for (const auto& [Channel, Response] : MeshCollisionResponses)
-	{ GetMesh()->SetCollisionResponseToChannel(Channel, Response); }
+MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>("MotionWarpingComponent");
+
+GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Projectile, ECR_Ignore);
+
+for (const auto& [Channel, Response] : MeshCollisionResponses)
+{ GetMesh()->SetCollisionResponseToChannel(Channel, Response); }
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), WeaponSocketName);
