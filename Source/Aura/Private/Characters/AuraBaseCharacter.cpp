@@ -203,19 +203,21 @@ void AAuraBaseCharacter::UpdateGlowMaterial(float GlowValue)
 
 void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target)
 {
-        const FVector ActorLocation { GetActorLocation() };
-        FVector DirectionToTarget { Target - ActorLocation };
-        DirectionToTarget.Z = 0.f;
+	const FVector ActorLocation { GetActorLocation() };
+	FVector DirectionToTarget { Target - ActorLocation };
+	DirectionToTarget.Z = 0.f;
 
-        if (!DirectionToTarget.IsNearlyZero())
-        {
-                const FRotator LookRotation { DirectionToTarget.Rotation() };
-                SetActorRotation(FRotator(0.f, LookRotation.Yaw, 0.f));
+	if (!DirectionToTarget.IsNearlyZero())
+	{
+		const FRotator LookRotation { DirectionToTarget.Rotation() };
+		SetActorRotation(FRotator(0.f, LookRotation.Yaw, 0.f));
 
-                if (IsValid(MotionWarpingComponent))
-                {
-                        const FTransform WarpTransform { LookRotation, Target };
-                        MotionWarpingComponent->AddOrUpdateWarpTarget(FName("FacingTarget"), WarpTransform);
-                }
-        }
+		if (IsValid(MotionWarpingComponent))
+		{
+			const FTransform WarpTransform { LookRotation, Target };
+			const FMotionWarpingTarget WarpTarget { FName("FacingTarget"), WarpTransform };
+			MotionWarpingComponent->AddOrUpdateWarpTarget(WarpTarget);
+		}
+	}
+}
 }
