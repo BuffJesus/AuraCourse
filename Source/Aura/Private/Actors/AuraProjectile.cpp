@@ -6,6 +6,7 @@
 #include "AuraCollisionChannels.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "GameplayTagAssetInterface.h"
 #include "Tags/AuraTags.h"
 
 namespace 
@@ -89,16 +90,40 @@ void AAuraProjectile::Destroyed()
 }
 
 void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-										UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+                                                                                UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
         if (!IsValid(OtherActor) || OtherActor == this || OtherActor == GetOwner() || OtherActor == GetInstigator())
         {
                 return;
         }
 
-	if (HasAuthority())
-	{
-		bHit = true;
+        // Prevent friendly fire based on entity tags
+        FGameplayTagContainer SourceTags;
+        if (const IGameplayTagAssetInterface* SourceTagInterface = Cast<IGameplayTagAssetInterface>(GetOwner()))
+        {
+                SourceTagInterface->GetOwnedGameplayTags(SourceTags);
+        }
+
+        if (const IGameplayTagAssetInterface* TargetTagInterface = Cast<IGameplayTagAssetInterface>(OtherActor))
+        {
+                FGameplayTagContainer TargetTags;
+                TargetTagInterface->GetOwnedGameplayTags(TargetTags);
+
+                const bool bSourceIsPlayer = SourceTags.HasTagExact(Aura::Entities::Player);
+                const bool bSourceIsEnemy = SourceTags.HasTagExact(Aura::Entities::Enemy);
+                const bool bTargetIsPlayer = TargetTags.HasTagExact(Aura::Entities::Player);
+                const bool bTargetIsEnemy = TargetTags.HasTagExact(Aura::Entities::Enemy);
+
+                if ((bSourceIsPlayer && bTargetIsPlayer) || (bSourceIsEnemy && bTargetIsEnemy))
+                {
+                        UE_LOG(LogTemp, Verbose, TEXT("AuraProjectile::OnSphereOverlap - Skipping friendly: %s"), *OtherActor->GetName());
+                        return;
+                }
+        }
+
+        if (HasAuthority())
+        {
+                bHit = true;
 
 		// Apply damage
 		if (DamageEffectSpecHandle.IsValid())
