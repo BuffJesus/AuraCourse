@@ -11,7 +11,10 @@
 UAuraGA_ProjectileSpell::UAuraGA_ProjectileSpell()
 {
 	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
-	
+
+	// Execute this ability only on the server so the authoritative instance handles spawning and replication
+	NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::ServerOnly;
+
 	// Block re-activation while this ability is active (prevents machine-gun casting)
 	ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
 	ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
