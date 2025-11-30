@@ -73,17 +73,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Aura|Tags")
 	FGameplayTagContainer CharacterTags;
 	
-        FORCEINLINE virtual void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const override
-        {
-                TagContainer = CharacterTags;
-        };
+    FORCEINLINE virtual void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const override
+    {
+            TagContainer = CharacterTags;
+    };
 
-        /**
-         * Returns the character class used to look up defaults like attributes and abilities.
-         * A default of ECharacterClass::DefaultClass keeps the base class concrete while
-         * still allowing derived classes to override with their specific class.
-         */
-        virtual ECharacterClass GetCharacterClass() const { return ECharacterClass::DefaultClass; }
+	virtual ECharacterClass GetCharacterClass() const { return ECharacterClass::DefaultClass; }
 
 	/** Combat Interface Implementations */
 	virtual UAnimMontage* GetHitReactMontage_Implementation() const override;
