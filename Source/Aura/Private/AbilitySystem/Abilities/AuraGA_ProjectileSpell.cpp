@@ -19,6 +19,7 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
 {
         Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Projectile Spell Activated"));
         AActor* AvatarActor = GetAvatarActorFromActorInfo();
         if (!AvatarActor)
         {

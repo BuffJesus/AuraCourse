@@ -9,6 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/Characters/Player/BP_AuraCharacter.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://15" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://17" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -335,23 +336,7 @@
       <workItem from="1764388149774" duration="2698000" />
       <workItem from="1764432380898" duration="1959000" />
       <workItem from="1764443395410" duration="19175000" />
-      <workItem from="1764469867606" duration="8769000" />
-    </task>
-    <task id="LOCAL-00305" summary="Disable controller rotation axes and adjust movement rotation rate for `AuraEnemyCharacter`.">
-      <option name="closed" value="true" />
-      <created>1764374780722</created>
-      <option name="number" value="00305" />
-      <option name="presentableId" value="LOCAL-00305" />
-      <option name="project" value="LOCAL" />
-      <updated>1764374780722</updated>
-    </task>
-    <task id="LOCAL-00306" summary="Randomize pitch variation for projectile flight and impact sounds.">
-      <option name="closed" value="true" />
-      <created>1764375345989</created>
-      <option name="number" value="00306" />
-      <option name="presentableId" value="LOCAL-00306" />
-      <option name="project" value="LOCAL" />
-      <updated>1764375345989</updated>
+      <workItem from="1764469867606" duration="9434000" />
     </task>
     <task id="LOCAL-00307" summary="Add `RandomPitchMultiplier` to manage pitch variation in flight and impact sounds">
       <option name="closed" value="true" />
@@ -729,7 +714,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764480057546</updated>
     </task>
-    <option name="localTasksCounter" value="354" />
+    <task id="LOCAL-00354" summary="Fix extraneous closing parentheses in `AuraGA_ProjectileSpell.cpp` and clean up `.idea/workspace.xml` configurations">
+      <option name="closed" value="true" />
+      <created>1764480700698</created>
+      <option name="number" value="00354" />
+      <option name="presentableId" value="LOCAL-00354" />
+      <option name="project" value="LOCAL" />
+      <updated>1764480700698</updated>
+    </task>
+    <task id="LOCAL-00355" summary="Refactor montage task initialization in `AuraGA_ProjectileSpell.cpp` for clarity and consistency">
+      <option name="closed" value="true" />
+      <created>1764480776809</created>
+      <option name="number" value="00355" />
+      <option name="presentableId" value="LOCAL-00355" />
+      <option name="project" value="LOCAL" />
+      <updated>1764480776809</updated>
+    </task>
+    <option name="localTasksCounter" value="356" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,8 +740,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove debug message from `UAuraGA_MeleeAttack::ActivateAbility` and update `.idea/workspace.xml`." />
-    <MESSAGE value="Add hit react montage handling to `UAuraGA_MeleeAttack`&#10;&#10;- Integrated `PlayMontageAndWait` task to play hit react montages in melee attack ability.&#10;- Added helper functions for montage completion, interruption, and cancellation.&#10;- Updated `AuraBaseCharacter` and `AuraCombatInterface` to support attack montage references." />
     <MESSAGE value="Refactor melee attack ability cleanup logic and adjust montage properties&#10;&#10;- Updated `EndAbility` calls in `UAuraGA_MeleeAttack` to include additional parameters for improved cleanup handling.&#10;- Moved `AttackMontage` property from `AuraBaseCharacter` to `AuraEnemyCharacter` for better character-specific management." />
     <MESSAGE value="Update `UAuraGA_MeleeAttack` to use `GetAttackMontage` instead of `GetHitReactMontage` for animation handling" />
     <MESSAGE value="Update `AuraEnemyCharacter` with `GetAttackMontage_Implementation` and refine logging in `AuraGA_MeleeAttack`" />
@@ -764,7 +763,9 @@
     <MESSAGE value="Clean up `.idea/workspace.xml` by removing redundant metadata and synchronizing configurations." />
     <MESSAGE value="Enable overlap events for `AuraBaseCharacter` mesh and update animations and workspace metadata." />
     <MESSAGE value="Remove extraneous newline from `AuraBaseCharacter.cpp` and update `BP_Enemy_Base` asset" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove extraneous newline from `AuraBaseCharacter.cpp` and update `BP_Enemy_Base` asset" />
+    <MESSAGE value="Fix extraneous closing parentheses in `AuraGA_ProjectileSpell.cpp` and clean up `.idea/workspace.xml` configurations" />
+    <MESSAGE value="Refactor montage task initialization in `AuraGA_ProjectileSpell.cpp` for clarity and consistency" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor montage task initialization in `AuraGA_ProjectileSpell.cpp` for clarity and consistency" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
