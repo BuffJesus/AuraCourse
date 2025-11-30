@@ -61,158 +61,167 @@ return;
 // Step 1: Get target data (mouse cursor location for players, combat target for AI)
 if (ActorInfo && ActorInfo->PlayerController.IsValid())
 {
-TargetDataTask = UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse(this);
-if (!TargetDataTask)
-{
-EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-return;
-}
+    TargetDataTask = UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse(this);
+    if (!TargetDataTask)
+    {
+        EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+        return;
+    }
 
-TargetDataTask->ValidData.AddDynamic(this, &UAuraGA_ProjectileSpell::OnTargetDataReceived);
-TargetDataTask->ReadyForActivation();
+    TargetDataTask->ValidData.AddDynamic(this, &UAuraGA_ProjectileSpell::OnTargetDataReceived);
+    TargetDataTask->ReadyForActivation();
 }
 else
 {
-// AI characters don't have mouse input; use their combat target instead
-if (EventTargetActor)
-{
-UE_LOG(LogTemp, Log, TEXT("ProjectileSpell using TriggerEvent target: %s"), *EventTargetActor->GetName());
+    // AI characters don't have mouse input; use their combat target instead
+    if (EventTargetActor)
+    {
+        UE_LOG(LogTemp, Log, TEXT("ProjectileSpell using TriggerEvent target: %s"), *EventTargetActor->GetName());
 
-FGameplayAbilityTargetDataHandle DataHandle;
-FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
-TargetData->HitResult.Location = EventTargetActor->GetActorLocation();
-TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
-TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(EventTargetActor);
-CachedTargetActor = EventTargetActor;
-DataHandle.Add(TargetData);
+        FGameplayAbilityTargetDataHandle DataHandle;
+        FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
+        TargetData->HitResult.Location = EventTargetActor->GetActorLocation();
+        TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
+        TargetData->HitResult.Actor = EventTargetActor;
+        TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(EventTargetActor);
+        CachedTargetActor = EventTargetActor;
+        DataHandle.Add(TargetData);
 
-OnTargetDataReceived(DataHandle);
-return;
-}
+        OnTargetDataReceived(DataHandle);
+        return;
+    }
 
-if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
-{
-if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
-{
-UE_LOG(LogTemp, Log, TEXT("ProjectileSpell AI target acquired: %s"), *CombatTarget->GetName());
+    if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+    {
+        if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
+        {
+            UE_LOG(LogTemp, Log, TEXT("ProjectileSpell AI target acquired: %s"), *CombatTarget->GetName());
 
-FGameplayAbilityTargetDataHandle DataHandle;
-FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
-TargetData->HitResult.Location = CombatTarget->GetActorLocation();
-TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
-TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(CombatTarget);
-CachedTargetActor = CombatTarget;
-DataHandle.Add(TargetData);
+            FGameplayAbilityTargetDataHandle DataHandle;
+            FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
+            TargetData->HitResult.Location = CombatTarget->GetActorLocation();
+            TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
+            TargetData->HitResult.Actor = CombatTarget;
+            TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(CombatTarget);
+            CachedTargetActor = CombatTarget;
+            DataHandle.Add(TargetData);
 
-OnTargetDataReceived(DataHandle);
-return;
-}
+            OnTargetDataReceived(DataHandle);
+            return;
+        }
 
-UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell AI has no CombatTarget on %s"), *AvatarActor->GetName());
-}
+        UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell AI has no CombatTarget on %s"), *AvatarActor->GetName());
+    }
 
-UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell ending due to missing target data for %s"), *AvatarActor->GetName());
-EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+    UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell ending due to missing target data for %s"), *AvatarActor->GetName());
+    EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
 }
 }
 
 void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetDataHandle& DataHandle)
 {
 // Extract target location from data handle
-CachedTargetLocation = FVector::ZeroVector;
-CachedTargetActor = nullptr;
-if (DataHandle.Data.Num() > 0)
-{
-const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
-                if (TargetData)
+    CachedTargetLocation = FVector::ZeroVector;
+    CachedTargetActor = nullptr;
+
+    if (DataHandle.Data.Num() > 0)
+    {
+        const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
+        if (TargetData)
+        {
+            const FHitResult* HitResult = TargetData->GetHitResult();
+            if (HitResult)
+            {
+                CachedTargetLocation = HitResult->Location;
+                CachedTargetActor = HitResult->GetActor();
+            }
+        }
+    }
+
+    if (CachedTargetLocation.IsNearlyZero())
+    {
+        if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo()))
+        {
+            if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
+            {
+                CachedTargetLocation = CombatTarget->GetActorLocation();
+                CachedTargetActor = CombatTarget;
+                UE_LOG(LogTemp, Log, TEXT("ProjectileSpell fallback target location from combat target: %s"), *CachedTargetLocation.ToString());
+            }
+        }
+    }
+
+    UE_LOG(
+        LogTemp,
+        Log,
+        TEXT("ProjectileSpell OnTargetDataReceived | CachedTargetLocation: %s | CachedTargetActor: %s | HasData: %s"),
+        *CachedTargetLocation.ToString(),
+        CachedTargetActor.IsValid() ? *CachedTargetActor->GetName() : TEXT("None"),
+        DataHandle.Data.Num() > 0 ? TEXT("true") : TEXT("false")
+    );
+
+    // Step 2: Play montage (on both client and server for prediction)
+    AActor* AvatarActor = GetAvatarActorFromActorInfo();
+    if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+    {
+        if (UAnimMontage* MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor))
+        {
+            // Update facing target before playing montage
+            CombatInterface->Execute_UpdateFacingTarget(AvatarActor, CachedTargetLocation);
+
+            PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
+                this,
+                NAME_None,
+                MontageToPlay,
+                1.0f
+            );
+
+            if (PlayMontageTask)
+            {
+                // OnCompleted: Montage finished playing successfully
+                PlayMontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
+
+                // OnInterrupted: Another montage interrupted this one
+                PlayMontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+
+                // OnCancelled: Montage was explicitly cancelled
+                PlayMontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
+
+                // NOTE: Do NOT bind OnBlendOut - it fires when blend out STARTS, not when montage ends
+                // This was causing the ability to end early, allowing rapid re-activation
+
+                PlayMontageTask->ReadyForActivation();
+
+                // Step 3: Wait for gameplay event from AnimNotify
+                // The AnimNotify in the montage will send the event tag (configured in MontageEventTag)
+                if (MontageEventTag.IsValid())
                 {
-                        const FHitResult* HitResult = TargetData->GetHitResult();
-                        if (HitResult)
-                        {
-                                CachedTargetLocation = HitResult->Location;
-                                CachedTargetActor = HitResult->GetActor();
-                        }
+                    EventWaitTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(
+                        this,
+                        MontageEventTag,  // Use the configurable tag
+                        nullptr,          // Optional source (nullptr = any source)
+                        false,            // Only trigger once
+                        false             // Only match exact tag
+                    );
+
+                    if (EventWaitTask)
+                    {
+                        EventWaitTask->EventReceived.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageEventReceived);
+                        EventWaitTask->ReadyForActivation();
+                    }
                 }
-}
+                else
+                {
+                    UE_LOG(LogTemp, Warning, TEXT("MontageEventTag is not set for %s. Projectile will not spawn."), *GetName());
+                }
 
-if (CachedTargetLocation.IsNearlyZero())
-{
-if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo()))
-{
-if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
-{
-CachedTargetLocation = CombatTarget->GetActorLocation();
-    CachedTargetActor = CombatTarget;
-UE_LOG(LogTemp, Log, TEXT("ProjectileSpell fallback target location from combat target: %s"), *CachedTargetLocation.ToString());
-}
-}
-}
+                return;
+            }
+        }
+    }
 
-UE_LOG(LogTemp, Log, TEXT("ProjectileSpell OnTargetDataReceived | CachedTargetLocation: %s | CachedTargetActor: %s | HasData: %s"),
-*CachedTargetLocation.ToString(), CachedTargetActor.IsValid() ? *CachedTargetActor->GetName() : TEXT("None"), DataHandle.Data.Num() > 0 ? TEXT("true") : TEXT("false"));
-
-	// Step 2: Play montage (on both client and server for prediction)
-	AActor* AvatarActor = GetAvatarActorFromActorInfo();
-	if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
-	{
-		if (UAnimMontage* MontageToPlay = CombatInterface->Execute_GetAttackMontage(AvatarActor))
-		{
-			// Update facing target before playing montage
-			CombatInterface->Execute_UpdateFacingTarget(AvatarActor, CachedTargetLocation);
-			
-			PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(
-				this,
-				NAME_None,
-				MontageToPlay,
-				1.0f
-			);
-
-			if (PlayMontageTask)
-			{
-				// OnCompleted: Montage finished playing successfully
-				PlayMontageTask->OnCompleted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCompleted);
-				
-				// OnInterrupted: Another montage interrupted this one
-				PlayMontageTask->OnInterrupted.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
-				
-				// OnCancelled: Montage was explicitly cancelled
-				PlayMontageTask->OnCancelled.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageCancelled);
-				
-				// NOTE: Do NOT bind OnBlendOut - it fires when blend out STARTS, not when montage ends
-				// This was causing the ability to end early, allowing rapid re-activation
-
-				PlayMontageTask->ReadyForActivation();
-				
-				// Step 3: Wait for gameplay event from AnimNotify
-				// The AnimNotify in the montage will send the event tag (configured in MontageEventTag)
-				if (MontageEventTag.IsValid())
-				{
-					EventWaitTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(
-						this,
-						MontageEventTag,  // Use the configurable tag
-						nullptr,          // Optional source (nullptr = any source)
-						false,            // Only trigger once
-						false             // Only match exact tag
-					);
-
-					if (EventWaitTask)
-					{
-						EventWaitTask->EventReceived.AddDynamic(this, &UAuraGA_ProjectileSpell::OnMontageEventReceived);
-						EventWaitTask->ReadyForActivation();
-					}
-				}
-				else
-				{
-					UE_LOG(LogTemp, Warning, TEXT("MontageEventTag is not set for %s. Projectile will not spawn."), *GetName());
-				}
-				
-				return;
-			}
-		}
-	}
-
-	// If we couldn't play montage, end immediately
-	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
+    // If we couldn't play montage, end immediately
+    EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, false);
 }
 
 void UAuraGA_ProjectileSpell::OnMontageEventReceived(FGameplayEventData Payload)
