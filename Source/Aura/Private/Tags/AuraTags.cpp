@@ -16,6 +16,13 @@ namespace Aura
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Melee, "Aura.Ability.Attack.Melee", "Melee attack ability");
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ranged, "Aura.Ability.Attack.Ranged", "Ranged attack ability");
 		}
+		
+		namespace State
+		{
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(State, "Aura.Ability.State", "Ability state tags");
+			
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Casting, "Aura.Ability.State.Casting", "Currently casting an ability");
+		}
 	}
 	namespace Attributes
 	{
@@ -76,24 +83,24 @@ namespace Aura
 		
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HitReact, "Aura.Effects.HitReact", "Hit reaction");
 	}
-        namespace Entities
-        {
-                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Entities, "Aura.Entities", "Entities");
+	namespace Entities
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Entities, "Aura.Entities", "Entities");
 
-                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Player, "Aura.Entities.Player", "Player entity");
-                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Enemy, "Aura.Entities.Enemy", "Enemy entity");
-        }
-        namespace CombatSocket
-        {
-                UE_DEFINE_GAMEPLAY_TAG_COMMENT(CombatSocket, "Aura.CombatSocket", "Combat socket root");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Player, "Aura.Entities.Player", "Player entity");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Enemy, "Aura.Entities.Enemy", "Enemy entity");
+	}
+	namespace CombatSocket
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(CombatSocket, "Aura.CombatSocket", "Combat socket root");
 
-                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Weapon, "Aura.CombatSocket.Weapon", "Default weapon combat socket");
-                UE_DEFINE_GAMEPLAY_TAG_COMMENT(LeftHand, "Aura.CombatSocket.LeftHand", "Left-hand combat socket");
-                UE_DEFINE_GAMEPLAY_TAG_COMMENT(RightHand, "Aura.CombatSocket.RightHand", "Right-hand combat socket");
-        }
-        namespace Event
-        {
-                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event, "Aura.Event", "Event");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Weapon, "Aura.CombatSocket.Weapon", "Default weapon combat socket");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(LeftHand, "Aura.CombatSocket.LeftHand", "Left-hand combat socket");
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(RightHand, "Aura.CombatSocket.RightHand", "Right-hand combat socket");
+	}
+	namespace Event
+	{
+		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event, "Aura.Event", "Event");
 		
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HitReact, "Aura.Event.HitReact", "Hit reaction");
 		namespace Montage

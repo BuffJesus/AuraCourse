@@ -34,14 +34,14 @@ protected:
         UFUNCTION()
         void OnMontageCancelled();
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Projectile")
-	TSubclassOf<AAuraProjectile> ProjectileClass;
+		UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Projectile")
+		TSubclassOf<AAuraProjectile> ProjectileClass;
 
-	/** Gameplay Cue for projectile flight sound/effects */
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GameplayCue", meta = (Categories = "GameplayCue"))
-	FGameplayTag ProjectileFlightCue;
+		/** Gameplay Cue for projectile flight sound/effects */
+		UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GameplayCue", meta = (Categories = "GameplayCue"))
+		FGameplayTag ProjectileFlightCue;
 
-	/** Gameplay Cue for projectile impact effects */
+		/** Gameplay Cue for projectile impact effects */
         UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|GameplayCue", meta = (Categories = "GameplayCue"))
         FGameplayTag ProjectileImpactCue;
 

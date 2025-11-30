@@ -17,17 +17,17 @@ namespace
 
 AAuraBaseCharacter::AAuraBaseCharacter()
 {
-PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = false;
 
-DissolveTimeline = CreateDefaultSubobject<UTimelineComponent>("DissolveTimeline");
+	DissolveTimeline = CreateDefaultSubobject<UTimelineComponent>("DissolveTimeline");
 
-MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>("MotionWarpingComponent");
+	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>("MotionWarpingComponent");
 
-GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
-GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Projectile, ECR_Ignore);
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Projectile, ECR_Ignore);
 
-for (const auto& [Channel, Response] : MeshCollisionResponses)
-{ GetMesh()->SetCollisionResponseToChannel(Channel, Response); }
+	for (const auto& [Channel, Response] : MeshCollisionResponses)
+	{ GetMesh()->SetCollisionResponseToChannel(Channel, Response); }
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), WeaponSocketName);
@@ -136,6 +136,17 @@ UAnimMontage* AAuraBaseCharacter::GetHitReactMontage_Implementation() const
 	return HitReactMontage;
 }
 
+UAnimMontage* AAuraBaseCharacter::GetAttackMontage_Implementation() const
+{
+	// Use the attack montage array if it has entries
+	if (!AttackMontages.IsEmpty())
+	{
+		const int32 MontageIndex = FMath::RandRange(0, AttackMontages.Num() - 1);
+		return AttackMontages[MontageIndex].Montage;
+	}
+	return nullptr;
+}
+
 bool AAuraBaseCharacter::IsDead_Implementation() const
 {
 	return bDead;
@@ -198,7 +209,7 @@ void AAuraBaseCharacter::UpdateDissolveMaterial(float DissolveValue)
 
 void AAuraBaseCharacter::UpdateGlowMaterial(float GlowValue)
 {
-        // Override or bind in Blueprint
+	// Override or bind in Blueprint
 }
 
 void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target)
