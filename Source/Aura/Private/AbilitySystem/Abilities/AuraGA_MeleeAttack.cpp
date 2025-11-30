@@ -1,8 +1,6 @@
 #include "AbilitySystem/Abilities/AuraGA_MeleeAttack.h"
 
-#include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
-#include "AbilitySystemInterface.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "GameplayTagAssetInterface.h"
 #include "GameplayTagContainer.h"
@@ -112,16 +110,12 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 	}
 	
 	// Get combat socket location
-	FVector CombatSocketLocation { FVector::ZeroVector };
-	if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
-	{
-		CombatSocketLocation = CombatInterface->GetCombatSocketLocation();
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - AvatarActor doesn't implement IAuraCombatInterface!"));
-		return;
-	}
+        const FVector CombatSocketLocation { GetCombatSocketLocation() };
+        if (CombatSocketLocation.IsNearlyZero())
+        {
+                UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Invalid combat socket location!"));
+                return;
+        }
 	
 	// Set up sphere trace
 	TArray<FHitResult> HitResults;
@@ -156,11 +150,10 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Hit %d targets!"), HitResults.Num());
 	
 	// Get source ASC for creating damage specs
-	UAbilitySystemComponent* SourceASC = GetAbilitySystemComponentFromActorInfo();
-	if (!SourceASC)
-	{
-		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - No source ASC!"));
-		return;
+        if (!GetAbilitySystemComponentFromActorInfo())
+        {
+                UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - No source ASC!"));
+                return;
         }
 
         FGameplayTagContainer SourceTags;
@@ -204,32 +197,11 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 
                 UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Processing hit on: %s"), *HitActor->GetName());
 		
-		// Get target ASC - try multiple methods
-		UAbilitySystemComponent* TargetASC = nullptr;
-		
-		// Method 1: Blueprint library (checks actor and playerstate)
-		TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(HitActor);
-		
-		// Method 2: Direct interface cast if method 1 failed
-		if (!TargetASC)
-		{
-			if (IAbilitySystemInterface* ASI = Cast<IAbilitySystemInterface>(HitActor))
-			{
-				TargetASC = ASI->GetAbilitySystemComponent();
-			}
-		}
-		
-		if (!TargetASC)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Target %s has no ASC!"), *HitActor->GetName());
-			continue;
-		}
-		
-		// Prevent friendly fire - only hit our current combat target
-		// Get the combat target from our combat interface
-		AActor* CombatTarget = nullptr;
-		if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
-		{
+                // Prevent friendly fire - only hit our current combat target
+                // Get the combat target from our combat interface
+                AActor* CombatTarget = nullptr;
+                if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+                {
 			CombatTarget = CombatInterface->GetCombatTarget();
 		}
 		
@@ -239,32 +211,25 @@ void UAuraGA_MeleeAttack::PerformMeleeAttack()
 			UE_LOG(LogTemp, Verbose, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Skipping non-target: %s (Target is: %s)"), 
 				*HitActor->GetName(), *CombatTarget->GetName());
 			continue;
-		}
-		
-		// Create damage effect spec for this target
-		const FGameplayEffectSpecHandle SpecHandle = MakeOutgoingGameplayEffectSpec(DamageEffectClass, GetAbilityLevel());
-		
-		// Assign damage values to the spec
-		AssignDamageTypesToSpec(SpecHandle);
-		
-		// Apply damage effect
-		if (SpecHandle.IsValid())
-		{
-			TargetASC->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
-			
-			// Trigger HitReact ability
-			FGameplayEventData EventData;
-			EventData.Instigator = AvatarActor;
-			EventData.Target = HitActor;
-			TargetASC->HandleGameplayEvent(Aura::Event::HitReact, &EventData);
-			
-			UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Applied damage to: %s"), *HitActor->GetName());
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Failed to create damage spec for: %s"), *HitActor->GetName());
-		}
-	}
+                }
+
+                // Create and apply damage effect
+                const FGameplayEffectSpecHandle SpecHandle = MakeDamageEffectSpecHandle();
+                if (!SpecHandle.IsValid())
+                {
+                        UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Failed to create damage spec for: %s"), *HitActor->GetName());
+                        continue;
+                }
+
+                if (ApplyDamageEffectToTarget(HitActor, SpecHandle))
+                {
+                        UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Applied damage to: %s"), *HitActor->GetName());
+                }
+                else
+                {
+                        UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Target %s has no ASC!"), *HitActor->GetName());
+                }
+        }
 }
 
 void UAuraGA_MeleeAttack::OnMontageCompleted()

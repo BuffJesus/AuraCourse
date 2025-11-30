@@ -17,6 +17,11 @@ FVector IAuraCombatInterface::GetCombatSocketLocation() const
         return FVector::ZeroVector;
 }
 
+FVector IAuraCombatInterface::GetCombatSocketLocationByTag(const FGameplayTag& SocketTag) const
+{
+        return GetCombatSocketLocation();
+}
+
 AActor* IAuraCombatInterface::GetCombatTarget() const
 {
         return nullptr;

@@ -76,16 +76,24 @@ namespace Aura
 		
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HitReact, "Aura.Effects.HitReact", "Hit reaction");
 	}
-	namespace Entities
-	{
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Entities, "Aura.Entities", "Entities");
-		
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Player, "Aura.Entities.Player", "Player entity");
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Enemy, "Aura.Entities.Enemy", "Enemy entity");
-	}
-	namespace Event
-	{
-		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event, "Aura.Event", "Event");
+        namespace Entities
+        {
+                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Entities, "Aura.Entities", "Entities");
+
+                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Player, "Aura.Entities.Player", "Player entity");
+                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Enemy, "Aura.Entities.Enemy", "Enemy entity");
+        }
+        namespace CombatSocket
+        {
+                UE_DEFINE_GAMEPLAY_TAG_COMMENT(CombatSocket, "Aura.CombatSocket", "Combat socket root");
+
+                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Weapon, "Aura.CombatSocket.Weapon", "Default weapon combat socket");
+                UE_DEFINE_GAMEPLAY_TAG_COMMENT(LeftHand, "Aura.CombatSocket.LeftHand", "Left-hand combat socket");
+                UE_DEFINE_GAMEPLAY_TAG_COMMENT(RightHand, "Aura.CombatSocket.RightHand", "Right-hand combat socket");
+        }
+        namespace Event
+        {
+                UE_DEFINE_GAMEPLAY_TAG_COMMENT(Event, "Aura.Event", "Event");
 		
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(HitReact, "Aura.Event.HitReact", "Hit reaction");
 		namespace Montage

@@ -88,13 +88,31 @@ UAbilitySystemComponent* AAuraBaseCharacter::GetAbilitySystemComponent() const
 
 FVector AAuraBaseCharacter::GetCombatSocketLocation() const
 {
-	check(Weapon);
-	return Weapon->GetSocketLocation(WeaponTipSocketName);
+        check(Weapon);
+        return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
+
+FVector AAuraBaseCharacter::GetCombatSocketLocationByTag(const FGameplayTag& SocketTag) const
+{
+        check(Weapon);
+
+        if (SocketTag.IsValid())
+        {
+                if (const FName* SocketName = TaggedCombatSockets.Find(SocketTag))
+                {
+                        if (Weapon->DoesSocketExist(*SocketName))
+                        {
+                                return Weapon->GetSocketLocation(*SocketName);
+                        }
+                }
+        }
+
+        return GetCombatSocketLocation();
 }
 
 void AAuraBaseCharacter::InitializeAbilityActorInfo()
 {
-	// override in children
+        // override in children
 }
 
 void AAuraBaseCharacter::InitializeDefaultAttributes() const
