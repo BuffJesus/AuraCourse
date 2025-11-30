@@ -51,13 +51,10 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void InitializeAbilityActorInfo() override;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Combat")
-	TObjectPtr<UAnimMontage> AttackMontage;
-	
-	FORCEINLINE virtual UAnimMontage* GetAttackMontage_Implementation() const override
-	{
-		return AttackMontage;
-	}
+        UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Combat")
+        TObjectPtr<UAnimMontage> AttackMontage;
+
+        virtual UAnimMontage* GetAttackMontage_Implementation() const override;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Aura|UI")
 	TObjectPtr<UWidgetComponent> HealthBar;
