@@ -31,67 +31,77 @@ ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
 }
 
 void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
-                                               const FGameplayAbilityActorInfo* ActorInfo, 
+                                               const FGameplayAbilityActorInfo* ActorInfo,
                                                const FGameplayAbilityActivationInfo ActivationInfo,
                                                const FGameplayEventData* TriggerEventData)
 {
-	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
-	AActor* AvatarActor = GetAvatarActorFromActorInfo();
-	if (!AvatarActor)
-	{
-		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-		return;
-	}
+AActor* AvatarActor = GetAvatarActorFromActorInfo();
+UE_LOG(LogTemp, Log, TEXT("ProjectileSpell ActivateAbility | Avatar: %s | Owner: %s | TriggerEventTag: %s"),
+AvatarActor ? *AvatarActor->GetName() : TEXT("None"),
+ActorInfo && ActorInfo->OwnerActor.IsValid() ? *ActorInfo->OwnerActor->GetName() : TEXT("None"),
+TriggerEventData ? *TriggerEventData->EventTag.ToString() : TEXT("None"));
 
-	// Commit ability (checks cost and cooldown)
-	if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
-	{
-		EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-		return;
-	}
+if (!AvatarActor)
+{
+EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+return;
+}
 
-    // Step 1: Get target data (mouse cursor location for players, combat target for AI)
-    if (ActorInfo && ActorInfo->PlayerController.IsValid())
-    {
-        TargetDataTask = UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse(this);
-        if (!TargetDataTask)
-        {
-            EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-            return;
-        }
+// Commit ability (checks cost and cooldown)
+if (!CommitAbility(Handle, ActorInfo, ActivationInfo))
+{
+EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+return;
+}
 
-        TargetDataTask->ValidData.AddDynamic(this, &UAuraGA_ProjectileSpell::OnTargetDataReceived);
-        TargetDataTask->ReadyForActivation();
-    }
-    else
-    {
-        // AI characters don't have mouse input; use their combat target instead
-        if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
-        {
-            if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
-            {
-                FGameplayAbilityTargetDataHandle DataHandle;
-                FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
-                TargetData->HitResult.Location = CombatTarget->GetActorLocation();
-                DataHandle.Add(TargetData);
+// Step 1: Get target data (mouse cursor location for players, combat target for AI)
+if (ActorInfo && ActorInfo->PlayerController.IsValid())
+{
+TargetDataTask = UAuraTargetDataUnderMouse::CreateTargetDataUnderMouse(this);
+if (!TargetDataTask)
+{
+EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+return;
+}
 
-                OnTargetDataReceived(DataHandle);
-                return;
-            }
-        }
+TargetDataTask->ValidData.AddDynamic(this, &UAuraGA_ProjectileSpell::OnTargetDataReceived);
+TargetDataTask->ReadyForActivation();
+}
+else
+{
+// AI characters don't have mouse input; use their combat target instead
+if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+{
+if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
+{
+UE_LOG(LogTemp, Log, TEXT("ProjectileSpell AI target acquired: %s"), *CombatTarget->GetName());
 
-        EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
-    }
+FGameplayAbilityTargetDataHandle DataHandle;
+FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
+TargetData->HitResult.Location = CombatTarget->GetActorLocation();
+DataHandle.Add(TargetData);
+
+OnTargetDataReceived(DataHandle);
+return;
+}
+
+UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell AI has no CombatTarget on %s"), *AvatarActor->GetName());
+}
+
+UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell ending due to missing target data for %s"), *AvatarActor->GetName());
+EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+}
 }
 
 void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetDataHandle& DataHandle)
 {
-	// Extract target location from data handle
-	CachedTargetLocation = FVector::ZeroVector;
-        if (DataHandle.Data.Num() > 0)
-        {
-                const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
+// Extract target location from data handle
+CachedTargetLocation = FVector::ZeroVector;
+if (DataHandle.Data.Num() > 0)
+{
+const FGameplayAbilityTargetData* TargetData = DataHandle.Data[0].Get();
                 if (TargetData)
                 {
                         const FHitResult* HitResult = TargetData->GetHitResult();
@@ -100,18 +110,22 @@ void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetD
                                 CachedTargetLocation = HitResult->Location;
                         }
                 }
-        }
+}
 
-        if (CachedTargetLocation.IsNearlyZero())
-        {
-                if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo()))
-                {
-                        if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
-                        {
-                                CachedTargetLocation = CombatTarget->GetActorLocation();
-                        }
-                }
-        }
+if (CachedTargetLocation.IsNearlyZero())
+{
+if (const IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(GetAvatarActorFromActorInfo()))
+{
+if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
+{
+CachedTargetLocation = CombatTarget->GetActorLocation();
+UE_LOG(LogTemp, Log, TEXT("ProjectileSpell fallback target location from combat target: %s"), *CachedTargetLocation.ToString());
+}
+}
+}
+
+UE_LOG(LogTemp, Log, TEXT("ProjectileSpell OnTargetDataReceived | CachedTargetLocation: %s | HasData: %s"),
+*CachedTargetLocation.ToString(), DataHandle.Data.Num() > 0 ? TEXT("true") : TEXT("false"));
 
 	// Step 2: Play montage (on both client and server for prediction)
 	AActor* AvatarActor = GetAvatarActorFromActorInfo();
