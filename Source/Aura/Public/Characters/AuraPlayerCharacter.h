@@ -1,7 +1,4 @@
-﻿
-// Not Sure Yet
-
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "AuraBaseCharacter.h"

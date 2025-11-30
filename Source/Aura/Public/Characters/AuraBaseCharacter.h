@@ -1,5 +1,4 @@
-﻿// Not Sure Yet
-
+﻿
 #pragma once
 
 #include "CoreMinimal.h"
@@ -86,10 +85,10 @@ public:
 	virtual bool IsDead_Implementation() const override;
 	virtual AActor* GetAvatar_Implementation() override;
 	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() const override;
-	virtual void UpdateFacingTarget_Implementation(const FVector& Target) override;
-	
+    virtual void UpdateFacingTarget_Implementation(const FVector& Target) override;
+    
 protected:
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 	
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
@@ -126,15 +125,24 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aura|Effects")
 	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
 
+	UPROPERTY()
+	TObjectPtr<UMaterialInstanceDynamic> DynamicDissolveMaterial;
+
+	UPROPERTY()
+	TObjectPtr<UMaterialInstanceDynamic> DynamicWeaponDissolveMaterial;
+
 	void Dissolve();
 
-	UFUNCTION()
-	void UpdateDissolveMaterial(float DissolveValue);
+ UFUNCTION()
+ void UpdateDissolveMaterial(float DissolveValue);
 
-	UFUNCTION()
-	void UpdateGlowMaterial(float GlowValue);
+ UFUNCTION()
+ void UpdateGlowMaterial(float GlowValue);
+
+ UFUNCTION()
+ void OnDissolveFinished();
 
 private:
-	UPROPERTY(EditAnywhere, Category = "Aura|Abilities")
-	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
+    UPROPERTY(EditAnywhere, Category = "Aura|Abilities")
+    TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
 };

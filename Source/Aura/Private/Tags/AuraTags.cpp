@@ -22,6 +22,7 @@ namespace Aura
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(State, "Aura.Ability.State", "Ability state tags");
 			
 			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Casting, "Aura.Ability.State.Casting", "Currently casting an ability");
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(Dead, "Aura.Ability.State.Dead", "Owner is dead; block abilities");
 		}
 	}
 	namespace Attributes

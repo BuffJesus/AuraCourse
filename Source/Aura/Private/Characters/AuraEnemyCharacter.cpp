@@ -1,6 +1,4 @@
-﻿// Not Sure Yet
-
-#include "Characters/AuraEnemyCharacter.h"
+﻿#include "Characters/AuraEnemyCharacter.h"
 #include "Aura/Aura.h"
 #include "Tags/AuraTags.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
@@ -141,15 +139,15 @@ void AAuraEnemyCharacter::Die()
 
 UAnimMontage* AAuraEnemyCharacter::GetAttackMontage_Implementation() const
 {
-        // Prefer the attack montage array if it has entries.
+        // Use the attack montage array - required to be populated by derived classes
         if (!AttackMontages.IsEmpty())
         {
                 const int32 MontageIndex = FMath::RandRange(0, AttackMontages.Num() - 1);
                 return AttackMontages[MontageIndex].Montage;
         }
 
-        // Fallback to the single montage property for backwards compatibility.
-        return AttackMontage;
+        UE_LOG(LogTemp, Warning, TEXT("No AttackMontages configured on %s"), *GetName());
+        return nullptr;
 }
 
 void AAuraEnemyCharacter::MulticastHandleDeath_Implementation()

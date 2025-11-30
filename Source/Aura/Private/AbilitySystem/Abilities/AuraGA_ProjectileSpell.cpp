@@ -1,4 +1,3 @@
-// Not Sure Yet
 
 #include "AbilitySystem/Abilities/AuraGA_ProjectileSpell.h"
 #include "AbilitySystemBlueprintLibrary.h"
@@ -10,6 +9,23 @@
 #include "Actors/AuraProjectile.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
+
+// Helper function to create target data from an actor
+static FGameplayAbilityTargetDataHandle CreateTargetDataFromActor(AActor* TargetActor)
+{
+	FGameplayAbilityTargetDataHandle DataHandle;
+	if (!TargetActor)
+	{
+		return DataHandle;
+	}
+
+	FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
+	TargetData->HitResult.Location = TargetActor->GetActorLocation();
+	TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
+	TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(TargetActor);
+	DataHandle.Add(TargetData);
+	return DataHandle;
+}
 
 UAuraGA_ProjectileSpell::UAuraGA_ProjectileSpell()
 {
@@ -25,9 +41,11 @@ TriggerData.TriggerTag = Aura::Ability::Attack::Attack;
 TriggerData.TriggerSource = EGameplayAbilityTriggerSource::GameplayEvent;
 AbilityTriggers.Add(TriggerData);
 
-// Block re-activation while this ability is active (prevents machine-gun casting)
-ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
-ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
+    // Block re-activation while this ability is active (prevents machine-gun casting)
+    ActivationOwnedTags.AddTag(Aura::Ability::State::Casting);
+    ActivationBlockedTags.AddTag(Aura::Ability::State::Casting);
+    // Cannot activate while dead
+    ActivationBlockedTags.AddTag(Aura::Ability::State::Dead);
 }
 
 void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
@@ -35,9 +53,18 @@ void UAuraGA_ProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle H
                                                const FGameplayAbilityActivationInfo ActivationInfo,
                                                const FGameplayEventData* TriggerEventData)
 {
-Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+    Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 
-AActor* AvatarActor = GetAvatarActorFromActorInfo();
+    AActor* AvatarActor = GetAvatarActorFromActorInfo();
+    // Prevent activation if owner is dead
+    if (UAbilitySystemComponent* ASC = ActorInfo ? ActorInfo->AbilitySystemComponent.Get() : nullptr)
+    {
+        if (ASC->HasMatchingGameplayTag(Aura::Ability::State::Dead))
+        {
+            EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
+            return;
+        }
+    }
 AActor* EventTargetActor = TriggerEventData ? const_cast<AActor*>(TriggerEventData->Target.Get()) : nullptr;
 UE_LOG(LogTemp, Log, TEXT("ProjectileSpell ActivateAbility | Avatar: %s | Owner: %s | TriggerEventTag: %s | EventTarget: %s"),
 AvatarActor ? *AvatarActor->GetName() : TEXT("None"),
@@ -77,16 +104,7 @@ else
     if (EventTargetActor)
     {
         UE_LOG(LogTemp, Log, TEXT("ProjectileSpell using TriggerEvent target: %s"), *EventTargetActor->GetName());
-
-        FGameplayAbilityTargetDataHandle DataHandle;
-        FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
-        TargetData->HitResult.Location = EventTargetActor->GetActorLocation();
-        TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
-        TargetData->HitResult.Actor = EventTargetActor;
-        TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(EventTargetActor);
-        CachedTargetActor = EventTargetActor;
-        DataHandle.Add(TargetData);
-
+        FGameplayAbilityTargetDataHandle DataHandle = CreateTargetDataFromActor(EventTargetActor);
         OnTargetDataReceived(DataHandle);
         return;
     }
@@ -96,24 +114,17 @@ else
         if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
         {
             UE_LOG(LogTemp, Log, TEXT("ProjectileSpell AI target acquired: %s"), *CombatTarget->GetName());
-
-            FGameplayAbilityTargetDataHandle DataHandle;
-            FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit();
-            TargetData->HitResult.Location = CombatTarget->GetActorLocation();
-            TargetData->HitResult.ImpactPoint = TargetData->HitResult.Location;
-            TargetData->HitResult.Actor = CombatTarget;
-            TargetData->HitResult.HitObjectHandle = FActorInstanceHandle(CombatTarget);
-            CachedTargetActor = CombatTarget;
-            DataHandle.Add(TargetData);
-
+            FGameplayAbilityTargetDataHandle DataHandle = CreateTargetDataFromActor(CombatTarget);
             OnTargetDataReceived(DataHandle);
             return;
         }
 
         UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell AI has no CombatTarget on %s"), *AvatarActor->GetName());
     }
-
-    UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell ending due to missing target data for %s"), *AvatarActor->GetName());
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("ProjectileSpell Avatar is not a CombatInterface on %s"), *AvatarActor->GetName());
+    }
     EndAbility(Handle, ActorInfo, ActivationInfo, true, true);
 }
 }
@@ -122,7 +133,6 @@ void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetD
 {
 // Extract target location from data handle
     CachedTargetLocation = FVector::ZeroVector;
-    CachedTargetActor = nullptr;
 
     if (DataHandle.Data.Num() > 0)
     {
@@ -133,7 +143,6 @@ void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetD
             if (HitResult)
             {
                 CachedTargetLocation = HitResult->Location;
-                CachedTargetActor = HitResult->GetActor();
             }
         }
     }
@@ -145,7 +154,6 @@ void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetD
             if (AActor* CombatTarget = CombatInterface->GetCombatTarget())
             {
                 CachedTargetLocation = CombatTarget->GetActorLocation();
-                CachedTargetActor = CombatTarget;
                 UE_LOG(LogTemp, Log, TEXT("ProjectileSpell fallback target location from combat target: %s"), *CachedTargetLocation.ToString());
             }
         }
@@ -154,9 +162,8 @@ void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetD
     UE_LOG(
         LogTemp,
         Log,
-        TEXT("ProjectileSpell OnTargetDataReceived | CachedTargetLocation: %s | CachedTargetActor: %s | HasData: %s"),
+        TEXT("ProjectileSpell OnTargetDataReceived | CachedTargetLocation: %s | HasData: %s"),
         *CachedTargetLocation.ToString(),
-        CachedTargetActor.IsValid() ? *CachedTargetActor->GetName() : TEXT("None"),
         DataHandle.Data.Num() > 0 ? TEXT("true") : TEXT("false")
     );
 
@@ -226,9 +233,18 @@ void UAuraGA_ProjectileSpell::OnTargetDataReceived(const FGameplayAbilityTargetD
 
 void UAuraGA_ProjectileSpell::OnMontageEventReceived(FGameplayEventData Payload)
 {
-	// This is called when the AnimNotify sends the gameplay event
-	// Now we can spawn the projectile at the exact frame in the animation
-	SpawnProjectile(CachedTargetLocation, ProjectileSocketTag, bOverridePitch, PitchOverride);
+    // If the owner died mid-cast, do not spawn
+    if (UAbilitySystemComponent* ASC = GetAbilitySystemComponentFromActorInfo())
+    {
+        if (ASC->HasMatchingGameplayTag(Aura::Ability::State::Dead))
+        {
+            EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, true);
+            return;
+        }
+    }
+    // This is called when the AnimNotify sends the gameplay event
+    // Now we can spawn the projectile at the exact frame in the animation
+    SpawnProjectile(CachedTargetLocation, ProjectileSocketTag, bOverridePitch, PitchOverride);
 }
 
 void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocation, const FGameplayTag& SocketTag, bool bShouldOverridePitch, float PitchOverrideValue)
@@ -299,9 +315,7 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLoc
 	FGameplayEffectContextHandle EffectContextHandle { SourceASC->MakeEffectContext() };
 	EffectContextHandle.SetAbility(this);
 	EffectContextHandle.AddSourceObject(Projectile);
-	TArray<TWeakObjectPtr<AActor>> Actors;
-	Actors.Add(Projectile);
-	EffectContextHandle.AddActors(Actors);
+	EffectContextHandle.AddActors({ TWeakObjectPtr<AActor>(Projectile) });
 	FHitResult HitResult;
 	HitResult.Location = ProjectileTargetLocation;
 	EffectContextHandle.AddHitResult(HitResult);

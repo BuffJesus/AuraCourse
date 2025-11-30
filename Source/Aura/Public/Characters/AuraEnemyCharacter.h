@@ -1,6 +1,4 @@
-﻿// Not Sure Yet
-
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "AuraBaseCharacter.h"
@@ -51,8 +49,6 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void InitializeAbilityActorInfo() override;
 	
-        UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Aura|Combat")
-        TObjectPtr<UAnimMontage> AttackMontage;
 
         virtual UAnimMontage* GetAttackMontage_Implementation() const override;
 	

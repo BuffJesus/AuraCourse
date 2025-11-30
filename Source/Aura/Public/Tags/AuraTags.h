@@ -23,6 +23,7 @@ namespace Aura
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(State);
 			
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Casting);
+			UE_DECLARE_GAMEPLAY_TAG_EXTERN(Dead);
 		}
 	}	
 	namespace Attributes

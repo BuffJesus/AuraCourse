@@ -1,5 +1,3 @@
-// Not Sure Yet
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -94,7 +92,4 @@ private:
 
         /** Cached target location from mouse cursor */
         FVector CachedTargetLocation;
-
-        /** Cached target actor resolved from trigger or target data */
-        TWeakObjectPtr<AActor> CachedTargetActor;
 };

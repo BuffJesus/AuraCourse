@@ -1,5 +1,4 @@
-﻿// Not Sure Yet
-
+﻿
 #include "Characters/AuraBaseCharacter.h"
 #include "AbilitySystemComponent.h"
 #include "AuraCollisionChannels.h"
@@ -8,6 +7,7 @@
 #include "AbilitySystem/AuraAbilitySystemBPLibrary.h"
 #include "Components/CapsuleComponent.h"
 #include "Tags/AuraTags.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 namespace 
 {
@@ -37,8 +37,20 @@ AAuraBaseCharacter::AAuraBaseCharacter()
 
 void AAuraBaseCharacter::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 	
+	// Ensure timeline component is valid and properly initialized
+	if (!IsValid(DissolveTimeline))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("DissolveTimeline is not valid on %s"), *GetName());
+		return;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("[%s] BeginPlay: Timeline setup starting. DissolveCurve=%s, GlowCurve=%s"), 
+		*GetName(), 
+		DissolveCurve ? *DissolveCurve->GetName() : TEXT("NULL"),
+		GlowCurve ? *GlowCurve->GetName() : TEXT("NULL"));
+
 	// Lambda to reduce duplication in timeline curve binding
 	auto BindCurveToTimeline = [this](UCurveFloat* Curve, const FName& CallbackName)
 	{
@@ -47,18 +59,41 @@ void AAuraBaseCharacter::BeginPlay()
 			FOnTimelineFloat Callback;
 			Callback.BindUFunction(this, CallbackName);
 			DissolveTimeline->AddInterpFloat(Curve, Callback);
+			UE_LOG(LogTemp, Warning, TEXT("[%s] Bound curve %s to callback %s"), 
+				*GetName(), *Curve->GetName(), *CallbackName.ToString());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("[%s] Curve for callback %s is not assigned"), 
+				*GetName(), *CallbackName.ToString());
 		}
 	};
 	
 	BindCurveToTimeline(DissolveCurve, FName("UpdateDissolveMaterial"));
 	BindCurveToTimeline(GlowCurve, FName("UpdateGlowMaterial"));
 	
-	// Configure timeline settings if we have any curves
-	if (DissolveCurve || GlowCurve)
-	{
-		DissolveTimeline->SetLooping(false);
-		DissolveTimeline->SetIgnoreTimeDilation(false);
-	}
+    // Configure timeline settings
+    DissolveTimeline->SetLooping(false);
+    DissolveTimeline->SetIgnoreTimeDilation(false);
+
+    // Ensure the timeline component can tick even if the actor itself doesn't
+    // This allows the dissolve/glow curves to drive parameter updates every frame
+    DissolveTimeline->PrimaryComponentTick.bCanEverTick = true;
+    DissolveTimeline->SetComponentTickEnabled(true);
+    // Make sure the component is registered so it will receive ticks
+    if (!DissolveTimeline->IsRegistered())
+    {
+        DissolveTimeline->RegisterComponent();
+    }
+
+    // Bind finished callback so we can stop ticking after the dissolve finishes
+    {
+        FOnTimelineEvent FinishedCallback;
+        FinishedCallback.BindUFunction(this, FName("OnDissolveFinished"));
+        DissolveTimeline->SetTimelineFinishedFunc(FinishedCallback);
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("[%s] Timeline configured."), *GetName());
 }
 
 void AAuraBaseCharacter::MulticastHandleDeath_Implementation()
@@ -79,8 +114,27 @@ void AAuraBaseCharacter::MulticastHandleDeath_Implementation()
 
 void AAuraBaseCharacter::Die()
 {
-	Weapon->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepWorld, true));
-	MulticastHandleDeath();
+    // Server-side: mark dead, block/stop abilities, stop animations & AI
+    bDead = true;
+    if (AbilitySystemComponent)
+    {
+        AbilitySystemComponent->AddLooseGameplayTag(Aura::Ability::State::Dead);
+        // Cancel all running abilities on death
+        AbilitySystemComponent->CancelAbilities();
+    }
+
+    if (UAnimInstance* AnimInst = GetMesh() ? GetMesh()->GetAnimInstance() : nullptr)
+    {
+        AnimInst->StopAllMontages(0.25f);
+    }
+
+    if (UCharacterMovementComponent* MoveComp = GetCharacterMovement())
+    {
+        MoveComp->StopMovementImmediately();
+    }
+
+    Weapon->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepWorld, true));
+    MulticastHandleDeath();
 }
 
 UAbilitySystemComponent* AAuraBaseCharacter::GetAbilitySystemComponent() const
@@ -189,49 +243,101 @@ void AAuraBaseCharacter::AddCharacterAbilities()
 
 void AAuraBaseCharacter::Dissolve()
 {
+	UE_LOG(LogTemp, Warning, TEXT("[%s] Dissolve() called"), *GetName());
+
 	if (IsValid(DissolveMaterialInstance))
 	{
-		UMaterialInstanceDynamic* DynamicMatInst = UMaterialInstanceDynamic::Create(DissolveMaterialInstance, this);
-		GetMesh()->SetMaterial(0, DynamicMatInst);
+		DynamicDissolveMaterial = UMaterialInstanceDynamic::Create(DissolveMaterialInstance, this);
+		GetMesh()->SetMaterial(0, DynamicDissolveMaterial);
+		UE_LOG(LogTemp, Warning, TEXT("[%s] Created dynamic dissolve material"), *GetName());
 	}
 	if (IsValid(WeaponDissolveMaterialInstance))
 	{
-		UMaterialInstanceDynamic* DynamicMatInst = UMaterialInstanceDynamic::Create(WeaponDissolveMaterialInstance, this);
-		Weapon->SetMaterial(0, DynamicMatInst);
+		DynamicWeaponDissolveMaterial = UMaterialInstanceDynamic::Create(WeaponDissolveMaterialInstance, this);
+		Weapon->SetMaterial(0, DynamicWeaponDissolveMaterial);
+		UE_LOG(LogTemp, Warning, TEXT("[%s] Created dynamic weapon dissolve material"), *GetName());
 	}
 	
-	if (DissolveTimeline)
+	if (IsValid(DissolveTimeline))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("[%s] Timeline is valid. IsActive=%d"), 
+			*GetName(), DissolveTimeline->IsActive());
+		
+		// Enable actor ticking so the timeline can update
+		SetActorTickEnabled(true);
+		UE_LOG(LogTemp, Warning, TEXT("[%s] Actor ticking enabled"), *GetName());
+		
+		// Activate and play the timeline
+		if (!DissolveTimeline->IsActive())
+		{
+			DissolveTimeline->Activate(true);
+			UE_LOG(LogTemp, Warning, TEXT("[%s] Timeline activated"), *GetName());
+		}
+		
 		DissolveTimeline->PlayFromStart();
+		UE_LOG(LogTemp, Warning, TEXT("[%s] Timeline playing from start"), *GetName());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("DissolveTimeline is invalid on %s - cannot play dissolve effect"), *GetName());
 	}
 }
 
 void AAuraBaseCharacter::UpdateDissolveMaterial(float DissolveValue)
 {
-	// Override or bind in Blueprint
+    if (IsValid(DynamicDissolveMaterial))
+    {
+        DynamicDissolveMaterial->SetScalarParameterValue(FName("Dissolve"), DissolveValue);
+    }
+    if (IsValid(DynamicWeaponDissolveMaterial))
+    {
+        DynamicWeaponDissolveMaterial->SetScalarParameterValue(FName("Dissolve"), DissolveValue);
+    }
 }
 
 void AAuraBaseCharacter::UpdateGlowMaterial(float GlowValue)
 {
-	// Override or bind in Blueprint
+    if (IsValid(DynamicDissolveMaterial))
+    {
+        DynamicDissolveMaterial->SetScalarParameterValue(FName("Glow"), GlowValue);
+    }
+    if (IsValid(DynamicWeaponDissolveMaterial))
+    {
+        DynamicWeaponDissolveMaterial->SetScalarParameterValue(FName("Glow"), GlowValue);
+    }
+}
+
+void AAuraBaseCharacter::OnDissolveFinished()
+{
+    // Stop ticking once the effect is done
+    if (DissolveTimeline)
+    {
+        DissolveTimeline->SetComponentTickEnabled(false);
+        DissolveTimeline->Stop();
+    }
+    SetActorTickEnabled(false);
+    UE_LOG(LogTemp, Log, TEXT("[%s] Dissolve finished."), *GetName());
 }
 
 void AAuraBaseCharacter::UpdateFacingTarget_Implementation(const FVector& Target)
 {
-	const FVector ActorLocation { GetActorLocation() };
-	FVector DirectionToTarget { Target - ActorLocation };
-	DirectionToTarget.Z = 0.f;
+    const FVector ActorLocation { GetActorLocation() };
+    FVector DirectionToTarget { Target - ActorLocation };
+    DirectionToTarget.Z = 0.f;
 
-	if (!DirectionToTarget.IsNearlyZero())
-	{
-		const FRotator LookRotation { DirectionToTarget.Rotation() };
-		SetActorRotation(FRotator(0.f, LookRotation.Yaw, 0.f));
+    if (!DirectionToTarget.IsNearlyZero())
+    {
+        const FRotator LookRotation { DirectionToTarget.Rotation() };
+        SetActorRotation(FRotator(0.f, LookRotation.Yaw, 0.f));
 
-		if (IsValid(MotionWarpingComponent))
-		{
-			const FTransform WarpTransform { LookRotation, Target };
-			const FMotionWarpingTarget WarpTarget { FName("FacingTarget"), WarpTransform };
-			MotionWarpingComponent->AddOrUpdateWarpTarget(WarpTarget);
-		}
-	}
+        if (IsValid(MotionWarpingComponent))
+        {
+            // Provide a yaw-only rotation with the actual target location. Using the real target location
+            // prevents Facing from hitting zero-length edge cases that can flip orientation.
+            const FQuat YawOnlyQuat = FRotator(0.f, LookRotation.Yaw, 0.f).Quaternion();
+            const FTransform WarpTransform(YawOnlyQuat, Target);
+            const FMotionWarpingTarget WarpTarget { FName("FacingTarget"), WarpTransform };
+            MotionWarpingComponent->AddOrUpdateWarpTarget(WarpTarget);
+        }
+    }
 }

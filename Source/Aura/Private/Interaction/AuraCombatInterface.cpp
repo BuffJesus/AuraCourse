@@ -1,4 +1,3 @@
-// Not Sure Yet
 
 #include "Interaction/AuraCombatInterface.h"
 

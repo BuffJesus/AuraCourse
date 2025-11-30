@@ -9,9 +9,24 @@
   <component name="ChangeListManager">
     <list default="true" id="0d6480d3-35e4-4958-8695-ce53d70f7f2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Aura.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Aura.uproject.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Montages/Slingshot/AM_Aura_Goblin_Slingshot_Attack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Montages/Slingshot/AM_Aura_Goblin_Slingshot_Attack.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Slingshot/Centered/SK_Slingshot.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Characters/Enemies/Goblin/Slingshot/Centered/SK_Slingshot.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BehaviorTree/BT_Aura_Enemy_BehaviorTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Aura/Blueprints/AI/BehaviorTree/BT_Aura_Enemy_BehaviorTree.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/AbilitySystem/Abilities/AuraGA_ProjectileSpell.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraBaseCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraEnemyCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Characters/AuraPlayerCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Interaction/AuraCombatInterface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Interaction/AuraCombatInterface.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Player/AuraPlayerController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Private/Tags/AuraTags.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/AbilitySystem/Abilities/AuraGA_ProjectileSpell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraBaseCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraEnemyCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Characters/AuraPlayerCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Interaction/AuraCombatInterface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Player/AuraPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Aura/Public/Tags/AuraTags.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +56,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://18" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://14" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/AuraAIController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQSTestingPawn.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Aura/Private/AI/EQS/AuraEQS_FindRangedAttackPosition.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -173,8 +188,6 @@
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/CoreUObject/Public/UObject/UObjectGlobals.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/Engine/Classes/Components/PrimitiveComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Programs/Epic Games/UE_5.7/Engine/Source/Runtime/UMG/Public/Blueprint/UserWidget.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://diff.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -188,25 +201,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Uproject.Aura.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;UnrealLinkOptionsId&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Uproject.Aura.executor": "Debug",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Aura" type="Uproject" factoryName="rider.uproject">
       <configuration_1 setup="1">
@@ -333,15 +349,8 @@
       <workItem from="1764432380898" duration="1959000" />
       <workItem from="1764443395410" duration="19175000" />
       <workItem from="1764469867606" duration="11385000" />
-      <workItem from="1764518098996" duration="9768000" />
-    </task>
-    <task id="LOCAL-00315" summary="Update AI Blackboard and Behavior Tree assets for Aura Enemy">
-      <option name="closed" value="true" />
-      <created>1764379909466</created>
-      <option name="number" value="00315" />
-      <option name="presentableId" value="LOCAL-00315" />
-      <option name="project" value="LOCAL" />
-      <updated>1764379909466</updated>
+      <workItem from="1764518098996" duration="10295000" />
+      <workItem from="1764531544496" duration="7032000" />
     </task>
     <task id="LOCAL-00316" summary="Add `AuraBTTask_Attack` for AI attack handling and update blackboard logic">
       <option name="closed" value="true" />
@@ -727,7 +736,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764530042135</updated>
     </task>
-    <option name="localTasksCounter" value="364" />
+    <task id="LOCAL-00364" summary="Update `.idea/workspace.xml` to include new Goblin Slingshot and Behavior Tree asset references">
+      <option name="closed" value="true" />
+      <created>1764531011146</created>
+      <option name="number" value="00364" />
+      <option name="presentableId" value="LOCAL-00364" />
+      <option name="project" value="LOCAL" />
+      <updated>1764531011146</updated>
+    </task>
+    <option name="localTasksCounter" value="365" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -737,7 +754,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Remove unused `CleanupAndEndAbility` method from `UAuraGA_MeleeAttack` and sync project settings with updated file references." />
     <MESSAGE value="Refactor `UAuraGA_MeleeAttack` to use cached target, add event handling for montage, and improve logging." />
     <MESSAGE value="Add sphere trace and damage logic to `UAuraGA_MeleeAttack`, initialize triggers, and expose effect handle." />
     <MESSAGE value="Refactor `UAuraGA_MeleeAttack` to create damage specs dynamically, improve error handling, and update logging for damage application." />
@@ -762,7 +778,8 @@
     <MESSAGE value="Add Goblin Slingshot assets and update related ability data&#10;&#10;- Introduced new Slingshot attack montage for Goblin enemy.&#10;- Updated blueprint for Goblin Slingshot (`BP_Goblin_Slingshot`).&#10;- Enhanced ranged enemy ability data (`GA_Aura_Enemy_Ranged`) to support new mechanics.&#10;- Synced class and ability system information (`DA_Aura_Class_Info`).&#10;- Integrated and modified Slingshot model assets (`SK_Slingshot`, `SKM_Slingshot`).&#10;- Adjusted `TestMap` to include updated assets and abilities." />
     <MESSAGE value="Sync `.idea/workspace.xml` and update references to include Goblin Spear asset changes" />
     <MESSAGE value="Update Goblin Spear asset references in `.idea/workspace.xml`" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Goblin Spear asset references in `.idea/workspace.xml`" />
+    <MESSAGE value="Update `.idea/workspace.xml` to include new Goblin Slingshot and Behavior Tree asset references" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `.idea/workspace.xml` to include new Goblin Slingshot and Behavior Tree asset references" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -785,5 +802,13 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>
