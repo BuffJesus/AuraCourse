@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "UObject/Interface.h"
 #include "AuraCombatInterface.generated.h"
 
@@ -26,6 +27,7 @@ class AURA_API IAuraCombatInterface
 public:
         virtual int32 GetCharacterLevel() const;
         virtual FVector GetCombatSocketLocation() const;
+        virtual FVector GetCombatSocketLocationByTag(const FGameplayTag& SocketTag) const;
         virtual AActor* GetCombatTarget() const;
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Aura|Combat")

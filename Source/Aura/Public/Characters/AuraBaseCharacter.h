@@ -44,10 +44,15 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
 	FName WeaponSocketName { "WeaponHandSocket" };
 	
-	UPROPERTY(EditAnywhere, Category = "Aura|Combat")
-	FName WeaponTipSocketName { "WeaponTipSocket" };
-	
-	virtual FVector GetCombatSocketLocation() const override;
+        UPROPERTY(EditAnywhere, Category = "Aura|Combat")
+        FName WeaponTipSocketName { "WeaponTipSocket" };
+
+        virtual FVector GetCombatSocketLocation() const override;
+        virtual FVector GetCombatSocketLocationByTag(const FGameplayTag& SocketTag) const override;
+
+        /** Optional mapping of Gameplay Tags to specific combat sockets (e.g., left/right hands) */
+        UPROPERTY(EditAnywhere, Category = "Aura|Combat")
+        TMap<FGameplayTag, FName> TaggedCombatSockets;
 	
 	UFUNCTION(BlueprintCallable, Category = "Aura|Combat")
 	FORCEINLINE UMotionWarpingComponent* GetMotionWarpingComponent() const { return MotionWarpingComponent; }
