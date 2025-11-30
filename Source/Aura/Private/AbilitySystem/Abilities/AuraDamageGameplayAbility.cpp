@@ -44,7 +44,7 @@ FGameplayEffectSpecHandle UAuraDamageGameplayAbility::MakeDamageEffectSpecHandle
         return SpecHandle;
 }
 
-FGameplayEffectSpecHandle UAuraDamageGameplayAbility::MakeDamageEffectSpecHandle(const FGameplayEffectContextHandle& EffectContextHandle) const
+FGameplayEffectSpecHandle UAuraDamageGameplayAbility::MakeDamageEffectSpecHandleWithContext(const FGameplayEffectContextHandle& EffectContextHandle) const
 {
         const UAbilitySystemComponent* SourceASC = GetAbilitySystemComponentFromActorInfo();
         if (!IsValid(SourceASC))

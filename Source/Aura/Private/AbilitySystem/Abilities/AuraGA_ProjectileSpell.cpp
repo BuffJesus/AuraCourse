@@ -59,7 +59,7 @@ void UAuraGA_ProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
         HitResult.Location = TargetLocation;
         EffectContextHandle.AddHitResult(HitResult);
 
-        const FGameplayEffectSpecHandle SpecHandle { MakeDamageEffectSpecHandle(EffectContextHandle) };
+        const FGameplayEffectSpecHandle SpecHandle { MakeDamageEffectSpecHandleWithContext(EffectContextHandle) };
         if (!SpecHandle.IsValid())
         {
                 UE_LOG(LogTemp, Error, TEXT("Failed to create damage spec for %s"), *GetName());
