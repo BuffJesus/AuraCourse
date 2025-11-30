@@ -15,6 +15,8 @@ class AURA_API UAuraGA_MeleeAttack : public UAuraDamageGameplayAbility
 	GENERATED_BODY()
 	
 public:
+	UAuraGA_MeleeAttack();
+	
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, 
 		const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 	
