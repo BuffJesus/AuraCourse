@@ -78,8 +78,12 @@ public:
                 TagContainer = CharacterTags;
         };
 
-        /** Returns the character class used to look up defaults like attributes and abilities. */
-        virtual ECharacterClass GetCharacterClass() const = 0;
+        /**
+         * Returns the character class used to look up defaults like attributes and abilities.
+         * A default of ECharacterClass::DefaultClass keeps the base class concrete while
+         * still allowing derived classes to override with their specific class.
+         */
+        virtual ECharacterClass GetCharacterClass() const { return ECharacterClass::DefaultClass; }
 
 	/** Combat Interface Implementations */
 	virtual UAnimMontage* GetHitReactMontage_Implementation() const override;
