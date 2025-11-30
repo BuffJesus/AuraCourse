@@ -1,9 +1,21 @@
 #include "AbilitySystem/Abilities/AuraGA_MeleeAttack.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Interaction/AuraCombatInterface.h"
 #include "Tags/AuraTags.h"
+
+UAuraGA_MeleeAttack::UAuraGA_MeleeAttack()
+{
+	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+	
+	// Set up the ability to trigger on gameplay event
+	FAbilityTriggerData TriggerData;
+	TriggerData.TriggerTag = Aura::Ability::Attack::Attack;
+	TriggerData.TriggerSource = EGameplayAbilityTriggerSource::GameplayEvent;
+	AbilityTriggers.Add(TriggerData);
+}
 
 void UAuraGA_MeleeAttack::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                           const FGameplayAbilityActorInfo* ActorInfo, 
@@ -86,8 +98,97 @@ void UAuraGA_MeleeAttack::OnMeleeAttackEvent(const FGameplayEventData* Payload)
 
 void UAuraGA_MeleeAttack::PerformMeleeAttack()
 {
-	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Dealing damage!"));
-	// TODO: Implement damage logic
+	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Starting sphere trace!"));
+	
+	// Get the avatar actor
+	AActor* AvatarActor = GetAvatarActorFromActorInfo();
+	if (!AvatarActor)
+	{
+		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - No AvatarActor!"));
+		return;
+	}
+	
+	// Get combat socket location
+	FVector CombatSocketLocation { FVector::ZeroVector };
+	if (IAuraCombatInterface* CombatInterface = Cast<IAuraCombatInterface>(AvatarActor))
+	{
+		CombatSocketLocation = CombatInterface->GetCombatSocketLocation();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - AvatarActor doesn't implement IAuraCombatInterface!"));
+		return;
+	}
+	
+	// Set up sphere trace
+	TArray<FHitResult> HitResults;
+	FCollisionShape SphereShape { FCollisionShape::MakeSphere(SphereTraceRadius) };
+	FCollisionQueryParams QueryParams;
+	QueryParams.AddIgnoredActor(AvatarActor);
+	
+	// Perform sphere trace
+	const UWorld* World = GetWorld();
+	if (!World)
+	{
+		UE_LOG(LogTemp, Error, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - No World!"));
+		return;
+	}
+	
+	const bool bHit = World->SweepMultiByChannel(
+		HitResults,
+		CombatSocketLocation,
+		CombatSocketLocation,  // Start and end at same location for sphere overlap
+		FQuat::Identity,
+		ECC_Pawn,
+		SphereShape,
+		QueryParams
+	);
+	
+	if (!bHit)
+	{
+		UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Sphere trace found no targets"));
+		return;
+	}
+	
+	UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Hit %d targets!"), HitResults.Num());
+	
+	// Process each hit
+	for (const FHitResult& Hit : HitResults)
+	{
+		AActor* HitActor = Hit.GetActor();
+		if (!IsValid(HitActor))
+		{
+			continue;
+		}
+		
+		UE_LOG(LogTemp, Log, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Processing hit on: %s"), *HitActor->GetName());
+		
+		// Get target ASC
+		UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(HitActor);
+		if (!TargetASC)
+		{
+			UE_LOG(LogTemp, Verbose, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Target %s has no ASC"), *HitActor->GetName());
+			continue;
+		}
+		
+		// Apply damage effect
+		if (DamageEffectSpecHandle.IsValid())
+		{
+			TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get());
+			
+			// Trigger HitReact ability
+			FGameplayEventData EventData;
+			EventData.Instigator = AvatarActor;
+			EventData.Target = HitActor;
+			TargetASC->HandleGameplayEvent(Aura::Event::HitReact, &EventData);
+			
+			UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - Applied damage to: %s"), *HitActor->GetName());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("UAuraGA_MeleeAttack::PerformMeleeAttack - No valid damage spec!"));
+		}
+	}
 }
 
 void UAuraGA_MeleeAttack::OnMontageCompleted()
