@@ -16,13 +16,18 @@
 // Default config values as fallback
 namespace DamageCalcDefaults
 {
-	constexpr float BlockDamageReduction = 0.5f;
-	constexpr float CriticalHitMultiplier = 2.0f;
-	constexpr float LuckToArmorPenetrationRatio = 1.0f;
-	constexpr float LuckToCriticalHitChanceRatio = 1.0f;
-	const FName ArmorPenCurveName("ArmorPenetration");
-	const FName EffectiveArmorCurveName("EffectiveArmor");
-	const FName CriticalHitResistanceCurveName("CriticalHitResistance");
+    constexpr float BlockDamageReduction = 0.5f;
+    constexpr float CriticalHitMultiplier = 2.0f;
+    constexpr float LuckToArmorPenetrationRatio = 1.0f;
+    constexpr float LuckToCriticalHitChanceRatio = 1.0f;
+    // Crit safety clamp defaults
+    constexpr float MinCriticalHitMultiplier = 1.0f;   // at least normal damage on crit
+    constexpr float MaxCriticalHitMultiplier = 3.0f;   // cap extreme stacking
+    // Debug logging default (used if no config asset provided)
+    constexpr bool bEnableDamageDebugLogs = true;
+    const FName ArmorPenCurveName("ArmorPenetration");
+    const FName EffectiveArmorCurveName("EffectiveArmor");
+    const FName CriticalHitResistanceCurveName("CriticalHitResistance");
 }
 
 // PARALLEL DAMAGE CALCULATION STRUCTURES
@@ -364,28 +369,60 @@ void UAuraExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExe
 	EffectiveCriticalHitChance = FMath::Max(0.f, EffectiveCriticalHitChance);
 	
 	const bool bCriticalHit { FMath::FRandRange(UE_SMALL_NUMBER, 100.f) <= EffectiveCriticalHitChance };
-	if (bCriticalHit)
-	{
-		UAuraAbilitySystemBPLibrary::SetIsCriticalHit(EffectContextHandle, true);
-		
-		const float SourceCriticalHitDamage { CaptureAttribute(DamageStatics().CriticalHitDamageDef, EvalParams) };
-		const float CritMultiplier = bHasConfig ? Config->CriticalHitMultiplier : DamageCalcDefaults::CriticalHitMultiplier;
-		Damage = Damage * CritMultiplier + SourceCriticalHitDamage;
-		
-		UE_LOG(LogTemp, Warning, TEXT("*** CRITICAL HIT! *** Damage: %.2f (CritDamage Bonus: %.2f)"), Damage, SourceCriticalHitDamage);
-	}
-	
-	// Debug Logging
-	UE_LOG(LogTemp, Warning, TEXT("=== DAMAGE CALC DEBUG ==="));
-	UE_LOG(LogTemp, Warning, TEXT("Config: %s | Parallel: %s"), 
-		bHasConfig ? TEXT("Valid") : TEXT("Defaults"),
-		bUseParallel ? TEXT("Yes") : TEXT("No"));
-	UE_LOG(LogTemp, Warning, TEXT("Source Level: %d | Target Level: %d | Luck: %.2f"), SourceLevel, TargetLevel, SourceLuck);
-	UE_LOG(LogTemp, Warning, TEXT("Initial Damage: %.2f | Blocked: %s"), InitialDamage, bBlocked ? TEXT("Yes") : TEXT("No"));
-	UE_LOG(LogTemp, Warning, TEXT("Armor: %.2f | ArmorPen: %.2f | Effective: %.2f"), TargetArmor, SourceArmorPenetration, EffectiveArmor);
-	UE_LOG(LogTemp, Warning, TEXT("CritChance: %.2f%% | CritResist: %.2f | Effective: %.2f%%"), SourceCriticalHitChance, TargetCriticalHitResistance, EffectiveCriticalHitChance);
-	UE_LOG(LogTemp, Warning, TEXT("Final Damage: %.2f"), Damage);
-	UE_LOG(LogTemp, Warning, TEXT("========================="));
+ if (bCriticalHit)
+ {
+     UAuraAbilitySystemBPLibrary::SetIsCriticalHit(EffectContextHandle, true);
+        
+     // Interpret CriticalHitDamage as a bonus to the crit multiplier (option 2)
+     // Backward-compatible: if the attribute is configured as a percentage (0-100), normalize to 0-1.
+     const float SourceCriticalHitDamage { CaptureAttribute(DamageStatics().CriticalHitDamageDef, EvalParams) };
+     const float BaseCritMultiplier = bHasConfig ? Config->CriticalHitMultiplier : DamageCalcDefaults::CriticalHitMultiplier;
+     float CritBonus = SourceCriticalHitDamage;
+     if (CritBonus > 1.f)
+     {
+         CritBonus *= 0.01f; // convert 0-100% into 0-1 range
+     }
+
+     // Final hybrid multiplier = BaseCritMultiplier + CritBonus (e.g., 2.0 + 0.5 = 2.5x)
+     const float FinalCritMultiplier = BaseCritMultiplier + CritBonus;
+
+     // Clamp to safety range from config or defaults
+     const float MinCrit = bHasConfig ? Config->MinCriticalHitMultiplier : DamageCalcDefaults::MinCriticalHitMultiplier;
+     const float MaxCrit = bHasConfig ? Config->MaxCriticalHitMultiplier : DamageCalcDefaults::MaxCriticalHitMultiplier;
+     const float ClampedCritMultiplier = FMath::Clamp(FinalCritMultiplier, MinCrit, MaxCrit);
+     const bool bWasClamped = !FMath::IsNearlyEqual(ClampedCritMultiplier, FinalCritMultiplier);
+
+     Damage *= ClampedCritMultiplier;
+
+     // Logging for crits
+     const bool bDebugLogs = bHasConfig ? Config->bEnableDamageDebugLogs : DamageCalcDefaults::bEnableDamageDebugLogs;
+     if (bDebugLogs)
+     {
+         if (bWasClamped)
+         {
+             UE_LOG(LogTemp, Warning, TEXT("[CRIT] Multiplier clamped from %.2f to %.2f (Range: %.2f–%.2f)"), FinalCritMultiplier, ClampedCritMultiplier, MinCrit, MaxCrit);
+         }
+         UE_LOG(LogTemp, Warning, TEXT("*** CRITICAL HIT! *** Damage: %.2f (Crit Mult: %.2f | Bonus: %.2f%%)"), Damage, ClampedCritMultiplier, CritBonus * 100.f);
+     }
+  }
+    
+     // Debug Logging
+     {
+         const bool bDebugLogs = bHasConfig ? Config->bEnableDamageDebugLogs : DamageCalcDefaults::bEnableDamageDebugLogs;
+         if (bDebugLogs)
+         {
+             UE_LOG(LogTemp, Warning, TEXT("=== DAMAGE CALC DEBUG ==="));
+             UE_LOG(LogTemp, Warning, TEXT("Config: %s | Parallel: %s"), 
+                 bHasConfig ? TEXT("Valid") : TEXT("Defaults"),
+                 bUseParallel ? TEXT("Yes") : TEXT("No"));
+             UE_LOG(LogTemp, Warning, TEXT("Source Level: %d | Target Level: %d | Luck: %.2f"), SourceLevel, TargetLevel, SourceLuck);
+             UE_LOG(LogTemp, Warning, TEXT("Initial Damage: %.2f | Blocked: %s"), InitialDamage, bBlocked ? TEXT("Yes") : TEXT("No"));
+             UE_LOG(LogTemp, Warning, TEXT("Armor: %.2f | ArmorPen: %.2f | Effective: %.2f"), TargetArmor, SourceArmorPenetration, EffectiveArmor);
+             UE_LOG(LogTemp, Warning, TEXT("CritChance: %.2f%% | CritResist: %.2f | Effective: %.2f%%"), SourceCriticalHitChance, TargetCriticalHitResistance, EffectiveCriticalHitChance);
+             UE_LOG(LogTemp, Warning, TEXT("Final Damage: %.2f"), Damage);
+             UE_LOG(LogTemp, Warning, TEXT("========================="));
+         }
+     }
 	
 	// Apply Damage
 	const FGameplayModifierEvaluatedData EvaluatedData(UAuraAttributeSet::GetIncomingDamageAttribute(), EGameplayModOp::Additive, Damage);

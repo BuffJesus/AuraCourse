@@ -47,18 +47,14 @@ void AAuraPlayerController::BeginPlay()
 	InputModeData.SetHideCursorDuringCapture(false);
 	SetInputMode(InputModeData);
 	
-	// Auto-detect whether to use async pathfinding based on CPU core count
-	const int32 NumCores = FPlatformMisc::NumberOfCores();
-	if (NumCores >= 4)
-	{
-		bUseAsyncPathfinding = true;
-		UE_LOG(LogTemp, Log, TEXT("Async pathfinding ENABLED (CPU has %d cores)"), NumCores);
-	}
-	else
-	{
-		bUseAsyncPathfinding = false;
-		UE_LOG(LogTemp, Log, TEXT("Async pathfinding DISABLED (CPU has only %d cores, using synchronous)"), NumCores);
-	}
+ // IMPORTANT: Navigation queries and most UObject access must run on the Game Thread.
+ // The previous implementation enabled async pathfinding based solely on CPU core count,
+ // then executed UNavigationSystemV1::FindPathToLocationSynchronously on a worker thread.
+ // That is not thread-safe and leads to inconsistent click-to-move behavior.
+ // Until we switch to the engine's thread-safe async API (FindPathAsync) we force
+ // synchronous pathfinding on the Game Thread to ensure correctness.
+ bUseAsyncPathfinding = false;
+ UE_LOG(LogTemp, Log, TEXT("Async pathfinding DISABLED to maintain thread safety for click-to-move"));
 }
 
 void AAuraPlayerController::SetupInputComponent()
